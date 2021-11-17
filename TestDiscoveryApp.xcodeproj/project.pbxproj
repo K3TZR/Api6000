@@ -8,15 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
-		9136826627442B5500A315C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826527442B5500A315C0 /* ContentView.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
+		913682892745572B00A315C0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 913682882745572B00A315C0 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
-		9136826527442B5500A315C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* TestDiscoveryApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestDiscoveryApp.entitlements; sourceTree = "<group>"; };
@@ -27,6 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				913682892745572B00A315C0 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */,
-				9136826527442B5500A315C0 /* ContentView.swift */,
 				9136826727442B5A00A315C0 /* Assets.xcassets */,
 				9136826C27442B5A00A315C0 /* TestDiscoveryApp.entitlements */,
 				9136826927442B5A00A315C0 /* Preview Content */,
@@ -94,6 +93,7 @@
 			);
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
+				913682882745572B00A315C0 /* ComposableArchitecture */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -123,6 +123,9 @@
 				Base,
 			);
 			mainGroup = 9136825727442B5500A315C0;
+			packageReferences = (
+				913682872745572B00A315C0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 9136826127442B5500A315C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -149,7 +152,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9136826627442B5500A315C0 /* ContentView.swift in Sources */,
 				9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,9 +280,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TestDiscoveryApp/TestDiscoveryApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -305,9 +308,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TestDiscoveryApp/TestDiscoveryApp.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -348,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		913682872745572B00A315C0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.28.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		913682882745572B00A315C0 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 913682872745572B00A315C0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9136825827442B5500A315C0 /* Project object */;
 }

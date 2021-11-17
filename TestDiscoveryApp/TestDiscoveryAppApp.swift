@@ -7,8 +7,8 @@
 
 import SwiftUI
 import ComposableArchitecture
-import PickerView
-import PickerCore
+import AppFeature
+import Picker
 
 @main
 struct TestDiscoveryAppApp: App {
