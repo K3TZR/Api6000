@@ -38,6 +38,7 @@
 			children = (
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
+				9136827327442C4100A315C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +70,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9136827327442C4100A315C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,6 +93,8 @@
 			dependencies = (
 			);
 			name = TestDiscoveryApp;
+			packageProductDependencies = (
+			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
 			productType = "com.apple.product-type.application";

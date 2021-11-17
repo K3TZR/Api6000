@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import PickerView
+import PickerCore
 
 @main
 struct TestDiscoveryAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          PickerView(store: Store(initialState: PickerState(),
+                                      reducer: pickerReducer,
+                                      environment: PickerEnvironment()))
         }
     }
 }
