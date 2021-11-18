@@ -11,6 +11,9 @@
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
 		913682892745572B00A315C0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 913682882745572B00A315C0 /* ComposableArchitecture */; };
+		913682982746C88300A315C0 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 913682972746C88300A315C0 /* Discovery */; };
+		9136829A2746C88300A315C0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 913682992746C88300A315C0 /* Picker */; };
+		9136829C2746C88300A315C0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9136829B2746C88300A315C0 /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,7 @@
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* TestDiscoveryApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestDiscoveryApp.entitlements; sourceTree = "<group>"; };
+		913682962746C82800A315C0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				913682892745572B00A315C0 /* ComposableArchitecture in Frameworks */,
+				9136829C2746C88300A315C0 /* Shared in Frameworks */,
+				913682982746C88300A315C0 /* Discovery in Frameworks */,
+				9136829A2746C88300A315C0 /* Picker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +43,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
+				913682962746C82800A315C0 /* TestDiscoveryPackage */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
 				9136827327442C4100A315C0 /* Frameworks */,
@@ -94,6 +102,9 @@
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
 				913682882745572B00A315C0 /* ComposableArchitecture */,
+				913682972746C88300A315C0 /* Discovery */,
+				913682992746C88300A315C0 /* Picker */,
+				9136829B2746C88300A315C0 /* Shared */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -283,7 +294,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -311,7 +322,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -369,6 +380,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 913682872745572B00A315C0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		913682972746C88300A315C0 /* Discovery */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Discovery;
+		};
+		913682992746C88300A315C0 /* Picker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Picker;
+		};
+		9136829B2746C88300A315C0 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

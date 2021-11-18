@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import AppFeature
 import Picker
 
 @main
@@ -16,7 +15,9 @@ struct TestDiscoveryAppApp: App {
         WindowGroup {
           PickerView(store: Store(initialState: PickerState(),
                                       reducer: pickerReducer,
-                                      environment: PickerEnvironment()))
+                                      environment: PickerEnvironment()
+                                 )
+          ).frame(width: 600, height: 300)
         }
     }
 }
