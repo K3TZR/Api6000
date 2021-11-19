@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		912200F42747DEE5008C4EC0 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F32747DEE5008C4EC0 /* Discovery */; };
+		912200F62747DEE5008C4EC0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F52747DEE5008C4EC0 /* Picker */; };
+		912200F82747DEE5008C4EC0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F72747DEE5008C4EC0 /* Shared */; };
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		912200EB2747DD23008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
+		912200F22747DED1008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912200F62747DEE5008C4EC0 /* Picker in Frameworks */,
+				912200F42747DEE5008C4EC0 /* Discovery in Frameworks */,
+				912200F82747DEE5008C4EC0 /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +85,7 @@
 		915C92EF2747D85E006E1205 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				912200EB2747DD23008C4EC0 /* TestDiscoveryPackage */,
+				912200F22747DED1008C4EC0 /* TestDiscoveryPackage */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -101,6 +107,9 @@
 			);
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
+				912200F32747DEE5008C4EC0 /* Discovery */,
+				912200F52747DEE5008C4EC0 /* Picker */,
+				912200F72747DEE5008C4EC0 /* Shared */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -289,7 +298,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -317,7 +326,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -358,6 +367,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		912200F32747DEE5008C4EC0 /* Discovery */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Discovery;
+		};
+		912200F52747DEE5008C4EC0 /* Picker */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Picker;
+		};
+		912200F72747DEE5008C4EC0 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9136825827442B5500A315C0 /* Project object */;
 }
