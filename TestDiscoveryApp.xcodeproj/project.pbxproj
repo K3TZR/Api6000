@@ -10,18 +10,15 @@
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
-		91503DA72746E35E00834651 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91503DA62746E35E00834651 /* Discovery */; };
-		91503DA92746E35E00834651 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 91503DA82746E35E00834651 /* Picker */; };
-		91503DAB2746E35E00834651 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 91503DAA2746E35E00834651 /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		912200EB2747DD23008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* TestDiscoveryApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestDiscoveryApp.entitlements; sourceTree = "<group>"; };
-		91503DA52746E34A00834651 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,9 +26,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91503DA92746E35E00834651 /* Picker in Frameworks */,
-				91503DA72746E35E00834651 /* Discovery in Frameworks */,
-				91503DAB2746E35E00834651 /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +35,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
-				91503DA52746E34A00834651 /* TestDiscoveryPackage */,
+				915C92EF2747D85E006E1205 /* Packages */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
 				9136827327442C4100A315C0 /* Frameworks */,
@@ -82,6 +76,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		915C92EF2747D85E006E1205 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				912200EB2747DD23008C4EC0 /* TestDiscoveryPackage */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,9 +101,6 @@
 			);
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
-				91503DA62746E35E00834651 /* Discovery */,
-				91503DA82746E35E00834651 /* Picker */,
-				91503DAA2746E35E00834651 /* Shared */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -290,7 +289,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -318,7 +317,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -359,21 +358,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		91503DA62746E35E00834651 /* Discovery */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Discovery;
-		};
-		91503DA82746E35E00834651 /* Picker */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Picker;
-		};
-		91503DAA2746E35E00834651 /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9136825827442B5500A315C0 /* Project object */;
 }
