@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		912200F42747DEE5008C4EC0 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F32747DEE5008C4EC0 /* Discovery */; };
-		912200F62747DEE5008C4EC0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F52747DEE5008C4EC0 /* Picker */; };
-		912200F82747DEE5008C4EC0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 912200F72747DEE5008C4EC0 /* Shared */; };
+		9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9122012D2749A18F008C4EC0 /* ComposableArchitecture */; };
+		912201302749A1FA008C4EC0 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 9122012F2749A1FA008C4EC0 /* Discovery */; };
+		912201322749A1FA008C4EC0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 912201312749A1FA008C4EC0 /* Picker */; };
+		912201342749A1FB008C4EC0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 912201332749A1FB008C4EC0 /* Shared */; };
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		912200F22747DED1008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
+		9122012B2749A154008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -29,19 +30,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				912200F62747DEE5008C4EC0 /* Picker in Frameworks */,
-				912200F42747DEE5008C4EC0 /* Discovery in Frameworks */,
-				912200F82747DEE5008C4EC0 /* Shared in Frameworks */,
+				9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */,
+				912201342749A1FB008C4EC0 /* Shared in Frameworks */,
+				912201302749A1FA008C4EC0 /* Discovery in Frameworks */,
+				912201322749A1FA008C4EC0 /* Picker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9122012A2749A154008C4EC0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				9122012B2749A154008C4EC0 /* TestDiscoveryPackage */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
-				915C92EF2747D85E006E1205 /* Packages */,
+				9122012A2749A154008C4EC0 /* Packages */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
 				9136827327442C4100A315C0 /* Frameworks */,
@@ -82,14 +92,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		915C92EF2747D85E006E1205 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				912200F22747DED1008C4EC0 /* TestDiscoveryPackage */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +109,10 @@
 			);
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
-				912200F32747DEE5008C4EC0 /* Discovery */,
-				912200F52747DEE5008C4EC0 /* Picker */,
-				912200F72747DEE5008C4EC0 /* Shared */,
+				9122012D2749A18F008C4EC0 /* ComposableArchitecture */,
+				9122012F2749A1FA008C4EC0 /* Discovery */,
+				912201312749A1FA008C4EC0 /* Picker */,
+				912201332749A1FB008C4EC0 /* Shared */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -140,6 +143,7 @@
 			);
 			mainGroup = 9136825727442B5500A315C0;
 			packageReferences = (
+				9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 9136826127442B5500A315C0 /* Products */;
 			projectDirPath = "";
@@ -298,7 +302,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -326,7 +330,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -368,16 +372,32 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		912200F32747DEE5008C4EC0 /* Discovery */ = {
+		9122012D2749A18F008C4EC0 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		9122012F2749A1FA008C4EC0 /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Discovery;
 		};
-		912200F52747DEE5008C4EC0 /* Picker */ = {
+		912201312749A1FA008C4EC0 /* Picker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Picker;
 		};
-		912200F72747DEE5008C4EC0 /* Shared */ = {
+		912201332749A1FB008C4EC0 /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Shared;
 		};
