@@ -28,19 +28,12 @@ struct RootView: View {
       }
       Spacer()
       Divider().background(Color(.red))
-      Text("Bottom buttons go here")
-      //        BottomButtonsView(tester: tester)
+      BottomButtonsView()
     }
     .toolbar {
       Button("Log Viewer") { print("Log Viewer button clicked") }
   }
 
-  }
-}
-
-struct RootView_Previews: PreviewProvider {
-  static var previews: some View {
-    RootView()
   }
 }
 
@@ -84,3 +77,37 @@ struct TopButtonsView: View {
   }
 }
 
+struct BottomButtonsView: View {
+
+  @State var fontSize: CGFloat = 12
+  
+    var body: some View {
+
+      HStack(spacing: 40) {
+        Stepper("Font Size", value: $fontSize, in: 8...16)
+        Text("\(fontSize)").frame(alignment: .leading)
+        Spacer()
+        Toggle("Clear on Connect", isOn: .constant(true))
+        Toggle("Clear on Disconnect", isOn: .constant(false))
+        Button("Clear Now") { print("Clear Now clicked") }
+      }
+    }
+}
+
+struct RootView_Previews: PreviewProvider {
+  static var previews: some View {
+    RootView()
+  }
+}
+
+struct TopButtonsView_Previews: PreviewProvider {
+  static var previews: some View {
+    TopButtonsView()
+  }
+}
+
+struct BottomButtonsView_Previews: PreviewProvider {
+  static var previews: some View {
+    BottomButtonsView()
+  }
+}

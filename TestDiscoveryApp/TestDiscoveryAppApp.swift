@@ -20,7 +20,7 @@ struct TestDiscoveryAppApp: App {
 //          ).frame(width: 600, height: 300)
 
           RootView()
-            .frame(width: 950, height: 600)
+            .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
             .padding()
         }
     }
