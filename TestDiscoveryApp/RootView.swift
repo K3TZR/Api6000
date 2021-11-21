@@ -1,0 +1,86 @@
+//
+//  RootView.swift
+//  TestDiscoveryApp
+//
+//  Created by Douglas Adams on 11/20/21.
+//
+
+import SwiftUI
+import ComposableArchitecture
+import Picker
+
+struct RootView: View {
+  
+  @State var activeRadio = false
+  
+  var body: some View {
+    VStack(alignment: .leading) {
+      TopButtonsView()
+      //        SendView(tester: tester, radioManager: radioManager)
+      //        FiltersView(tester: tester)
+      
+      Divider().background(Color(.red))
+      
+      VSplitView {
+        Text("----- Objects go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
+        Divider().background(Color(.green))
+        Text("----- Messages go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
+      }
+      Spacer()
+      Divider().background(Color(.red))
+      Text("Bottom buttons go here")
+      //        BottomButtonsView(tester: tester)
+    }
+    .toolbar {
+      Button("Log Viewer") { print("Log Viewer button clicked") }
+  }
+
+  }
+}
+
+struct RootView_Previews: PreviewProvider {
+  static var previews: some View {
+    RootView()
+  }
+}
+
+struct TopButtonsView: View {
+  
+  @State var isConnected = false
+  @State var smartlinkIsLoggedIn = false
+  @State var smartlinkIsEnabled = false
+  
+  var body: some View {
+    
+    HStack(spacing: 30) {
+      Button(isConnected ? "Stop" : "Start") {
+        print("StartStop button clicked")
+      }
+      .keyboardShortcut(isConnected ? .cancelAction : .defaultAction)
+      .help("Using the Default connection type")
+      
+      HStack(spacing: 20) {
+        Toggle("Gui", isOn: .constant(true))
+        Toggle("Times", isOn: .constant(true))
+        Toggle("Pings", isOn: .constant(false))
+        Toggle("Replies", isOn: .constant(false))
+        Toggle("Buttons", isOn: .constant(false))
+      }
+      
+      Spacer()
+      HStack(spacing: 10) {
+        Text("SmartLink")
+        Button(smartlinkIsLoggedIn ? "Logout" : "Login") {
+          print("SmartLink button clicked")
+        }
+        .disabled(!smartlinkIsEnabled)
+        
+        Button("Status") { print("Status button clicked") }
+      }.disabled(isConnected)
+      
+      Spacer()
+      Button("Default") { print("Default button clicked") }
+    }
+  }
+}
+
