@@ -11,17 +11,23 @@ import Picker
 
 @main
 struct TestDiscoveryAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-//          PickerView(store: Store(initialState: PickerState(),
-//                                      reducer: pickerReducer,
-//                                      environment: PickerEnvironment()
-//                                 )
-//          ).frame(width: 600, height: 300)
-
-          RootView()
-            .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
-            .padding()
-        }
+  var body: some Scene {
+    WindowGroup {
+      //          PickerView(store: Store(initialState: PickerState(),
+      //                                      reducer: pickerReducer,
+      //                                      environment: PickerEnvironment()
+      //                                 )
+      //          ).frame(width: 600, height: 300)
+      
+      RootView(
+        store: Store(
+          initialState: RootState(),
+          reducer: rootReducer,
+          environment: RootEnvironment()
+        )
+      )
+        .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
+        .padding()
     }
+  }
 }
