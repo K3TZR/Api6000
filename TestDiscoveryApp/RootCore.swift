@@ -17,7 +17,7 @@ public struct RootState: Equatable {
   public var showButtons = false
   public var showPicker = false
   public var pickerState: PickerState?
-  
+
   public init() {}
 }
 
@@ -28,8 +28,8 @@ public enum RootAction: Equatable {
   case showRepliesClicked
   case showButtonsClicked
   case startButtonClicked
+  case dismissSheet
   case pickerAction(PickerAction)
-  case pickerClosed
 }
 
 public struct RootEnvironment {
@@ -42,15 +42,30 @@ public struct RootEnvironment {
 }
 
 // swiftlint:disable trailing_closure
-let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
+
+//  .combine(
+//  pickerReducer
+//    .optional()
+//    .pullback(
+//      state: \RootState.pickerState,
+//      action: /RootAction.picker(action:),
+//      environment: { _ in PickerEnvironment() }
+//    ),
+//  Reducer
+
+
+
+let rootReducer = Reducer<RootState, RootAction, RootEnvironment>
+  .combine(
   pickerReducer
     .optional()
     .pullback(
-    state: \.pickerState,
-    action: /RootAction.pickerAction,
-    environment: { _ in PickerEnvironment() }
-  ),
-  Reducer { state, action, environment in
+      state: \RootState.pickerState,
+      action: /RootAction.pickerAction,
+      environment: { _ in PickerEnvironment() }
+    ),
+  Reducer
+  { state, action, environment in
     switch action {
       
     case .isGuiClicked:
@@ -74,19 +89,60 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       return .none
       
     case .startButtonClicked:
-      state.showPicker = true
+      state.pickerState = PickerState(pickType: .radio)
       return .none
       
-      
-    case .pickerClosed:
+    case .dismissSheet:
+      state.pickerState = nil
       return .none
-    
-    case let .pickerAction(action):
-      print("PickerAction received: \(action)")
-      state.showPicker = false
+
+    case .pickerAction(.cancelButtonTapped):
+      print("RootCore: .pickerAction: \(action)")
+      return Effect(value: .dismissSheet)
+
+    case .pickerAction(_):
+      print("RootCore: .pickerAction: \(action)")
       return .none
     }
   }
-)
-  .debug()
+  ).debug()
+//    case .picker(action: .onAppear):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .onDisappear):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .testButtonTapped):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .testResultReceived(_)):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .connectButtonTapped):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .connectResultReceived(_)):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .packetsUpdate(_)):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .clientsUpdate(_)):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//
+//    case .picker(action: .packet(index: let index, action: let action)):
+//      print("RootCore: .picker: \(action)")
+//      return .none
+//    }
+//  }
+//)
+//  .debug()
 // swiftlint:enable trailing_closure

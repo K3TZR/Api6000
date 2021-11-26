@@ -13,6 +13,7 @@
 		9122013C274AE61E008C4EC0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 9122013B274AE61E008C4EC0 /* Picker */; };
 		9122013E274AE61E008C4EC0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9122013D274AE61E008C4EC0 /* Shared */; };
 		912C66B5274F0BF90098863E /* RootCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C66B4274F0BF90098863E /* RootCore.swift */; };
+		912C66B727512E270098863E /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C66B627512E270098863E /* Example.swift */; };
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		912201352749D244008C4EC0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		91220138274AE60D008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		912C66B4274F0BF90098863E /* RootCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCore.swift; sourceTree = "<group>"; };
+		912C66B627512E270098863E /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				9136826927442B5A00A315C0 /* Preview Content */,
 				912201352749D244008C4EC0 /* RootView.swift */,
 				912C66B4274F0BF90098863E /* RootCore.swift */,
+				912C66B627512E270098863E /* Example.swift */,
 			);
 			path = TestDiscoveryApp;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912C66B727512E270098863E /* Example.swift in Sources */,
 				912C66B5274F0BF90098863E /* RootCore.swift in Sources */,
 				912201362749D244008C4EC0 /* RootView.swift in Sources */,
 				9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */,

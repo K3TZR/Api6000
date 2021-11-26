@@ -35,22 +35,24 @@ struct RootView: View {
       .toolbar {
         Button("Log Viewer") { print("Log Viewer button clicked") }
       }
-      .sheet(isPresented: viewStore.binding(get: \.showPicker, send: .pickerClosed)) {
-        PickerView(
-          store: Store(
-            initialState: PickerState(),
-            reducer: pickerReducer,
-            environment: PickerEnvironment()
+      .sheet(
+        isPresented: viewStore.binding(
+          get: { $0.pickerState != nil },
+          send: .dismissSheet),
+        content: {
+          IfLetStore(
+            store.scope(state: \.pickerState, action: RootAction.pickerAction),
+            then: PickerView.init(store:)
           )
-        )
-      }
+        }
+      )
     }
   }
 }
 
 struct TopButtonsView: View {
   let store: Store<RootState, RootAction>
-
+  
   @State var isConnected = false
   @State var smartlinkIsLoggedIn = false
   @State var smartlinkIsEnabled = false
