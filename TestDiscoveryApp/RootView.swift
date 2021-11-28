@@ -33,19 +33,22 @@ struct RootView: View {
         BottomButtonsView()
       }
       .toolbar {
-        Button("Log Viewer") { print("Log Viewer button clicked") }
+        Button("Log Viewer") { viewStore.send(.logViewButtonClicked) }
       }
       .sheet(
         isPresented: viewStore.binding(
-          get: { $0.pickerState != nil },
-          send: .dismissSheet),
+          get: { $0.showPicker },
+          send: RootAction.sheetClosed),
+//        onDismiss: { viewStore.send(.sheetClosed) },
         content: {
           IfLetStore(
             store.scope(state: \.pickerState, action: RootAction.pickerAction),
             then: PickerView.init(store:)
           )
         }
-      )
+      ).onAppear {
+        viewStore.send(.onAppear)
+      }
     }
   }
 }
