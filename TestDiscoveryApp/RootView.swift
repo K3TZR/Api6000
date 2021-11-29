@@ -30,16 +30,15 @@ struct RootView: View {
         }
         Spacer()
         Divider().background(Color(.red))
-        BottomButtonsView()
+        BottomButtonsView(store: store)
       }
       .toolbar {
-        Button("Log Viewer") { viewStore.send(.logViewButtonClicked) }
+        Button("Log Viewer") { viewStore.send(.buttonTapped(.logView)) }
       }
       .sheet(
         isPresented: viewStore.binding(
           get: { $0.showPicker },
           send: RootAction.sheetClosed),
-//        onDismiss: { viewStore.send(.sheetClosed) },
         content: {
           IfLetStore(
             store.scope(state: \.pickerState, action: RootAction.pickerAction),
@@ -56,7 +55,6 @@ struct RootView: View {
 struct TopButtonsView: View {
   let store: Store<RootState, RootAction>
   
-  @State var isConnected = false
   @State var smartlinkIsLoggedIn = false
   @State var smartlinkIsEnabled = false
   
@@ -64,51 +62,51 @@ struct TopButtonsView: View {
     
     WithViewStore(self.store) { viewStore in
       HStack(spacing: 30) {
-        Button(isConnected ? "Stop" : "Start") {
-          viewStore.send(.startButtonClicked)
+        Button(viewStore.connectedPacket == nil ? "Start" : "Stop") {
+          viewStore.send(.buttonTapped(.startStop))
         }
-        .keyboardShortcut(isConnected ? .cancelAction : .defaultAction)
+        .keyboardShortcut(viewStore.connectedPacket == nil ? .defaultAction : .cancelAction)
         .help("Using the Default connection type")
         
         HStack(spacing: 20) {
-          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .isGuiClicked))
-          Toggle("Times", isOn: viewStore.binding(get: \.showTimes, send: .showTimesClicked))
-          Toggle("Pings", isOn: viewStore.binding(get: \.showPings, send: .showPingsClicked))
-          Toggle("Replies", isOn: viewStore.binding(get: \.showReplies, send: .showRepliesClicked))
-          Toggle("Buttons", isOn: viewStore.binding(get: \.showButtons, send: .showButtonsClicked))
+          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .buttonTapped(.gui)))
+          Toggle("Times", isOn: viewStore.binding(get: \.showTimes, send: .buttonTapped(.times)))
+          Toggle("Pings", isOn: viewStore.binding(get: \.showPings, send: .buttonTapped(.pings)))
+          Toggle("Replies", isOn: viewStore.binding(get: \.showReplies, send: .buttonTapped(.replies)))
+          Toggle("Buttons", isOn: viewStore.binding(get: \.showButtons, send: .buttonTapped(.buttons)))
         }
         
         Spacer()
         HStack(spacing: 10) {
           Text("SmartLink")
-          Button(smartlinkIsLoggedIn ? "Logout" : "Login") {
-            print("SmartLink button clicked")
-          }
-          .disabled(!smartlinkIsEnabled)
+          Button(smartlinkIsLoggedIn ? "Logout" : "Login") { viewStore.send(.buttonTapped(.smartlink)) }
           
-          Button("Status") { print("Status button clicked") }
-        }.disabled(isConnected)
+          Button("Status") { viewStore.send(.buttonTapped(.status)) }
+        }.disabled(viewStore.connectedPacket != nil)
         
         Spacer()
-        Button("Default") { print("Default button clicked") }
+        Button("Clear Default") { viewStore.send(.buttonTapped(.clearDefault)) }
       }
     }
   }
 }
 
 struct BottomButtonsView: View {
-  
+  let store: Store<RootState, RootAction>
+
   @State var fontSize: CGFloat = 12
   
   var body: some View {
     
-    HStack(spacing: 40) {
-      Stepper("Font Size", value: $fontSize, in: 8...16)
-      Text("\(fontSize)").frame(alignment: .leading)
-      Spacer()
-      Toggle("Clear on Connect", isOn: .constant(true))
-      Toggle("Clear on Disconnect", isOn: .constant(false))
-      Button("Clear Now") { print("Clear Now clicked") }
+    WithViewStore(self.store) { viewStore in
+      HStack(spacing: 40) {
+        Stepper("Font Size", value: $fontSize, in: 8...16)
+        Text("\(fontSize)").frame(alignment: .leading)
+        Spacer()
+        Toggle("Clear on Connect", isOn: viewStore.binding(get: \.clearOnConnect, send: .buttonTapped(.clearOnConnect)))
+        Toggle("Clear on Disconnect", isOn: viewStore.binding(get: \.clearOnDisconnect, send: .buttonTapped(.clearOnDisconnect)))
+        Button("Clear Now") { viewStore.send(.buttonTapped(.clearNow))}
+      }
     }
   }
 }
@@ -139,6 +137,12 @@ struct TopButtonsView_Previews: PreviewProvider {
 
 struct BottomButtonsView_Previews: PreviewProvider {
   static var previews: some View {
-    BottomButtonsView()
+    BottomButtonsView(
+      store: Store(
+        initialState: RootState(),
+        reducer: rootReducer,
+        environment: RootEnvironment()
+      )
+    )
   }
 }
