@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9122012D2749A18F008C4EC0 /* ComposableArchitecture */; };
 		912201362749D244008C4EC0 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912201352749D244008C4EC0 /* RootView.swift */; };
-		9122013A274AE61E008C4EC0 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91220139274AE61E008C4EC0 /* Discovery */; };
-		9122013C274AE61E008C4EC0 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 9122013B274AE61E008C4EC0 /* Picker */; };
-		9122013E274AE61E008C4EC0 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9122013D274AE61E008C4EC0 /* Shared */; };
 		912C66B5274F0BF90098863E /* RootCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C66B4274F0BF90098863E /* RootCore.swift */; };
+		912C66BA275715770098863E /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66B9275715770098863E /* Discovery */; };
+		912C66BC275715770098863E /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BB275715770098863E /* Picker */; };
+		912C66BE275715770098863E /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BD275715770098863E /* Shared */; };
+		912C66C0275725990098863E /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BF275725980098863E /* LogViewer */; };
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
@@ -20,8 +21,8 @@
 
 /* Begin PBXFileReference section */
 		912201352749D244008C4EC0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		91220138274AE60D008C4EC0 /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		912C66B4274F0BF90098863E /* RootCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCore.swift; sourceTree = "<group>"; };
+		912C66B82757148C0098863E /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,9 +36,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */,
-				9122013E274AE61E008C4EC0 /* Shared in Frameworks */,
-				9122013A274AE61E008C4EC0 /* Discovery in Frameworks */,
-				9122013C274AE61E008C4EC0 /* Picker in Frameworks */,
+				912C66C0275725990098863E /* LogViewer in Frameworks */,
+				912C66BE275715770098863E /* Shared in Frameworks */,
+				912C66BA275715770098863E /* Discovery in Frameworks */,
+				912C66BC275715770098863E /* Picker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +49,6 @@
 		9122012A2749A154008C4EC0 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				91220138274AE60D008C4EC0 /* TestDiscoveryPackage */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -55,6 +56,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
+				912C66B82757148C0098863E /* TestDiscoveryPackage */,
 				9122012A2749A154008C4EC0 /* Packages */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
@@ -116,9 +118,10 @@
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
 				9122012D2749A18F008C4EC0 /* ComposableArchitecture */,
-				91220139274AE61E008C4EC0 /* Discovery */,
-				9122013B274AE61E008C4EC0 /* Picker */,
-				9122013D274AE61E008C4EC0 /* Shared */,
+				912C66B9275715770098863E /* Discovery */,
+				912C66BB275715770098863E /* Picker */,
+				912C66BD275715770098863E /* Shared */,
+				912C66BF275725980098863E /* LogViewer */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -397,17 +400,21 @@
 			package = 9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		91220139274AE61E008C4EC0 /* Discovery */ = {
+		912C66B9275715770098863E /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Discovery;
 		};
-		9122013B274AE61E008C4EC0 /* Picker */ = {
+		912C66BB275715770098863E /* Picker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Picker;
 		};
-		9122013D274AE61E008C4EC0 /* Shared */ = {
+		912C66BD275715770098863E /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Shared;
+		};
+		912C66BF275725980098863E /* LogViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LogViewer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

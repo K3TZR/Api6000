@@ -11,8 +11,14 @@ import Discovery
 import Picker
 import Shared
 
+public enum RootViewType: Equatable {
+  case apiTester
+  case logViewer
+}
+
 public enum RootButton {
-  case logView
+  case logViewer
+  case apiTester
   case startStop
   case gui
   case times
@@ -28,7 +34,7 @@ public enum RootButton {
 }
 
 public struct RootState: Equatable {
-  public var listener: Listener?
+  public var rootViewType: RootViewType = .apiTester
   public var isGui = true
   public var showTimes = false
   public var showPings = false
@@ -85,10 +91,14 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       
     case let .buttonTapped(button):
       switch button {
-      case .logView:
-        print("RootCore: logView button tapped")
+      case .logViewer:
+        print("RootCore: Log Viewer button tapped")
+        state.rootViewType = .logViewer
+      case .apiTester:
+        print("RootCore: Log Viewer button tapped")
+        state.rootViewType = .apiTester
       case .startStop:
-        state.pickerState = PickerState(listener: environment.listener(), pickType: .radio)
+        state.pickerState = PickerState(pickType: .radio)
         state.showPicker = true
       case .gui:
         state.isGui.toggle()
@@ -111,7 +121,7 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       case .clearOnDisconnect:
         state.clearOnDisconnect.toggle()
       case .clearNow:
-        state.clearNow.toggle()
+        print("RootCore: Clear Now button tapped")
       }
       return .none
       

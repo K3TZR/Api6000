@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import Picker
+import LogViewer
 
 struct RootView: View {
   let store: Store<RootState, RootAction>
@@ -16,38 +17,19 @@ struct RootView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      VStack(alignment: .leading) {
-        TopButtonsView(store: store)
-        //        SendView(tester: tester, radioManager: radioManager)
-        //        FiltersView(tester: tester)
+      
+//      if viewStore.rootViewType == .apiTester {
         
-        Divider().background(Color(.red))
-        
-        VSplitView {
-          Text("----- Objects go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
-          Divider().background(Color(.green))
-          Text("----- Messages go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
-        }
-        Spacer()
-        Divider().background(Color(.red))
-        BottomButtonsView(store: store)
-      }
-      .toolbar {
-        Button("Log Viewer") { viewStore.send(.buttonTapped(.logView)) }
-      }
-      .sheet(
-        isPresented: viewStore.binding(
-          get: { $0.showPicker },
-          send: RootAction.sheetClosed),
-        content: {
-          IfLetStore(
-            store.scope(state: \.pickerState, action: RootAction.pickerAction),
-            then: PickerView.init(store:)
+//        ApiTesterView(store: store)
+//      } else {
+        LogViewer(
+          store: Store(
+            initialState: LogState(),
+            reducer: logReducer,
+            environment: LogEnvironment()
           )
-        }
-      ).onAppear {
-        viewStore.send(.onAppear)
-      }
+        )
+//      }
     }
   }
 }
@@ -91,9 +73,74 @@ struct TopButtonsView: View {
   }
 }
 
+
+
+
+struct ApiTesterView: View {
+  let store: Store<RootState, RootAction>
+  
+  var body: some View {
+        
+    WithViewStore(self.store) { viewStore in
+      VStack(alignment: .leading) {
+        TopButtonsView(store: store)
+        //        SendView(tester: tester, radioManager: radioManager)
+        //        FiltersView(tester: tester)
+        
+        Divider().background(Color(.red))
+        
+        VSplitView {
+          Text("----- Objects go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
+          Divider().background(Color(.green))
+          Text("----- Messages go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
+        }
+        Spacer()
+        Divider().background(Color(.red))
+        BottomButtonsView(store: store)
+      }
+      .toolbar {
+        Button("Log Viewer") { viewStore.send(.buttonTapped(.logViewer)) }
+      }
+      .sheet(
+        isPresented: viewStore.binding(
+          get: { $0.showPicker },
+          send: RootAction.sheetClosed),
+        content: {
+          IfLetStore(
+            store.scope(state: \.pickerState, action: RootAction.pickerAction),
+            then: PickerView.init(store:)
+          )
+        }
+      ).onAppear {
+        viewStore.send(.onAppear)
+      }
+    }
+  }
+}
+
+
+//struct LogViewerView: View {
+//  let store: Store<RootState, RootAction>
+//
+//  var body: some View {
+//
+//    WithViewStore(self.store) { viewStore in
+//      Text("Log Viewer")
+//        .toolbar {
+//          Button("Api Tester") { viewStore.send(.buttonTapped(.apiTester)) }
+//        }
+//
+//    }
+//  }
+//}
+
+
+
+
+
 struct BottomButtonsView: View {
   let store: Store<RootState, RootAction>
-
+  
   @State var fontSize: CGFloat = 12
   
   var body: some View {
@@ -101,7 +148,7 @@ struct BottomButtonsView: View {
     WithViewStore(self.store) { viewStore in
       HStack(spacing: 40) {
         Stepper("Font Size", value: $fontSize, in: 8...16)
-        Text("\(fontSize)").frame(alignment: .leading)
+        Text(String(format: "%2.0f", fontSize)).frame(alignment: .leading)
         Spacer()
         Toggle("Clear on Connect", isOn: viewStore.binding(get: \.clearOnConnect, send: .buttonTapped(.clearOnConnect)))
         Toggle("Clear on Disconnect", isOn: viewStore.binding(get: \.clearOnDisconnect, send: .buttonTapped(.clearOnDisconnect)))
