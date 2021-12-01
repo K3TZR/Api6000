@@ -21,7 +21,8 @@ struct TestDiscoveryAppApp: App {
         )
       )
         .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 10)
     }
   }
 }

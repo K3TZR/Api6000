@@ -9,6 +9,7 @@ import ComposableArchitecture
 import Dispatch
 import Discovery
 import Picker
+import LogViewer
 import Shared
 
 public enum RootViewType: Equatable {
@@ -42,12 +43,14 @@ public struct RootState: Equatable {
   public var showButtons = false
   public var showPicker = false
   public var pickerState: PickerState?
+  public var logState: LogState?
   public var connectedPacket: Packet? = nil
   public var defaultPacket: Packet? = nil
   public var clearNow = false
   public var clearOnConnect = false
   public var clearOnDisconnect = false
-  
+  public var fontSize: CGFloat = 12
+
   public init() {}
 }
 
@@ -58,6 +61,8 @@ public enum RootAction: Equatable {
 
   case sheetClosed
   case pickerAction(PickerAction)
+  case logAction(LogAction)
+  case fontSizeChanged(CGFloat)
 }
 
 public struct RootEnvironment {
@@ -76,6 +81,13 @@ public struct RootEnvironment {
 
 // swiftlint:disable trailing_closure
 let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
+  logReducer
+    .optional()
+    .pullback(
+      state: \RootState.logState,
+      action: /RootAction.logAction,
+      environment: { _ in LogEnvironment() }
+    ),
   pickerReducer
     .optional()
     .pullback(
@@ -94,41 +106,59 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       case .logViewer:
         print("RootCore: Log Viewer button tapped")
         state.rootViewType = .logViewer
+        state.logState = LogState(fontSize: state.fontSize)
+      
       case .apiTester:
         print("RootCore: Log Viewer button tapped")
         state.rootViewType = .apiTester
+      
       case .startStop:
         state.pickerState = PickerState(pickType: .radio)
         state.showPicker = true
+      
       case .gui:
         state.isGui.toggle()
+      
       case .times:
         state.showTimes.toggle()
+      
       case .pings:
         state.showPings.toggle()
+      
       case .replies:
         state.showReplies.toggle()
+      
       case .buttons:
         state.showButtons.toggle()
+      
       case .clearDefault:
         state.defaultPacket = nil
+      
       case .smartlink:
         print("RootCore: smartlink button tapped")
+      
       case .status:
         print("RootCore: status button tapped")
+      
       case .clearOnConnect:
         state.clearOnConnect.toggle()
+      
       case .clearOnDisconnect:
         state.clearOnDisconnect.toggle()
+      
       case .clearNow:
         print("RootCore: Clear Now button tapped")
       }
       return .none
       
-      
     case .sheetClosed:
       print("RootCore: .sheetClosed")
       state.pickerState = nil
+      return .none
+      
+    case let .fontSizeChanged(size):
+      print("RootCore: .fontSizeChanged")
+      state.fontSize = size
       return .none
       
     case let .pickerAction(.defaultSelected(packet)):
@@ -152,6 +182,21 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       
     case .pickerAction(_):
       print("RootCore: .pickerAction: \(action)")
+      return .none
+
+    case .logAction(.buttonTapped(.apiTester)):
+      print("RootCore: .logAction: \(action)")
+      state.logState = nil
+      state.rootViewType = .apiTester
+      return .none
+
+    case let .logAction(.fontSizeChanged(size)):
+      print("RootCore: .logAction(.fontSizeChanged): \(size)")
+      state.fontSize = size
+      return .none
+
+    case .logAction(_):
+      print("RootCore: .logAction: \(action)")
       return .none
     }
   }
