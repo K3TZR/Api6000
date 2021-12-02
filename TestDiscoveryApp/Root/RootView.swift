@@ -16,14 +16,17 @@ struct RootView: View {
   var body: some View {
     WithViewStore(self.store) { viewStore in
       
-      switch viewStore.rootViewType {
-      case .apiTester:
-        ApiViewer(store: store)
+      switch viewStore.viewType {
+      case .api:
+        IfLetStore(
+          store.scope(state: \.apiState, action: RootAction.apiAction),
+          then: ApiView.init(store:)
+          )
       
-      case .logViewer:
+      case .log:
         IfLetStore(
           store.scope(state: \.logState, action: RootAction.logAction),
-          then: LogViewer.init(store:)
+          then: LogView.init(store:)
         )
       }
     }

@@ -1,5 +1,5 @@
 //
-//  ApiViewer.swift
+//  ApiView.swift
 //  TestDiscoveryApp
 //
 //  Created by Douglas Adams on 12/1/21.
@@ -8,25 +8,24 @@
 import SwiftUI
 import ComposableArchitecture
 import Picker
+import Shared
 
-struct ApiViewer: View {
-  let store: Store<RootState, RootAction>
+struct ApiView: View {
+  let store: Store<ApiState, ApiAction>
   
   var body: some View {
         
     WithViewStore(self.store) { viewStore in
       VStack(alignment: .leading) {
         TopButtonsView(store: store)
-        //        SendView(tester: tester, radioManager: radioManager)
+        SendView(store: store)
         //        FiltersView(tester: tester)
         
         Divider().background(Color(.red))
         
         VSplitView {
-//          Text("----- Objects go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
           ObjectsView(store: store)
           Divider().background(Color(.green))
-//          Text("----- Messages go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
           MessagesView(store: store)
         }
         Spacer()
@@ -34,27 +33,25 @@ struct ApiViewer: View {
         BottomButtonsView(store: store)
       }
       .toolbar {
-        Button("Log Viewer") { viewStore.send(.buttonTapped(.logViewer)) }
+        Button("Log View") { viewStore.send(.buttonTapped(.logView)) }
       }
       .sheet(
         isPresented: viewStore.binding(
           get: { $0.showPicker },
-          send: RootAction.sheetClosed),
+          send: ApiAction.sheetClosed),
         content: {
           IfLetStore(
-            store.scope(state: \.pickerState, action: RootAction.pickerAction),
+            store.scope(state: \.pickerState, action: ApiAction.pickerAction),
             then: PickerView.init(store:)
           )
         }
-      ).onAppear {
-        viewStore.send(.onAppear)
-      }
+      )
     }
   }
 }
 
 struct TopButtonsView: View {
-  let store: Store<RootState, RootAction>
+  let store: Store<ApiState, ApiAction>
   
   @State var smartlinkIsLoggedIn = false
   @State var smartlinkIsEnabled = false
@@ -92,8 +89,47 @@ struct TopButtonsView: View {
   }
 }
 
+struct SendView: View {
+  let store: Store<ApiState, ApiAction>
+  
+  @State var someText = ""
+  
+  var body: some View {
+    
+    WithViewStore(self.store) { viewStore in
+      HStack(spacing: 25) {
+        Group {
+          Button("Send") { viewStore.send(.buttonTapped(.send)) }
+          .keyboardShortcut(.defaultAction)
+          
+          HStack(spacing: 0) {
+            Button("X") { viewStore.send(.commandToSendChanged("")) }
+            .frame(width: 17, height: 17)
+            .cornerRadius(20)
+            .disabled(viewStore.connectedPacket == nil)
+//            Image(systemName: "x.circle")
+//              .resizable()
+//              .frame(width: 17, height: 17)
+//              .foregroundColor(viewStore.connectedPacket == nil ? .gray : nil)
+//              .onTapGesture {
+//                viewStore.send(.commandToSendChanged(""))
+//              }
+            TextField("Command to send", text: viewStore.binding(
+              get: \.commandToSend,
+              send: { value in .commandToSendChanged(value) } ))
+          }
+        }
+        .disabled(viewStore.connectedPacket == nil)
+        
+        Spacer()
+        Toggle("Clear on Send", isOn: viewStore.binding(get: \.clearOnSend, send: .buttonTapped(.clearOnSend)))
+      }
+    }
+  }
+}
+
 struct ObjectsView: View {
-  let store: Store<RootState, RootAction>
+  let store: Store<ApiState, ApiAction>
   
   var body: some View {
     Text("----- Objects go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
@@ -101,7 +137,7 @@ struct ObjectsView: View {
 }
 
 struct MessagesView: View {
-  let store: Store<RootState, RootAction>
+  let store: Store<ApiState, ApiAction>
   
   var body: some View {
     Text("----- Messages go here -----").frame(minWidth: 950, minHeight: 100, idealHeight: 200, maxHeight: 300, alignment: .leading)
@@ -109,7 +145,7 @@ struct MessagesView: View {
 }
 
 struct BottomButtonsView: View {
-  let store: Store<RootState, RootAction>
+  let store: Store<ApiState, ApiAction>
   
   @State var fontSize: CGFloat = 12
   
@@ -138,9 +174,21 @@ struct TopButtonsView_Previews: PreviewProvider {
   static var previews: some View {
     TopButtonsView(
       store: Store(
-        initialState: RootState(),
-        reducer: rootReducer,
-        environment: RootEnvironment()
+        initialState: ApiState(fontSize: 12),
+        reducer: apiReducer,
+        environment: ApiEnvironment()
+      )
+    )
+  }
+}
+
+struct SendView_Previews: PreviewProvider {
+  static var previews: some View {
+    SendView(
+      store: Store(
+        initialState: ApiState(fontSize: 12),
+        reducer: apiReducer,
+        environment: ApiEnvironment()
       )
     )
   }
@@ -150,9 +198,9 @@ struct ObjectsView_Previews: PreviewProvider {
   static var previews: some View {
     ObjectsView(
       store: Store(
-        initialState: RootState(),
-        reducer: rootReducer,
-        environment: RootEnvironment()
+        initialState: ApiState(fontSize: 12),
+        reducer: apiReducer,
+        environment: ApiEnvironment()
       )
     )
   }
@@ -162,9 +210,9 @@ struct MessagesView_Previews: PreviewProvider {
   static var previews: some View {
     MessagesView(
       store: Store(
-        initialState: RootState(),
-        reducer: rootReducer,
-        environment: RootEnvironment()
+        initialState: ApiState(fontSize: 12),
+        reducer: apiReducer,
+        environment: ApiEnvironment()
       )
     )
   }
@@ -174,9 +222,9 @@ struct BottomButtonsView_Previews: PreviewProvider {
   static var previews: some View {
     BottomButtonsView(
       store: Store(
-        initialState: RootState(),
-        reducer: rootReducer,
-        environment: RootEnvironment()
+        initialState: ApiState(fontSize: 12),
+        reducer: apiReducer,
+        environment: ApiEnvironment()
       )
     )
   }
@@ -184,11 +232,11 @@ struct BottomButtonsView_Previews: PreviewProvider {
 
 struct ApiViewer_Previews: PreviewProvider {
     static var previews: some View {
-      ApiViewer(
+      ApiView(
         store: Store(
-          initialState: RootState(),
-          reducer: rootReducer,
-          environment: RootEnvironment()
+          initialState: ApiState(fontSize: 12),
+          reducer: apiReducer,
+          environment: ApiEnvironment()
         )
       )
     }

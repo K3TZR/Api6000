@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import Picker
+import Shared
 
 @main
 struct TestDiscoveryAppApp: App {
@@ -20,6 +21,7 @@ struct TestDiscoveryAppApp: App {
           environment: RootEnvironment()
         )
       )
+        .navigationTitle("TestDiscoveryApp   v" + Version().string)
         .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
         .padding(.horizontal)
         .padding(.vertical, 10)
