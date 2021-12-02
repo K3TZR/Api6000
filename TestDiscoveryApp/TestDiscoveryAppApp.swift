@@ -7,7 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
-import Picker
+
 import Shared
 
 @main

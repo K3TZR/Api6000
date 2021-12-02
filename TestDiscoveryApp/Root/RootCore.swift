@@ -63,7 +63,6 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     
       // Log actions
     case .logAction(.buttonTapped(.apiView)):
-      print("RootCore: .logAction: \(action)")
       state.apiState = ApiState(fontSize: state.fontSize)
       state.logState = nil
       state.viewType = .api
@@ -73,12 +72,12 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.fontSize = value
       return .none
 
-    case .logAction(_):
+    case let .logAction(value):
+      // IGNORE ALL OTHERS
       return .none
 
       // Api actions
     case .apiAction(.buttonTapped(.logView)):
-      print("RootCore: .apiAction: \(action)")
       state.logState = LogState(fontSize: state.fontSize)
       state.apiState = nil
       state.viewType = .log
@@ -88,11 +87,10 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.fontSize = value
       return .none
 
-    case .apiAction(_):
+    case let .apiAction(value):
+      // IGNORE ALL OTHERS
       return .none
-    
     }
   }
 )
-
-//  .debug()
+  .debug("ROOT ")

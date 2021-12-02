@@ -58,8 +58,8 @@
 		912C66C6275853BA0098863E /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				912201352749D244008C4EC0 /* RootView.swift */,
 				912C66B4274F0BF90098863E /* RootCore.swift */,
+				912201352749D244008C4EC0 /* RootView.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -352,7 +352,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"TestDiscoveryApp/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
