@@ -1,14 +1,14 @@
 //
 //  RootCore.swift
-//  TestDiscoveryApp
+//  TestDiscoveryApp/Root
 //
 //  Created by Douglas Adams on 11/24/21.
 //
 
 import ComposableArchitecture
 import Dispatch
-import Discovery
-import Picker
+
+import ApiViewer
 import LogViewer
 import Shared
 
@@ -58,16 +58,10 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       action: /RootAction.logAction,
       environment: { _ in LogEnvironment() }
     ),
-//  pickerReducer
-//    .optional()
-//    .pullback(
-//      state: \RootState.pickerState,
-//      action: /RootAction.pickerAction,
-//      environment: { _ in PickerEnvironment() }
-//    ),
   Reducer { state, action, environment in
     switch action {
-            
+    
+      // Log actions
     case .logAction(.buttonTapped(.apiView)):
       print("RootCore: .logAction: \(action)")
       state.apiState = ApiState(fontSize: state.fontSize)
@@ -75,6 +69,14 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.viewType = .api
       return .none
 
+    case .logAction(let .fontSizeChanged(value)):
+      state.fontSize = value
+      return .none
+
+    case .logAction(_):
+      return .none
+
+      // Api actions
     case .apiAction(.buttonTapped(.logView)):
       print("RootCore: .apiAction: \(action)")
       state.logState = LogState(fontSize: state.fontSize)
@@ -82,11 +84,13 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.viewType = .log
       return .none
     
+    case .apiAction(let .fontSizeChanged(value)):
+      state.fontSize = value
+      return .none
+
     case .apiAction(_):
       return .none
     
-    case .logAction(_):
-      return .none
     }
   }
 )
