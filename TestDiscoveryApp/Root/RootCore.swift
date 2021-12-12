@@ -17,10 +17,12 @@ public enum ViewType: Equatable {
   case log
 }
 
+// TODO: Where to get smartlinkEmail ???
+
 public struct RootState: Equatable {
   public var viewType: ViewType = .api
   public var logState: LogState?
-  public var apiState: ApiState? = ApiState(fontSize: 12)
+  public var apiState: ApiState? = ApiState(fontSize: 12, smartlinkEmail: "douglas.adams@me.com")
   public var fontSize: CGFloat = 12
 
   public init() {}
@@ -63,7 +65,7 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     
       // Log actions
     case .logAction(.buttonTapped(.apiView)):
-      state.apiState = ApiState(fontSize: state.fontSize)
+      state.apiState = ApiState(fontSize: state.fontSize, smartlinkEmail: "douglas.adams@me.com")
       state.logState = nil
       state.viewType = .api
       return .none
