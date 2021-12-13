@@ -10,8 +10,23 @@ import ComposableArchitecture
 
 import Shared
 
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // disable tab view
+        NSWindow.allowsAutomaticWindowTabbing = false
+    }
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        // close when last window closed
+        true
+    }
+}
+
+
 @main
 struct TestDiscoveryAppApp: App {
+  @NSApplicationDelegateAdaptor(AppDelegate.self)
+  var appDelegate
+
   var body: some Scene {
     WindowGroup {
       RootView(
