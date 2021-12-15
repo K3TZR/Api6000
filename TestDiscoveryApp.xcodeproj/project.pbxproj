@@ -7,28 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9122012D2749A18F008C4EC0 /* ComposableArchitecture */; };
+		911FE22F27684AE80031A9A7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 911FE22E27684AE80031A9A7 /* ComposableArchitecture */; };
 		912201362749D244008C4EC0 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912201352749D244008C4EC0 /* RootView.swift */; };
 		912C66B5274F0BF90098863E /* RootCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C66B4274F0BF90098863E /* RootCore.swift */; };
-		912C66BA275715770098863E /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66B9275715770098863E /* Discovery */; };
-		912C66BC275715770098863E /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BB275715770098863E /* Picker */; };
-		912C66BE275715770098863E /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BD275715770098863E /* Shared */; };
-		912C66C0275725990098863E /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66BF275725980098863E /* LogViewer */; };
-		912C66C82758619C0098863E /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 912C66C72758619C0098863E /* ApiViewer */; };
 		9136826427442B5500A315C0 /* TestDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
+		91DACE5A27697B4D0064F58E /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE5927697B4D0064F58E /* ApiViewer */; };
+		91DACE5C27697B4D0064F58E /* Commands in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE5B27697B4D0064F58E /* Commands */; };
+		91DACE5E27697B4D0064F58E /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE5D27697B4D0064F58E /* Discovery */; };
+		91DACE6027697B4D0064F58E /* LogProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE5F27697B4D0064F58E /* LogProxy */; };
+		91DACE6227697B4D0064F58E /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE6127697B4D0064F58E /* LogViewer */; };
+		91DACE6427697B4D0064F58E /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE6327697B4D0064F58E /* Picker */; };
+		91DACE6627697B4D0064F58E /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 91DACE6527697B4D0064F58E /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		912201352749D244008C4EC0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		912C66B4274F0BF90098863E /* RootCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCore.swift; sourceTree = "<group>"; };
-		912C66B82757148C0098863E /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* TestDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* TestDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* TestDiscoveryApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestDiscoveryApp.entitlements; sourceTree = "<group>"; };
+		91DACE5827697A690064F58E /* TestDiscoveryPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TestDiscoveryPackage; path = ../TestDiscoveryPackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,12 +38,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9122012E2749A18F008C4EC0 /* ComposableArchitecture in Frameworks */,
-				912C66C0275725990098863E /* LogViewer in Frameworks */,
-				912C66BE275715770098863E /* Shared in Frameworks */,
-				912C66C82758619C0098863E /* ApiViewer in Frameworks */,
-				912C66BA275715770098863E /* Discovery in Frameworks */,
-				912C66BC275715770098863E /* Picker in Frameworks */,
+				911FE22F27684AE80031A9A7 /* ComposableArchitecture in Frameworks */,
+				91DACE5E27697B4D0064F58E /* Discovery in Frameworks */,
+				91DACE5C27697B4D0064F58E /* Commands in Frameworks */,
+				91DACE6027697B4D0064F58E /* LogProxy in Frameworks */,
+				91DACE5A27697B4D0064F58E /* ApiViewer in Frameworks */,
+				91DACE6627697B4D0064F58E /* Shared in Frameworks */,
+				91DACE6427697B4D0064F58E /* Picker in Frameworks */,
+				91DACE6227697B4D0064F58E /* LogViewer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +71,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
-				912C66B82757148C0098863E /* TestDiscoveryPackage */,
+				91DACE5827697A690064F58E /* TestDiscoveryPackage */,
 				9122012A2749A154008C4EC0 /* Packages */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
@@ -127,12 +131,14 @@
 			);
 			name = TestDiscoveryApp;
 			packageProductDependencies = (
-				9122012D2749A18F008C4EC0 /* ComposableArchitecture */,
-				912C66B9275715770098863E /* Discovery */,
-				912C66BB275715770098863E /* Picker */,
-				912C66BD275715770098863E /* Shared */,
-				912C66BF275725980098863E /* LogViewer */,
-				912C66C72758619C0098863E /* ApiViewer */,
+				911FE22E27684AE80031A9A7 /* ComposableArchitecture */,
+				91DACE5927697B4D0064F58E /* ApiViewer */,
+				91DACE5B27697B4D0064F58E /* Commands */,
+				91DACE5D27697B4D0064F58E /* Discovery */,
+				91DACE5F27697B4D0064F58E /* LogProxy */,
+				91DACE6127697B4D0064F58E /* LogViewer */,
+				91DACE6327697B4D0064F58E /* Picker */,
+				91DACE6527697B4D0064F58E /* Shared */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* TestDiscoveryApp.app */;
@@ -163,7 +169,7 @@
 			);
 			mainGroup = 9136825727442B5500A315C0;
 			packageReferences = (
-				9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				911FE22D27684AE80031A9A7 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 9136826127442B5500A315C0 /* Products */;
 			projectDirPath = "";
@@ -395,41 +401,49 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		911FE22D27684AE80031A9A7 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.28.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9122012D2749A18F008C4EC0 /* ComposableArchitecture */ = {
+		911FE22E27684AE80031A9A7 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9122012C2749A18F008C4EC0 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = 911FE22D27684AE80031A9A7 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		912C66B9275715770098863E /* Discovery */ = {
+		91DACE5927697B4D0064F58E /* ApiViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ApiViewer;
+		};
+		91DACE5B27697B4D0064F58E /* Commands */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Commands;
+		};
+		91DACE5D27697B4D0064F58E /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Discovery;
 		};
-		912C66BB275715770098863E /* Picker */ = {
+		91DACE5F27697B4D0064F58E /* LogProxy */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Picker;
+			productName = LogProxy;
 		};
-		912C66BD275715770098863E /* Shared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shared;
-		};
-		912C66BF275725980098863E /* LogViewer */ = {
+		91DACE6127697B4D0064F58E /* LogViewer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LogViewer;
 		};
-		912C66C72758619C0098863E /* ApiViewer */ = {
+		91DACE6327697B4D0064F58E /* Picker */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ApiViewer;
+			productName = Picker;
+		};
+		91DACE6527697B4D0064F58E /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
