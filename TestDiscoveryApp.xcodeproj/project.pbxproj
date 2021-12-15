@@ -52,13 +52,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9122012A2749A154008C4EC0 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		912C66C6275853BA0098863E /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				91DACE5827697A690064F58E /* TestDiscoveryPackage */,
-				9122012A2749A154008C4EC0 /* Packages */,
 				9136826227442B5500A315C0 /* TestDiscoveryApp */,
 				9136826127442B5500A315C0 /* Products */,
 				9136827327442C4100A315C0 /* Frameworks */,
