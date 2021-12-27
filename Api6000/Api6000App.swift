@@ -1,6 +1,6 @@
 //
-//  TestDiscoveryAppApp.swift
-//  TestDiscoveryApp
+//  Api6000App.swift
+//  Api6000
 //
 //  Created by Douglas Adams on 11/16/21.
 //
@@ -23,7 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 @main
-struct TestDiscoveryAppApp: App {
+struct Api6000App: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self)
   var appDelegate
 
@@ -36,7 +36,7 @@ struct TestDiscoveryAppApp: App {
           environment: RootEnvironment()
         )
       )
-        .navigationTitle("TestDiscoveryApp   v" + Version().string)
+        .navigationTitle("Api6000   v" + Version().string)
         .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
         .padding(.horizontal)
         .padding(.vertical, 10)

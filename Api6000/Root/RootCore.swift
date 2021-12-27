@@ -9,6 +9,8 @@ import ComposableArchitecture
 import Dispatch
 
 import ApiViewer
+import LogProxy
+import XCGWrapper
 import LogViewer
 import Shared
 
@@ -19,7 +21,8 @@ public enum ViewType: Equatable {
 
 // TODO: Where to get smartlinkEmail ???
 
-public struct RootState: Equatable {
+public struct RootState: Equatable {  
+  public var xcgWrapper = XCGWrapper(logPublisher: LogProxy.sharedInstance.logPublisher, appName: "Api6000", domain: "net.k3tzr")
   public var viewType: ViewType = .api
   public var logState: LogState?
   public var apiState: ApiState? = ApiState(fontSize: 12, smartlinkEmail: "douglas.adams@me.com")
@@ -64,21 +67,31 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     switch action {
     
       // Log actions
-    case .logAction(.buttonTapped(.apiView)):
+    case .logAction(.apiViewButton):
       state.apiState = ApiState(fontSize: state.fontSize, smartlinkEmail: "douglas.adams@me.com")
       state.logState = nil
       state.viewType = .api
       return .none
 
-    case .logAction(let .fontSizeChanged(value)):
+    case .logAction(let .fontSize(value)):
       state.fontSize = value
       return .none
 
     case let .logAction(value):
       // IGNORE ALL OTHERS
       return .none
-
+      
       // Api actions
+//    case .apiAction(.onAppear):
+//      if xcgWrapper == nil {
+//        let logProxy = LogProxy.sharedInstance
+//        logProxy.publishLog = true
+//        xcgWrapper = XCGWrapper(logPublisher: LogProxy.sharedInstance.logPublisher,
+//                                appName: "Api6000",
+//                                domain: "net.k3tzr")
+//      }
+//      return .none
+
     case .apiAction(.buttonTapped(.logView)):
       state.logState = LogState(fontSize: state.fontSize)
       state.apiState = nil
@@ -95,4 +108,4 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     }
   }
 )
-  .debug("ROOT ")
+//  .debug("ROOT ")
