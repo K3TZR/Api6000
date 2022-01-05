@@ -21,12 +21,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-
 @main
 struct Api6000App: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self)
   var appDelegate
-
+  
   var body: some Scene {
     WindowGroup {
       RootView(
@@ -37,9 +36,16 @@ struct Api6000App: App {
         )
       )
         .navigationTitle("Api6000   v" + Version().string)
-        .frame(minWidth: 950, minHeight: 300, idealHeight: 400, maxHeight: 600)
-        .padding(.horizontal)
-        .padding(.vertical, 10)
+    }
+    .commands {
+      //remove the "New" menu item
+      CommandGroup(replacing: CommandGroupPlacement.newItem) {}
+
+        CommandMenu("Login") {
+            Button("Clear Credentials") {
+                print("Clear Credentials")
+            }
+        }
     }
   }
 }

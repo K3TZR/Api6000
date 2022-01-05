@@ -20,19 +20,29 @@ struct RootView: View {
       switch viewStore.viewType {
       case .api:
         IfLetStore(
-          store.scope(state: \.apiState, action: RootAction.apiAction),
+          store.scope(
+            state: \.apiState,
+            action: RootAction.apiAction
+          ),
           then: ApiView.init(store:)
-          )
+        )
       
       case .log:
         IfLetStore(
-          store.scope(state: \.logState, action: RootAction.logAction),
+          store.scope(
+            state: \.logState,
+            action: RootAction.logAction
+          ),
           then: LogView.init(store:)
         )
       }
     }
+    .frame(minWidth: 975, minHeight: 400)
+    .padding()
   }
 }
+
+
 
 struct RootView_Previews: PreviewProvider {
   static var previews: some View {

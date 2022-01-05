@@ -6,27 +6,25 @@
 //
 
 import ComposableArchitecture
-import Dispatch
 
 import ApiViewer
-import LogProxy
-import XCGWrapper
 import LogViewer
+
 import Shared
+import XCGWrapper
 
 public enum ViewType: Equatable {
   case api
   case log
 }
 
-// TODO: Where to get smartlinkEmail ???
-
-public struct RootState: Equatable {  
-  public var xcgWrapper = XCGWrapper(logPublisher: LogProxy.sharedInstance.logPublisher, appName: "Api6000", domain: "net.k3tzr")
-  public var viewType: ViewType = .api
-  public var logState: LogState?
-  public var apiState: ApiState? = ApiState(fontSize: 12, smartlinkEmail: "douglas.adams@me.com")
+public struct RootState: Equatable {
+  public var apiState: ApiState? = ApiState()
   public var fontSize: CGFloat = 12
+  public var logState: LogState?
+  public var smartlinkEmail: String?
+  public var viewType: ViewType = .api
+  public var xcgWrapper = XCGWrapper()
 
   public init() {}
 }
@@ -68,7 +66,7 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     
       // Log actions
     case .logAction(.apiViewButton):
-      state.apiState = ApiState(fontSize: state.fontSize, smartlinkEmail: "douglas.adams@me.com")
+      state.apiState = ApiState()
       state.logState = nil
       state.viewType = .api
       return .none
@@ -77,32 +75,22 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.fontSize = value
       return .none
 
-    case let .logAction(value):
+    case .logAction(_):
       // IGNORE ALL OTHERS
       return .none
       
       // Api actions
-//    case .apiAction(.onAppear):
-//      if xcgWrapper == nil {
-//        let logProxy = LogProxy.sharedInstance
-//        logProxy.publishLog = true
-//        xcgWrapper = XCGWrapper(logPublisher: LogProxy.sharedInstance.logPublisher,
-//                                appName: "Api6000",
-//                                domain: "net.k3tzr")
-//      }
-//      return .none
-
-    case .apiAction(.buttonTapped(.logView)):
+    case .apiAction(.logViewButton):
       state.logState = LogState(fontSize: state.fontSize)
       state.apiState = nil
       state.viewType = .log
       return .none
     
-    case .apiAction(let .fontSizeChanged(value)):
+    case let .apiAction(.fontSizeChanged(value)):
       state.fontSize = value
       return .none
 
-    case let .apiAction(value):
+    case .apiAction(_):
       // IGNORE ALL OTHERS
       return .none
     }
