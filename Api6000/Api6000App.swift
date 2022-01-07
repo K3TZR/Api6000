@@ -40,12 +40,6 @@ struct Api6000App: App {
     .commands {
       //remove the "New" menu item
       CommandGroup(replacing: CommandGroupPlacement.newItem) {}
-
-        CommandMenu("Login") {
-            Button("Clear Credentials") {
-                print("Clear Credentials")
-            }
-        }
     }
   }
 }

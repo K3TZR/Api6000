@@ -15,7 +15,6 @@
 		91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1A27794F2D0075A020 /* ApiViewer */; };
 		91A72E1D27794F2D0075A020 /* Commands in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1C27794F2D0075A020 /* Commands */; };
 		91A72E1F27794F2D0075A020 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1E27794F2D0075A020 /* Discovery */; };
-		91A72E2127794F2D0075A020 /* LogProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2027794F2D0075A020 /* LogProxy */; };
 		91A72E2327794F2D0075A020 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2227794F2D0075A020 /* LogViewer */; };
 		91A72E2527794F2D0075A020 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2427794F2D0075A020 /* Picker */; };
 		91A72E2727794F2D0075A020 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2627794F2D0075A020 /* SecureStorage */; };
@@ -40,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91A72E2127794F2D0075A020 /* LogProxy in Frameworks */,
 				91A72E2327794F2D0075A020 /* LogViewer in Frameworks */,
 				91A72E2527794F2D0075A020 /* Picker in Frameworks */,
 				91A72E1D27794F2D0075A020 /* Commands in Frameworks */,
@@ -130,7 +128,6 @@
 				91A72E1A27794F2D0075A020 /* ApiViewer */,
 				91A72E1C27794F2D0075A020 /* Commands */,
 				91A72E1E27794F2D0075A020 /* Discovery */,
-				91A72E2027794F2D0075A020 /* LogProxy */,
 				91A72E2227794F2D0075A020 /* LogViewer */,
 				91A72E2427794F2D0075A020 /* Picker */,
 				91A72E2627794F2D0075A020 /* SecureStorage */,
@@ -339,6 +336,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,6 +365,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,10 +420,6 @@
 		91A72E1E27794F2D0075A020 /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Discovery;
-		};
-		91A72E2027794F2D0075A020 /* LogProxy */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LogProxy;
 		};
 		91A72E2227794F2D0075A020 /* LogViewer */ = {
 			isa = XCSwiftPackageProductDependency;

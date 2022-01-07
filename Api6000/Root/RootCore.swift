@@ -30,6 +30,7 @@ public struct RootState: Equatable {
 }
 
 public enum RootAction: Equatable {
+  // upstream actions
   case apiAction(ApiAction)
   case logAction(LogAction)
 }
@@ -86,7 +87,7 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       state.viewType = .log
       return .none
     
-    case let .apiAction(.fontSizeChanged(value)):
+    case let .apiAction(.fontSizeStepper(value)):
       state.fontSize = value
       return .none
 

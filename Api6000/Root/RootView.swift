@@ -11,6 +11,9 @@ import ComposableArchitecture
 import ApiViewer
 import LogViewer
 
+// ----------------------------------------------------------------------------
+// MARK: - View(s)
+
 struct RootView: View {
   let store: Store<RootState, RootAction>
   
@@ -42,7 +45,8 @@ struct RootView: View {
   }
 }
 
-
+// ----------------------------------------------------------------------------
+// MARK: - Preview(s)
 
 struct RootView_Previews: PreviewProvider {
   static var previews: some View {
