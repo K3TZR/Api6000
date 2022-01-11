@@ -52,7 +52,7 @@ struct RootView_Previews: PreviewProvider {
   static var previews: some View {
     RootView(
       store: Store(
-        initialState: RootState(),
+        initialState: RootState(domain: "net.k3tzr", appName: "Api6000"),
         reducer: rootReducer,
         environment: RootEnvironment()
       )

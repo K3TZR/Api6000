@@ -20,13 +20,22 @@ public enum ViewType: Equatable {
 
 public struct RootState: Equatable {
   public var apiState: ApiState? = ApiState()
+  public var appName: String
+  public var domain: String
   public var fontSize: CGFloat = 12
   public var logState: LogState?
   public var smartlinkEmail: String?
   public var viewType: ViewType = .api
   public var xcgWrapper = XCGWrapper()
 
-  public init() {}
+  public init(
+    domain: String,
+    appName: String
+  )
+  {
+    self.domain = domain
+    self.appName = appName
+  }
 }
 
 public enum RootAction: Equatable {
@@ -82,7 +91,7 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
       
       // Api actions
     case .apiAction(.logViewButton):
-      state.logState = LogState(fontSize: state.fontSize)
+      state.logState = LogState(domain: state.domain, appName: state.appName, fontSize: state.fontSize)
       state.apiState = nil
       state.viewType = .log
       return .none

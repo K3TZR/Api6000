@@ -27,15 +27,21 @@ struct Api6000App: App {
   var appDelegate
   
   var body: some Scene {
+
+    let bundleIdentifier = Bundle.main.bundleIdentifier ?? "someDomain.SomeApp"
+    let separator = bundleIdentifier.lastIndex(of: ".")!
+    let appName = String(bundleIdentifier.suffix(from: bundleIdentifier.index(separator, offsetBy: 1)))
+    let domain = String(bundleIdentifier.prefix(upTo: separator))
+
     WindowGroup {
       RootView(
         store: Store(
-          initialState: RootState(),
+          initialState: RootState(domain: domain, appName: appName),
           reducer: rootReducer,
           environment: RootEnvironment()
         )
       )
-        .navigationTitle("Api6000   v" + Version().string)
+        .navigationTitle(appName + "   v" + Version().string)
     }
     .commands {
       //remove the "New" menu item
