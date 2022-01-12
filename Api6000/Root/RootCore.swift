@@ -73,9 +73,11 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     ),
   Reducer { state, action, environment in
     switch action {
-    
-      // Log actions
-    case .logAction(.apiViewButton):
+
+      // ----------------------------------------------------------------------------
+      // MARK: - Log actions
+
+    case .logAction(.backButton):
       state.apiState = ApiState()
       state.logState = nil
       state.viewType = .api
@@ -88,10 +90,12 @@ let rootReducer = Reducer<RootState, RootAction, RootEnvironment>.combine(
     case .logAction(_):
       // IGNORE ALL OTHERS
       return .none
-      
-      // Api actions
+
+      // ----------------------------------------------------------------------------
+      // MARK: - Api actions
+
     case .apiAction(.logViewButton):
-      state.logState = LogState(domain: state.domain, appName: state.appName, fontSize: state.fontSize)
+      state.logState = LogState(domain: state.domain, appName: state.appName, backName: "Api Viewer", fontSize: state.fontSize)
       state.apiState = nil
       state.viewType = .log
       return .none
