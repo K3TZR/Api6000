@@ -12,6 +12,8 @@
 		9136826427442B5500A315C0 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* Api6000App.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
+		9176D6E8278F36D60094E3D8 /* ApiObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 9176D6E7278F36D60094E3D8 /* ApiObjects */; };
+		9176D6EB278F37C20094E3D8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9176D6EA278F37C20094E3D8 /* ComposableArchitecture */; };
 		91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1A27794F2D0075A020 /* ApiViewer */; };
 		91A72E1D27794F2D0075A020 /* Commands in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1C27794F2D0075A020 /* Commands */; };
 		91A72E1F27794F2D0075A020 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1E27794F2D0075A020 /* Discovery */; };
@@ -31,6 +33,7 @@
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* Api6000.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Api6000.entitlements; sourceTree = "<group>"; };
+		9176D6EC27907BE70094E3D8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		91A72E1927794DBE0075A020 /* Components6000 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Components6000; path = ../Components6000; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +44,8 @@
 			files = (
 				91A72E2327794F2D0075A020 /* LogViewer in Frameworks */,
 				91A72E2527794F2D0075A020 /* Picker in Frameworks */,
+				9176D6EB278F37C20094E3D8 /* ComposableArchitecture in Frameworks */,
+				9176D6E8278F36D60094E3D8 /* ApiObjects in Frameworks */,
 				91A72E1D27794F2D0075A020 /* Commands in Frameworks */,
 				91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */,
 				91A72E2D27794F2D0075A020 /* XCGWrapper in Frameworks */,
@@ -66,6 +71,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
+				9176D6EC27907BE70094E3D8 /* README.md */,
 				91A72E1927794DBE0075A020 /* Components6000 */,
 				9136826227442B5500A315C0 /* Api6000 */,
 				9136826127442B5500A315C0 /* Products */,
@@ -134,6 +140,8 @@
 				91A72E2827794F2D0075A020 /* Shared */,
 				91A72E2A27794F2D0075A020 /* Streams */,
 				91A72E2C27794F2D0075A020 /* XCGWrapper */,
+				9176D6E7278F36D60094E3D8 /* ApiObjects */,
+				9176D6EA278F37C20094E3D8 /* ComposableArchitecture */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* Api6000.app */;
@@ -165,6 +173,7 @@
 			mainGroup = 9136825727442B5500A315C0;
 			packageReferences = (
 				91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */,
+				9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 9136826127442B5500A315C0 /* Products */;
 			projectDirPath = "";
@@ -325,7 +334,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -337,7 +346,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -354,7 +363,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -366,7 +375,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -398,6 +407,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.32.0;
+			};
+		};
 		91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/K3TZR/Components6000.git";
@@ -409,6 +426,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9176D6E7278F36D60094E3D8 /* ApiObjects */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ApiObjects;
+		};
+		9176D6EA278F37C20094E3D8 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		91A72E1A27794F2D0075A020 /* ApiViewer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApiViewer;
