@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
+import ApiViewer
 import Shared
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -34,14 +35,16 @@ struct Api6000App: App {
     let domain = String(bundleIdentifier.prefix(upTo: separator))
 
     WindowGroup {
-      RootView(
+      ApiView(
         store: Store(
-          initialState: RootState(domain: domain, appName: appName),
-          reducer: rootReducer,
-          environment: RootEnvironment()
+          initialState: ApiState(domain: domain, appName: appName),
+          reducer: apiReducer,
+          environment: ApiEnvironment()
         )
       )
-        .navigationTitle(appName + "   v" + Version().string)
+      .navigationTitle(appName + "   v" + Version().string)
+      .frame(minWidth: 975, minHeight: 400)
+      .padding()
     }
     .commands {
       //remove the "New" menu item

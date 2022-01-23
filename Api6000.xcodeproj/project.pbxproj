@@ -7,27 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		912201362749D244008C4EC0 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912201352749D244008C4EC0 /* RootView.swift */; };
-		912C66B5274F0BF90098863E /* RootCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C66B4274F0BF90098863E /* RootCore.swift */; };
+		91312B9A2792605D00CDC498 /* Radio in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B992792605D00CDC498 /* Radio */; };
+		91312B9C2793314A00CDC498 /* TcpCommands in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9B2793314A00CDC498 /* TcpCommands */; };
+		91312B9E2793314A00CDC498 /* UdpStreams in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9D2793314A00CDC498 /* UdpStreams */; };
+		91312BA02799BC2F00CDC498 /* Connection in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9F2799BC2F00CDC498 /* Connection */; };
 		9136826427442B5500A315C0 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* Api6000App.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
-		9176D6E8278F36D60094E3D8 /* ApiObjects in Frameworks */ = {isa = PBXBuildFile; productRef = 9176D6E7278F36D60094E3D8 /* ApiObjects */; };
-		9176D6EB278F37C20094E3D8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9176D6EA278F37C20094E3D8 /* ComposableArchitecture */; };
 		91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1A27794F2D0075A020 /* ApiViewer */; };
-		91A72E1D27794F2D0075A020 /* Commands in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1C27794F2D0075A020 /* Commands */; };
 		91A72E1F27794F2D0075A020 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1E27794F2D0075A020 /* Discovery */; };
 		91A72E2327794F2D0075A020 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2227794F2D0075A020 /* LogViewer */; };
 		91A72E2527794F2D0075A020 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2427794F2D0075A020 /* Picker */; };
 		91A72E2727794F2D0075A020 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2627794F2D0075A020 /* SecureStorage */; };
 		91A72E2927794F2D0075A020 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2827794F2D0075A020 /* Shared */; };
-		91A72E2B27794F2D0075A020 /* Streams in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2A27794F2D0075A020 /* Streams */; };
 		91A72E2D27794F2D0075A020 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2C27794F2D0075A020 /* XCGWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		912201352749D244008C4EC0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		912C66B4274F0BF90098863E /* RootCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCore.swift; sourceTree = "<group>"; };
 		9136826027442B5500A315C0 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9136826327442B5500A315C0 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9136826727442B5A00A315C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,32 +38,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91312B9A2792605D00CDC498 /* Radio in Frameworks */,
 				91A72E2327794F2D0075A020 /* LogViewer in Frameworks */,
 				91A72E2527794F2D0075A020 /* Picker in Frameworks */,
-				9176D6EB278F37C20094E3D8 /* ComposableArchitecture in Frameworks */,
-				9176D6E8278F36D60094E3D8 /* ApiObjects in Frameworks */,
-				91A72E1D27794F2D0075A020 /* Commands in Frameworks */,
 				91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */,
 				91A72E2D27794F2D0075A020 /* XCGWrapper in Frameworks */,
+				91312BA02799BC2F00CDC498 /* Connection in Frameworks */,
 				91A72E2927794F2D0075A020 /* Shared in Frameworks */,
-				91A72E2B27794F2D0075A020 /* Streams in Frameworks */,
 				91A72E1F27794F2D0075A020 /* Discovery in Frameworks */,
 				91A72E2727794F2D0075A020 /* SecureStorage in Frameworks */,
+				91312B9E2793314A00CDC498 /* UdpStreams in Frameworks */,
+				91312B9C2793314A00CDC498 /* TcpCommands in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		912C66C6275853BA0098863E /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				912C66B4274F0BF90098863E /* RootCore.swift */,
-				912201352749D244008C4EC0 /* RootView.swift */,
-			);
-			path = Root;
-			sourceTree = "<group>";
-		};
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +81,6 @@
 				9136826727442B5A00A315C0 /* Assets.xcassets */,
 				9136826C27442B5A00A315C0 /* Api6000.entitlements */,
 				9136826927442B5A00A315C0 /* Preview Content */,
-				912C66C6275853BA0098863E /* Root */,
 			);
 			path = Api6000;
 			sourceTree = "<group>";
@@ -132,16 +118,16 @@
 			name = Api6000;
 			packageProductDependencies = (
 				91A72E1A27794F2D0075A020 /* ApiViewer */,
-				91A72E1C27794F2D0075A020 /* Commands */,
 				91A72E1E27794F2D0075A020 /* Discovery */,
 				91A72E2227794F2D0075A020 /* LogViewer */,
 				91A72E2427794F2D0075A020 /* Picker */,
 				91A72E2627794F2D0075A020 /* SecureStorage */,
 				91A72E2827794F2D0075A020 /* Shared */,
-				91A72E2A27794F2D0075A020 /* Streams */,
 				91A72E2C27794F2D0075A020 /* XCGWrapper */,
-				9176D6E7278F36D60094E3D8 /* ApiObjects */,
-				9176D6EA278F37C20094E3D8 /* ComposableArchitecture */,
+				91312B992792605D00CDC498 /* Radio */,
+				91312B9B2793314A00CDC498 /* TcpCommands */,
+				91312B9D2793314A00CDC498 /* UdpStreams */,
+				91312B9F2799BC2F00CDC498 /* Connection */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* Api6000.app */;
@@ -173,7 +159,6 @@
 			mainGroup = 9136825727442B5500A315C0;
 			packageReferences = (
 				91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */,
-				9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 9136826127442B5500A315C0 /* Products */;
 			projectDirPath = "";
@@ -201,8 +186,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				912C66B5274F0BF90098863E /* RootCore.swift in Sources */,
-				912201362749D244008C4EC0 /* RootView.swift in Sources */,
 				9136826427442B5500A315C0 /* Api6000App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +317,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -346,7 +329,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -363,7 +346,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -375,7 +358,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -407,14 +390,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
-			requirement = {
-				kind = exactVersion;
-				version = 0.32.0;
-			};
-		};
 		91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/K3TZR/Components6000.git";
@@ -426,22 +401,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9176D6E7278F36D60094E3D8 /* ApiObjects */ = {
+		91312B992792605D00CDC498 /* Radio */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ApiObjects;
+			productName = Radio;
 		};
-		9176D6EA278F37C20094E3D8 /* ComposableArchitecture */ = {
+		91312B9B2793314A00CDC498 /* TcpCommands */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9176D6E9278F37C20094E3D8 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
+			productName = TcpCommands;
+		};
+		91312B9D2793314A00CDC498 /* UdpStreams */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UdpStreams;
+		};
+		91312B9F2799BC2F00CDC498 /* Connection */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Connection;
 		};
 		91A72E1A27794F2D0075A020 /* ApiViewer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApiViewer;
-		};
-		91A72E1C27794F2D0075A020 /* Commands */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Commands;
 		};
 		91A72E1E27794F2D0075A020 /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -462,10 +440,6 @@
 		91A72E2827794F2D0075A020 /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Shared;
-		};
-		91A72E2A27794F2D0075A020 /* Streams */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Streams;
 		};
 		91A72E2C27794F2D0075A020 /* XCGWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
