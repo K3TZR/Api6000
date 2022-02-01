@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Components6000",
+        "repositoryURL": "https://github.com/K3TZR/Components6000.git",
+        "state": {
+          "branch": null,
+          "revision": "848ce3a97def198b554991bedb05ac61d8b1ee2e",
+          "version": "2.1.1"
+        }
+      },
+      {
         "package": "JWTDecode",
         "repositoryURL": "https://github.com/auth0/JWTDecode.swift",
         "state": {
@@ -33,8 +42,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
         "state": {
           "branch": null,
-          "revision": "d226d167bd4a68b51e352af5655c92bce8ee0463",
-          "version": "0.7.0"
+          "revision": "241301b67d8551c26d8f09bd2c0e52cc49f18007",
+          "version": "0.8.0"
         }
       },
       {
@@ -48,11 +57,11 @@
       },
       {
         "package": "swift-composable-architecture",
-        "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture.git",
+        "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture",
         "state": {
           "branch": null,
-          "revision": "599a2398adaaa7a4e3f5420cde7728c39e33677e",
-          "version": "0.28.1"
+          "revision": "ba9c626ab1b2b6af8cf684eebb2ab472fa5b6753",
+          "version": "0.33.1"
         }
       },
       {
@@ -60,8 +69,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-custom-dump",
         "state": {
           "branch": null,
-          "revision": "21f8fdbb3226e5e28a1a2fffac3e0f3deec34bf0",
-          "version": "0.2.1"
+          "revision": "51698ece74ecf31959d3fa81733f0a5363ef1b4e",
+          "version": "0.3.0"
         }
       },
       {
@@ -71,6 +80,15 @@
           "branch": null,
           "revision": "680bf440178a78a627b1c2c64c0855f6523ad5b9",
           "version": "0.3.2"
+        }
+      },
+      {
+        "package": "XCGLogger",
+        "repositoryURL": "https://github.com/DaveWoodCom/XCGLogger.git",
+        "state": {
+          "branch": null,
+          "revision": "a9c4667b247928a29bdd41be2ec2c8d304215a54",
+          "version": "7.0.1"
         }
       },
       {

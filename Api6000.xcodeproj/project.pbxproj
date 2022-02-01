@@ -7,20 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91312B9A2792605D00CDC498 /* Radio in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B992792605D00CDC498 /* Radio */; };
-		91312B9C2793314A00CDC498 /* TcpCommands in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9B2793314A00CDC498 /* TcpCommands */; };
-		91312B9E2793314A00CDC498 /* UdpStreams in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9D2793314A00CDC498 /* UdpStreams */; };
-		91312BA02799BC2F00CDC498 /* Connection in Frameworks */ = {isa = PBXBuildFile; productRef = 91312B9F2799BC2F00CDC498 /* Connection */; };
 		9136826427442B5500A315C0 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* Api6000App.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
-		91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1A27794F2D0075A020 /* ApiViewer */; };
-		91A72E1F27794F2D0075A020 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E1E27794F2D0075A020 /* Discovery */; };
-		91A72E2327794F2D0075A020 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2227794F2D0075A020 /* LogViewer */; };
-		91A72E2527794F2D0075A020 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2427794F2D0075A020 /* Picker */; };
-		91A72E2727794F2D0075A020 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2627794F2D0075A020 /* SecureStorage */; };
-		91A72E2927794F2D0075A020 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2827794F2D0075A020 /* Shared */; };
-		91A72E2D27794F2D0075A020 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 91A72E2C27794F2D0075A020 /* XCGWrapper */; };
+		9FE33C9627A8C5ED00F160A7 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9527A8C5ED00F160A7 /* ApiViewer */; };
+		9FE33C9827A8C5ED00F160A7 /* Connection in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9727A8C5ED00F160A7 /* Connection */; };
+		9FE33C9A27A8C5ED00F160A7 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9927A8C5ED00F160A7 /* Discovery */; };
+		9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9B27A8C5ED00F160A7 /* Login */; };
+		9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9D27A8C5ED00F160A7 /* LogViewer */; };
+		9FE33CA027A8C5ED00F160A7 /* Picker in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9F27A8C5ED00F160A7 /* Picker */; };
+		9FE33CA227A8C5ED00F160A7 /* Radio in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA127A8C5ED00F160A7 /* Radio */; };
+		9FE33CA427A8C5ED00F160A7 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA327A8C5ED00F160A7 /* SecureStorage */; };
+		9FE33CA627A8C5ED00F160A7 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA527A8C5ED00F160A7 /* Shared */; };
+		9FE33CA827A8C5ED00F160A7 /* TcpCommands in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA727A8C5ED00F160A7 /* TcpCommands */; };
+		9FE33CAA27A8C5ED00F160A7 /* UdpStreams in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA927A8C5ED00F160A7 /* UdpStreams */; };
+		9FE33CAC27A8C5ED00F160A7 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +31,6 @@
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* Api6000.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Api6000.entitlements; sourceTree = "<group>"; };
 		9176D6EC27907BE70094E3D8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		91A72E1927794DBE0075A020 /* Components6000 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Components6000; path = ../Components6000; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,17 +38,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91312B9A2792605D00CDC498 /* Radio in Frameworks */,
-				91A72E2327794F2D0075A020 /* LogViewer in Frameworks */,
-				91A72E2527794F2D0075A020 /* Picker in Frameworks */,
-				91A72E1B27794F2D0075A020 /* ApiViewer in Frameworks */,
-				91A72E2D27794F2D0075A020 /* XCGWrapper in Frameworks */,
-				91312BA02799BC2F00CDC498 /* Connection in Frameworks */,
-				91A72E2927794F2D0075A020 /* Shared in Frameworks */,
-				91A72E1F27794F2D0075A020 /* Discovery in Frameworks */,
-				91A72E2727794F2D0075A020 /* SecureStorage in Frameworks */,
-				91312B9E2793314A00CDC498 /* UdpStreams in Frameworks */,
-				91312B9C2793314A00CDC498 /* TcpCommands in Frameworks */,
+				9FE33C9A27A8C5ED00F160A7 /* Discovery in Frameworks */,
+				9FE33C9627A8C5ED00F160A7 /* ApiViewer in Frameworks */,
+				9FE33CA427A8C5ED00F160A7 /* SecureStorage in Frameworks */,
+				9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */,
+				9FE33CA627A8C5ED00F160A7 /* Shared in Frameworks */,
+				9FE33CA227A8C5ED00F160A7 /* Radio in Frameworks */,
+				9FE33CAC27A8C5ED00F160A7 /* XCGWrapper in Frameworks */,
+				9FE33C9827A8C5ED00F160A7 /* Connection in Frameworks */,
+				9FE33CA027A8C5ED00F160A7 /* Picker in Frameworks */,
+				9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */,
+				9FE33CAA27A8C5ED00F160A7 /* UdpStreams in Frameworks */,
+				9FE33CA827A8C5ED00F160A7 /* TcpCommands in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				9176D6EC27907BE70094E3D8 /* README.md */,
-				91A72E1927794DBE0075A020 /* Components6000 */,
 				9136826227442B5500A315C0 /* Api6000 */,
 				9136826127442B5500A315C0 /* Products */,
 				9136827327442C4100A315C0 /* Frameworks */,
@@ -117,17 +117,18 @@
 			);
 			name = Api6000;
 			packageProductDependencies = (
-				91A72E1A27794F2D0075A020 /* ApiViewer */,
-				91A72E1E27794F2D0075A020 /* Discovery */,
-				91A72E2227794F2D0075A020 /* LogViewer */,
-				91A72E2427794F2D0075A020 /* Picker */,
-				91A72E2627794F2D0075A020 /* SecureStorage */,
-				91A72E2827794F2D0075A020 /* Shared */,
-				91A72E2C27794F2D0075A020 /* XCGWrapper */,
-				91312B992792605D00CDC498 /* Radio */,
-				91312B9B2793314A00CDC498 /* TcpCommands */,
-				91312B9D2793314A00CDC498 /* UdpStreams */,
-				91312B9F2799BC2F00CDC498 /* Connection */,
+				9FE33C9527A8C5ED00F160A7 /* ApiViewer */,
+				9FE33C9727A8C5ED00F160A7 /* Connection */,
+				9FE33C9927A8C5ED00F160A7 /* Discovery */,
+				9FE33C9B27A8C5ED00F160A7 /* Login */,
+				9FE33C9D27A8C5ED00F160A7 /* LogViewer */,
+				9FE33C9F27A8C5ED00F160A7 /* Picker */,
+				9FE33CA127A8C5ED00F160A7 /* Radio */,
+				9FE33CA327A8C5ED00F160A7 /* SecureStorage */,
+				9FE33CA527A8C5ED00F160A7 /* Shared */,
+				9FE33CA727A8C5ED00F160A7 /* TcpCommands */,
+				9FE33CA927A8C5ED00F160A7 /* UdpStreams */,
+				9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* Api6000.app */;
@@ -248,6 +249,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -302,6 +304,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -329,7 +332,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -358,7 +362,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -394,55 +399,71 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/K3TZR/Components6000.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		91312B992792605D00CDC498 /* Radio */ = {
+		9FE33C9527A8C5ED00F160A7 /* ApiViewer */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Radio;
-		};
-		91312B9B2793314A00CDC498 /* TcpCommands */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TcpCommands;
-		};
-		91312B9D2793314A00CDC498 /* UdpStreams */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UdpStreams;
-		};
-		91312B9F2799BC2F00CDC498 /* Connection */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Connection;
-		};
-		91A72E1A27794F2D0075A020 /* ApiViewer */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = ApiViewer;
 		};
-		91A72E1E27794F2D0075A020 /* Discovery */ = {
+		9FE33C9727A8C5ED00F160A7 /* Connection */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
+			productName = Connection;
+		};
+		9FE33C9927A8C5ED00F160A7 /* Discovery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = Discovery;
 		};
-		91A72E2227794F2D0075A020 /* LogViewer */ = {
+		9FE33C9B27A8C5ED00F160A7 /* Login */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
+			productName = Login;
+		};
+		9FE33C9D27A8C5ED00F160A7 /* LogViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = LogViewer;
 		};
-		91A72E2427794F2D0075A020 /* Picker */ = {
+		9FE33C9F27A8C5ED00F160A7 /* Picker */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = Picker;
 		};
-		91A72E2627794F2D0075A020 /* SecureStorage */ = {
+		9FE33CA127A8C5ED00F160A7 /* Radio */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
+			productName = Radio;
+		};
+		9FE33CA327A8C5ED00F160A7 /* SecureStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = SecureStorage;
 		};
-		91A72E2827794F2D0075A020 /* Shared */ = {
+		9FE33CA527A8C5ED00F160A7 /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = Shared;
 		};
-		91A72E2C27794F2D0075A020 /* XCGWrapper */ = {
+		9FE33CA727A8C5ED00F160A7 /* TcpCommands */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
+			productName = TcpCommands;
+		};
+		9FE33CA927A8C5ED00F160A7 /* UdpStreams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
+			productName = UdpStreams;
+		};
+		9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = XCGWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
