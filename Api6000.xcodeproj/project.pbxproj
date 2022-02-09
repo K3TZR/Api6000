@@ -11,7 +11,6 @@
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
 		9FE33C9627A8C5ED00F160A7 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9527A8C5ED00F160A7 /* ApiViewer */; };
-		9FE33C9827A8C5ED00F160A7 /* Connection in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9727A8C5ED00F160A7 /* Connection */; };
 		9FE33C9A27A8C5ED00F160A7 /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9927A8C5ED00F160A7 /* Discovery */; };
 		9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9B27A8C5ED00F160A7 /* Login */; };
 		9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9D27A8C5ED00F160A7 /* LogViewer */; };
@@ -22,6 +21,7 @@
 		9FE33CA827A8C5ED00F160A7 /* TcpCommands in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA727A8C5ED00F160A7 /* TcpCommands */; };
 		9FE33CAA27A8C5ED00F160A7 /* UdpStreams in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CA927A8C5ED00F160A7 /* UdpStreams */; };
 		9FE33CAC27A8C5ED00F160A7 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */; };
+		9FE33CB227B4500400F160A7 /* ClientStatus in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33CB127B4500400F160A7 /* ClientStatus */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +31,7 @@
 		9136826A27442B5A00A315C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9136826C27442B5A00A315C0 /* Api6000.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Api6000.entitlements; sourceTree = "<group>"; };
 		9176D6EC27907BE70094E3D8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9FE33CAE27AF4C7400F160A7 /* Components6000 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Components6000; path = ../Components6000; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,11 +42,11 @@
 				9FE33C9A27A8C5ED00F160A7 /* Discovery in Frameworks */,
 				9FE33C9627A8C5ED00F160A7 /* ApiViewer in Frameworks */,
 				9FE33CA427A8C5ED00F160A7 /* SecureStorage in Frameworks */,
+				9FE33CB227B4500400F160A7 /* ClientStatus in Frameworks */,
 				9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */,
 				9FE33CA627A8C5ED00F160A7 /* Shared in Frameworks */,
 				9FE33CA227A8C5ED00F160A7 /* Radio in Frameworks */,
 				9FE33CAC27A8C5ED00F160A7 /* XCGWrapper in Frameworks */,
-				9FE33C9827A8C5ED00F160A7 /* Connection in Frameworks */,
 				9FE33CA027A8C5ED00F160A7 /* Picker in Frameworks */,
 				9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */,
 				9FE33CAA27A8C5ED00F160A7 /* UdpStreams in Frameworks */,
@@ -59,6 +60,7 @@
 		9136825727442B5500A315C0 = {
 			isa = PBXGroup;
 			children = (
+				9FE33CAE27AF4C7400F160A7 /* Components6000 */,
 				9176D6EC27907BE70094E3D8 /* README.md */,
 				9136826227442B5500A315C0 /* Api6000 */,
 				9136826127442B5500A315C0 /* Products */,
@@ -118,7 +120,6 @@
 			name = Api6000;
 			packageProductDependencies = (
 				9FE33C9527A8C5ED00F160A7 /* ApiViewer */,
-				9FE33C9727A8C5ED00F160A7 /* Connection */,
 				9FE33C9927A8C5ED00F160A7 /* Discovery */,
 				9FE33C9B27A8C5ED00F160A7 /* Login */,
 				9FE33C9D27A8C5ED00F160A7 /* LogViewer */,
@@ -129,6 +130,7 @@
 				9FE33CA727A8C5ED00F160A7 /* TcpCommands */,
 				9FE33CA927A8C5ED00F160A7 /* UdpStreams */,
 				9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */,
+				9FE33CB127B4500400F160A7 /* ClientStatus */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* Api6000.app */;
@@ -320,7 +322,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -350,7 +352,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -411,11 +413,6 @@
 			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = ApiViewer;
 		};
-		9FE33C9727A8C5ED00F160A7 /* Connection */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
-			productName = Connection;
-		};
 		9FE33C9927A8C5ED00F160A7 /* Discovery */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
@@ -465,6 +462,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 91A72E0427794CAD0075A020 /* XCRemoteSwiftPackageReference "Components6000" */;
 			productName = XCGWrapper;
+		};
+		9FE33CB127B4500400F160A7 /* ClientStatus */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ClientStatus;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
