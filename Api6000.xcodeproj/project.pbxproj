@@ -10,8 +10,8 @@
 		9136826427442B5500A315C0 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9136826327442B5500A315C0 /* Api6000App.swift */; };
 		9136826827442B5A00A315C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826727442B5A00A315C0 /* Assets.xcassets */; };
 		9136826B27442B5A00A315C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9136826A27442B5A00A315C0 /* Preview Assets.xcassets */; };
-		9F10DB0727B96BCF0076022A /* LanDiscovery in Frameworks */ = {isa = PBXBuildFile; productRef = 9F10DB0627B96BCF0076022A /* LanDiscovery */; };
 		9F10DB0927BEF7460076022A /* RemoteViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F10DB0827BEF7460076022A /* RemoteViewer */; };
+		9F10DB0B27C3F9E90076022A /* Discovery in Frameworks */ = {isa = PBXBuildFile; productRef = 9F10DB0A27C3F9E90076022A /* Discovery */; };
 		9FE33C9627A8C5ED00F160A7 /* ApiViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9527A8C5ED00F160A7 /* ApiViewer */; };
 		9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9B27A8C5ED00F160A7 /* Login */; };
 		9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE33C9D27A8C5ED00F160A7 /* LogViewer */; };
@@ -46,9 +46,9 @@
 				9FE33CB227B4500400F160A7 /* ClientStatus in Frameworks */,
 				9FE33C9C27A8C5ED00F160A7 /* Login in Frameworks */,
 				9FE33CA627A8C5ED00F160A7 /* Shared in Frameworks */,
+				9F10DB0B27C3F9E90076022A /* Discovery in Frameworks */,
 				9FE33CA227A8C5ED00F160A7 /* Radio in Frameworks */,
 				9FE33CAC27A8C5ED00F160A7 /* XCGWrapper in Frameworks */,
-				9F10DB0727B96BCF0076022A /* LanDiscovery in Frameworks */,
 				9FE33CA027A8C5ED00F160A7 /* Picker in Frameworks */,
 				9FE33C9E27A8C5ED00F160A7 /* LogViewer in Frameworks */,
 				9FE33CAA27A8C5ED00F160A7 /* UdpStreams in Frameworks */,
@@ -132,8 +132,8 @@
 				9FE33CA927A8C5ED00F160A7 /* UdpStreams */,
 				9FE33CAB27A8C5ED00F160A7 /* XCGWrapper */,
 				9FE33CB127B4500400F160A7 /* ClientStatus */,
-				9F10DB0627B96BCF0076022A /* LanDiscovery */,
 				9F10DB0827BEF7460076022A /* RemoteViewer */,
+				9F10DB0A27C3F9E90076022A /* Discovery */,
 			);
 			productName = TestDiscoveryApp;
 			productReference = 9136826027442B5500A315C0 /* Api6000.app */;
@@ -325,7 +325,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -355,7 +355,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -411,13 +411,13 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F10DB0627B96BCF0076022A /* LanDiscovery */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LanDiscovery;
-		};
 		9F10DB0827BEF7460076022A /* RemoteViewer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RemoteViewer;
+		};
+		9F10DB0A27C3F9E90076022A /* Discovery */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Discovery;
 		};
 		9FE33C9527A8C5ED00F160A7 /* ApiViewer */ = {
 			isa = XCSwiftPackageProductDependency;

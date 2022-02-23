@@ -16,8 +16,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // disable tab view
     NSWindow.allowsAutomaticWindowTabbing = false
   }
+  
+  func applicationWillTerminate(_ notification: Notification) {
+    LogProxy.sharedInstance.log("Api6000: application terminated", .debug, #function, #file, #line)
+  }
+  
   func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-    // close when last window closed
     true
   }
 }
@@ -26,9 +30,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 struct Api6000App: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self)
   var appDelegate
-  
+
   var body: some Scene {
-    
+
     WindowGroup {
       ApiView(
         store: Store(
