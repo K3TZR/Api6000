@@ -9,6 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 import ApiViewer
+import LogViewer
+import RemoteViewer
 import Shared
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -33,7 +35,7 @@ struct Api6000App: App {
 
   var body: some Scene {
 
-    WindowGroup {
+    WindowGroup(getBundleInfo().appName + " (Api Viewer) v" + Version().string) {
       ApiView(
         store: Store(
           initialState: ApiState(),
@@ -41,13 +43,58 @@ struct Api6000App: App {
           environment: ApiEnvironment()
         )
       )
-        .navigationTitle(getBundleInfo().appName + "   v" + Version().string)
+      .toolbar {
+        Button("Remote View") { OpenWindows.RemoteViewer.open()  }
+        Button("Log View") { OpenWindows.LogViewer.open() }
+        Button("Close") { NSApplication.shared.keyWindow?.close()  }
+        Button("Close All") { NSApplication.shared.terminate(self)  }
+      }
         .frame(minWidth: 975, minHeight: 400)
         .padding()
     }
+    
+    WindowGroup(getBundleInfo().appName + " (Log Viewer) v" + Version().string) {
+      LogView(store: Store(
+        initialState: LogState(),
+        reducer: logReducer,
+        environment: LogEnvironment() )
+      )
+      .toolbar {
+        Button("Close") { NSApplication.shared.keyWindow?.close()  }
+      }
+      .frame(minWidth: 975, minHeight: 400)
+      .padding()
+    }.handlesExternalEvents(matching: Set(arrayLiteral: "LogViewer"))
+    
+    WindowGroup(getBundleInfo().appName + " (Remote Viewer) v" + Version().string) {
+      RemoteView(store: Store(
+        initialState: RemoteState( "Relay Status" ),
+        reducer: remoteReducer,
+        environment: RemoteEnvironment() )
+      )
+      .toolbar {
+        Button("Close") { NSApplication.shared.keyWindow?.close()  }
+      }
+
+      .frame(minWidth: 975, minHeight: 400)
+      .padding()
+    }.handlesExternalEvents(matching: Set(arrayLiteral: "RemoteViewer"))
+
+    
     .commands {
       //remove the "New" menu item
       CommandGroup(replacing: CommandGroupPlacement.newItem) {}
+    }
+  }
+}
+
+enum OpenWindows: String, CaseIterable {
+  case LogViewer = "LogViewer"
+  case RemoteViewer = "RemoteViewer"
+  
+  func open() {
+    if let url = URL(string: "Api6000://\(self.rawValue)") {
+      NSWorkspace.shared.open(url)
     }
   }
 }
