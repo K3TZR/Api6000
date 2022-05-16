@@ -20,7 +20,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
   
   func applicationWillTerminate(_ notification: Notification) {
-    LogProxy.sharedInstance.log("Api6000: application terminated", .debug, #function, #file, #line)
+//    LogProxy.sharedInstance.log("Api6000: application terminated", .debug, #function, #file, #line)
+    NotificationCenter.default.post(name: logEntryNotification, object: LogEntry("Api6000: application terminated", .debug, #function, #file, #line))
   }
   
   func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
