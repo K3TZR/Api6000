@@ -73,6 +73,7 @@
 		9F0480E529435F8D004D3837 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
 		9F0480E629435FD7004D3837 /* SharedFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFeatures; path = ../Packages/SharedFeatures; sourceTree = "<group>"; };
 		9F0480E729437F59004D3837 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
+		9F0480E829464365004D3837 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F0A8454293AD56700EE9D5D /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
 		9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifierView.swift; sourceTree = "<group>"; };
 		9F0A8458293AD58100EE9D5D /* AtuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtuView.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
+				9F0480E829464365004D3837 /* README.md */,
 				9F0480E729437F59004D3837 /* ViewFeatures */,
 				9F0480E629435FD7004D3837 /* SharedFeatures */,
 				9F0480E529435F8D004D3837 /* ApiFeatures */,
