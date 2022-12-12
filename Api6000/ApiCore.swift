@@ -62,7 +62,7 @@ public struct ApiModule: ReducerProtocol {
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
     
     // other state
-    var clearNow = false
+//    var clearNow = false
     var commandToSend = ""
     var loginRequired = false
     var forceUpdate = false
@@ -149,7 +149,6 @@ public struct ApiModule: ReducerProtocol {
     case sendPreviousStepper
     case sendTextField(String)
     case showPingsToggle
-    case sidebarRight
     case smartlinkButton(Bool)
     case startStopButton
     case toggle(WritableKeyPath<ApiModule.State, Bool>)
@@ -162,9 +161,9 @@ public struct ApiModule: ReducerProtocol {
     case picker(PickerFeature.Action)
     
     // Effects related
-    case checkConnectionStatus(Pickable)
+//    case checkConnectionStatus(Pickable)
     case connect(Pickable, UInt32?)
-    case isConnected(Bool)
+    case connectionStatus(Bool)
     case loginStatus(Bool, String)
     case startRxAudio(RemoteRxAudioStreamId)
     
@@ -179,8 +178,6 @@ public struct ApiModule: ReducerProtocol {
     case clientEvent(ClientEvent)
 //    case packetEvent(PacketEvent)
     case testResult(TestResult)
-    
-    
   }
   
   public var body: some ReducerProtocol<State, Action> {
@@ -191,21 +188,7 @@ public struct ApiModule: ReducerProtocol {
         // MARK: - Actions: ApiView Initialization
         
       case .onAppear:
-        // if the first time, start various effects
-        if state.initialized == false {
-          state.initialized = true
-          // instantiate the Logger,
-          _ = XCGWrapper(logLevel: .debug)
-          // start subscriptions
-          return .merge(
-//            subscribeToPackets(),
-            subscribeToClients(),
-            subscribeToLogAlerts(),
-//            subscribeToSmartlinkTest(),
-            initializeMode(state)
-          )
-        }
-        return .none
+        return initialization(&state)
         
         // ----------------------------------------------------------------------------
         // MARK: - Actions: ApiView UI controls
@@ -248,71 +231,13 @@ public struct ApiModule: ReducerProtocol {
         return .none
         
       case .rxAudioButton(let newState):
-        //        if newState {
-        //          state.rxAudio = true
-        //          if state.isStopped {
-        //            return .none
-        //          } else {
-        //            // start audio
-        //            return .run { send in
-        //              // request a stream
-        //              let id = try await ViewModel.shared.radio!.requestRemoteRxAudioStream()
-        //              // finish audio setup
-        //              await send(.startRxAudio(id.streamId!))
-        //            }
-        //          }
-        //
-        //        } else {
-        //          // stop audio
-        //          state.rxAudio = false
-        //          state.opusPlayer?.stop()
-        //          state.opusPlayer = nil
-        //          if state.isStopped == false {
-        //            return .run {send in
-        //              // request removal of the stream
-        //              streamModel.removeRemoteRxAudioStream(ViewModel.shared.radio!.connectionHandle)
-        //            }
-        //          } else {
-        //            return .none
-        //          }
-        //        }
-        return .none
+        return rxAudio(&state, newState)
         
       case .saveButton:
-        let savePanel = NSSavePanel()
-        savePanel.nameFieldStringValue = "Api6000Tester-C.messages"
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.allowsOtherFileTypes = false
-        savePanel.title = "Save the Log"
-        
-        let response = savePanel.runModal()
-        if response == .OK {
-          return .run { _ in
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 6
-            formatter.positiveFormat = " * ##0.000000"
-            
-            let textArray = await messagesModel.filteredMessages.map { formatter.string(from: NSNumber(value: $0.interval))! + " " + $0.text }
-            let fileTextArray = textArray.joined(separator: "\n")
-            try? await fileTextArray.write(to: savePanel.url!, atomically: true, encoding: .utf8)
-          }
-        }
-        return .none
+        return saveMessagesToFile(messagesModel)
         
       case .sendButton:
-        // update the command history
-        if state.commandToSend != state.previousCommand { state.commandsArray.append(state.commandToSend) }
-        state.previousCommand = state.commandToSend
-        state.commandsIndex = state.commandsIndex + 1
-        
-        if state.clearOnSend {
-          state.commandToSend = ""
-          state.commandsIndex = 0
-        }
-        return .fireAndForget { [state] in
-          _ = await apiModel.radio?.send(state.commandToSend)
-        }
+        return sendCommand(&state, apiModel)
         
       case .sendClearButton:
         state.commandToSend = ""
@@ -347,153 +272,35 @@ public struct ApiModule: ReducerProtocol {
           await messagesModel.setShowPings(state.showPings)
         }
         
-      case .sidebarRight:
-        return.none
-        
       case .smartlinkButton(let newState):
         state.smartlink = newState
         return initializeMode(state)
         
       case .startStopButton:
-        return .run { [state] send in
-          if state.isConnected {
-            // ----- STOP -----
-            if state.clearOnStop {
-              await messagesModel.clearAll()
-            }
-            await apiModel.disconnect()
-            await send(.isConnected(false))
-
-          } else {
-            // ----- START -----
-            if state.clearOnStart {
-              await messagesModel.clearAll()
-            }
-            // use the default?
-            if state.useDefault && state.isGui && state.guiDefault != nil {
-              // YES, use the GuiDefault
-              if let packet = Listener.shared.findPacket(for: state.guiDefault, state.isGui) {
-                // valid default
-                let pickable = Pickable(packet: packet, station: "")
-                await send(.checkConnectionStatus(pickable))
-              } else {
-                // invalid default
-                await send(.showPickerSheet(Listener.shared.pickableRadios))
-              }
-              
-            } else if state.useDefault && state.isGui == false && state.nonGuiDefault != nil {
-              // YES, use the nonGuiDefault
-              if let packet = Listener.shared.findPacket(for: state.nonGuiDefault, state.isGui) {
-                // valid default
-                let pickable = Pickable(packet: packet, station: state.nonGuiDefault!.station!)
-                await send(.checkConnectionStatus(pickable))
-              } else {
-                // invalid default
-                await send(.showPickerSheet(Listener.shared.pickableStations))
-              }
-              
-            } else {
-              // NO default or default not in use, open the Picker
-              if state.isGui {
-                // Pickable radios
-                await send(.showPickerSheet(Listener.shared.pickableRadios))
-              } else {
-                // Pickable stations
-                await send(.showPickerSheet(Listener.shared.pickableStations))
-              }
-            }
-          }
-        }
+        return startStopTester(&state, apiModel)
           
       case .toggle(let keyPath):
-        // handles all buttons with a Bool state, EXCEPT LoginRequiredButton and audioCheckbox
         state[keyPath: keyPath].toggle()
         return .none
         
       case .txAudioButton(let newState):
-        return .none
-//        if newState {
-//          state.txAudio = true
-//          if state.isConnected {
-//            // start audio
-//            return .run { send in
-//              // request a stream
-//              let id = try await apiModel.radio!.requestRemoteTxAudioStream()
-//
-//              // FIXME:
-//
-//              // finish audio setup
-//              //            await send(.startAudio(id.streamId!))
-//            }
-//          } else {
-//            return .none
-//          }
-//
-//        } else {
-//          // stop audio
-//          state.txAudio = false
-//          //        state.opusPlayer?.stop()
-//          //        state.opusPlayer = nil
-//          if state.isConnected == false {
-//            return .none
-//          } else {
-//            return .run { send in
-//              // request removal of the stream
-//              await streamModel.removeRemoteTxAudioStream(apiModel.radio!.connectionHandle)
-//            }
-//          }
-//        }
+        return txAudio(&state, newState)
         
         // ----------------------------------------------------------------------------
         // MARK: - Actions: invoked by other actions
         
-      case .checkConnectionStatus(let selection):
-        // Gui connection with othe stations?
-        let count = Listener.shared.guiClients.count
-        if state.isGui && count > 0 {
-          // YES, may need a disconnect
-          var stations = [String]()
-          var handles = [Handle]()
-          for client in Listener.shared.guiClients {
-            stations.append(client.station)
-            handles.append(client.handle)
-          }
-          // show the client chooser, let the user choose
-          return Effect(value: .showClientSheet(selection, stations, handles))
-        }
-        else {
-          // not Gui connection or Gui without other stations, attempt to connect
-          return Effect(value: .connect(selection, nil))
-        }
-        
       case .connect(let selection, let disconnectHandle):
         state.clientState = nil
-        return .run { [state] send in
-          await messagesModel.start(state.messageFilter, state.messageFilterText)
-          // attempt to connect to the selected Radio / Station
-          do {
-            // try to connect
-            try await apiModel.connectTo(selection: selection,
-                                                isGui: state.isGui,
-                                                disconnectHandle: disconnectHandle,
-                                                station: "Tester",
-                                                program: "Api6000Tester")
-            if state.isGui && state.rxAudio {
-              // start audio, request a stream
-              let id = try await apiModel.radio!.requestRemoteRxAudioStream()
-              // finish audio setup
-              await send(.startRxAudio(id.streamId!))
-            }
-            await send(.isConnected(true))
-          } catch {
-            // connection attempt failed
-            await send(.showErrorAlert( error as! ConnectionError ))
-            await send(.isConnected(false))
+        return connectionAttempt(state, selection, disconnectHandle, messagesModel, apiModel)
+        
+      case .connectionStatus(let value):
+        state.isConnected = value
+        if state.isGui && state.rxAudio {
+          return .run { send in
+            // start audio, request a stream
+            await send(.startRxAudio(try await apiModel.radio!.requestRemoteRxAudioStream().streamId! ))
           }
         }
-        
-      case .isConnected(let value):
-        state.isConnected = value
         return .none
         
       case .loginStatus(let success, let user):
@@ -519,12 +326,10 @@ public struct ApiModule: ReducerProtocol {
         // MARK: - Actions: to display a sheet
         
       case .showClientSheet(let selection, let stations, let handles):
-        // show the client chooser, let the user choose
         state.clientState = ClientFeature.State(selection: selection, stations: stations, handles: handles)
         return .none
         
       case .showErrorAlert(let error):
-        // an error occurred
         state.alertState = AlertState(title: TextState("An Error occurred"), message: TextState(error.rawValue))
         return .none
         
@@ -533,7 +338,6 @@ public struct ApiModule: ReducerProtocol {
         return .none
         
       case .showPickerSheet(let pickables):
-        // open the Picker sheet
         state.pickerState = PickerFeature.State(pickables: pickables, defaultValue: state.isGui ? state.guiDefault : state.nonGuiDefault, isGui: state.isGui)
         return .none
         
@@ -541,62 +345,10 @@ public struct ApiModule: ReducerProtocol {
         // MARK: - Actions: invoked by subscriptions
         
       case .clientEvent(let event):
-        // a GuiClient change occurred
-        switch event.action {
-        case .added:
-          return .none
-          
-        case .removed:
-          return .fireAndForget { [state] in
-            // if nonGui, is it our connected Station?
-            if state.isGui == false && event.client.station == state.station {
-              // YES, unbind
-              await apiModel.setActiveStation( nil )
-              await apiModel.radio?.bindToGuiClient(nil)
-            }
-          }
-          
-        case .completed:
-          return .fireAndForget { [state] in
-            // if nonGui, is there a clientId for our connected Station?
-            if state.isGui == false && event.client.station == state.station {
-              // YES, bind to it
-              await apiModel.setActiveStation( event.client.station )
-              await apiModel.radio?.bindToGuiClient(event.client.clientId)
-            }
-          }
-        }
-        
-//      case .packetEvent:
-//        // a packet change occurred
-//        // is the Picker open?
-//        if state.pickerState == nil {
-//          // NO, ignore
-//          return .none
-//        } else {
-//          // YES, update it
-//          return .run { [isGui = state.isGui] send in
-//            // reload the Pickables
-//            if isGui {
-//              await send(.showPickerSheet(Listener.shared.pickableRadios))
-//            } else {
-//              await send(.showPickerSheet(Listener.shared.pickableStations))
-//            }
-//          }
-//        }
+        return clientEvent(state, event, apiModel)
         
       case .showLogAlert(let logEntry):
-        if state.alertOnError {
-          // a Warning or Error has been logged.
-          // exit any sheet states
-          state.clientState = nil
-          state.loginState = nil
-          state.pickerState = nil
-          // alert the user
-          state.alertState = .init(title: TextState("\(logEntry.level == .warning ? "A Warning" : "An Error") was logged:"),
-                                   message: TextState(logEntry.msg))
-        }
-        return .none
+        return showLogAlert(&state,logEntry)
         
       case .testResult(let result):
         // a test result has been received
@@ -641,29 +393,10 @@ public struct ApiModule: ReducerProtocol {
         // save the station (if any)
         state.station = selection.station
         // check for other connections
-        return Effect(value: .checkConnectionStatus(selection))
+        return checkConnectionStatus(state.isGui, selection)
         
       case .picker(.defaultButton(let selection)):
-        // SET / RESET the default
-        if state.isGui {
-          // GUI
-          let newValue = DefaultValue(selection)
-          if state.guiDefault == newValue {
-            state.guiDefault = nil
-          } else {
-            state.guiDefault = newValue
-          }
-        } else {
-          // NONGUI
-          let newValue = DefaultValue(selection)
-          if state.nonGuiDefault == newValue {
-            state.nonGuiDefault = nil
-          } else {
-            state.nonGuiDefault = newValue
-          }
-        }
-        state.pickerState!.defaultValue = state.isGui ? state.guiDefault : state.nonGuiDefault
-        return .none
+        return updateDefault(&state, selection)
         
       case .picker(.testButton(let selection)):
         state.pickerState?.testResult = false
@@ -684,9 +417,7 @@ public struct ApiModule: ReducerProtocol {
         
       case .client(.connect(let selection, let disconnectHandle)):
         state.clientState = nil
-        return .run { send in
-          await send (.connect(selection, disconnectHandle))
-        }
+        return .task { .connect(selection, disconnectHandle) }
         
         // ----------------------------------------------------------------------------
         // MARK: - Alert Actions
@@ -714,6 +445,49 @@ public struct ApiModule: ReducerProtocol {
 // ----------------------------------------------------------------------------
 // MARK: - Effects
 
+private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+  // a GuiClient change occurred
+  switch event.action {
+  case .added:
+    return .none
+    
+  case .removed:
+    return .fireAndForget { [state] in
+      // if nonGui, is it our connected Station?
+      if state.isGui == false && event.client.station == state.station {
+        // YES, unbind
+        await apiModel.setActiveStation( nil )
+        await apiModel.radio?.bindToGuiClient(nil)
+      }
+    }
+    
+  case .completed:
+    return .fireAndForget { [state] in
+      // if nonGui, is there a clientId for our connected Station?
+      if state.isGui == false && event.client.station == state.station {
+        // YES, bind to it
+        await apiModel.setActiveStation( event.client.station )
+        await apiModel.radio?.bindToGuiClient(event.client.clientId)
+      }
+    }
+  }
+}
+private func initialization(_ state: inout ApiModule.State) -> Effect<ApiModule.Action, Never> {
+  // if the first time, start various effects
+  if state.initialized == false {
+    state.initialized = true
+    // instantiate the Logger,
+    _ = XCGWrapper(logLevel: .debug)
+    // start subscriptions
+    return .merge(
+      subscribeToClients(),
+      subscribeToLogAlerts(),
+      initializeMode(state)
+    )
+  }
+  return .none
+}
+
 func initializeMode(_ state: ApiModule.State) -> Effect<ApiModule.Action, Never> {
   // start / stop listeners as appropriate for the Mode
   return .run { [state] send in
@@ -728,6 +502,109 @@ func initializeMode(_ state: ApiModule.State) -> Effect<ApiModule.Action, Never>
       await send(.showLoginSheet)
     }
   }
+}
+
+private func rxAudio(_ state: inout ApiModule.State, _ newState: Bool) -> Effect<ApiModule.Action, Never> {
+  //        if newState {
+  //          state.rxAudio = true
+  //          if state.isStopped {
+  //            return .none
+  //          } else {
+  //            // start audio
+  //            return .run { send in
+  //              // request a stream
+  //              let id = try await ViewModel.shared.radio!.requestRemoteRxAudioStream()
+  //              // finish audio setup
+  //              await send(.startRxAudio(id.streamId!))
+  //            }
+  //          }
+  //
+  //        } else {
+  //          // stop audio
+  //          state.rxAudio = false
+  //          state.opusPlayer?.stop()
+  //          state.opusPlayer = nil
+  //          if state.isStopped == false {
+  //            return .run {send in
+  //              // request removal of the stream
+  //              streamModel.removeRemoteRxAudioStream(ViewModel.shared.radio!.connectionHandle)
+  //            }
+  //          } else {
+  //            return .none
+  //          }
+  //        }
+  return .none
+
+}
+
+private func txAudio(_ state: inout ApiModule.State, _ newState: Bool) -> Effect<ApiModule.Action, Never> {
+  //        if newState {
+  //          state.txAudio = true
+  //          if state.isConnected {
+  //            // start audio
+  //            return .run { send in
+  //              // request a stream
+  //              let id = try await apiModel.radio!.requestRemoteTxAudioStream()
+  //
+  //              // FIXME:
+  //
+  //              // finish audio setup
+  //              //            await send(.startAudio(id.streamId!))
+  //            }
+  //          } else {
+  //            return .none
+  //          }
+  //
+  //        } else {
+  //          // stop audio
+  //          state.txAudio = false
+  //          //        state.opusPlayer?.stop()
+  //          //        state.opusPlayer = nil
+  //          if state.isConnected == false {
+  //            return .none
+  //          } else {
+  //            return .run { send in
+  //              // request removal of the stream
+  //              await streamModel.removeRemoteTxAudioStream(apiModel.radio!.connectionHandle)
+  //            }
+  //          }
+  //        }
+  return .none
+}
+
+private func showLogAlert(_ state: inout ApiModule.State, _ logEntry: LogEntry) -> Effect<ApiModule.Action, Never> {
+  if state.alertOnError {
+    // a Warning or Error has been logged, exit any sheet states
+    state.clientState = nil
+    state.loginState = nil
+    state.pickerState = nil
+    // alert the user
+    state.alertState = .init(title: TextState("\(logEntry.level == .warning ? "A Warning" : "An Error") was logged:"),
+                             message: TextState(logEntry.msg))
+  }
+  return .none
+}
+private func updateDefault(_ state: inout ApiModule.State, _ selection: Pickable) -> Effect<ApiModule.Action, Never> {
+  // SET / RESET the default
+  if state.isGui {
+    // GUI
+    let newValue = DefaultValue(selection)
+    if state.guiDefault == newValue {
+      state.guiDefault = nil
+    } else {
+      state.guiDefault = newValue
+    }
+  } else {
+    // NONGUI
+    let newValue = DefaultValue(selection)
+    if state.nonGuiDefault == newValue {
+      state.nonGuiDefault = nil
+    } else {
+      state.nonGuiDefault = newValue
+    }
+  }
+  state.pickerState!.defaultValue = state.isGui ? state.guiDefault : state.nonGuiDefault
+  return .none
 }
 
 private func subscribeToClients() -> Effect<ApiModule.Action, Never> {
@@ -748,23 +625,140 @@ private func subscribeToLogAlerts() -> Effect<ApiModule.Action, Never>  {
   }
 }
 
-//private func subscribeToPackets() -> Effect<ApiModule.Action, Never> {
-//  Effect.run { send in
-//    for await event in Listener.shared.packetStream {
-//      // a packet has been added / updated or deleted
-//      await send(.packetEvent(event))
-//    }
-//  }
-//}
+private func disconnect(_ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+  return .run { send in await apiModel.disconnect() }
+}
 
-//private func subscribeToSmartlinkTest() -> Effect<ApiModule.Action, Never> {
-//  Effect.run { send in
-//    for await result in Listener.shared.testStream {
-//      // the result of a Smartlink Test has been received
-//      await send(.testResult(result))
-//    }
-//  }
-//}
+private func setConnectionStatus(_ state: inout ApiModule.State, _ status: Bool) -> Effect<ApiModule.Action, Never> {
+  state.isConnected = status
+  return .none
+}
+
+private func clearMessages(_ clear: Bool) -> Effect<ApiModule.Action, Never> {
+  if clear { return .run { send in await send(.clearNowButton) } }
+  return .none
+}
+
+private func pickerSheet(_ isGui: Bool) -> Effect<ApiModule.Action, Never> {
+  let pickables = isGui ? Listener.shared.pickableRadios : Listener.shared.pickableStations
+  return .run {send in await send(.showPickerSheet(pickables)) }
+}
+
+private func saveMessagesToFile(_ messagesModel: MessagesModel) -> Effect<ApiModule.Action, Never> {
+  let savePanel = NSSavePanel()
+  savePanel.nameFieldStringValue = "Api6000Tester-C.messages"
+  savePanel.canCreateDirectories = true
+  savePanel.isExtensionHidden = false
+  savePanel.allowsOtherFileTypes = false
+  savePanel.title = "Save the Log"
+  
+  let response = savePanel.runModal()
+  if response == .OK {
+    return .fireAndForget {
+      let formatter = NumberFormatter()
+      formatter.minimumFractionDigits = 6
+      formatter.positiveFormat = " * ##0.000000"
+      
+      let textArray = await messagesModel.filteredMessages.map { formatter.string(from: NSNumber(value: $0.interval))! + " " + $0.text }
+      let fileTextArray = textArray.joined(separator: "\n")
+      try? await fileTextArray.write(to: savePanel.url!, atomically: true, encoding: .utf8)
+    }
+  } else {
+    return .none
+  }
+}
+
+private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+  // update the command history
+  if state.commandToSend != state.previousCommand { state.commandsArray.append(state.commandToSend) }
+  state.previousCommand = state.commandToSend
+  state.commandsIndex = state.commandsIndex + 1
+  
+  if state.clearOnSend {
+    state.commandToSend = ""
+    state.commandsIndex = 0
+  }
+  return .fireAndForget { [state] in
+    _ = await apiModel.radio?.send(state.commandToSend)
+  }
+}
+
+private func startStopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+  
+  if state.isConnected {
+    // ----- STOP -----
+    return .merge(
+      clearMessages(state.clearOnStop),
+      disconnect(apiModel),
+      setConnectionStatus(&state, false)
+    )
+  } else {
+    // ----- START -----
+    // use the default?
+    if state.useDefault {
+      // YES, use the Default
+      if let packet = Listener.shared.findPacket(for: state.guiDefault, state.nonGuiDefault, state.isGui) {
+        // valid default
+        let pickable = Pickable(packet: packet, station: state.isGui ? "" : state.nonGuiDefault?.station ?? "")
+        return .merge(
+          clearMessages(state.clearOnStart),
+          checkConnectionStatus(state.isGui, pickable)
+        )
+      }
+    }
+    // NO default or default not in use, open the Picker
+    return .merge(
+      clearMessages(state.clearOnStart),
+      pickerSheet(state.isGui)
+    )
+  }
+}
+
+private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) -> Effect<ApiModule.Action, Never> {
+  // Gui connection with othe stations?
+  let count = Listener.shared.guiClients.count
+  if isGui && count > 0 {
+    // YES, may need a disconnect
+    var stations = [String]()
+    var handles = [Handle]()
+    for client in Listener.shared.guiClients {
+      stations.append(client.station)
+      handles.append(client.handle)
+    }
+    // show the client chooser, let the user choose
+    return .task { [stations, handles] in
+        .showClientSheet(selection, stations, handles)
+    }
+  }
+  else {
+    // not Gui connection or Gui without other stations, attempt to connect
+    return .task { [selection] in
+        .connect(selection, nil)
+    }
+  }
+}
+
+private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+
+  return .run { [state] send in
+    await messagesModel.start(state.messageFilter, state.messageFilterText)
+    // attempt to connect to the selected Radio / Station
+    do {
+      // try to connect
+      try await apiModel.connectTo(selection: selection,
+                                   isGui: state.isGui,
+                                   disconnectHandle: disconnectHandle,
+                                   station: "Tester",
+                                   program: "Api6000Tester")
+      await send(.connectionStatus(true))
+    } catch {
+      // connection attempt failed
+      await send(.showErrorAlert( error as! ConnectionError ))
+      await send(.connectionStatus(false))
+    }
+  }
+}
+
 
 // ----------------------------------------------------------------------------
 // MARK: - Structs and Enums
