@@ -502,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = Api6000/Api6000.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -529,7 +529,7 @@
 				CODE_SIGN_ENTITLEMENTS = Api6000/Api6000.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -601,7 +601,7 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.1;
+				minimumVersion = 1.7.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
