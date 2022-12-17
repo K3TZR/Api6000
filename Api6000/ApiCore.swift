@@ -34,6 +34,7 @@ public struct ApiModule: ReducerProtocol {
   
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.messagesModel) var messagesModel
+//  @Dependency(\.opusPlayer) var opusPlayer
   @Dependency(\.streamModel) var streamModel
 
   public init() {}
@@ -62,7 +63,6 @@ public struct ApiModule: ReducerProtocol {
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
     
     // other state
-//    var clearNow = false
     var commandToSend = ""
     var loginRequired = false
     var forceUpdate = false
@@ -165,7 +165,7 @@ public struct ApiModule: ReducerProtocol {
     case connect(Pickable, UInt32?)
     case connectionStatus(Bool)
     case loginStatus(Bool, String)
-    case startRxAudio(RemoteRxAudioStreamId)
+//    case startRxAudio(RemoteRxAudioStreamId)
     
     // Sheet related
     case showClientSheet(Pickable, [String], [UInt32])
@@ -230,8 +230,20 @@ public struct ApiModule: ReducerProtocol {
         state.objectFilter = newFilter
         return .none
         
-      case .rxAudioButton(let newState):
-        return rxAudio(&state, newState)
+      case .rxAudioButton(let startRx):
+        // update state
+        state.rxAudio = startRx
+        if state.isConnected {
+          // CONNECTED, start / stop RxAudio
+          if startRx {
+            return startRxAudio(&state, apiModel, streamModel)
+          } else {
+            return stopRxAudio(&state, apiModel, streamModel)
+          }
+        } else {
+          // NOT CONNECTED
+          return .none
+        }
         
       case .saveButton:
         return saveMessagesToFile(messagesModel)
@@ -277,15 +289,27 @@ public struct ApiModule: ReducerProtocol {
         return initializeMode(state)
         
       case .startStopButton:
-        return startStopTester(&state, apiModel)
-          
+        return startStopTester(&state, apiModel, streamModel)
+        
       case .toggle(let keyPath):
         state[keyPath: keyPath].toggle()
         return .none
         
-      case .txAudioButton(let newState):
-        return txAudio(&state, newState)
-        
+      case .txAudioButton(let startTx):
+        // update state
+        state.txAudio = startTx
+        if state.isConnected {
+          // CONNECTED, start / stop TxAudio
+          if startTx {
+            return startTxAudio(&state, apiModel, streamModel)
+          } else {
+            return stopTxAudio(&state, apiModel, streamModel)
+          }
+        } else {
+          // NOT CONNECTED
+          return .none
+        }
+
         // ----------------------------------------------------------------------------
         // MARK: - Actions: invoked by other actions
         
@@ -293,13 +317,11 @@ public struct ApiModule: ReducerProtocol {
         state.clientState = nil
         return connectionAttempt(state, selection, disconnectHandle, messagesModel, apiModel)
         
-      case .connectionStatus(let value):
-        state.isConnected = value
-        if state.isGui && state.rxAudio {
-          return .run { send in
-            // start audio, request a stream
-            await send(.startRxAudio(try await apiModel.radio!.requestRemoteRxAudioStream().streamId! ))
-          }
+      case .connectionStatus(let connected):
+        state.isConnected = connected
+        if state.isConnected && state.isGui && state.rxAudio {
+          // Start RxAudio
+          return startRxAudio(&state, apiModel, streamModel)
         }
         return .none
         
@@ -313,13 +335,6 @@ public struct ApiModule: ReducerProtocol {
           // tell the user it failed
           state.alertState = AlertState(title: TextState("Smartlink login failed for \(user)"))
         }
-        return .none
-        
-      case .startRxAudio(let id):
-        state.rxAudio = true
-        state.opusPlayer = OpusPlayer()
-        streamModel.remoteRxAudioStreams[id: id]?.setDelegate(state.opusPlayer)
-        state.opusPlayer!.start()
         return .none
         
         // ----------------------------------------------------------------------------
@@ -504,40 +519,39 @@ func initializeMode(_ state: ApiModule.State) -> Effect<ApiModule.Action, Never>
   }
 }
 
-private func rxAudio(_ state: inout ApiModule.State, _ newState: Bool) -> Effect<ApiModule.Action, Never> {
-  //        if newState {
-  //          state.rxAudio = true
-  //          if state.isStopped {
-  //            return .none
-  //          } else {
-  //            // start audio
-  //            return .run { send in
-  //              // request a stream
-  //              let id = try await ViewModel.shared.radio!.requestRemoteRxAudioStream()
-  //              // finish audio setup
-  //              await send(.startRxAudio(id.streamId!))
-  //            }
-  //          }
-  //
-  //        } else {
-  //          // stop audio
-  //          state.rxAudio = false
-  //          state.opusPlayer?.stop()
-  //          state.opusPlayer = nil
-  //          if state.isStopped == false {
-  //            return .run {send in
-  //              // request removal of the stream
-  //              streamModel.removeRemoteRxAudioStream(ViewModel.shared.radio!.connectionHandle)
-  //            }
-  //          } else {
-  //            return .none
-  //          }
-  //        }
+private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  if state.opusPlayer == nil {
+    // ----- START Rx AUDIO -----
+    state.opusPlayer = OpusPlayer()
+    // start audio
+    return .fireAndForget { [state] in
+      // request a stream
+      if let id = try await apiModel.radio!.requestRemoteRxAudioStream().streamId {
+        // finish audio setup
+        state.opusPlayer?.start(id)
+        await streamModel.remoteRxAudioStreams[id: id]?.setDelegate(state.opusPlayer)
+      }
+    }
+  }
   return .none
-
 }
 
-private func txAudio(_ state: inout ApiModule.State, _ newState: Bool) -> Effect<ApiModule.Action, Never> {
+private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  if state.opusPlayer != nil {
+    // ----- STOP Rx AUDIO -----
+    let id = state.opusPlayer!.id
+    state.opusPlayer!.stop()
+    state.opusPlayer = nil
+    return .fireAndForget {
+      await streamModel.removeRemoteRxAudioStream(id)
+    }
+  }
+  return .none
+}
+
+private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  // FIXME:
+
   //        if newState {
   //          state.txAudio = true
   //          if state.isConnected {
@@ -569,6 +583,12 @@ private func txAudio(_ state: inout ApiModule.State, _ newState: Bool) -> Effect
   //            }
   //          }
   //        }
+  return .none
+}
+
+private func stopTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  // FIXME:
+  
   return .none
 }
 
@@ -683,12 +703,13 @@ private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -
   }
 }
 
-private func startStopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func startStopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
   
   if state.isConnected {
     // ----- STOP -----
     return .merge(
       clearMessages(state.clearOnStop),
+      stopRxAudio(&state, apiModel, streamModel),
       disconnect(apiModel),
       setConnectionStatus(&state, false)
     )

@@ -115,6 +115,8 @@ private struct RemoteRxStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -127,7 +129,7 @@ private struct RemoteRxStreamView: View {
           Text("Ip")
           Text("\(stream.ip)").foregroundColor(.green)
         }
-      }.frame(width: 100, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
@@ -145,6 +147,8 @@ private struct RemoteTxStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -153,7 +157,7 @@ private struct RemoteTxStreamView: View {
           Text("Compression")
           Text("\(stream.compression)").foregroundColor(.green)
         }
-      }.frame(width: 100, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
@@ -171,6 +175,8 @@ private struct DaxMicStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -179,7 +185,7 @@ private struct DaxMicStreamView: View {
           Text("Ip")
           Text("\(stream.ip)").foregroundColor(.green)
         }
-      }.frame(width: 150, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
@@ -197,6 +203,8 @@ private struct DaxRxStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -209,7 +217,7 @@ private struct DaxRxStreamView: View {
           Text("Ip")
           Text("\(stream.ip)").foregroundColor(.green)
         }
-      }.frame(width: 150, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
@@ -227,6 +235,8 @@ private struct DaxTxStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -239,7 +249,7 @@ private struct DaxTxStreamView: View {
           Text("Transmit")
           Text("\(stream.isTransmitChannel ? "Y" : "N")").foregroundColor(stream.isTransmitChannel ? .green : .red)
         }
-      }.frame(width: 150, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
@@ -257,6 +267,8 @@ private struct DaxIqStreamView: View {
           Text("Streaming")
           Text(stream.isStreaming ? "Y" : "N").foregroundColor(stream.isStreaming ? .green : .red)
         }
+      }.frame(width: 100, alignment: .leading)
+      Group {
         HStack(spacing: 5) {
           Text("Handle")
           Text("\(stream.clientHandle.hex)").foregroundColor(.green)
@@ -273,7 +285,7 @@ private struct DaxIqStreamView: View {
           Text("Pan")
           Text(stream.pan.hex).foregroundColor(.green)
         }
-      }.frame(width: 150, alignment: .leading)
+      }.frame(width: 120, alignment: .leading)
     }
   }
 }
