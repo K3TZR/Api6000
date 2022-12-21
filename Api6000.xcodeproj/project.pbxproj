@@ -61,12 +61,13 @@
 		9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsView.swift */; };
 		9F33A5BC2935A02B00F9EEFC /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5BB2935A02B00F9EEFC /* SendView.swift */; };
 		9FE8947329358DD700C12DE2 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8947229358DD700C12DE2 /* Api6000App.swift */; };
-		9FE8947529358DD700C12DE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8947429358DD700C12DE2 /* ContentView.swift */; };
 		9FE8947729358DD800C12DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947629358DD800C12DE2 /* Assets.xcassets */; };
 		9FE8947A29358DD800C12DE2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947929358DD800C12DE2 /* Preview Assets.xcassets */; };
 		9FE8948B2935918A00C12DE2 /* ApiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894872935918A00C12DE2 /* ApiView.swift */; };
 		9FE8948C2935918A00C12DE2 /* ApiCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894882935918A00C12DE2 /* ApiCore.swift */; };
 		9FE894962935957B00C12DE2 /* MessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894952935957B00C12DE2 /* MessagesModel.swift */; };
+		9FF3CE052952A6FD00C145E1 /* LeftSideFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE042952A6FD00C145E1 /* LeftSideFeature */; };
+		9FF3CE072953B1C800C145E1 /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE062953B1C800C145E1 /* SettingsFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,7 +107,6 @@
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
-		9FE8947429358DD700C12DE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FE8947929358DD800C12DE2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FE8947B29358DD800C12DE2 /* Api6000.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Api6000.entitlements; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 				9F0A8443293A7F8000EE9D5D /* EqFeature in Frameworks */,
 				9F0A843F293A7F8000EE9D5D /* ClientFeature in Frameworks */,
 				9F0A8445293A7F8000EE9D5D /* LevelIndicatorView in Frameworks */,
+				9FF3CE052952A6FD00C145E1 /* LeftSideFeature in Frameworks */,
 				9F0A843D293A77D800EE9D5D /* Udp in Frameworks */,
 				9F0A8429293A77BD00EE9D5D /* FrequencyFormatter in Frameworks */,
 				9F0A8439293A77D800EE9D5D /* Objects in Frameworks */,
@@ -139,6 +140,7 @@
 				9F0A8441293A7F8000EE9D5D /* CwFeature in Frameworks */,
 				9F0A8449293A7F8100EE9D5D /* LoginFeature in Frameworks */,
 				9F0A844F293A7F8200EE9D5D /* PickerFeature in Frameworks */,
+				9FF3CE072953B1C800C145E1 /* SettingsFeature in Frameworks */,
 				9F0A8437293A77D700EE9D5D /* Listener in Frameworks */,
 				9F0A8453293A7F8200EE9D5D /* TxFeature in Frameworks */,
 				9F0A8433293A77BD00EE9D5D /* XCGWrapper in Frameworks */,
@@ -222,7 +224,6 @@
 				9FE894872935918A00C12DE2 /* ApiView.swift */,
 				9F33A5BD2935A07300F9EEFC /* SubViews */,
 				9FE8947229358DD700C12DE2 /* Api6000App.swift */,
-				9FE8947429358DD700C12DE2 /* ContentView.swift */,
 				9FE8947629358DD800C12DE2 /* Assets.xcassets */,
 				9FE8947B29358DD800C12DE2 /* Api6000.entitlements */,
 				9FE8947829358DD800C12DE2 /* Preview Content */,
@@ -278,6 +279,8 @@
 				9F0A844E293A7F8200EE9D5D /* PickerFeature */,
 				9F0A8450293A7F8200EE9D5D /* RightSideFeature */,
 				9F0A8452293A7F8200EE9D5D /* TxFeature */,
+				9FF3CE042952A6FD00C145E1 /* LeftSideFeature */,
+				9FF3CE062953B1C800C145E1 /* SettingsFeature */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -355,7 +358,6 @@
 				9F0A845D293AD58900EE9D5D /* CwxView.swift in Sources */,
 				9F0A8469293AD5A200EE9D5D /* MeterStreamView.swift in Sources */,
 				9F33A5B22935A00A00F9EEFC /* TopButtonsView.swift in Sources */,
-				9FE8947529358DD700C12DE2 /* ContentView.swift in Sources */,
 				9F0A846B293AD5A600EE9D5D /* MiscView.swift in Sources */,
 				9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */,
 				9F0A8471293AD5B700EE9D5D /* ProfileView.swift in Sources */,
@@ -513,7 +515,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -540,7 +542,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -593,7 +595,7 @@
 			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.1;
+				minimumVersion = 2.0.1;
 			};
 		};
 		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
@@ -601,7 +603,7 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.1;
+				minimumVersion = 1.9.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -730,6 +732,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
 			productName = TxFeature;
+		};
+		9FF3CE042952A6FD00C145E1 /* LeftSideFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LeftSideFeature;
+		};
+		9FF3CE062953B1C800C145E1 /* SettingsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SettingsFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

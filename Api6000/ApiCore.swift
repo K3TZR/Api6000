@@ -21,6 +21,16 @@ import Shared
 //import SecureStorage
 import XCGWrapper
 
+private struct isConnectedKey: EnvironmentKey {
+  static var defaultValue = false
+}
+extension EnvironmentValues {
+  var isConnected: Bool {
+    get { self[isConnectedKey.self] }
+    set { self[isConnectedKey.self] = newValue }
+  }
+}
+
 public enum ConnectionMode: String, Identifiable, CaseIterable {
   case both
   case local
@@ -34,9 +44,9 @@ public struct ApiModule: ReducerProtocol {
   
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.messagesModel) var messagesModel
-//  @Dependency(\.opusPlayer) var opusPlayer
+  //  @Dependency(\.opusPlayer) var opusPlayer
   @Dependency(\.streamModel) var streamModel
-
+  
   public init() {}
   
   public struct State: Equatable {
@@ -161,11 +171,11 @@ public struct ApiModule: ReducerProtocol {
     case picker(PickerFeature.Action)
     
     // Effects related
-//    case checkConnectionStatus(Pickable)
+    //    case checkConnectionStatus(Pickable)
     case connect(Pickable, UInt32?)
     case connectionStatus(Bool)
     case loginStatus(Bool, String)
-//    case startRxAudio(RemoteRxAudioStreamId)
+    //    case startRxAudio(RemoteRxAudioStreamId)
     
     // Sheet related
     case showClientSheet(Pickable, [String], [UInt32])
@@ -176,7 +186,7 @@ public struct ApiModule: ReducerProtocol {
     
     // Subscription related
     case clientEvent(ClientEvent)
-//    case packetEvent(PacketEvent)
+    //    case packetEvent(PacketEvent)
     case testResult(TestResult)
   }
   
@@ -289,7 +299,11 @@ public struct ApiModule: ReducerProtocol {
         return initializeMode(state)
         
       case .startStopButton:
-        return startStopTester(&state, apiModel, streamModel)
+        if state.isConnected {
+          return stopTester(&state, apiModel, streamModel)
+        } else {
+          return startTester(&state, apiModel, streamModel)
+        }
         
       case .toggle(let keyPath):
         state[keyPath: keyPath].toggle()
@@ -309,7 +323,7 @@ public struct ApiModule: ReducerProtocol {
           // NOT CONNECTED
           return .none
         }
-
+        
         // ----------------------------------------------------------------------------
         // MARK: - Actions: invoked by other actions
         
@@ -551,7 +565,7 @@ private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _
 
 private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
   // FIXME:
-
+  
   //        if newState {
   //          state.txAudio = true
   //          if state.isConnected {
@@ -637,7 +651,7 @@ private func subscribeToClients() -> Effect<ApiModule.Action, Never> {
 }
 
 private func subscribeToLogAlerts() -> Effect<ApiModule.Action, Never>  {
-   return .run { send in
+  return .run { send in
     for await entry in logAlerts {
       // a Warning or Error has been logged.
       await send(.showLogAlert(entry))
@@ -647,6 +661,12 @@ private func subscribeToLogAlerts() -> Effect<ApiModule.Action, Never>  {
 
 private func disconnect(_ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
   return .run { send in await apiModel.disconnect() }
+}
+
+private func resetClientInitialized(_ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+  return .fireAndForget {
+    await apiModel.resetClientInitialized()
+  }
 }
 
 private func setConnectionStatus(_ state: inout ApiModule.State, _ status: Bool) -> Effect<ApiModule.Action, Never> {
@@ -703,36 +723,36 @@ private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -
   }
 }
 
-private func startStopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
-  
-  if state.isConnected {
-    // ----- STOP -----
-    return .merge(
-      clearMessages(state.clearOnStop),
-      stopRxAudio(&state, apiModel, streamModel),
-      disconnect(apiModel),
-      setConnectionStatus(&state, false)
-    )
-  } else {
-    // ----- START -----
-    // use the default?
-    if state.useDefault {
-      // YES, use the Default
-      if let packet = Listener.shared.findPacket(for: state.guiDefault, state.nonGuiDefault, state.isGui) {
-        // valid default
-        let pickable = Pickable(packet: packet, station: state.isGui ? "" : state.nonGuiDefault?.station ?? "")
-        return .merge(
-          clearMessages(state.clearOnStart),
-          checkConnectionStatus(state.isGui, pickable)
-        )
-      }
+private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  // ----- START -----
+  // use the default?
+  if state.useDefault {
+    // YES, use the Default
+    if let packet = Listener.shared.findPacket(for: state.guiDefault, state.nonGuiDefault, state.isGui) {
+      // valid default
+      let pickable = Pickable(packet: packet, station: state.isGui ? "" : state.nonGuiDefault?.station ?? "")
+      return .merge(
+        clearMessages(state.clearOnStart),
+        checkConnectionStatus(state.isGui, pickable)
+      )
     }
-    // NO default or default not in use, open the Picker
-    return .merge(
-      clearMessages(state.clearOnStart),
-      pickerSheet(state.isGui)
-    )
   }
+  // NO default or default not in use, open the Picker
+  return .merge(
+    clearMessages(state.clearOnStart),
+    pickerSheet(state.isGui)
+  )
+}
+
+private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+  // ----- STOP -----
+  return .merge(
+    resetClientInitialized(apiModel),
+    clearMessages(state.clearOnStop),
+    stopRxAudio(&state, apiModel, streamModel),
+    disconnect(apiModel),
+    setConnectionStatus(&state, false)
+  )
 }
 
 private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) -> Effect<ApiModule.Action, Never> {
@@ -760,7 +780,7 @@ private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) -> Effe
 }
 
 private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
-
+  
   return .run { [state] send in
     await messagesModel.start(state.messageFilter, state.messageFilterText)
     // attempt to connect to the selected Radio / Station
