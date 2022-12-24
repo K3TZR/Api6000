@@ -19,7 +19,8 @@ struct ObjectsView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
   
-  
+  @Dependency(\.listener) var listener
+
 //  struct ViewState: Equatable {
 //    let isGui: Bool
 //    let fontSize: CGFloat
@@ -39,7 +40,7 @@ struct ObjectsView: View {
         ScrollView([.horizontal, .vertical]) {
           VStack(alignment: .leading) {
             RadioView(apiModel: apiModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
-            GuiClientView(store: store, listener: Listener.shared)
+            GuiClientView(store: store, apiModel: apiModel)
             //          if viewStore.isGui == false { TesterView() }
           }
         }

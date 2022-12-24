@@ -17,11 +17,11 @@ import Shared
 
 struct GuiClientView: View {
   let store: StoreOf<ApiModule>
-  @ObservedObject var listener: Listener
+  @ObservedObject var apiModel: ApiModel
   
   var body: some View {
     VStack(alignment: .leading) {
-      ForEach(listener.guiClients, id: \.id) { guiClient in
+      ForEach(apiModel.activePacket!.guiClients, id: \.id) { guiClient in
         DetailView(store: store, guiClient: guiClient)
       }
     }
@@ -77,9 +77,6 @@ private struct DetailView: View {
 struct GuiClientSubView: View {
   let store: StoreOf<ApiModule>
   
-  
-  
-  
   struct ViewState: Equatable {
     let objectFilter: ObjectFilter
     init(state: ApiModule.State) {
@@ -87,13 +84,8 @@ struct GuiClientSubView: View {
     }
   }
   
-  
-  
-  
-  
-  
-  @Dependency(\.streamModel) var streamModel
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.streamModel) var streamModel
 
   let handle: Handle
   
@@ -141,7 +133,7 @@ struct GuiClientView_Previews: PreviewProvider {
     GuiClientView( store:
                     Store(initialState: ApiModule.State(),
                           reducer: ApiModule()),
-                   listener: Listener.shared)
+                   apiModel: ApiModel())
     .frame(minWidth: 975)
     .padding()
   }

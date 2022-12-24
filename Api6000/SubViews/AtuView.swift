@@ -30,7 +30,7 @@ struct AtuView: View {
             }
             HStack(spacing: 5) {
               Text("Status")
-              Text(atu.status == "" ? "none" : atu.status).foregroundColor(.green)
+              Text(atu.status.rawValue).foregroundColor(.green)
             }
             HStack(spacing: 5) {
               Text("Mem enabled")
@@ -62,9 +62,6 @@ struct AtuView: View {
 struct AtuView_Previews: PreviewProvider {
   
   static var previews: some View {
-    
     AtuView(atu: Atu(), radio: Radio(Packet()))
   }
 }
-
-

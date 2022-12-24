@@ -118,7 +118,11 @@ public struct ApiView: View {
             then: ClientView.init(store:)
           )
         }
-      )      
+      )
+      
+      .onDisappear {
+        viewStore.send(.closeOtherWindows)
+      }
     }
   }
 }
