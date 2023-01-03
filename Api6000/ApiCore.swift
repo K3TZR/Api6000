@@ -50,12 +50,17 @@ public struct ApiModule: ReducerProtocol {
     var objectFilter: ObjectFilter { didSet { UserDefaults.standard.set(objectFilter.rawValue, forKey: "objectFilter") } }
     var reverse: Bool { didSet { UserDefaults.standard.set(reverse, forKey: "reverse") } }
     var rxAudio: Bool { didSet { UserDefaults.standard.set(rxAudio, forKey: "rxAudio") } }
+    var showLeftButtons: Bool { didSet { UserDefaults.standard.set(showLeftButtons, forKey: "showLeftButtons") } }
     var showPings: Bool { didSet { UserDefaults.standard.set(showPings, forKey: "showPings") } }
     var showTimes: Bool { didSet { UserDefaults.standard.set(showTimes, forKey: "showTimes") } }
     var smartlink: Bool { didSet { UserDefaults.standard.set(smartlink, forKey: "smartlink") } }
     var smartlinkEmail: String { didSet { UserDefaults.standard.set(smartlinkEmail, forKey: "smartlinkEmail") } }
     var txAudio: Bool { didSet { UserDefaults.standard.set(txAudio, forKey: "txAudio") } }
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
+    
+    var connectionMode: ConnectionMode { didSet { UserDefaults.standard.set(connectionMode.rawValue, forKey: "connectionMode") } }
+
+    
     
     // other state
     var commandToSend = ""
@@ -93,12 +98,17 @@ public struct ApiModule: ReducerProtocol {
       objectFilter: ObjectFilter = ObjectFilter(rawValue: UserDefaults.standard.string(forKey: "objectFilter") ?? "core") ?? .core,
       reverse: Bool = UserDefaults.standard.bool(forKey: "reverse"),
       rxAudio: Bool  = UserDefaults.standard.bool(forKey: "rxAudio"),
+      showLeftButtons: Bool = UserDefaults.standard.bool(forKey: "showLeftButtons"),
       showPings: Bool = UserDefaults.standard.bool(forKey: "showPings"),
       showTimes: Bool = UserDefaults.standard.bool(forKey: "showTimes"),
       smartlink: Bool = UserDefaults.standard.bool(forKey: "smartlink"),
       smartlinkEmail: String = UserDefaults.standard.string(forKey: "smartlinkEmail") ?? "",
       txAudio: Bool  = UserDefaults.standard.bool(forKey: "txAudio"),
-      useDefault: Bool = UserDefaults.standard.bool(forKey: "useDefault")
+      useDefault: Bool = UserDefaults.standard.bool(forKey: "useDefault"),
+
+      connectionMode: ConnectionMode = ConnectionMode(rawValue: UserDefaults.standard.string(forKey: "connectionMode") ?? "none") ?? .none
+
+
     )
     {
       self.alertOnError = alertOnError
@@ -115,12 +125,15 @@ public struct ApiModule: ReducerProtocol {
       self.objectFilter = objectFilter
       self.reverse = reverse
       self.rxAudio = rxAudio
+      self.showLeftButtons = showLeftButtons
       self.showPings = showPings
       self.showTimes = showTimes
       self.smartlink = smartlink
       self.smartlinkEmail = smartlinkEmail
       self.txAudio = txAudio
       self.useDefault = useDefault
+      
+      self.connectionMode = connectionMode
     }
   }
   
@@ -133,8 +146,9 @@ public struct ApiModule: ReducerProtocol {
     
     // UI controls
     case clearNowButton
+    case connectionModePicker(String)
     case fontSizeStepper(CGFloat)
-    case localButton(Bool)
+//    case localButton(Bool)
     case loginRequiredButton(Bool)
     case messagesFilterTextField(String)
     case messagesFilterPicker(MessageFilter)
@@ -147,7 +161,7 @@ public struct ApiModule: ReducerProtocol {
     case sendPreviousStepper
     case sendTextField(String)
     case showPingsToggle
-    case smartlinkButton(Bool)
+//    case smartlinkButton(Bool)
     case startStopButton
     case toggle(WritableKeyPath<ApiModule.State, Bool>)
     case txAudioButton(Bool)
@@ -213,13 +227,17 @@ public struct ApiModule: ReducerProtocol {
         }
         return .none
         
+      case .connectionModePicker(let mode):
+        state.connectionMode = ConnectionMode(rawValue: mode) ?? .none
+        return initializeMode(state, listener)
+        
       case .fontSizeStepper(let size):
         state.fontSize = size
         return .none
         
-      case .localButton(let newState):
-        state.local = newState
-        return initializeMode(state, listener)
+//      case .localButton(let newState):
+//        state.local = newState
+//        return initializeMode(state, listener)
         
       case .loginRequiredButton(_):
         state.loginRequired.toggle()
@@ -299,9 +317,9 @@ public struct ApiModule: ReducerProtocol {
           await messagesModel.setShowPings(state.showPings)
         }
         
-      case .smartlinkButton(let newState):
-        state.smartlink = newState
-        return initializeMode(state, listener)
+//      case .smartlinkButton(let newState):
+//        state.smartlink = newState
+//        return initializeMode(state, listener)
         
       case .startStopButton:
         if state.isConnected {
@@ -579,7 +597,7 @@ func initializeMode(_ state: ApiModule.State, _ listener: Listener) -> Effect<Ap
   // start / stop listeners as appropriate for the Mode
   return .run { [state] send in
     // set the connection mode, start the Lan and/or Wan listener
-    if await listener.setConnectionMode(state.local, state.smartlink, state.smartlinkEmail) {
+    if await listener.setConnectionMode(state.connectionMode, state.smartlinkEmail) {
       if state.loginRequired && state.smartlink {
         // Smartlink login is required
         await send(.showLoginSheet)
@@ -818,15 +836,6 @@ private func updateDefault(_ state: inout ApiModule.State, _ selection: Pickable
 
 // ----------------------------------------------------------------------------
 // MARK: - Structs and Enums
-
-public enum ConnectionMode: String, Identifiable, CaseIterable {
-  case both
-  case local
-  case none
-  case smartlink
-  
-  public var id: String { rawValue }
-}
 
 public enum ViewType: Equatable {
   case api

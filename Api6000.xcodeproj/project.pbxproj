@@ -579,7 +579,7 @@
 			repositoryURL = "https://github.com/K3TZR/SharedFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.1;
+				minimumVersion = 1.6.1;
 			};
 		};
 		9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */ = {
@@ -595,7 +595,7 @@
 			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.1;
+				minimumVersion = 2.2.1;
 			};
 		};
 		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
@@ -603,7 +603,7 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.10.1;
+				minimumVersion = 1.11.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {

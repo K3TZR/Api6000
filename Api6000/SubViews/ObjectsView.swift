@@ -18,7 +18,9 @@ import Shared
 struct ObjectsView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
-  
+  @ObservedObject var packet: Packet
+  @ObservedObject var radio: Radio
+
   @Dependency(\.listener) var listener
 
 //  struct ViewState: Equatable {
@@ -36,10 +38,10 @@ struct ObjectsView: View {
     
     WithViewStore(self.store, observe: {$0} ) { viewStore in
      
-      if apiModel.activePacket != nil && apiModel.radio != nil {
+//      if apiModel.activePacket != nil && apiModel.radio != nil {
         ScrollView([.horizontal, .vertical]) {
           VStack(alignment: .leading) {
-            RadioView(apiModel: apiModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
+            RadioView(apiModel: apiModel, packet: packet, radio: radio)
             GuiClientView(store: store, apiModel: apiModel)
             //          if viewStore.isGui == false { TesterView() }
           }
@@ -47,7 +49,7 @@ struct ObjectsView: View {
         .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
         .font(.system(size: viewStore.fontSize, weight: .regular, design: .monospaced))
 
-      }
+//      }
     }
   }
 }
@@ -63,7 +65,7 @@ struct ObjectsView_Previews: PreviewProvider {
         Store(
           initialState: ApiModule.State(),
           reducer: ApiModule()),
-      apiModel: ApiModel())
+      apiModel: ApiModel(), packet: Packet(), radio: Radio(Packet()))
     .frame(minWidth: 975)
     .padding()
   }

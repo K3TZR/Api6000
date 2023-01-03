@@ -29,10 +29,6 @@ struct AtuView: View {
               Text(atu.enabled ? "Y" : "N").foregroundColor(atu.enabled ? .green : .red)
             }
             HStack(spacing: 5) {
-              Text("Status")
-              Text(atu.status.rawValue).foregroundColor(.green)
-            }
-            HStack(spacing: 5) {
               Text("Mem enabled")
               Text(atu.memoriesEnabled ? "Y" : "N").foregroundColor(atu.memoriesEnabled ? .green : .red)
             }
@@ -42,7 +38,10 @@ struct AtuView: View {
             }
           }
           .frame(width: 100, alignment: .leading)
-          
+          HStack(spacing: 5) {
+            Text("Status")
+            Text(atu.status.rawValue).foregroundColor(.green)
+          }
         } else {
           Group {
             Text("ATU")

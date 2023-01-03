@@ -15,17 +15,19 @@ struct BottomButtonsView: View {
   let store: StoreOf<ApiModule>
   
   struct ViewState: Equatable {
+    let alertOnError: Bool
     let clearOnStart: Bool
     let clearOnStop: Bool
     let fontSize: CGFloat
     let gotoLast: Bool
-    let alertOnError: Bool
+    let showLeftButtons: Bool
     init(state: ApiModule.State) {
+      self.alertOnError = state.alertOnError
       self.clearOnStart = state.clearOnStart
       self.clearOnStop = state.clearOnStop
       self.fontSize = state.fontSize
       self.gotoLast = state.gotoLast
-      self.alertOnError = state.alertOnError
+      self.showLeftButtons = state.showLeftButtons
     }
   }
 
@@ -53,11 +55,13 @@ struct BottomButtonsView: View {
         }
         Spacer()
         
-        HStack(spacing: 40) {
+        HStack(spacing: 30) {
           Toggle("Alert on Error", isOn: viewStore.binding(get: \.alertOnError, send: .toggle(\.alertOnError)))
           Toggle("Clear on Start", isOn: viewStore.binding(get: \.clearOnStart, send: .toggle(\.clearOnStart)))
           Toggle("Clear on Stop", isOn: viewStore.binding(get: \.clearOnStop, send: .toggle(\.clearOnStop)))
           Button("Clear Now") { viewStore.send(.clearNowButton)}
+          Image(systemName: "rectangle.bottomthird.inset.filled")
+            .onTapGesture { viewStore.send(.toggle(\.showLeftButtons)) }
         }
       }
     }

@@ -27,6 +27,7 @@ public struct TopButtonsView: View {
     let loginRequired: Bool
     let useDefault: Bool
     let isConnected: Bool
+    let connectionMode: ConnectionMode
     init(state: ApiModule.State) {
       self.isGui = state.isGui
       self.showTimes = state.showTimes
@@ -38,18 +39,19 @@ public struct TopButtonsView: View {
       self.loginRequired = state.loginRequired
       self.useDefault = state.useDefault
       self.isConnected = state.isConnected
+      self.connectionMode = state.connectionMode
     }
   }
-
- public  var body: some View {
-
-   WithViewStore(self.store, observe: ViewState.init) { viewStore in
+  
+  public  var body: some View {
+    
+    WithViewStore(self.store, observe: ViewState.init) { viewStore in
       HStack(spacing: 20) {
         Button(viewStore.isConnected ? "Stop" : "Start") {
           viewStore.send(.startStopButton)
         }
         .keyboardShortcut(viewStore.isConnected ? .cancelAction : .defaultAction)
-
+        
         HStack(spacing: 10) {
           Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .toggle(\ApiModule.State.isGui)))
             .frame(width: 60)
@@ -60,7 +62,7 @@ public struct TopButtonsView: View {
           }
           .frame(width: 100)
         }
-
+        
         Spacer()
         ControlGroup {
           Toggle(isOn: viewStore.binding(get: \.rxAudio, send: { .rxAudioButton($0)} )) {
@@ -69,15 +71,21 @@ public struct TopButtonsView: View {
             Text("Tx Audio") }
         }
         .frame(width: 130)
-
+        
         Spacer()
-        ControlGroup {
-          Toggle("Local", isOn: viewStore.binding(get: \.local, send: { .localButton($0) } ))
-          Toggle("Smartlink", isOn: viewStore.binding(get: \.smartlink, send: { .smartlinkButton($0) } ))
-        }
-        .frame(width: 130)
-        .disabled( viewStore.isConnected )
-
+        Text("Mode")
+        Picker("", selection: viewStore.binding(
+          get: \.connectionMode.rawValue,
+          send: { .connectionModePicker($0) } )) {
+            ForEach(ConnectionMode.allCases, id: \.self) {
+              Text($0.rawValue).tag($0.rawValue)
+            }
+          }
+          .labelsHidden()
+          .pickerStyle(.menu)
+          .frame(width: 120)
+          .disabled( viewStore.isConnected )
+        
         Spacer()
         Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: { .loginRequiredButton($0) }))
           .disabled( viewStore.isConnected || viewStore.smartlink == false )
@@ -98,9 +106,9 @@ struct TopButtonsView_Previews: PreviewProvider {
         initialState: ApiModule.State(),
         reducer: ApiModule()
       )
-//      , viewModel: ViewModel.shared
+      //      , viewModel: ViewModel.shared
     )
-      .frame(minWidth: 975)
-      .padding()
+    .frame(minWidth: 975)
+    .padding()
   }
 }

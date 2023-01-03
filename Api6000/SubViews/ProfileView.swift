@@ -54,8 +54,11 @@ private struct DetailView: View {
   var body: some View {
     GridRow {
       Text(profile.id.uppercased()).frame(width: 60, alignment: .leading)
-      Text(profile.current).frame(width: 150, alignment: .leading)
-      Text(profile.list.reduce("", { item1, item2 in item1 + item2 + ","})).frame(width: 850, alignment: .leading)
+      Text(profile.current.name).frame(width: 150, alignment: .leading)
+      
+      let names = profile.list.map { $0.name }
+      let list = names.reduce("", { $0 + $1 + ","})
+      Text(list).frame(width: 850, alignment: .leading)
     }
   }
 }

@@ -128,7 +128,7 @@ struct Api6000App: App {
     // FIXME: need a real Panadapter ID
     
     Window(WindowType.leftSideView.rawValue, id: WindowType.leftSideView.rawValue) {
-      LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: "0x99999999".streamId!), reducer: LeftSideFeature()), apiModel: apiModel)
+      LeftSideView(store: Store(initialState: LeftSideFeature.State(), reducer: LeftSideFeature()), apiModel: apiModel)
       .toolbar {
         Button("Close") { NSApplication.shared.keyWindow?.close()  }
         Button("Close All") { NSApplication.shared.terminate(self)  }
@@ -142,6 +142,9 @@ struct Api6000App: App {
     Settings {
       SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), apiModel: apiModel)
     }
+    .windowStyle(.hiddenTitleBar)
+    .windowResizability(WindowResizability.contentSize)
+
 //    Window(WindowType.panadapterView.rawValue, id: WindowType.panadapterView.rawValue) {
 //      VStack {
 //        Text("\(WindowType.panadapterView.rawValue) goes here")

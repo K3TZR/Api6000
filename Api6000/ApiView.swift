@@ -9,6 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 import ClientFeature
+import LeftSideFeature
 import LoginFeature
 import LogFeature
 import PickerFeature
@@ -53,7 +54,7 @@ public struct ApiView: View {
 
         VSplitView {
           if viewStore.isConnected {
-            ObjectsView(store: store, apiModel: apiModel)
+            ObjectsView(store: store, apiModel: apiModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
               .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
             Divider().background(Color(.cyan))
             MessagesView(store: store, messagesModel: messagesModel)
@@ -71,6 +72,12 @@ public struct ApiView: View {
         Spacer()
         Divider().background(Color(.gray))
         BottomButtonsView(store: store)
+        if viewStore.showLeftButtons {
+          LeftSideView(store: Store(
+            initialState: LeftSideFeature.State(vertical: false),
+            reducer: LeftSideFeature()
+          ), apiModel: apiModel)
+        }
       }
       // initialize on first appearance
       .onAppear() { viewStore.send(.onAppear) }
@@ -138,7 +145,7 @@ struct ApiView_Previews: PreviewProvider {
         reducer: ApiModule()
       )
     )
-    .frame(minWidth: 975, minHeight: 400)
+//    .frame(minWidth: 975, minHeight: 400)
     .padding()
   }
 }
