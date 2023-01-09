@@ -23,6 +23,8 @@ import XCGWrapper
 
 public struct ApiModule: ReducerProtocol {
   
+  @Environment(\.openWindow) var openWindow
+  
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.listener) var listener
   @Dependency(\.messagesModel) var messagesModel
@@ -48,6 +50,9 @@ public struct ApiModule: ReducerProtocol {
     var messageFilterText: String { didSet { UserDefaults.standard.set(messageFilterText, forKey: "messageFilterText") } }
     var nonGuiDefault: DefaultValue? { didSet { setDefaultValue("nonGuiDefault", nonGuiDefault) } }
     var objectFilter: ObjectFilter { didSet { UserDefaults.standard.set(objectFilter.rawValue, forKey: "objectFilter") } }
+    var openLeftWindow: Bool { didSet { UserDefaults.standard.set(openLeftWindow, forKey: "openLeftWindow") } }
+    var openLogWindow: Bool { didSet { UserDefaults.standard.set(openLogWindow, forKey: "openLogWindow") } }
+    var openRightWindow: Bool { didSet { UserDefaults.standard.set(openRightWindow, forKey: "openRightWindow") } }
     var reverse: Bool { didSet { UserDefaults.standard.set(reverse, forKey: "reverse") } }
     var rxAudio: Bool { didSet { UserDefaults.standard.set(rxAudio, forKey: "rxAudio") } }
     var showLeftButtons: Bool { didSet { UserDefaults.standard.set(showLeftButtons, forKey: "showLeftButtons") } }
@@ -59,8 +64,6 @@ public struct ApiModule: ReducerProtocol {
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
     
     var connectionMode: ConnectionMode { didSet { UserDefaults.standard.set(connectionMode.rawValue, forKey: "connectionMode") } }
-
-    
     
     // other state
     var commandToSend = ""
@@ -96,6 +99,9 @@ public struct ApiModule: ReducerProtocol {
       messageFilterText: String = UserDefaults.standard.string(forKey: "messageFilterText") ?? "",
       nonGuiDefault: DefaultValue? = getDefaultValue("nonGuiDefault"),
       objectFilter: ObjectFilter = ObjectFilter(rawValue: UserDefaults.standard.string(forKey: "objectFilter") ?? "core") ?? .core,
+      openLeftWindow: Bool = UserDefaults.standard.bool(forKey: "openLeftWindow"),
+      openLogWindow: Bool = UserDefaults.standard.bool(forKey: "openLogWindow"),
+      openRightWindow: Bool = UserDefaults.standard.bool(forKey: "openRightWindow"),
       reverse: Bool = UserDefaults.standard.bool(forKey: "reverse"),
       rxAudio: Bool  = UserDefaults.standard.bool(forKey: "rxAudio"),
       showLeftButtons: Bool = UserDefaults.standard.bool(forKey: "showLeftButtons"),
@@ -105,10 +111,10 @@ public struct ApiModule: ReducerProtocol {
       smartlinkEmail: String = UserDefaults.standard.string(forKey: "smartlinkEmail") ?? "",
       txAudio: Bool  = UserDefaults.standard.bool(forKey: "txAudio"),
       useDefault: Bool = UserDefaults.standard.bool(forKey: "useDefault"),
-
+      
       connectionMode: ConnectionMode = ConnectionMode(rawValue: UserDefaults.standard.string(forKey: "connectionMode") ?? "none") ?? .none
-
-
+      
+      
     )
     {
       self.alertOnError = alertOnError
@@ -123,6 +129,9 @@ public struct ApiModule: ReducerProtocol {
       self.messageFilterText = messageFilterText
       self.nonGuiDefault = nonGuiDefault
       self.objectFilter = objectFilter
+      self.openLeftWindow = openLeftWindow
+      self.openLogWindow = openLogWindow
+      self.openRightWindow = openRightWindow
       self.reverse = reverse
       self.rxAudio = rxAudio
       self.showLeftButtons = showLeftButtons
@@ -148,7 +157,7 @@ public struct ApiModule: ReducerProtocol {
     case clearNowButton
     case connectionModePicker(String)
     case fontSizeStepper(CGFloat)
-//    case localButton(Bool)
+    //    case localButton(Bool)
     case loginRequiredButton(Bool)
     case messagesFilterTextField(String)
     case messagesFilterPicker(MessageFilter)
@@ -161,9 +170,10 @@ public struct ApiModule: ReducerProtocol {
     case sendPreviousStepper
     case sendTextField(String)
     case showPingsToggle
-//    case smartlinkButton(Bool)
+    //    case smartlinkButton(Bool)
     case startStopButton
     case toggle(WritableKeyPath<ApiModule.State, Bool>)
+    case toolbarButton(String)
     case txAudioButton(Bool)
     
     // subview related
@@ -191,7 +201,7 @@ public struct ApiModule: ReducerProtocol {
     //    case packetEvent(PacketEvent)
     case testResult(TestResult)
     
-    case closeOtherWindows
+    case closeAllWindows
   }
   
   // ----------------------------------------------------------------------------
@@ -215,14 +225,24 @@ public struct ApiModule: ReducerProtocol {
           await messagesModel.clearAll()
         }
         
-      case .closeOtherWindows:
+      case .closeAllWindows:
         let windows = NSApp.windows
         for window in windows {
-          if window.identifier?.rawValue == WindowType.logView.rawValue
-              || window.identifier?.rawValue == WindowType.leftSideView.rawValue
-              || window.identifier?.rawValue == WindowType.rightSideView.rawValue {
+          switch window.identifier?.rawValue {
+          case WindowType.logView.rawValue:
             log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
             window.close()
+          case WindowType.leftView.rawValue:
+            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+            window.close()
+          case WindowType.rightView.rawValue:
+            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+            window.close()
+          case "com_apple_SwiftUI_Settings_window":
+            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+            window.close()
+          default:
+            break
           }
         }
         return .none
@@ -235,15 +255,24 @@ public struct ApiModule: ReducerProtocol {
         state.fontSize = size
         return .none
         
-//      case .localButton(let newState):
-//        state.local = newState
-//        return initializeMode(state, listener)
+        //      case .localButton(let newState):
+        //        state.local = newState
+        //        return initializeMode(state, listener)
         
       case .loginRequiredButton(_):
         state.loginRequired.toggle()
         if state.loginRequired {
           // re-initialize the connection mode
           return initializeMode(state, listener)
+        }
+        return .none
+        
+      case .toolbarButton(let type):
+        switch type {
+        case "Log":       state.openLogWindow.toggle()
+        case "Left":      state.openLeftWindow.toggle()
+        case "Right":     state.openRightWindow.toggle()
+        default: break
         }
         return .none
         
@@ -317,9 +346,9 @@ public struct ApiModule: ReducerProtocol {
           await messagesModel.setShowPings(state.showPings)
         }
         
-//      case .smartlinkButton(let newState):
-//        state.smartlink = newState
-//        return initializeMode(state, listener)
+        //      case .smartlinkButton(let newState):
+        //        state.smartlink = newState
+        //        return initializeMode(state, listener)
         
       case .startStopButton:
         if state.isConnected {
@@ -499,6 +528,20 @@ public struct ApiModule: ReducerProtocol {
 
 // ----------------------------------------------------------------------------
 // MARK: - Private Effect methods
+
+private func closeWindow(_ id: String) {
+  for window in NSApp.windows where window.identifier?.rawValue == id {
+    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+    window.close()
+  }
+}
+
+
+
+
+
+
+
 
 private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -> ApiModule.Action {
   // Gui connection with othe stations?

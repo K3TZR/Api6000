@@ -15,47 +15,13 @@ import RightSideFeature
 import SettingsFeature
 import Shared
 
-
-//extension StreamModel: DependencyKey {
-//  public static let liveValue = StreamModel.shared
-//}
-//
-//extension DependencyValues {
-//  var streamModel: StreamModel {
-//    get { self[StreamModel.self] }
-//    set { self[StreamModel.self] = newValue }
-//  }
-//}
-
-//extension PacketModel: DependencyKey {
-//  public static let liveValue = PacketModel.shared
-//}
-//
-//extension DependencyValues {
-//  var packetModel: PacketModel {
-//    get { self[PacketModel.self] }
-//    set { self[PacketModel.self] = newValue }
-//  }
-//}
-//
-
-//private struct isConnectedKey: EnvironmentKey {
-//  static let defaultValue = false
-//}
-//extension EnvironmentValues {
-//  var isConnected: Bool {
-//    get { self[isConnectedKey.self] }
-//    set { self[isConnectedKey.self] = newValue }
-//  }
-//}
-
 enum WindowType: String {
-  case leftSideView = "Left View"
+  case leftView = "Left View"
   case logView = "Log View"
   case panadapterView = "Panadapter View"
-  case rightSideView = "Right View"
+  case rightView = "Right View"
+  case settingsView = "Settings"
 }
-
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ notification: Notification) {
@@ -77,7 +43,6 @@ struct Api6000App: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self)
   var appDelegate
   
-  @Environment(\.openWindow) var openWindow
   @Dependency(\.apiModel) var apiModel
   
   var body: some Scene {
@@ -90,49 +55,25 @@ struct Api6000App: App {
       .frame(minWidth: 975)
       .padding(.horizontal, 20)
       .padding(.vertical, 10)
-
-      .toolbar {
-        Spacer()
-//        Button(WindowType.panadapterView.rawValue) { openWindow(id: WindowType.panadapter.ViewrawValue) }
-        Button(WindowType.logView.rawValue) { openWindow(id: WindowType.logView.rawValue) }
-        Button(WindowType.leftSideView.rawValue) { openWindow(id: WindowType.leftSideView.rawValue) }
-        Button(WindowType.rightSideView.rawValue) { openWindow(id: WindowType.rightSideView.rawValue) }
-        Button("Close") { NSApplication.shared.terminate(self)  }
-      }
     }
 
     Window(WindowType.logView.rawValue, id: WindowType.logView.rawValue) {
       LogView(store: Store(initialState: LogFeature.State(), reducer: LogFeature()) )
-      .toolbar {
-        Button("Close") { NSApplication.shared.keyWindow?.close()  }
-        Button("Close All") { NSApplication.shared.terminate(self)  }
-      }
       .frame(minWidth: 975)
     }
     .windowStyle(.hiddenTitleBar)
     .defaultPosition(.bottomTrailing)
 
-    Window(WindowType.rightSideView.rawValue, id: WindowType.rightSideView.rawValue) {
+    Window(WindowType.rightView.rawValue, id: WindowType.rightView.rawValue) {
       RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel)
-      .toolbar {
-        Button("Close") { NSApplication.shared.keyWindow?.close()  }
-        Button("Close All") { NSApplication.shared.terminate(self)  }
-      }
       .frame(minHeight: 210)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topTrailing)
-    
-    
-    // FIXME: need a real Panadapter ID
-    
-    Window(WindowType.leftSideView.rawValue, id: WindowType.leftSideView.rawValue) {
+        
+    Window(WindowType.leftView.rawValue, id: WindowType.leftView.rawValue) {
       LeftSideView(store: Store(initialState: LeftSideFeature.State(), reducer: LeftSideFeature()), apiModel: apiModel)
-      .toolbar {
-        Button("Close") { NSApplication.shared.keyWindow?.close()  }
-        Button("Close All") { NSApplication.shared.terminate(self)  }
-      }
       .frame(minHeight: 210)
     }
     .windowStyle(.hiddenTitleBar)
@@ -144,20 +85,7 @@ struct Api6000App: App {
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
-
-//    Window(WindowType.panadapterView.rawValue, id: WindowType.panadapterView.rawValue) {
-//      VStack {
-//        Text("\(WindowType.panadapterView.rawValue) goes here")
-//      }
-//      .toolbar {
-//        Button("Close") { NSApplication.shared.keyWindow?.close()  }
-//        Button("Close All") { NSApplication.shared.terminate(self)  }
-//      }
-//      .frame(minWidth: 975)
-//      .padding()
-//    }
-//    .windowStyle(.hiddenTitleBar)
-//    .defaultPosition(.topTrailing)
+    .defaultPosition(.bottomLeading)
 
     .commands {
       //remove the "New" menu item

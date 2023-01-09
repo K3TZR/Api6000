@@ -54,8 +54,6 @@
 		9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanView.swift */; };
 		9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformView.swift */; };
 		9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */; };
-		9F33A5B22935A00A00F9EEFC /* TopButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B12935A00A00F9EEFC /* TopButtonsView.swift */; };
-		9F33A5B42935A01B00F9EEFC /* BottomButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B32935A01B00F9EEFC /* BottomButtonsView.swift */; };
 		9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B52935A01F00F9EEFC /* FiltersView.swift */; };
 		9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesView.swift */; };
 		9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsView.swift */; };
@@ -96,12 +94,12 @@
 		9F0A847E293AD5D400EE9D5D /* WanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanView.swift; sourceTree = "<group>"; };
 		9F0A8480293AD5D700EE9D5D /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrView.swift; sourceTree = "<group>"; };
-		9F33A5B12935A00A00F9EEFC /* TopButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtonsView.swift; sourceTree = "<group>"; };
-		9F33A5B32935A01B00F9EEFC /* BottomButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonsView.swift; sourceTree = "<group>"; };
 		9F33A5B52935A01F00F9EEFC /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		9F33A5B72935A02300F9EEFC /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		9F65A7CB2964B06600C4BFA9 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
+		9F65A7CC2964B49600C4BFA9 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */,
 				9F0A8458293AD58100EE9D5D /* AtuView.swift */,
 				9F0A845A293AD58500EE9D5D /* BandSettingView.swift */,
-				9F33A5B32935A01B00F9EEFC /* BottomButtonsView.swift */,
 				9F0A845C293AD58900EE9D5D /* CwxView.swift */,
 				9F0A845E293AD58F00EE9D5D /* EqualizerView.swift */,
 				9F33A5B52935A01F00F9EEFC /* FiltersView.swift */,
@@ -182,7 +179,6 @@
 				9F0A8474293AD5C000EE9D5D /* StreamView.swift */,
 				9F0A8476293AD5C300EE9D5D /* TesterView.swift */,
 				9F0A8478293AD5C700EE9D5D /* TnfView.swift */,
-				9F33A5B12935A00A00F9EEFC /* TopButtonsView.swift */,
 				9F0A847A293AD5CB00EE9D5D /* TransmitView.swift */,
 				9F0A847C293AD5D100EE9D5D /* UsbCableView.swift */,
 				9F0A847E293AD5D400EE9D5D /* WanView.swift */,
@@ -195,6 +191,8 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
+				9F65A7CC2964B49600C4BFA9 /* ApiFeatures */,
+				9F65A7CB2964B06600C4BFA9 /* ViewFeatures */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -344,14 +342,12 @@
 				9F0A8457293AD57C00EE9D5D /* AmplifierView.swift in Sources */,
 				9F0A8455293AD56700EE9D5D /* RadioView.swift in Sources */,
 				9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */,
-				9F33A5B42935A01B00F9EEFC /* BottomButtonsView.swift in Sources */,
 				9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */,
 				9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */,
 				9F0A846F293AD5B300EE9D5D /* NetworkView.swift in Sources */,
 				9F0A847D293AD5D100EE9D5D /* UsbCableView.swift in Sources */,
 				9F0A845D293AD58900EE9D5D /* CwxView.swift in Sources */,
 				9F0A8469293AD5A200EE9D5D /* MeterStreamView.swift in Sources */,
-				9F33A5B22935A00A00F9EEFC /* TopButtonsView.swift in Sources */,
 				9F0A846B293AD5A600EE9D5D /* MiscView.swift in Sources */,
 				9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */,
 				9F0A8471293AD5B700EE9D5D /* ProfileView.swift in Sources */,
@@ -509,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -536,7 +532,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -589,7 +585,7 @@
 			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.2;
+				minimumVersion = 3.1.2;
 			};
 		};
 		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
@@ -597,7 +593,7 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.11.2;
+				minimumVersion = 2.1.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {

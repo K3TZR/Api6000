@@ -21,8 +21,12 @@ struct GuiClientView: View {
   
   var body: some View {
     VStack(alignment: .leading) {
-      ForEach(apiModel.activePacket!.guiClients, id: \.id) { guiClient in
-        DetailView(store: store, guiClient: guiClient)
+      if apiModel.activePacket == nil {
+        Text("No active packet")
+      } else {
+        ForEach(apiModel.activePacket!.guiClients, id: \.id) { guiClient in
+          DetailView(store: store, guiClient: guiClient)
+        }
       }
     }
   }
