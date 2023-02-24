@@ -1,6 +1,6 @@
 //
 //  EqualizerView.swift
-//  Api6000Tester
+//  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/8/22.
 //

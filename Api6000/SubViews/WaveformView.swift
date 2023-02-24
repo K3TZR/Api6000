@@ -1,6 +1,6 @@
 //
 //  WaveformView.swift
-//  Api6000TesterX
+//  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/4/22.
 //
@@ -15,7 +15,7 @@ struct WaveformView: View {
   var body: some View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
-      if waveform.waveformList.isEmpty {
+      if waveform.list.isEmpty {
         GridRow {
           Group {
             Text("WAVEFORMs")
@@ -27,7 +27,7 @@ struct WaveformView: View {
         GridRow {
           Group {
             Text("WAVEFORMS").frame(width: 100, alignment: .leading)
-            Text(waveform.waveformList)
+            Text(waveform.list)
           }
         }
       }

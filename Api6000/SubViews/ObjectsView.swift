@@ -1,6 +1,6 @@
 //
 //  ObjectsView.swift
-//  Api6000Components/ApiViewer/Subviews/ViewerSubViews
+//  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/8/22.
 //

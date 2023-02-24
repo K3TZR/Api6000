@@ -1,6 +1,6 @@
 //
 //  BandSettingsView.swift
-//  Api6000Components/ApiViewer/Subviews/ObjectsSubViews
+//  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
 //

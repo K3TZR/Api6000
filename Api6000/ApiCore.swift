@@ -1,6 +1,6 @@
 //
 //  ApiCore.swift
-//  Api6000Components/ApiViewer
+//  Api6000
 //
 //  Created by Douglas Adams on 11/24/21.
 //
@@ -45,7 +45,7 @@ public struct ApiModule: ReducerProtocol {
     var guiDefault: DefaultValue? { didSet { setDefaultValue("guiDefault", guiDefault) } }
     var fontSize: CGFloat { didSet { UserDefaults.standard.set(fontSize, forKey: "fontSize") } }
     var isGui: Bool { didSet { UserDefaults.standard.set(isGui, forKey: "isGui") } }
-    var local: Bool { didSet { UserDefaults.standard.set(local, forKey: "local") } }
+    var localEnabled: Bool { didSet { UserDefaults.standard.set(localEnabled, forKey: "localEnabled") } }
     var messageFilter: MessageFilter { didSet { UserDefaults.standard.set(messageFilter.rawValue, forKey: "messageFilter") } }
     var messageFilterText: String { didSet { UserDefaults.standard.set(messageFilterText, forKey: "messageFilterText") } }
     var nonGuiDefault: DefaultValue? { didSet { setDefaultValue("nonGuiDefault", nonGuiDefault) } }
@@ -58,13 +58,11 @@ public struct ApiModule: ReducerProtocol {
     var showLeftButtons: Bool { didSet { UserDefaults.standard.set(showLeftButtons, forKey: "showLeftButtons") } }
     var showPings: Bool { didSet { UserDefaults.standard.set(showPings, forKey: "showPings") } }
     var showTimes: Bool { didSet { UserDefaults.standard.set(showTimes, forKey: "showTimes") } }
-    var smartlink: Bool { didSet { UserDefaults.standard.set(smartlink, forKey: "smartlink") } }
+    var smartlinkEnabled: Bool { didSet { UserDefaults.standard.set(smartlinkEnabled, forKey: "smartlinkEnabled") } }
     var smartlinkEmail: String { didSet { UserDefaults.standard.set(smartlinkEmail, forKey: "smartlinkEmail") } }
     var txAudio: Bool { didSet { UserDefaults.standard.set(txAudio, forKey: "txAudio") } }
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
-    
-    var connectionMode: ConnectionMode { didSet { UserDefaults.standard.set(connectionMode.rawValue, forKey: "connectionMode") } }
-    
+
     // other state
     var commandToSend = ""
     var loginRequired = false
@@ -94,7 +92,7 @@ public struct ApiModule: ReducerProtocol {
       fontSize: CGFloat = UserDefaults.standard.double(forKey: "fontSize") == 0 ? 12 : UserDefaults.standard.double(forKey: "fontSize"),
       guiDefault: DefaultValue? = getDefaultValue("guiDefault"),
       isGui: Bool = UserDefaults.standard.bool(forKey: "isGui"),
-      local: Bool = UserDefaults.standard.bool(forKey: "local"),
+      localEnabled: Bool = UserDefaults.standard.bool(forKey: "localEnabled"),
       messageFilter: MessageFilter = MessageFilter(rawValue: UserDefaults.standard.string(forKey: "messageFilter") ?? "all") ?? .all,
       messageFilterText: String = UserDefaults.standard.string(forKey: "messageFilterText") ?? "",
       nonGuiDefault: DefaultValue? = getDefaultValue("nonGuiDefault"),
@@ -107,14 +105,10 @@ public struct ApiModule: ReducerProtocol {
       showLeftButtons: Bool = UserDefaults.standard.bool(forKey: "showLeftButtons"),
       showPings: Bool = UserDefaults.standard.bool(forKey: "showPings"),
       showTimes: Bool = UserDefaults.standard.bool(forKey: "showTimes"),
-      smartlink: Bool = UserDefaults.standard.bool(forKey: "smartlink"),
+      smartlinkEnabled: Bool = UserDefaults.standard.bool(forKey: "smartlinkEnabled"),
       smartlinkEmail: String = UserDefaults.standard.string(forKey: "smartlinkEmail") ?? "",
       txAudio: Bool  = UserDefaults.standard.bool(forKey: "txAudio"),
-      useDefault: Bool = UserDefaults.standard.bool(forKey: "useDefault"),
-      
-      connectionMode: ConnectionMode = ConnectionMode(rawValue: UserDefaults.standard.string(forKey: "connectionMode") ?? "none") ?? .none
-      
-      
+      useDefault: Bool = UserDefaults.standard.bool(forKey: "useDefault")
     )
     {
       self.alertOnError = alertOnError
@@ -124,7 +118,7 @@ public struct ApiModule: ReducerProtocol {
       self.guiDefault = guiDefault
       self.fontSize = fontSize
       self.isGui = isGui
-      self.local = local
+      self.localEnabled = localEnabled
       self.messageFilter = messageFilter
       self.messageFilterText = messageFilterText
       self.nonGuiDefault = nonGuiDefault
@@ -137,12 +131,10 @@ public struct ApiModule: ReducerProtocol {
       self.showLeftButtons = showLeftButtons
       self.showPings = showPings
       self.showTimes = showTimes
-      self.smartlink = smartlink
+      self.smartlinkEnabled = smartlinkEnabled
       self.smartlinkEmail = smartlinkEmail
       self.txAudio = txAudio
       self.useDefault = useDefault
-      
-      self.connectionMode = connectionMode
     }
   }
   
@@ -155,26 +147,18 @@ public struct ApiModule: ReducerProtocol {
     
     // UI controls
     case clearNowButton
-    case connectionModePicker(String)
     case fontSizeStepper(CGFloat)
-    //    case localButton(Bool)
-    case loginRequiredButton(Bool)
     case messagesFilterTextField(String)
     case messagesFilterPicker(MessageFilter)
     case objectsPicker(ObjectFilter)
-    case rxAudioButton(Bool)
     case saveButton
     case sendButton
     case sendClearButton
     case sendNextStepper
     case sendPreviousStepper
     case sendTextField(String)
-    case showPingsToggle
-    //    case smartlinkButton(Bool)
     case startStopButton
     case toggle(WritableKeyPath<ApiModule.State, Bool>)
-    case toolbarButton(String)
-    case txAudioButton(Bool)
     
     // subview related
     case alertDismissed
@@ -247,33 +231,8 @@ public struct ApiModule: ReducerProtocol {
         }
         return .none
         
-      case .connectionModePicker(let mode):
-        state.connectionMode = ConnectionMode(rawValue: mode) ?? .none
-        return initializeMode(state, listener)
-        
       case .fontSizeStepper(let size):
         state.fontSize = size
-        return .none
-        
-        //      case .localButton(let newState):
-        //        state.local = newState
-        //        return initializeMode(state, listener)
-        
-      case .loginRequiredButton(_):
-        state.loginRequired.toggle()
-        if state.loginRequired {
-          // re-initialize the connection mode
-          return initializeMode(state, listener)
-        }
-        return .none
-        
-      case .toolbarButton(let type):
-        switch type {
-        case "Log":       state.openLogWindow.toggle()
-        case "Left":      state.openLeftWindow.toggle()
-        case "Right":     state.openRightWindow.toggle()
-        default: break
-        }
         return .none
         
       case .messagesFilterTextField(let text):
@@ -291,22 +250,7 @@ public struct ApiModule: ReducerProtocol {
       case .objectsPicker(let newFilter):
         state.objectFilter = newFilter
         return .none
-        
-      case .rxAudioButton(let startRx):
-        // update state
-        state.rxAudio = startRx
-        if state.isConnected {
-          // CONNECTED, start / stop RxAudio
-          if startRx {
-            return startRxAudio(&state, apiModel, streamModel)
-          } else {
-            return stopRxAudio(&state, apiModel, streamModel)
-          }
-        } else {
-          // NOT CONNECTED
-          return .none
-        }
-        
+                
       case .saveButton:
         return saveMessagesToFile(messagesModel)
         
@@ -340,16 +284,6 @@ public struct ApiModule: ReducerProtocol {
         state.commandToSend = text
         return .none
         
-      case .showPingsToggle:
-        state.showPings.toggle()
-        return .fireAndForget { [state] in
-          await messagesModel.setShowPings(state.showPings)
-        }
-        
-        //      case .smartlinkButton(let newState):
-        //        state.smartlink = newState
-        //        return initializeMode(state, listener)
-        
       case .startStopButton:
         if state.isConnected {
           return stopTester(&state, apiModel, streamModel)
@@ -359,20 +293,40 @@ public struct ApiModule: ReducerProtocol {
         
       case .toggle(let keyPath):
         state[keyPath: keyPath].toggle()
-        return .none
-        
-      case .txAudioButton(let startTx):
-        // update state
-        state.txAudio = startTx
-        if state.isConnected {
-          // CONNECTED, start / stop TxAudio
-          if startTx {
-            return startTxAudio(&state, apiModel, streamModel)
-          } else {
-            return stopTxAudio(&state, apiModel, streamModel)
+        switch keyPath {
+        case \.smartlinkEnabled, \.localEnabled, \.loginRequired:
+          return initializeMode(state, listener)
+        case \.showPings:
+          return .fireAndForget { [state] in
+            await messagesModel.setShowPings(state.showPings)
           }
-        } else {
-          // NOT CONNECTED
+        case \.rxAudio:
+          if state.isConnected {
+            // CONNECTED, start / stop RxAudio
+            if state.rxAudio {
+              return startRxAudio(&state, apiModel, streamModel)
+            } else {
+              return stopRxAudio(&state, apiModel, streamModel)
+            }
+          } else {
+            // NOT CONNECTED
+            return .none
+          }
+
+        case \.txAudio:
+          if state.isConnected {
+            // CONNECTED, start / stop TxAudio
+            if state.txAudio {
+              return startTxAudio(&state, apiModel, streamModel)
+            } else {
+              return stopTxAudio(&state, apiModel, streamModel)
+            }
+          } else {
+            // NOT CONNECTED
+            return .none
+          }
+
+        default:
           return .none
         }
         
@@ -536,13 +490,6 @@ private func closeWindow(_ id: String) {
   }
 }
 
-
-
-
-
-
-
-
 private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -> ApiModule.Action {
   // Gui connection with othe stations?
   if isGui && selection.packet.guiClients.count > 0 {
@@ -640,8 +587,8 @@ func initializeMode(_ state: ApiModule.State, _ listener: Listener) -> Effect<Ap
   // start / stop listeners as appropriate for the Mode
   return .run { [state] send in
     // set the connection mode, start the Lan and/or Wan listener
-    if await listener.setConnectionMode(state.connectionMode, state.smartlinkEmail) {
-      if state.loginRequired && state.smartlink {
+    if await listener.setConnectionMode(state.localEnabled, state.smartlinkEnabled, state.smartlinkEmail) {
+      if state.loginRequired && state.smartlinkEnabled {
         // Smartlink login is required
         await send(.showLoginSheet)
       }

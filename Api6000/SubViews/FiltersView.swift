@@ -1,6 +1,6 @@
 //
 //  FiltersView.swift
-//  Api6000Components/ApiViewer/Subviews/ViewerSubViews
+//  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/10/20.
 //

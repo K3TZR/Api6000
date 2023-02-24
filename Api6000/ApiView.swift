@@ -1,6 +1,6 @@
 //
 //  ApiView.swift
-//  Api6000Components/ApiViewer
+//  Api6000
 //
 //  Created by Douglas Adams on 12/1/21.
 //
@@ -20,12 +20,12 @@ import Shared
 
 public struct ApiView: View {
   let store: StoreOf<ApiModule>
-
+  
   @Environment(\.openWindow) var openWindow
-
+  
   @Dependency(\.messagesModel) var messagesModel
   @Dependency(\.apiModel) var apiModel
-
+  
   public init(store: StoreOf<ApiModule>) {
     self.store = store
   }
@@ -36,9 +36,9 @@ public struct ApiView: View {
         TopButtonsView(store: store)
         SendView(store: store)
         FiltersView(store: store)
-
+        
         Divider().background(Color(.gray))
-
+        
         VSplitView {
           if viewStore.isConnected {
             ObjectsView(store: store, apiModel: apiModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
@@ -46,11 +46,11 @@ public struct ApiView: View {
             Divider().background(Color(.cyan))
             MessagesView(store: store, messagesModel: messagesModel)
               .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
-
+            
           } else {
             Text("Radio objects will be displayed here")
               .frame(minWidth: 900, maxWidth: .infinity, minHeight: 200, alignment: .center)
-
+            
             Divider().background(Color(.cyan))
             Text("Tcp Messages will be displayed here")
               .frame(minWidth: 900, maxWidth: .infinity, minHeight: 200, alignment: .center)
@@ -59,7 +59,7 @@ public struct ApiView: View {
         Spacer()
         Divider().background(Color(.gray))
         BottomButtonsView(store: store)
-
+        
         if viewStore.showLeftButtons {
           LeftSideView(store: Store(
             initialState: LeftSideFeature.State(vertical: false),
@@ -67,14 +67,16 @@ public struct ApiView: View {
           ), apiModel: apiModel)
         }
       }
-
+      
       // ---------- Initialization ----------
       // initialize on first appearance
       .onAppear() {
         if viewStore.openLogWindow { openWindow(id: WindowType.logView.rawValue) }
+        if viewStore.openLeftWindow { openWindow(id: WindowType.leftView.rawValue) }
+        if viewStore.openRightWindow { openWindow(id: WindowType.rightView.rawValue) }
         viewStore.send(.onAppear)
       }
-
+      
       // ---------- Sheet Management ----------
       // alert dialogs
       .alert(
@@ -124,20 +126,11 @@ public struct ApiView: View {
       // ---------- Window Management ----------
       .toolbar {
         Spacer()
-        Group {
-          Toggle("Log", isOn: viewStore.binding(
-            get: { $0.openLogWindow },
-            send: .toolbarButton("Log") ))
-          Toggle("Left", isOn: viewStore.binding(
-            get: { $0.openLeftWindow },
-            send: .toolbarButton("Left") ))
-          Toggle("Right", isOn: viewStore.binding(
-            get: { $0.openRightWindow },
-            send: .toolbarButton("Right") ))
-        }
-        .toggleStyle(.button)
+        Button("Log") { viewStore.send(.toggle(\.openLogWindow)) }
+        Button("Left") { viewStore.send(.toggle(\.openLeftWindow)) }
+        Button("Right") { viewStore.send(.toggle(\.openRightWindow)) }
       }
-
+      
       .onDisappear {
         viewStore.send(.closeAllWindows)
       }
@@ -179,24 +172,23 @@ private struct TopButtonsView: View {
     let showPings: Bool
     let rxAudio: Bool
     let txAudio: Bool
-    let local: Bool
-    let smartlink: Bool
+    let localEnabled: Bool
+    let smartlinkEnabled: Bool
     let loginRequired: Bool
     let useDefault: Bool
     let isConnected: Bool
-    let connectionMode: ConnectionMode
+    
     init(state: ApiModule.State) {
       self.isGui = state.isGui
       self.showTimes = state.showTimes
       self.showPings = state.showPings
       self.rxAudio = state.rxAudio
       self.txAudio = state.txAudio
-      self.local = state.local
-      self.smartlink = state.smartlink
+      self.localEnabled = state.localEnabled
+      self.smartlinkEnabled = state.smartlinkEnabled
       self.loginRequired = state.loginRequired
       self.useDefault = state.useDefault
       self.isConnected = state.isConnected
-      self.connectionMode = state.connectionMode
     }
   }
   
@@ -209,43 +201,39 @@ private struct TopButtonsView: View {
         .keyboardShortcut(viewStore.isConnected ? .cancelAction : .defaultAction)
         
         HStack(spacing: 10) {
-          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .toggle(\ApiModule.State.isGui)))
+          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .toggle(\.isGui)))
             .frame(width: 60)
             .disabled( viewStore.isConnected )
           Group {
-            Toggle("Show Times", isOn: viewStore.binding(get: \.showTimes, send: .toggle(\ApiModule.State.showTimes)))
-            Toggle("Show Pings", isOn: viewStore.binding(get: \.showPings, send: .showPingsToggle))
+            Toggle("Show Times", isOn: viewStore.binding(get: \.showTimes, send: .toggle(\.showTimes)))
+            Toggle("Show Pings", isOn: viewStore.binding(get: \.showPings, send: .toggle(\.showPings)))
           }
           .frame(width: 100)
         }
         
         Spacer()
         ControlGroup {
-          Toggle(isOn: viewStore.binding(get: \.rxAudio, send: { .rxAudioButton($0)} )) {
+          Toggle(isOn: viewStore.binding(get: \.rxAudio, send: .toggle(\.rxAudio) )) {
             Text("Rx Audio") }
-          Toggle(isOn: viewStore.binding(get: \.txAudio, send: { .txAudioButton($0)} )) {
+          Toggle(isOn: viewStore.binding(get: \.txAudio, send: .toggle(\.txAudio) )) {
             Text("Tx Audio") }
         }
         .frame(width: 130)
         
         Spacer()
-        Text("Mode")
-        Picker("", selection: viewStore.binding(
-          get: \.connectionMode.rawValue,
-          send: { .connectionModePicker($0) } )) {
-            ForEach(ConnectionMode.allCases, id: \.self) {
-              Text($0.rawValue).tag($0.rawValue)
-            }
-          }
-          .labelsHidden()
-          .pickerStyle(.menu)
-          .frame(width: 120)
-          .disabled( viewStore.isConnected )
+        ControlGroup {
+          Toggle(isOn: viewStore.binding(get: \.localEnabled, send: .toggle(\.localEnabled))) {
+            Text("Local") }
+          Toggle(isOn: viewStore.binding(get: \.smartlinkEnabled, send: .toggle(\.smartlinkEnabled) )) {
+            Text("Smartlink") }
+        }
+        .disabled( viewStore.isConnected )
+        .frame(width: 130)
         
         Spacer()
-        Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: { .loginRequiredButton($0) }))
-          .disabled( viewStore.isConnected || viewStore.smartlink == false )
-        Toggle("Use Default", isOn: viewStore.binding(get: \.useDefault, send: .toggle(\ApiModule.State.useDefault)))
+        Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: .toggle(\.loginRequired)))
+          .disabled( viewStore.isConnected || viewStore.smartlinkEnabled == false )
+        Toggle("Use Default", isOn: viewStore.binding(get: \.useDefault, send: .toggle(\.useDefault)))
           .disabled( viewStore.isConnected )
       }
     }
@@ -271,7 +259,7 @@ private struct BottomButtonsView: View {
       self.showLeftButtons = state.showLeftButtons
     }
   }
-
+  
   var body: some View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       HStack {

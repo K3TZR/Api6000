@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9F0A8427293A77A900EE9D5D /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8426293A77A900EE9D5D /* Shared */; };
-		9F0A8429293A77BD00EE9D5D /* FrequencyFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8428293A77BD00EE9D5D /* FrequencyFormatter */; };
 		9F0A842B293A77BD00EE9D5D /* OpusEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842A293A77BD00EE9D5D /* OpusEncoder */; };
 		9F0A842D293A77BD00EE9D5D /* OpusPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842C293A77BD00EE9D5D /* OpusPlayer */; };
 		9F0A842F293A77BD00EE9D5D /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842E293A77BD00EE9D5D /* RingBuffer */; };
@@ -98,8 +97,10 @@
 		9F33A5B72935A02300F9EEFC /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
-		9F65A7CB2964B06600C4BFA9 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
-		9F65A7CC2964B49600C4BFA9 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
+		9F8B0EDF29A52E3A00696DD5 /* SharedFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFeatures; path = ../Packages/SharedFeatures; sourceTree = "<group>"; };
+		9F8B0EE029A5B7D600696DD5 /* UtilityFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UtilityFeatures; path = ../Packages/UtilityFeatures; sourceTree = "<group>"; };
+		9F9B0DCB296C3CCB00717A57 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
+		9F9B0DCC296C53CA00717A57 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 				9F0A8445293A7F8000EE9D5D /* LevelIndicatorView in Frameworks */,
 				9FF3CE092953B46B00C145E1 /* LeftSideFeature in Frameworks */,
 				9F0A843D293A77D800EE9D5D /* Udp in Frameworks */,
-				9F0A8429293A77BD00EE9D5D /* FrequencyFormatter in Frameworks */,
 				9F0A8439293A77D800EE9D5D /* Objects in Frameworks */,
 				9F0A8427293A77A900EE9D5D /* Shared in Frameworks */,
 				9F0A8447293A7F8100EE9D5D /* LogFeature in Frameworks */,
@@ -191,8 +191,10 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
-				9F65A7CC2964B49600C4BFA9 /* ApiFeatures */,
-				9F65A7CB2964B06600C4BFA9 /* ViewFeatures */,
+				9F8B0EE029A5B7D600696DD5 /* UtilityFeatures */,
+				9F8B0EDF29A52E3A00696DD5 /* SharedFeatures */,
+				9F9B0DCC296C53CA00717A57 /* ViewFeatures */,
+				9F9B0DCB296C3CCB00717A57 /* ApiFeatures */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -249,7 +251,6 @@
 			name = Api6000;
 			packageProductDependencies = (
 				9F0A8426293A77A900EE9D5D /* Shared */,
-				9F0A8428293A77BD00EE9D5D /* FrequencyFormatter */,
 				9F0A842A293A77BD00EE9D5D /* OpusEncoder */,
 				9F0A842C293A77BD00EE9D5D /* OpusPlayer */,
 				9F0A842E293A77BD00EE9D5D /* RingBuffer */,
@@ -494,7 +495,7 @@
 				CODE_SIGN_ENTITLEMENTS = Api6000/Api6000.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -505,7 +506,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -521,7 +522,7 @@
 				CODE_SIGN_ENTITLEMENTS = Api6000/Api6000.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Api6000/Preview Content\"";
 				DEVELOPMENT_TEAM = EE5B8TYXGA;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -532,7 +533,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -612,11 +613,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F0A83FD293A760900EE9D5D /* XCRemoteSwiftPackageReference "SharedFeatures" */;
 			productName = Shared;
-		};
-		9F0A8428293A77BD00EE9D5D /* FrequencyFormatter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = FrequencyFormatter;
 		};
 		9F0A842A293A77BD00EE9D5D /* OpusEncoder */ = {
 			isa = XCSwiftPackageProductDependency;
