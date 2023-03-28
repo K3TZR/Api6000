@@ -11,16 +11,17 @@ import SwiftUI
 import Objects
 import LeftSideFeature
 import LogFeature
+import PanFeature
 import RightSideFeature
 import SettingsFeature
 import Shared
 
 enum WindowType: String {
-  case leftView = "Left View"
-  case logView = "Log View"
-  case panadapterView = "Panadapter View"
-  case rightView = "Right View"
-  case settingsView = "Settings"
+  case left = "Left View"
+  case log = "Log View"
+  case panadapter = "Panadapter View"
+  case right = "Right View"
+  case settings = "Settings"
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -44,7 +45,8 @@ struct Api6000App: App {
   var appDelegate
   
   @Dependency(\.apiModel) var apiModel
-  
+  @Dependency(\.streamModel) var streamModel
+
   var body: some Scene {
 
     WindowGroup("Api6000  (v" + Version().string + ")") {
@@ -57,14 +59,14 @@ struct Api6000App: App {
       .padding(.vertical, 10)
     }
 
-    Window(WindowType.logView.rawValue, id: WindowType.logView.rawValue) {
+    Window(WindowType.log.rawValue, id: WindowType.log.rawValue) {
       LogView(store: Store(initialState: LogFeature.State(), reducer: LogFeature()) )
       .frame(minWidth: 975)
     }
     .windowStyle(.hiddenTitleBar)
     .defaultPosition(.bottomTrailing)
 
-    Window(WindowType.rightView.rawValue, id: WindowType.rightView.rawValue) {
+    Window(WindowType.right.rawValue, id: WindowType.right.rawValue) {
       RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel)
       .frame(minHeight: 210)
     }
@@ -72,14 +74,21 @@ struct Api6000App: App {
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topTrailing)
         
-    Window(WindowType.leftView.rawValue, id: WindowType.leftView.rawValue) {
-      LeftSideView(store: Store(initialState: LeftSideFeature.State(), reducer: LeftSideFeature()), apiModel: apiModel)
-      .frame(minHeight: 210)
+    Window(WindowType.left.rawValue, id: WindowType.left.rawValue) {
+      LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: apiModel.activePanadapter?.id, waterfallId: apiModel.activePanadapter?.waterfallId), reducer: LeftSideFeature()), apiModel: apiModel)
+        .frame(minWidth: 75, minHeight: 250)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topLeading)
     
+    Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
+      PanView()
+    }
+    .windowStyle(.hiddenTitleBar)
+    .windowResizability(WindowResizability.contentSize)
+    .defaultPosition(.center)
+
     Settings {
       SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), apiModel: apiModel)
     }

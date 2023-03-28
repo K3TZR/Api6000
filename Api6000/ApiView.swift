@@ -62,7 +62,7 @@ public struct ApiView: View {
         
         if viewStore.showLeftButtons {
           LeftSideView(store: Store(
-            initialState: LeftSideFeature.State(vertical: false),
+            initialState: LeftSideFeature.State(panadapterId: apiModel.activePanadapter?.id, waterfallId: apiModel.activePanadapter?.waterfallId, vertical: false),
             reducer: LeftSideFeature()
           ), apiModel: apiModel)
         }
@@ -71,9 +71,9 @@ public struct ApiView: View {
       // ---------- Initialization ----------
       // initialize on first appearance
       .onAppear() {
-        if viewStore.openLogWindow { openWindow(id: WindowType.logView.rawValue) }
-        if viewStore.openLeftWindow { openWindow(id: WindowType.leftView.rawValue) }
-        if viewStore.openRightWindow { openWindow(id: WindowType.rightView.rawValue) }
+        if viewStore.openLogWindow { openWindow(id: WindowType.log.rawValue) }
+//        if viewStore.openLeftWindow { openWindow(id: WindowType.left.rawValue) }
+        if viewStore.openRightWindow { openWindow(id: WindowType.right.rawValue) }
         viewStore.send(.onAppear)
       }
       
@@ -126,34 +126,36 @@ public struct ApiView: View {
       // ---------- Window Management ----------
       .toolbar {
         Spacer()
-        Button("Log") { viewStore.send(.toggle(\.openLogWindow)) }
-        Button("Left") { viewStore.send(.toggle(\.openLeftWindow)) }
-        Button("Right") { viewStore.send(.toggle(\.openRightWindow)) }
+        Button("Log") { openWindow(id: WindowType.log.rawValue) }
+        Button("Pan") { openWindow(id: WindowType.panadapter.rawValue) }
+        Button("Left") { openWindow(id: WindowType.left.rawValue) }
+        Button("Right") { openWindow(id: WindowType.right.rawValue) }
       }
       
       .onDisappear {
         viewStore.send(.closeAllWindows)
       }
       
-      .onChange(of: viewStore.openLogWindow) { newValue in
-        if newValue {
-          openWindow(id: WindowType.logView.rawValue)
-        } else {
-          closeWindow(WindowType.logView.rawValue)
+      .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { notification in
+        // observe openings
+        if let window = notification.object as? NSWindow {
+          switch window.identifier?.rawValue {
+          case WindowType.log.rawValue: viewStore.send(.set(\.openLogWindow, true))
+          case WindowType.left.rawValue: viewStore.send(.set(\.openLeftWindow, true))
+          case WindowType.right.rawValue: viewStore.send(.set(\.openRightWindow, true))
+          default:  break
+          }
         }
       }
-      .onChange(of: viewStore.openLeftWindow) { newValue in
-        if newValue {
-          openWindow(id: WindowType.leftView.rawValue)
-        } else {
-          closeWindow(WindowType.leftView.rawValue)
-        }
-      }
-      .onChange(of: viewStore.openRightWindow) { newValue in
-        if newValue {
-          openWindow(id: WindowType.rightView.rawValue)
-        } else {
-          closeWindow(WindowType.rightView.rawValue)
+      .onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
+        // observe closings unless the entire app is closing
+        if !viewStore.isClosing, let window = notification.object as? NSWindow {
+          switch window.identifier?.rawValue {
+          case WindowType.log.rawValue: viewStore.send(.set(\.openLogWindow, false))
+          case WindowType.left.rawValue: viewStore.send(.set(\.openLeftWindow, false))
+          case WindowType.right.rawValue: viewStore.send(.set(\.openRightWindow, false))
+          default:  break
+          }
         }
       }
     }

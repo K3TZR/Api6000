@@ -65,6 +65,7 @@ public struct ApiModule: ReducerProtocol {
 
     // other state
     var commandToSend = ""
+    var isClosing = false
     var loginRequired = false
     var forceUpdate = false
     var gotoLast = false
@@ -159,7 +160,8 @@ public struct ApiModule: ReducerProtocol {
     case sendTextField(String)
     case startStopButton
     case toggle(WritableKeyPath<ApiModule.State, Bool>)
-    
+    case set(WritableKeyPath<ApiModule.State, Bool>, Bool)
+
     // subview related
     case alertDismissed
     case client(ClientFeature.Action)
@@ -210,24 +212,11 @@ public struct ApiModule: ReducerProtocol {
         }
         
       case .closeAllWindows:
-        let windows = NSApp.windows
-        for window in windows {
-          switch window.identifier?.rawValue {
-          case WindowType.logView.rawValue:
-            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-            window.close()
-          case WindowType.leftView.rawValue:
-            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-            window.close()
-          case WindowType.rightView.rawValue:
-            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-            window.close()
-          case "com_apple_SwiftUI_Settings_window":
-            log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-            window.close()
-          default:
-            break
-          }
+        state.isClosing = true
+        // close all of the app's windows
+        for window in NSApp.windows {
+//          print("Window = \(window.identifier?.rawValue ?? "Unknown")")
+          window.close()
         }
         return .none
         
@@ -290,6 +279,10 @@ public struct ApiModule: ReducerProtocol {
         } else {
           return startTester(&state, apiModel, streamModel, listener)
         }
+        
+      case .set(let keyPath, let boolValue):
+        state[keyPath: keyPath] = boolValue
+        return .none
         
       case .toggle(let keyPath):
         state[keyPath: keyPath].toggle()
@@ -573,6 +566,11 @@ private func initialization(_ state: inout ApiModule.State, _ listener: Listener
     state.initialized = true
     // instantiate the Logger,
     _ = XCGWrapper(logLevel: .debug)
+
+    if !state.localEnabled && !state.smartlinkEnabled {
+      state.alertState = AlertState(title: TextState("select LOCAL and/or SMARTLINK"))
+    }
+
     // start subscriptions
     return .merge(
       subscribeToClients(listener),

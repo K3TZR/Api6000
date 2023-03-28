@@ -79,6 +79,9 @@ private struct DetailView: View {
     return .green
   }
   
+  @State var interval: TimeInterval = 1.0
+  @State var throttledValue: CGFloat = 0.0
+  
   var body: some View {
     
     GridRow {
@@ -91,9 +94,11 @@ private struct DetailView: View {
       }.frame(width: 60, alignment: .center)
       Text(meter.name).frame(width: 110, alignment: .leading)
       Group {
-        Text(String(format: "%-4.2f", meter.value))
+        Text(String(format: "%-4.2f", throttledValue))
           .help("        range: \(String(format: "%-4.2f", meter.low)) to \(String(format: "%-4.2f", meter.high))")
           .foregroundColor(valueColor(meter.value, meter.low, meter.high))
+          .onReceive(meter.$value.throttle(for: RunLoop.SchedulerTimeType.Stride(interval), scheduler: RunLoop.main, latest: true)) { throttledValue = CGFloat($0) }
+
         Text(meter.units)
         Text(String(format: "% 2d", meter.fps))
       }.frame(width: 70, alignment: .trailing)
@@ -101,27 +106,6 @@ private struct DetailView: View {
     }
   }
 }
-
-//    HStack(spacing: 10) {
-//      Group {
-//        Text(String(format: "% 3d", meter.id))
-//        if sliceId == nil {
-//          Text(meter.group)
-//          Text(meter.source)
-//        }
-//      }.frame(width: 60, alignment: .trailing)
-//      Text(meter.name).frame(width: 110, alignment: .leading)
-//      Text(String(format: "%-4.2f", meter.value))
-//        .help("        range: \(String(format: "%-4.2f", meter.low)) to \(String(format: "%-4.2f", meter.high))")
-//        .foregroundColor(valueColor(meter.value, meter.low, meter.high))
-//        .frame(width: 70, alignment: .trailing)
-//      Text(meter.units).frame(width: 70, alignment: .trailing)
-//      Text(String(format: "% 2d", meter.fps)).frame(width: 70, alignment: .trailing)
-//      Text(meter.desc).foregroundColor(.primary)
-//    }
-//    .padding(.leading, 60)
-//  }
-//}
 
 // ----------------------------------------------------------------------------
 // MARK: - Preview
