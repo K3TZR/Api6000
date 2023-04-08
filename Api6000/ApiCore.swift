@@ -502,12 +502,12 @@ private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -
   }
 }
 
-private func clearMessages(_ clear: Bool) -> Effect<ApiModule.Action, Never> {
+private func clearMessages(_ clear: Bool) ->  EffectTask<ApiModule.Action> {
   if clear { return .run { send in await send(.clearNowButton) } }
   return .none
 }
 
-private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   // a GuiClient change occurred
   switch event.action {
   case .added:
@@ -535,7 +535,7 @@ private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiMo
   }
 }
 
-private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   
   return .run { [state] send in
     await messagesModel.start(state.messageFilter, state.messageFilterText)
@@ -556,11 +556,11 @@ private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, 
   }
 }
 
-private func disconnect(_ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func disconnect(_ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   return .run { send in await apiModel.disconnect() }
 }
 
-private func initialization(_ state: inout ApiModule.State, _ listener: Listener) -> Effect<ApiModule.Action, Never> {
+private func initialization(_ state: inout ApiModule.State, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
   // if the first time, start various effects
   if state.initialized == false {
     state.initialized = true
@@ -581,7 +581,7 @@ private func initialization(_ state: inout ApiModule.State, _ listener: Listener
   return .none
 }
 
-func initializeMode(_ state: ApiModule.State, _ listener: Listener) -> Effect<ApiModule.Action, Never> {
+func initializeMode(_ state: ApiModule.State, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
   // start / stop listeners as appropriate for the Mode
   return .run { [state] send in
     // set the connection mode, start the Lan and/or Wan listener
@@ -597,17 +597,17 @@ func initializeMode(_ state: ApiModule.State, _ listener: Listener) -> Effect<Ap
   }
 }
 
-private func pickerSheet(_ isGui: Bool) -> Effect<ApiModule.Action, Never> {
+private func pickerSheet(_ isGui: Bool) ->  EffectTask<ApiModule.Action> {
   return .run {send in await send(.showPickerSheet) }
 }
 
-private func resetClientInitialized(_ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func resetClientInitialized(_ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   return .fireAndForget {
     await apiModel.resetClientInitialized()
   }
 }
 
-private func saveMessagesToFile(_ messagesModel: MessagesModel) -> Effect<ApiModule.Action, Never> {
+private func saveMessagesToFile(_ messagesModel: MessagesModel) ->  EffectTask<ApiModule.Action> {
   let savePanel = NSSavePanel()
   savePanel.nameFieldStringValue = "Api6000Tester-C.messages"
   savePanel.canCreateDirectories = true
@@ -631,7 +631,7 @@ private func saveMessagesToFile(_ messagesModel: MessagesModel) -> Effect<ApiMod
   }
 }
 
-private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -> Effect<ApiModule.Action, Never> {
+private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   // update the command history
   if state.commandToSend != state.previousCommand { state.commandsArray.append(state.commandToSend) }
   state.previousCommand = state.commandToSend
@@ -646,12 +646,12 @@ private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -
   }
 }
 
-private func setConnectionStatus(_ state: inout ApiModule.State, _ status: Bool) -> Effect<ApiModule.Action, Never> {
+private func setConnectionStatus(_ state: inout ApiModule.State, _ status: Bool) ->  EffectTask<ApiModule.Action> {
   state.isConnected = status
   return .none
 }
 
-private func showLogAlert(_ state: inout ApiModule.State, _ logEntry: LogEntry) -> Effect<ApiModule.Action, Never> {
+private func showLogAlert(_ state: inout ApiModule.State, _ logEntry: LogEntry) ->  EffectTask<ApiModule.Action> {
   if state.alertOnError {
     // a Warning or Error has been logged, exit any sheet states
     state.clientState = nil
@@ -664,7 +664,7 @@ private func showLogAlert(_ state: inout ApiModule.State, _ logEntry: LogEntry) 
   return .none
 }
 
-private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   if state.opusPlayer == nil {
     // ----- START Rx AUDIO -----
     state.opusPlayer = OpusPlayer()
@@ -674,14 +674,14 @@ private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
       if let id = try await apiModel.radio!.requestRemoteRxAudioStream().streamId {
         // finish audio setup
         state.opusPlayer?.start(id)
-        await streamModel.remoteRxAudioStreams[id: id]?.setDelegate(state.opusPlayer)
+        streamModel.remoteRxAudioStreams[id: id]?.delegate = state.opusPlayer
       }
     }
   }
   return .none
 }
 
-private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   if state.opusPlayer != nil {
     // ----- STOP Rx AUDIO -----
     let id = state.opusPlayer!.id
@@ -694,7 +694,7 @@ private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _
   return .none
 }
 
-private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel, _ listener: Listener) -> Effect<ApiModule.Action, Never> {
+private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
   // ----- START -----
   // use the default?
   if state.useDefault {
@@ -718,7 +718,7 @@ private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _
   )
 }
 
-private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // ----- STOP -----
   return .merge(
     resetClientInitialized(apiModel),
@@ -729,7 +729,7 @@ private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ 
   )
 }
 
-private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // FIXME:
   
   //        if newState {
@@ -766,13 +766,13 @@ private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
   return .none
 }
 
-private func stopTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) -> Effect<ApiModule.Action, Never> {
+private func stopTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // FIXME:
   
   return .none
 }
 
-//private func subscribeToPackets() -> Effect<ApiModule.Action, Never> {
+//private func subscribeToPackets() ->  EffectTask<ApiModule.Action> {
 //  Effect.run { send in
 //    for await event in PacketModel.shared.packetStream {
 //      // a packet has been added / updated or deleted
@@ -781,7 +781,7 @@ private func stopTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _
 //  }
 //}
 
-private func subscribeToClients(_ listener: Listener) -> Effect<ApiModule.Action, Never> {
+private func subscribeToClients(_ listener: Listener) ->  EffectTask<ApiModule.Action> {
   return .run { send in
     for await event in await listener.clientStream {
       // a guiClient has been added / updated or deleted
@@ -790,7 +790,7 @@ private func subscribeToClients(_ listener: Listener) -> Effect<ApiModule.Action
   }
 }
 
-private func subscribeToLogAlerts() -> Effect<ApiModule.Action, Never>  {
+private func subscribeToLogAlerts() ->  EffectTask<ApiModule.Action>  {
   return .run { send in
     for await entry in logAlerts {
       // a Warning or Error has been logged.
@@ -799,7 +799,7 @@ private func subscribeToLogAlerts() -> Effect<ApiModule.Action, Never>  {
   }
 }
 
-private func updateDefault(_ state: inout ApiModule.State, _ selection: Pickable) -> Effect<ApiModule.Action, Never> {
+private func updateDefault(_ state: inout ApiModule.State, _ selection: Pickable) ->  EffectTask<ApiModule.Action> {
   // SET / RESET the default
   if state.isGui {
     // GUI

@@ -43,12 +43,14 @@ struct TesterView: View {
 struct TesterRadioViewView: View {
   @ObservedObject var radio: Radio
   
+  @Dependency(\.apiModel) var apiModel
+
   var body: some View {
     HStack(spacing: 10) {
       
       HStack(spacing: 5) {
         Text("Handle")
-        Text(radio.connectionHandle?.hex ?? "").foregroundColor(.secondary)
+        Text(apiModel.connectionHandle?.hex ?? "").foregroundColor(.secondary)
       }
       
       HStack(spacing: 5) {

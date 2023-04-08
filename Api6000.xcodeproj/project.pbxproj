@@ -53,6 +53,8 @@
 		9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanView.swift */; };
 		9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformView.swift */; };
 		9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */; };
+		9F201C8629D33C7800A9A683 /* PanFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F201C8529D33C7800A9A683 /* PanFeature */; };
+		9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F201C8729D33CA800A9A683 /* ApiIntView */; };
 		9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B52935A01F00F9EEFC /* FiltersView.swift */; };
 		9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesView.swift */; };
 		9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsView.swift */; };
@@ -63,7 +65,6 @@
 		9FE8948B2935918A00C12DE2 /* ApiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894872935918A00C12DE2 /* ApiView.swift */; };
 		9FE8948C2935918A00C12DE2 /* ApiCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894882935918A00C12DE2 /* ApiCore.swift */; };
 		9FE894962935957B00C12DE2 /* MessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894952935957B00C12DE2 /* MessagesModel.swift */; };
-		9FED785E29B19C8100DFD198 /* PanFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FED785D29B19C8100DFD198 /* PanFeature */; };
 		9FF3CE092953B46B00C145E1 /* LeftSideFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE082953B46B00C145E1 /* LeftSideFeature */; };
 		9FF3CE0B2953B49100C145E1 /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE0A2953B49100C145E1 /* SettingsFeature */; };
 /* End PBXBuildFile section */
@@ -94,11 +95,13 @@
 		9F0A847E293AD5D400EE9D5D /* WanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanView.swift; sourceTree = "<group>"; };
 		9F0A8480293AD5D700EE9D5D /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrView.swift; sourceTree = "<group>"; };
-		9F201C8429D3388F00A9A683 /* UtilityFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UtilityFeatures; path = ../Packages/UtilityFeatures; sourceTree = "<group>"; };
+		9F201C8929D5140C00A9A683 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
+		9F201C8A29D5141600A9A683 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
 		9F33A5B52935A01F00F9EEFC /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		9F33A5B72935A02300F9EEFC /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		9FA0CAC929D8F96B007FA905 /* UtilityFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UtilityFeatures; path = ../Packages/UtilityFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,9 +110,6 @@
 		9FE894872935918A00C12DE2 /* ApiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiView.swift; sourceTree = "<group>"; };
 		9FE894882935918A00C12DE2 /* ApiCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCore.swift; sourceTree = "<group>"; };
 		9FE894952935957B00C12DE2 /* MessagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesModel.swift; sourceTree = "<group>"; };
-		9FED785929AA375200DFD198 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
-		9FED785A29AC340F00DFD198 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
-		9FED786029B3E59B00DFD198 /* SharedFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFeatures; path = ../Packages/SharedFeatures; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,7 @@
 				9F0A844B293A7F8100EE9D5D /* Ph1Feature in Frameworks */,
 				9F0A8431293A77BD00EE9D5D /* SecureStorage in Frameworks */,
 				9F0A842D293A77BD00EE9D5D /* OpusPlayer in Frameworks */,
-				9FED785E29B19C8100DFD198 /* PanFeature in Frameworks */,
+				9F201C8629D33C7800A9A683 /* PanFeature in Frameworks */,
 				9F0A842B293A77BD00EE9D5D /* OpusEncoder in Frameworks */,
 				9F0A8435293A77D700EE9D5D /* FlexErrors in Frameworks */,
 				9F0A8441293A7F8000EE9D5D /* CwFeature in Frameworks */,
@@ -141,6 +141,7 @@
 				9F0A8437293A77D700EE9D5D /* Listener in Frameworks */,
 				9F0A8453293A7F8200EE9D5D /* TxFeature in Frameworks */,
 				9F0A8433293A77BD00EE9D5D /* XCGWrapper in Frameworks */,
+				9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */,
 				9F0A8451293A7F8200EE9D5D /* RightSideFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,10 +194,9 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
-				9F201C8429D3388F00A9A683 /* UtilityFeatures */,
-				9FED786029B3E59B00DFD198 /* SharedFeatures */,
-				9FED785A29AC340F00DFD198 /* ApiFeatures */,
-				9FED785929AA375200DFD198 /* ViewFeatures */,
+				9FA0CAC929D8F96B007FA905 /* UtilityFeatures */,
+				9F201C8A29D5141600A9A683 /* ViewFeatures */,
+				9F201C8929D5140C00A9A683 /* ApiFeatures */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -276,7 +276,8 @@
 				9F0A8452293A7F8200EE9D5D /* TxFeature */,
 				9FF3CE082953B46B00C145E1 /* LeftSideFeature */,
 				9FF3CE0A2953B49100C145E1 /* SettingsFeature */,
-				9FED785D29B19C8100DFD198 /* PanFeature */,
+				9F201C8529D33C7800A9A683 /* PanFeature */,
+				9F201C8729D33CA800A9A683 /* ApiIntView */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -514,7 +515,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -545,7 +546,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -591,7 +592,7 @@
 			repositoryURL = "https://github.com/K3TZR/UtilityFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.1;
+				minimumVersion = 1.5.2;
 			};
 		};
 		9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */ = {
@@ -599,7 +600,7 @@
 			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.3.1;
+				minimumVersion = 4.1.2;
 			};
 		};
 		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
@@ -607,16 +608,15 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.1;
+				minimumVersion = 3.1.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = versionRange;
-				maximumVersion = 1.0.0;
-				minimumVersion = 0.42.0;
+				kind = exactVersion;
+				version = 0.52.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -732,9 +732,15 @@
 			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
 			productName = TxFeature;
 		};
-		9FED785D29B19C8100DFD198 /* PanFeature */ = {
+		9F201C8529D33C7800A9A683 /* PanFeature */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
 			productName = PanFeature;
+		};
+		9F201C8729D33CA800A9A683 /* ApiIntView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = ApiIntView;
 		};
 		9FF3CE082953B46B00C145E1 /* LeftSideFeature */ = {
 			isa = XCSwiftPackageProductDependency;

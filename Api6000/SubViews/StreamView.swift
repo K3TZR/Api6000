@@ -33,7 +33,7 @@ struct StreamView: View {
       }
       
       // RemoteRxAudioStream
-      ForEach(streamModel.remoteRxAudioStreams) { stream in
+      ForEach(apiModel.remoteRxAudioStreams) { stream in
         if handle == stream.clientHandle { RemoteRxStreamView(stream: stream) }
       }
       
