@@ -8,14 +8,14 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct StreamView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   @ObservedObject var streamModel: StreamModel
   let handle: Handle
   
@@ -23,17 +23,17 @@ struct StreamView: View {
   var body: some View {
     Grid(alignment: .leading, horizontalSpacing: 10) {
       // Panadapter
-      ForEach(apiModel.panadapters) { panadapter in
+      ForEach(objectModel.panadapters) { panadapter in
         if handle == panadapter.clientHandle { PanadapterStreamView(panadapter: panadapter) }
       }
       
       // Waterfall
-      ForEach(apiModel.waterfalls) { waterfall in
+      ForEach(objectModel.waterfalls) { waterfall in
         if handle == waterfall.clientHandle { WaterfallStreamView(waterfall: waterfall) }
       }
       
       // RemoteRxAudioStream
-      ForEach(apiModel.remoteRxAudioStreams) { stream in
+      ForEach(streamModel.remoteRxAudioStreams) { stream in
         if handle == stream.clientHandle { RemoteRxStreamView(stream: stream) }
       }
       
@@ -295,6 +295,6 @@ private struct DaxIqStreamView: View {
 
 struct StreamView_Previews: PreviewProvider {
   static var previews: some View {
-    StreamView(apiModel: ApiModel(), streamModel: StreamModel(), handle: 1)
+    StreamView(objectModel: ObjectModel(), streamModel: StreamModel(), handle: 1)
   }
 }

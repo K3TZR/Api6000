@@ -8,14 +8,14 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct MeterView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var streamModel: StreamModel
   let sliceId: UInt32?
   let sliceClientHandle: UInt32?
   let handle: Handle
@@ -33,7 +33,7 @@ struct MeterView: View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
       HeadingView(sliceId: sliceId)
-      ForEach(apiModel.meters ) { meter in
+      ForEach(streamModel.meters ) { meter in
         if showMeter(sliceId, sliceClientHandle, meter.source, meter.group) {
           DetailView(meter: meter, sliceId: sliceId)
         }
@@ -112,7 +112,7 @@ private struct DetailView: View {
 
 struct MeterView_Previews: PreviewProvider {
   static var previews: some View {
-    MeterView(apiModel: ApiModel(), sliceId: 1, sliceClientHandle: nil, handle: 1)
+    MeterView(streamModel: StreamModel(), sliceId: 1, sliceClientHandle: nil, handle: 1)
       .frame(minWidth: 1000)
       .padding()
   }

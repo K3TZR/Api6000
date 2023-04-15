@@ -8,18 +8,18 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct BandSettingView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
-    if apiModel.bandSettings.count == 0 {
+    if objectModel.bandSettings.count == 0 {
       GridRow {
         Text("BANDSETTINGs")
         Text("None present").foregroundColor(.red)
@@ -27,7 +27,7 @@ struct BandSettingView: View {
       
     } else {
         HeadingView()
-        ForEach(apiModel.bandSettings.sorted(by: {$0.name < $1.name})) { setting in
+        ForEach(objectModel.bandSettings.sorted(by: {$0.name < $1.name})) { setting in
           DetailView(setting: setting)
         }.frame(width: 80, alignment: .center)
       }
@@ -90,6 +90,6 @@ private struct DetailView: View {
 
 struct BandSettingView_Previews: PreviewProvider {
   static var previews: some View {
-    BandSettingView(apiModel: ApiModel())
+    BandSettingView(objectModel: ObjectModel())
   }
 }

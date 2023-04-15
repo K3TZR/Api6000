@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import Objects
+import FlexApi
 
 struct WaveformView: View {
   @ObservedObject var waveform: Waveform

@@ -8,21 +8,22 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct PanadapterView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
+  @ObservedObject var streamModel: StreamModel
   let handle: Handle
   let showMeters: Bool
 
 
   var body: some View {
     
-    if apiModel.panadapters.count == 0 {
+    if objectModel.panadapters.count == 0 {
       HStack(spacing: 20) {
         Text("PANADAPTER").frame(width: 80, alignment: .leading)
         Text("None present").foregroundColor(.red)
@@ -30,22 +31,22 @@ struct PanadapterView: View {
       .padding(.leading, 40)
       
     } else {
-      ForEach(apiModel.panadapters.filter { $0.clientHandle == handle }) { panadapter in
+      ForEach(objectModel.panadapters.filter { $0.clientHandle == handle }) { panadapter in
         VStack(alignment: .leading) {
           // Panadapter
           PanadapterDetailView(panadapter: panadapter)
           
           // corresponding Waterfall
-          ForEach(apiModel.waterfalls.filter { $0.panadapterId == panadapter.id} ) { waterfall in
+          ForEach(objectModel.waterfalls.filter { $0.panadapterId == panadapter.id} ) { waterfall in
             WaterfallDetailView(waterfall: waterfall)
           }
           
           // corresponding Slice(s)
-          ForEach(apiModel.slices.filter { $0.panadapterId == panadapter.id}) { slice in
+          ForEach(objectModel.slices.filter { $0.panadapterId == panadapter.id}) { slice in
             SliceDetailView(slice: slice)
             
             // slice meter(s)
-            if showMeters { MeterView(apiModel: apiModel, sliceId: slice.id, sliceClientHandle: slice.clientHandle, handle: handle) }
+            if showMeters { MeterView(streamModel: streamModel, sliceId: slice.id, sliceClientHandle: slice.clientHandle, handle: handle) }
           }
         }
       }
@@ -228,7 +229,7 @@ private struct SliceDetailView: View {
 struct PanadapterView_Previews: PreviewProvider {
   static var previews: some View {
     PanadapterView(
-      apiModel: ApiModel(),
+      objectModel: ObjectModel(), streamModel: StreamModel(),
       handle: 1,
       showMeters: true
     )

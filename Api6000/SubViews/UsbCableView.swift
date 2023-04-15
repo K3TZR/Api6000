@@ -8,13 +8,13 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct UsbCableView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   let post = String(repeating: " ", count: 1)
   
@@ -22,7 +22,7 @@ struct UsbCableView: View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
       Group {
-        if apiModel.usbCables.count == 0 {
+        if objectModel.usbCables.count == 0 {
           GridRow {
             Group {
               Text("USBCABLEs")
@@ -31,7 +31,7 @@ struct UsbCableView: View {
           }
           
         } else {
-          ForEach(apiModel.usbCables) { cable in
+          ForEach(objectModel.usbCables) { cable in
             Group {
               Row1View(cable: cable)
               Row2View(cable: cable)
@@ -157,6 +157,6 @@ private struct Row2View: View {
 
 struct UsbCableView_Previews: PreviewProvider {
   static var previews: some View {
-    UsbCableView(apiModel: ApiModel())
+    UsbCableView(objectModel: ObjectModel())
   }
 }

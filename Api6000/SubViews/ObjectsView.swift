@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 import Listener
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
@@ -18,6 +18,7 @@ import Shared
 struct ObjectsView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   @ObservedObject var packet: Packet
   @ObservedObject var radio: Radio
 
@@ -38,11 +39,11 @@ struct ObjectsView: View {
     
     WithViewStore(self.store, observe: {$0} ) { viewStore in
      
-//      if apiModel.activePacket != nil && apiModel.radio != nil {
+//      if apiModel.activePacket != nil && objectModel.radio != nil {
         ScrollView([.horizontal, .vertical]) {
           VStack(alignment: .leading) {
-            RadioView(apiModel: apiModel, packet: packet, radio: radio)
-            GuiClientView(store: store, apiModel: apiModel)
+            RadioView(objectModel: objectModel, packet: packet, radio: radio)
+            GuiClientView(store: store, apiModel: apiModel, packet: packet)
             //          if viewStore.isGui == false { TesterView() }
           }
         }
@@ -64,8 +65,8 @@ struct ObjectsView_Previews: PreviewProvider {
       store:
         Store(
           initialState: ApiModule.State(),
-          reducer: ApiModule()),
-      apiModel: ApiModel(), packet: Packet(), radio: Radio(Packet()))
+          reducer: ApiModule()), apiModel: ApiModel(),
+      objectModel: ObjectModel(), packet: Packet(), radio: Radio(Packet()))
     .frame(minWidth: 975)
     .padding()
   }

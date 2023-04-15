@@ -9,13 +9,13 @@ import ComposableArchitecture
 import SwiftUI
 
 import Shared
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct MeterStreamView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
@@ -23,10 +23,10 @@ struct MeterStreamView: View {
       GridRow {
         Group {
           Text("METERS")
-          Text("\(apiModel.meterStreamId == 0 ? "0x--------" : apiModel.meterStreamId.hex)").foregroundColor(.green)
+          Text("\(objectModel.meterStreamId == 0 ? "0x--------" : objectModel.meterStreamId.hex)").foregroundColor(.green)
           HStack(spacing: 5) {
             Text("Streaming")
-            Text(apiModel.meterStreamId == 0 ? "N" : "Y").foregroundColor(apiModel.meterStreamId == 0 ? .red : .green)
+            Text(objectModel.meterStreamId == 0 ? "N" : "Y").foregroundColor(objectModel.meterStreamId == 0 ? .red : .green)
           }
         }.frame(width: 100, alignment: .leading)
       }
@@ -37,6 +37,6 @@ struct MeterStreamView: View {
 
 struct MeterStreamView_Previews: PreviewProvider {
   static var previews: some View {
-    MeterStreamView(apiModel: ApiModel())
+    MeterStreamView(objectModel: ObjectModel())
   }
 }

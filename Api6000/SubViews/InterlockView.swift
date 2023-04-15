@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import Objects
+import FlexApi
 
 struct InterlockView: View {
   @ObservedObject var interlock: Interlock

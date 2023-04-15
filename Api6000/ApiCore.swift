@@ -13,7 +13,7 @@ import ClientFeature
 import Listener
 import LoginFeature
 import LogFeature
-import Objects
+import FlexApi
 import OpusPlayer
 import PickerFeature
 import RightSideFeature
@@ -26,6 +26,7 @@ public struct ApiModule: ReducerProtocol {
   @Environment(\.openWindow) var openWindow
   
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
   @Dependency(\.listener) var listener
   @Dependency(\.messagesModel) var messagesModel
   //  @Dependency(\.opusPlayer) var opusPlayer
@@ -275,9 +276,9 @@ public struct ApiModule: ReducerProtocol {
         
       case .startStopButton:
         if state.isConnected {
-          return stopTester(&state, apiModel, streamModel)
+          return stopTester(&state, apiModel, objectModel, streamModel)
         } else {
-          return startTester(&state, apiModel, streamModel, listener)
+          return startTester(&state, objectModel, streamModel, listener)
         }
         
       case .set(let keyPath, let boolValue):
@@ -299,7 +300,7 @@ public struct ApiModule: ReducerProtocol {
             if state.rxAudio {
               return startRxAudio(&state, apiModel, streamModel)
             } else {
-              return stopRxAudio(&state, apiModel, streamModel)
+              return stopRxAudio(&state, objectModel, streamModel)
             }
           } else {
             // NOT CONNECTED
@@ -310,9 +311,9 @@ public struct ApiModule: ReducerProtocol {
           if state.isConnected {
             // CONNECTED, start / stop TxAudio
             if state.txAudio {
-              return startTxAudio(&state, apiModel, streamModel)
+              return startTxAudio(&state, objectModel, streamModel)
             } else {
-              return stopTxAudio(&state, apiModel, streamModel)
+              return stopTxAudio(&state, objectModel, streamModel)
             }
           } else {
             // NOT CONNECTED
@@ -328,7 +329,7 @@ public struct ApiModule: ReducerProtocol {
         
       case .connect(let selection, let disconnectHandle):
         state.clientState = nil
-        return connectionAttempt(state, selection, disconnectHandle, messagesModel, apiModel)
+        return connectionAttempt(state, selection, disconnectHandle, messagesModel, objectModel)
         
       case .connectionStatus(let connected):
         state.isConnected = connected
@@ -373,7 +374,7 @@ public struct ApiModule: ReducerProtocol {
         // MARK: - Actions: invoked by subscriptions
         
       case .clientEvent(let event):
-        return clientEvent(state, event, apiModel)
+        return clientEvent(state, event, apiModel, objectModel)
         
       case .showLogAlert(let logEntry):
         return showLogAlert(&state,logEntry)
@@ -507,7 +508,7 @@ private func clearMessages(_ clear: Bool) ->  EffectTask<ApiModule.Action> {
   return .none
 }
 
-private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
+private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiModel: ApiModel, _ objectModel: ObjectModel) ->  EffectTask<ApiModule.Action> {
   // a GuiClient change occurred
   switch event.action {
   case .added:
@@ -518,8 +519,8 @@ private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiMo
       // if nonGui, is it our connected Station?
       if state.isGui == false && event.client.station == state.station {
         // YES, unbind
-        await apiModel.setActiveStation( nil )
-        await apiModel.radio?.bindToGuiClient(nil)
+        await objectModel.setActiveStation( nil )
+        apiModel.bindToGuiClient(nil)
       }
     }
     
@@ -528,14 +529,16 @@ private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiMo
       // if nonGui, is there a clientId for our connected Station?
       if state.isGui == false && event.client.station == state.station {
         // YES, bind to it
-        await apiModel.setActiveStation( event.client.station )
-        await apiModel.radio?.bindToGuiClient(event.client.clientId)
+        await objectModel.setActiveStation( event.client.station )
+        apiModel.bindToGuiClient(event.client.clientId)
       }
     }
   }
 }
 
-private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
+private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ objectModel: ObjectModel) ->  EffectTask<ApiModule.Action> {
+  
+  @Dependency(\.apiModel) var apiModel
   
   return .run { [state] send in
     await messagesModel.start(state.messageFilter, state.messageFilterText)
@@ -556,7 +559,10 @@ private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, 
   }
 }
 
-private func disconnect(_ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
+private func disconnect(_ objectModel: ObjectModel) ->  EffectTask<ApiModule.Action> {
+
+  @Dependency(\.apiModel) var apiModel
+  
   return .run { send in await apiModel.disconnect() }
 }
 
@@ -642,7 +648,7 @@ private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -
     state.commandsIndex = 0
   }
   return .fireAndForget { [state] in
-    _ = await apiModel.radio?.send(state.commandToSend)
+    _ = await apiModel.sendTcp(state.commandToSend)
   }
 }
 
@@ -671,9 +677,9 @@ private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
     // start audio
     return .fireAndForget { [state] in
       // request a stream
-      if let id = try await apiModel.radio!.requestRemoteRxAudioStream().streamId {
+      if let id = try await apiModel.requestRemoteRxAudioStream().streamId {
         // finish audio setup
-        state.opusPlayer?.start(id)
+        state.opusPlayer?.start(id: id)
         streamModel.remoteRxAudioStreams[id: id]?.delegate = state.opusPlayer
       }
     }
@@ -681,20 +687,20 @@ private func startRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
   return .none
 }
 
-private func stopRxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
+private func stopRxAudio(_ state: inout ApiModule.State, _ objectModel: ObjectModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   if state.opusPlayer != nil {
     // ----- STOP Rx AUDIO -----
-    let id = state.opusPlayer!.id
     state.opusPlayer!.stop()
+    let id = state.opusPlayer!.id
     state.opusPlayer = nil
-    return .fireAndForget {
-      await streamModel.removeRemoteRxAudioStream(id)
+    return .run { _ in 
+      await streamModel.sendRemoveStream(having: id)
     }
   }
   return .none
 }
 
-private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
+private func startTester(_ state: inout ApiModule.State, _ objectModel: ObjectModel, _ streamModel: StreamModel, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
   // ----- START -----
   // use the default?
   if state.useDefault {
@@ -718,18 +724,18 @@ private func startTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _
   )
 }
 
-private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
+private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ objectModel: ObjectModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // ----- STOP -----
   return .merge(
     resetClientInitialized(apiModel),
     clearMessages(state.clearOnStop),
-    stopRxAudio(&state, apiModel, streamModel),
-    disconnect(apiModel),
+    stopRxAudio(&state, objectModel, streamModel),
+    disconnect(objectModel),
     setConnectionStatus(&state, false)
   )
 }
 
-private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
+private func startTxAudio(_ state: inout ApiModule.State, _ objectModel: ObjectModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // FIXME:
   
   //        if newState {
@@ -738,7 +744,7 @@ private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
   //            // start audio
   //            return .run { send in
   //              // request a stream
-  //              let id = try await apiModel.radio!.requestRemoteTxAudioStream()
+  //              let id = try await objectModel.radio!.requestRemoteTxAudioStream()
   //
   //              // FIXME:
   //
@@ -759,14 +765,14 @@ private func startTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, 
   //          } else {
   //            return .run { send in
   //              // request removal of the stream
-  //              await streamModel.removeRemoteTxAudioStream(apiModel.radio!.connectionHandle)
+  //              await streamModel.removeRemoteTxAudioStream(objectModel.radio!.connectionHandle)
   //            }
   //          }
   //        }
   return .none
 }
 
-private func stopTxAudio(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
+private func stopTxAudio(_ state: inout ApiModule.State, _ objectModel: ObjectModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // FIXME:
   
   return .none

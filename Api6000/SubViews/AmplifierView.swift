@@ -8,17 +8,17 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct AmplifierView: View {
  
-  @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
   
   var body: some View {
-    if apiModel.amplifiers.count == 0 {
+    if objectModel.amplifiers.count == 0 {
       Grid(alignment: .leading, horizontalSpacing: 10) {
         GridRow {
           Group {
@@ -31,7 +31,7 @@ struct AmplifierView: View {
       .padding(.leading, 20)
       
     } else {
-      ForEach(apiModel.amplifiers) { amplifier in
+      ForEach(objectModel.amplifiers) { amplifier in
         DetailView(amplifier: amplifier)
       }
     }

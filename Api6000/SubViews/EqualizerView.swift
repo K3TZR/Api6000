@@ -8,18 +8,18 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct EqualizerView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     Grid(alignment: .leading, horizontalSpacing: 10) {
       HeadingView()
-      ForEach(apiModel.equalizers) { eq in
+      ForEach(objectModel.equalizers) { eq in
         DetailView(eq: eq)
       }
     }
@@ -76,6 +76,6 @@ private struct DetailView: View {
 
 struct EqualizerView_Previews: PreviewProvider {
   static var previews: some View {
-    EqualizerView(apiModel: ApiModel())
+    EqualizerView(objectModel: ObjectModel())
   }
 }

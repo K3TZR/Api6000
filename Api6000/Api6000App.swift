@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 import LeftSideFeature
 import LogFeature
 import PanFeature
@@ -45,6 +45,7 @@ struct Api6000App: App {
   var appDelegate
   
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
 
   var body: some Scene {
@@ -67,7 +68,7 @@ struct Api6000App: App {
     .defaultPosition(.bottomTrailing)
 
     Window(WindowType.right.rawValue, id: WindowType.right.rawValue) {
-      RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel)
+      RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel, objectModel: objectModel)
       .frame(minHeight: 210)
     }
     .windowStyle(.hiddenTitleBar)
@@ -75,7 +76,7 @@ struct Api6000App: App {
     .defaultPosition(.topTrailing)
         
     Window(WindowType.left.rawValue, id: WindowType.left.rawValue) {
-      LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: apiModel.activePanadapter?.id, waterfallId: apiModel.activePanadapter?.waterfallId), reducer: LeftSideFeature()), apiModel: apiModel)
+      LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: objectModel.activePanadapter?.id, waterfallId: objectModel.activePanadapter?.waterfallId), reducer: LeftSideFeature()))
         .frame(minWidth: 75, minHeight: 250)
     }
     .windowStyle(.hiddenTitleBar)
@@ -90,7 +91,7 @@ struct Api6000App: App {
     .defaultPosition(.center)
 
     Settings {
-      SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), apiModel: apiModel)
+      SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), objectModel: objectModel)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)

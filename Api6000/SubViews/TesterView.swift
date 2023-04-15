@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
@@ -16,9 +16,10 @@ import Objects
 struct TesterView: View {
   
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
     
   var body: some View {
-    if apiModel.radio != nil {
+    if objectModel.radio != nil {
       VStack(alignment: .leading) {
         Divider().background(Color(.green))
         HStack(spacing: 10) {
@@ -31,9 +32,9 @@ struct TesterView: View {
 
           HStack(spacing: 5) {
             Text("Bound to Station")
-            Text("\(apiModel.activeStation ?? "none")").foregroundColor(.secondary)
+            Text("\(objectModel.activeStation ?? "none")").foregroundColor(.secondary)
           }
-          if apiModel.radio != nil { TesterRadioViewView(radio: apiModel.radio!) }
+          if objectModel.radio != nil { TesterRadioViewView(radio: objectModel.radio!) }
         }
       }
     }
@@ -44,6 +45,7 @@ struct TesterRadioViewView: View {
   @ObservedObject var radio: Radio
   
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
 
   var body: some View {
     HStack(spacing: 10) {
@@ -55,7 +57,7 @@ struct TesterRadioViewView: View {
       
       HStack(spacing: 5) {
         Text("Client Id")
-        Text("\(radio.boundClientId ?? "none")").foregroundColor(.secondary)
+        Text("\(apiModel.boundClientId ?? "none")").foregroundColor(.secondary)
       }
     }
   }

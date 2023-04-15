@@ -8,17 +8,17 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct XvtrView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
-    if apiModel.xvtrs.count == 0 {
+    if objectModel.xvtrs.count == 0 {
       HStack(spacing: 20) {
         Text("XVTRs").frame(width: 80, alignment: .leading)
         Text("None present").foregroundColor(.red)
@@ -40,6 +40,6 @@ struct XvtrView: View {
 
 struct XvtrView_Previews: PreviewProvider {
   static var previews: some View {
-    XvtrView(apiModel: ApiModel())
+    XvtrView(objectModel: ObjectModel())
   }
 }

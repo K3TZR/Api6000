@@ -8,14 +8,14 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 struct ProfileView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
-    if apiModel.profiles.count == 0 {
+    if objectModel.profiles.count == 0 {
       Grid(alignment: .leading, horizontalSpacing: 10) {
         GridRow {
           Group {
@@ -28,7 +28,7 @@ struct ProfileView: View {
     } else {
       Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 10) {
         HeadingView()
-        ForEach(apiModel.profiles) { profile in
+        ForEach(objectModel.profiles) { profile in
           DetailView(profile: profile)
         }
       }
@@ -67,6 +67,6 @@ private struct DetailView: View {
 
 struct ProfileView_Previews: PreviewProvider {
   static var previews: some View {
-    ProfileView(apiModel: ApiModel())
+    ProfileView(objectModel: ObjectModel())
   }
 }

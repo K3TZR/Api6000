@@ -8,14 +8,14 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct RadioView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   @ObservedObject var packet: Packet
   @ObservedObject var radio: Radio
 
@@ -40,7 +40,7 @@ struct RadioView: View {
         Line2View(radio: radio)
         if showSubView {
           Divider().background(packet.source == .local ? .blue : .red)
-          DetailSubView(apiModel: apiModel)
+          DetailSubView(objectModel: objectModel)
         }
       }
     }
@@ -127,17 +127,17 @@ private struct Line2View: View {
 }
 
 private struct DetailSubView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
-    if apiModel.radio != nil {
+    if objectModel.radio != nil {
       VStack(alignment: .leading) {
-        AtuView(atu: apiModel.atu, radio: apiModel.radio!)
-        GpsView(gps: apiModel.gps, radio: apiModel.radio!)
-        MeterStreamView(apiModel: apiModel)
-        TransmitView(transmit: apiModel.transmit)
-        TnfView(apiModel: apiModel)
+        AtuView(atu: objectModel.atu, radio: objectModel.radio!)
+        GpsView(gps: objectModel.gps, radio: objectModel.radio!)
+        MeterStreamView(objectModel: objectModel)
+        TransmitView(transmit: objectModel.transmit)
+        TnfView(objectModel: objectModel)
       }
     }
   }
@@ -148,7 +148,7 @@ private struct DetailSubView: View {
 
 struct RadioView_Previews: PreviewProvider {
   static var previews: some View {
-    RadioView(apiModel: ApiModel(), packet: Packet(), radio: Radio(Packet()))
+    RadioView(objectModel: ObjectModel(), packet: Packet(), radio: Radio(Packet()))
     .frame(minWidth: 1000)
   }
 }

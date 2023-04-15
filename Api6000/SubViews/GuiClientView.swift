@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 import Listener
-import Objects
+import FlexApi
 import Shared
 
 // ----------------------------------------------------------------------------
@@ -18,16 +18,17 @@ import Shared
 struct GuiClientView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
-  
+  @ObservedObject var packet: Packet
+
   var body: some View {
     VStack(alignment: .leading) {
-      if apiModel.activePacket == nil {
-        Text("No active packet")
-      } else {
-        ForEach(apiModel.activePacket!.guiClients, id: \.id) { guiClient in
+//      if apiModel.activePacket == nil {
+//        Text("No active packet")
+//      } else {
+        ForEach(packet.guiClients, id: \.id) { guiClient in
           DetailView(store: store, guiClient: guiClient)
         }
-      }
+//      }
     }
   }
 }
@@ -88,7 +89,7 @@ struct GuiClientSubView: View {
     }
   }
   
-  @Dependency(\.apiModel) var apiModel
+  @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
 
   let handle: Handle
@@ -99,31 +100,31 @@ struct GuiClientSubView: View {
       switch viewStore.objectFilter {
         
       case ObjectFilter.core:
-        PanadapterView(apiModel: apiModel, handle: handle, showMeters: true)
+        PanadapterView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: true)
         
       case ObjectFilter.coreNoMeters:
-        PanadapterView(apiModel: apiModel, handle: handle, showMeters: false)
+        PanadapterView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: false)
         
       case ObjectFilter.amplifiers:        AmplifierView()
-      case ObjectFilter.bandSettings:      BandSettingView(apiModel: apiModel)
-      case ObjectFilter.cwx:               CwxView(cwx: apiModel.cwx)
-      case ObjectFilter.equalizers:        EqualizerView(apiModel: apiModel)
-      case ObjectFilter.interlock:         InterlockView(interlock: apiModel.interlock)
-      case ObjectFilter.memories:          MemoryView(apiModel: apiModel)
-      case ObjectFilter.meters:            MeterView(apiModel: apiModel, sliceId: nil, sliceClientHandle: nil, handle: handle)
+      case ObjectFilter.bandSettings:      BandSettingView(objectModel: objectModel)
+      case ObjectFilter.cwx:               CwxView(cwx: objectModel.cwx)
+      case ObjectFilter.equalizers:        EqualizerView(objectModel: objectModel)
+      case ObjectFilter.interlock:         InterlockView(interlock: objectModel.interlock)
+      case ObjectFilter.memories:          MemoryView(objectModel: objectModel)
+      case ObjectFilter.meters:            MeterView(streamModel: streamModel, sliceId: nil, sliceClientHandle: nil, handle: handle)
       case ObjectFilter.misc:
-        if apiModel.radio != nil {
-          MiscView(radio: apiModel.radio!)
+        if objectModel.radio != nil {
+          MiscView(radio: objectModel.radio!)
         } else {
           EmptyView()
         }
       case ObjectFilter.network:           NetworkView()
-      case ObjectFilter.profiles:          ProfileView(apiModel: apiModel)
-      case ObjectFilter.streams:           StreamView(apiModel: apiModel, streamModel: streamModel, handle: handle)
-      case ObjectFilter.usbCable:          UsbCableView(apiModel: apiModel)
-      case ObjectFilter.wan:               WanView(wan: apiModel.wan)
-      case ObjectFilter.waveforms:         WaveformView(waveform: apiModel.waveform)
-      case ObjectFilter.xvtrs:             XvtrView(apiModel: apiModel)
+      case ObjectFilter.profiles:          ProfileView(objectModel: objectModel)
+      case ObjectFilter.streams:           StreamView(objectModel: objectModel, streamModel: streamModel, handle: handle)
+      case ObjectFilter.usbCable:          UsbCableView(objectModel: objectModel)
+      case ObjectFilter.wan:               WanView(wan: objectModel.wan)
+      case ObjectFilter.waveforms:         WaveformView(waveform: objectModel.waveform)
+      case ObjectFilter.xvtrs:             XvtrView(objectModel: objectModel)
       }
     }
   }
@@ -137,7 +138,7 @@ struct GuiClientView_Previews: PreviewProvider {
     GuiClientView( store:
                     Store(initialState: ApiModule.State(),
                           reducer: ApiModule()),
-                   apiModel: ApiModel())
+                   apiModel: ApiModel(), packet: Packet())
     .frame(minWidth: 975)
     .padding()
   }

@@ -11,25 +11,25 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // highlight
 // highlightColor
 
 struct MemoryView: View {
-  @ObservedObject var apiModel: ApiModel
+  @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
-      if apiModel.memories.count == 0 {
+      if objectModel.memories.count == 0 {
         GridRow {
           Text("MEMORYs")
           Text("None present").foregroundColor(.red)
         }.frame(width: 100, alignment: .leading)
         
       } else {
-        ForEach(apiModel.memories) { memory in
+        ForEach(objectModel.memories) { memory in
           Group {
             Row1View(memory: memory)
             Row2View(memory: memory)
@@ -152,6 +152,6 @@ private struct Row2View: View {
 // MARK: - Preview
 struct MemoryView_Previews: PreviewProvider {
   static var previews: some View {
-    MemoryView(apiModel: ApiModel())
+    MemoryView(objectModel: ObjectModel())
   }
 }

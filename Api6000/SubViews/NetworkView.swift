@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 public struct NetworkView: View {
   

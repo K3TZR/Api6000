@@ -8,17 +8,17 @@
 import ComposableArchitecture
 import SwiftUI
 
-import Objects
+import FlexApi
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
 struct TnfView: View {
-  @ObservedObject var apiModel: ApiModel
-  //  @Dependency(\.apiModel) var apiModel
+  @ObservedObject var objectModel: ObjectModel
+  //  @Dependency(\.objectModel) var objectModel
   
   var body: some View {
-    if apiModel.tnfs.count == 0 {
+    if objectModel.tnfs.count == 0 {
       Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 0) {
         GridRow {
           Group {
@@ -31,7 +31,7 @@ struct TnfView: View {
       .padding(.leading, 20)
       
     } else {
-      ForEach(apiModel.tnfs) { tnf in
+      ForEach(objectModel.tnfs) { tnf in
         DetailView(tnf: tnf)
       }
       .padding(.leading, 20)
@@ -84,7 +84,7 @@ private struct DetailView: View {
 
 struct TnfView_Previews: PreviewProvider {
   static var previews: some View {
-    TnfView(apiModel: ApiModel())
+    TnfView(objectModel: ObjectModel())
       .frame(minWidth: 1000)
       .padding()
   }

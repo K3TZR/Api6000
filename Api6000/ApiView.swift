@@ -23,8 +23,9 @@ public struct ApiView: View {
   
   @Environment(\.openWindow) var openWindow
   
-  @Dependency(\.messagesModel) var messagesModel
   @Dependency(\.apiModel) var apiModel
+  @Dependency(\.messagesModel) var messagesModel
+  @Dependency(\.objectModel) var objectModel
   
   public init(store: StoreOf<ApiModule>) {
     self.store = store
@@ -41,7 +42,7 @@ public struct ApiView: View {
         
         VSplitView {
           if viewStore.isConnected {
-            ObjectsView(store: store, apiModel: apiModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
+            ObjectsView(store: store, apiModel: apiModel, objectModel: objectModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
               .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
             Divider().background(Color(.cyan))
             MessagesView(store: store, messagesModel: messagesModel)
@@ -62,9 +63,9 @@ public struct ApiView: View {
         
         if viewStore.showLeftButtons {
           LeftSideView(store: Store(
-            initialState: LeftSideFeature.State(panadapterId: apiModel.activePanadapter?.id, waterfallId: apiModel.activePanadapter?.waterfallId, vertical: false),
+            initialState: LeftSideFeature.State(panadapterId: objectModel.activePanadapter?.id, waterfallId: objectModel.activePanadapter?.waterfallId, vertical: false),
             reducer: LeftSideFeature()
-          ), apiModel: apiModel)
+          ))
         }
       }
       
