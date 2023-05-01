@@ -17,7 +17,7 @@ import Shared
 struct StreamView: View {
   @ObservedObject var objectModel: ObjectModel
   @ObservedObject var streamModel: StreamModel
-  let handle: Handle
+  let handle: UInt32
   
   
   var body: some View {

@@ -50,6 +50,7 @@ struct Api6000App: App {
 
   var body: some Scene {
 
+    // Main window
     WindowGroup("Api6000  (v" + Version().string + ")") {
       ApiView(store: Store(
         initialState: ApiModule.State(),
@@ -60,6 +61,7 @@ struct Api6000App: App {
       .padding(.vertical, 10)
     }
 
+    // Log window
     Window(WindowType.log.rawValue, id: WindowType.log.rawValue) {
       LogView(store: Store(initialState: LogFeature.State(), reducer: LogFeature()) )
       .frame(minWidth: 975)
@@ -67,6 +69,7 @@ struct Api6000App: App {
     .windowStyle(.hiddenTitleBar)
     .defaultPosition(.bottomTrailing)
 
+    // Rightside window
     Window(WindowType.right.rawValue, id: WindowType.right.rawValue) {
       RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel, objectModel: objectModel)
       .frame(minHeight: 210)
@@ -75,6 +78,7 @@ struct Api6000App: App {
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topTrailing)
         
+    // Leftside window
     Window(WindowType.left.rawValue, id: WindowType.left.rawValue) {
       LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: objectModel.activePanadapter?.id, waterfallId: objectModel.activePanadapter?.waterfallId), reducer: LeftSideFeature()))
         .frame(minWidth: 75, minHeight: 250)
@@ -83,13 +87,15 @@ struct Api6000App: App {
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topLeading)
     
+    // Panadapter window
     Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
-      PanView()
+      PanView(store: Store(initialState: PanFeature.State(), reducer: PanFeature()), objectModel: objectModel)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.center)
 
+    // Settings window
     Settings {
       SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), objectModel: objectModel)
     }

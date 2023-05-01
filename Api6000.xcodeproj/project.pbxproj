@@ -48,7 +48,6 @@
 		9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanView.swift */; };
 		9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformView.swift */; };
 		9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */; };
-		9F201C8629D33C7800A9A683 /* PanFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F201C8529D33C7800A9A683 /* PanFeature */; };
 		9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F201C8729D33CA800A9A683 /* ApiIntView */; };
 		9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B52935A01F00F9EEFC /* FiltersView.swift */; };
 		9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesView.swift */; };
@@ -59,6 +58,8 @@
 		9FA0CAD129E72F98007FA905 /* Listener in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD029E72F98007FA905 /* Listener */; };
 		9FA0CAD329E72F98007FA905 /* Tcp in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD229E72F98007FA905 /* Tcp */; };
 		9FA0CAD529E72F98007FA905 /* Udp in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD429E72F98007FA905 /* Udp */; };
+		9FA0CAD729EC9381007FA905 /* PanFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD629EC9381007FA905 /* PanFeature */; };
+		9FA0CADA29F6C230007FA905 /* Vita in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD929F6C230007FA905 /* Vita */; };
 		9FE8947329358DD700C12DE2 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8947229358DD700C12DE2 /* Api6000App.swift */; };
 		9FE8947729358DD800C12DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947629358DD800C12DE2 /* Assets.xcassets */; };
 		9FE8947A29358DD800C12DE2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947929358DD800C12DE2 /* Preview Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		9FA0CAC929D8F96B007FA905 /* UtilityFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UtilityFeatures; path = ../Packages/UtilityFeatures; sourceTree = "<group>"; };
+		9FA0CAD829F6C15C007FA905 /* SharedFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFeatures; path = ../Packages/SharedFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,17 +132,18 @@
 				9F0A844B293A7F8100EE9D5D /* Ph1Feature in Frameworks */,
 				9F0A8431293A77BD00EE9D5D /* SecureStorage in Frameworks */,
 				9F0A842D293A77BD00EE9D5D /* OpusPlayer in Frameworks */,
-				9F201C8629D33C7800A9A683 /* PanFeature in Frameworks */,
 				9F0A842B293A77BD00EE9D5D /* OpusEncoder in Frameworks */,
 				9F0A8441293A7F8000EE9D5D /* CwFeature in Frameworks */,
 				9F0A8449293A7F8100EE9D5D /* LoginFeature in Frameworks */,
 				9F0A844F293A7F8200EE9D5D /* PickerFeature in Frameworks */,
+				9FA0CAD729EC9381007FA905 /* PanFeature in Frameworks */,
 				9FA0CAD529E72F98007FA905 /* Udp in Frameworks */,
 				9FA0CACF29E72F98007FA905 /* FlexErrors in Frameworks */,
 				9FF3CE0B2953B49100C145E1 /* SettingsFeature in Frameworks */,
 				9F0A8453293A7F8200EE9D5D /* TxFeature in Frameworks */,
 				9F0A8433293A77BD00EE9D5D /* XCGWrapper in Frameworks */,
 				9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */,
+				9FA0CADA29F6C230007FA905 /* Vita in Frameworks */,
 				9FA0CAD129E72F98007FA905 /* Listener in Frameworks */,
 				9F0A8451293A7F8200EE9D5D /* RightSideFeature in Frameworks */,
 			);
@@ -194,6 +197,7 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
+				9FA0CAD829F6C15C007FA905 /* SharedFeatures */,
 				9FA0CAC929D8F96B007FA905 /* UtilityFeatures */,
 				9F201C8A29D5141600A9A683 /* ViewFeatures */,
 				9F201C8929D5140C00A9A683 /* ApiFeatures */,
@@ -271,13 +275,14 @@
 				9F0A8452293A7F8200EE9D5D /* TxFeature */,
 				9FF3CE082953B46B00C145E1 /* LeftSideFeature */,
 				9FF3CE0A2953B49100C145E1 /* SettingsFeature */,
-				9F201C8529D33C7800A9A683 /* PanFeature */,
 				9F201C8729D33CA800A9A683 /* ApiIntView */,
 				9FA0CACC29E72F98007FA905 /* FlexApi */,
 				9FA0CACE29E72F98007FA905 /* FlexErrors */,
 				9FA0CAD029E72F98007FA905 /* Listener */,
 				9FA0CAD229E72F98007FA905 /* Tcp */,
 				9FA0CAD429E72F98007FA905 /* Udp */,
+				9FA0CAD629EC9381007FA905 /* PanFeature */,
+				9FA0CAD929F6C230007FA905 /* Vita */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -515,7 +520,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -546,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -584,7 +589,7 @@
 			repositoryURL = "https://github.com/K3TZR/SharedFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.1;
+				minimumVersion = 1.9.1;
 			};
 		};
 		9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */ = {
@@ -592,7 +597,7 @@
 			repositoryURL = "https://github.com/K3TZR/UtilityFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.3;
+				minimumVersion = 1.5.4;
 			};
 		};
 		9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */ = {
@@ -600,7 +605,7 @@
 			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.1;
+				minimumVersion = 6.1.1;
 			};
 		};
 		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
@@ -608,7 +613,7 @@
 			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.1;
+				minimumVersion = 5.1.1;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -707,11 +712,6 @@
 			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
 			productName = TxFeature;
 		};
-		9F201C8529D33C7800A9A683 /* PanFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = PanFeature;
-		};
 		9F201C8729D33CA800A9A683 /* ApiIntView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
@@ -736,6 +736,14 @@
 		9FA0CAD429E72F98007FA905 /* Udp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Udp;
+		};
+		9FA0CAD629EC9381007FA905 /* PanFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PanFeature;
+		};
+		9FA0CAD929F6C230007FA905 /* Vita */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Vita;
 		};
 		9FF3CE082953B46B00C145E1 /* LeftSideFeature */ = {
 			isa = XCSwiftPackageProductDependency;

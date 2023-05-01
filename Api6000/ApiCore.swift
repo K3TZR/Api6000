@@ -8,7 +8,6 @@
 import ComposableArchitecture
 import SwiftUI
 
-//import Api6000
 import ClientFeature
 import Listener
 import LoginFeature
@@ -18,11 +17,50 @@ import OpusPlayer
 import PickerFeature
 import RightSideFeature
 import Shared
-//import SecureStorage
 import XCGWrapper
 
-public struct ApiModule: ReducerProtocol {
+// ----------------------------------------------------------------------------
+// MARK: - Global Functions
+
+/// Read a user default entry and transform it into a struct
+/// - Parameters:
+///    - key:         the name of the default
+/// - Returns:        a struct or nil
+public func getDefaultValue<T: Decodable>(_ key: String) -> T? {
   
+  if let data = UserDefaults.standard.object(forKey: key) as? Data {
+    let decoder = JSONDecoder()
+    if let value = try? decoder.decode(T.self, from: data) {
+      return value
+    } else {
+      return nil
+    }
+  }
+  return nil
+}
+
+/// Write a user default entry for a struct
+/// - Parameters:
+///    - key:        the name of the default
+///    - value:      a struct  to be encoded and written to user defaults
+public func setDefaultValue<T: Encodable>(_ key: String, _ value: T?) {
+  
+  if value == nil {
+    UserDefaults.standard.removeObject(forKey: key)
+  } else {
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(value) {
+      UserDefaults.standard.set(encoded, forKey: key)
+    } else {
+      UserDefaults.standard.removeObject(forKey: key)
+    }
+  }
+}
+
+public struct ApiModule: ReducerProtocol {
+  // ----------------------------------------------------------------------------
+  // MARK: - Dependency decalarations
+
   @Environment(\.openWindow) var openWindow
   
   @Dependency(\.apiModel) var apiModel
@@ -32,6 +70,9 @@ public struct ApiModule: ReducerProtocol {
   //  @Dependency(\.opusPlayer) var opusPlayer
   @Dependency(\.streamModel) var streamModel
   
+  // ----------------------------------------------------------------------------
+  // MARK: - Module Initialization
+
   public init() {}
   
   // ----------------------------------------------------------------------------
@@ -63,7 +104,7 @@ public struct ApiModule: ReducerProtocol {
     var smartlinkEmail: String { didSet { UserDefaults.standard.set(smartlinkEmail, forKey: "smartlinkEmail") } }
     var txAudio: Bool { didSet { UserDefaults.standard.set(txAudio, forKey: "txAudio") } }
     var useDefault: Bool { didSet { UserDefaults.standard.set(useDefault, forKey: "useDefault") } }
-
+    
     // other state
     var commandToSend = ""
     var isClosing = false
@@ -85,7 +126,10 @@ public struct ApiModule: ReducerProtocol {
     var previousCommand = ""
     var commandsIndex = 0
     var commandsArray = [""]
-    
+        
+    // ----------------------------------------------------------------------------
+    // MARK: - State Initialization
+
     public init(
       alertOnError: Bool = UserDefaults.standard.bool(forKey: "alertOnError"),
       clearOnSend: Bool  = UserDefaults.standard.bool(forKey: "clearOnSend"),
@@ -148,33 +192,31 @@ public struct ApiModule: ReducerProtocol {
     case onAppear
     
     // UI controls
-    case clearNowButton
-    case fontSizeStepper(CGFloat)
-    case messagesFilterTextField(String)
-    case messagesFilterPicker(MessageFilter)
-    case objectsPicker(ObjectFilter)
-    case saveButton
-    case sendButton
-    case sendClearButton
-    case sendNextStepper
-    case sendPreviousStepper
-    case sendTextField(String)
-    case startStopButton
-    case toggle(WritableKeyPath<ApiModule.State, Bool>)
-    case set(WritableKeyPath<ApiModule.State, Bool>, Bool)
-
-    // subview related
+    case commandClear
+    case commandNext
+    case commandPrevious
+    case commandSend
+    case commandText(String)
+    case connectionStartStop
+    case fontSize(CGFloat)
+    case messagesClear
+    case messagesFilter(MessageFilter)
+    case messagesFilterText(String)
+    case messagesSave
+    case objectsFilter(ObjectFilter)
+    case stateSet(WritableKeyPath<ApiModule.State, Bool>, Bool)
+    case stateToggle(WritableKeyPath<ApiModule.State, Bool>)
+    
+    // Subview related
     case alertDismissed
     case client(ClientFeature.Action)
     case login(LoginFeature.Action)
     case picker(PickerFeature.Action)
     
     // Effects related
-    //    case checkConnectionStatus(Pickable)
     case connect(Pickable, UInt32?)
     case connectionStatus(Bool)
     case loginStatus(Bool, String)
-    //    case startRxAudio(RemoteRxAudioStreamId)
     
     // Sheet related
     case showClientSheet(Pickable, [String], [UInt32])
@@ -185,9 +227,9 @@ public struct ApiModule: ReducerProtocol {
     
     // Subscription related
     case clientEvent(ClientEvent)
-    //    case packetEvent(PacketEvent)
     case testResult(TestResult)
     
+    // Window related
     case closeAllWindows
   }
   
@@ -207,52 +249,20 @@ public struct ApiModule: ReducerProtocol {
         // ----------------------------------------------------------------------------
         // MARK: - Actions: ApiView UI controls
         
-      case .clearNowButton:
-        return .fireAndForget {
-          await messagesModel.clearAll()
-        }
-        
       case .closeAllWindows:
         state.isClosing = true
         // close all of the app's windows
         for window in NSApp.windows {
-//          print("Window = \(window.identifier?.rawValue ?? "Unknown")")
           window.close()
         }
         return .none
         
-      case .fontSizeStepper(let size):
-        state.fontSize = size
-        return .none
-        
-      case .messagesFilterTextField(let text):
-        state.messageFilterText = text
-        return .fireAndForget { [state] in
-          await messagesModel.setFilter(state.messageFilter, state.messageFilterText)
-        }
-        
-      case .messagesFilterPicker(let filter):
-        state.messageFilter = filter
-        return .fireAndForget { [state] in
-          await messagesModel.setFilter(state.messageFilter, state.messageFilterText)
-        }
-        
-      case .objectsPicker(let newFilter):
-        state.objectFilter = newFilter
-        return .none
-                
-      case .saveButton:
-        return saveMessagesToFile(messagesModel)
-        
-      case .sendButton:
-        return sendCommand(&state, apiModel)
-        
-      case .sendClearButton:
+      case .commandClear:
         state.commandToSend = ""
         state.commandsIndex = 0
         return .none
         
-      case .sendNextStepper:
+      case .commandNext:
         if state.commandsIndex == state.commandsArray.count - 1{
           state.commandsIndex = 0
         } else {
@@ -261,7 +271,7 @@ public struct ApiModule: ReducerProtocol {
         state.commandToSend = state.commandsArray[state.commandsIndex]
         return .none
         
-      case .sendPreviousStepper:
+      case .commandPrevious:
         if state.commandsIndex == 0 {
           state.commandsIndex = state.commandsArray.count - 1
         } else {
@@ -270,22 +280,68 @@ public struct ApiModule: ReducerProtocol {
         state.commandToSend = state.commandsArray[state.commandsIndex]
         return .none
         
-      case .sendTextField(let text):
+      case .commandSend:
+        return sendCommand(&state, apiModel)
+        
+      case let .commandText(text):
         state.commandToSend = text
         return .none
         
-      case .startStopButton:
+      case .connectionStartStop:
         if state.isConnected {
           return stopTester(&state, apiModel, objectModel, streamModel)
         } else {
           return startTester(&state, objectModel, streamModel, listener)
         }
         
-      case .set(let keyPath, let boolValue):
+      case let .fontSize(size):
+        state.fontSize = size
+        return .none
+        
+      case .messagesClear:
+        return .fireAndForget { await messagesModel.clearAll() }
+        
+      case let .messagesFilter(filter):
+        state.messageFilter = filter
+        return .fireAndForget { [state] in
+          await messagesModel.setFilter(state.messageFilter, state.messageFilterText)
+        }
+        
+      case let .messagesFilterText(text):
+        state.messageFilterText = text
+        return .fireAndForget { [state] in
+          await messagesModel.setFilter(state.messageFilter, state.messageFilterText)
+        }
+        
+      case .messagesSave:
+        
+        // FIXME: temporary test code
+        
+        //        var cmd = "spot add callsign=K3TZR" + " rx_freq=14.250"
+        //        cmd += " tx_freq=14.255"
+        //        cmd += " mode=SSB"
+        //        cmd += " source=N1MM-[StationName]"
+        //        cmd += " spotter_callsign=W6OP"
+        //        cmd += " timestamp=\(Int(Date().timeIntervalSince1970))"
+        //        cmd += " lifetime_seconds=300"
+        //        cmd += " comment=spot comment"
+        //        cmd += " priority=5"
+        //        cmd += " trigger_action=none"
+        //        apiModel.sendTcp(cmd)
+        //
+        //        return .none
+        
+        return saveMessagesToFile(messagesModel)
+        
+      case let .objectsFilter(newFilter):
+        state.objectFilter = newFilter
+        return .none
+        
+      case let .stateSet(keyPath, boolValue):
         state[keyPath: keyPath] = boolValue
         return .none
         
-      case .toggle(let keyPath):
+      case let .stateToggle(keyPath):
         state[keyPath: keyPath].toggle()
         switch keyPath {
         case \.smartlinkEnabled, \.localEnabled, \.loginRequired:
@@ -306,7 +362,7 @@ public struct ApiModule: ReducerProtocol {
             // NOT CONNECTED
             return .none
           }
-
+          
         case \.txAudio:
           if state.isConnected {
             // CONNECTED, start / stop TxAudio
@@ -319,7 +375,7 @@ public struct ApiModule: ReducerProtocol {
             // NOT CONNECTED
             return .none
           }
-
+          
         default:
           return .none
         }
@@ -327,11 +383,11 @@ public struct ApiModule: ReducerProtocol {
         // ----------------------------------------------------------------------------
         // MARK: - Actions: invoked by other actions
         
-      case .connect(let selection, let disconnectHandle):
+      case let .connect(selection, disconnectHandle):
         state.clientState = nil
-        return connectionAttempt(state, selection, disconnectHandle, messagesModel, objectModel)
+        return connectionAttempt(state, selection, disconnectHandle, messagesModel, apiModel)
         
-      case .connectionStatus(let connected):
+      case let .connectionStatus(connected):
         state.isConnected = connected
         if state.isConnected && state.isGui && state.rxAudio {
           // Start RxAudio
@@ -339,7 +395,7 @@ public struct ApiModule: ReducerProtocol {
         }
         return .none
         
-      case .loginStatus(let success, let user):
+      case let .loginStatus(success, user):
         // a smartlink login was completed
         if success {
           // save the User
@@ -354,11 +410,11 @@ public struct ApiModule: ReducerProtocol {
         // ----------------------------------------------------------------------------
         // MARK: - Actions: to display a sheet
         
-      case .showClientSheet(let selection, let stations, let handles):
+      case let .showClientSheet(selection, stations, handles):
         state.clientState = ClientFeature.State(selection: selection, stations: stations, handles: handles)
         return .none
         
-      case .showErrorAlert(let error):
+      case let .showErrorAlert(error):
         state.alertState = AlertState(title: TextState("An Error occurred"), message: TextState(error.rawValue))
         return .none
         
@@ -373,13 +429,13 @@ public struct ApiModule: ReducerProtocol {
         // ----------------------------------------------------------------------------
         // MARK: - Actions: invoked by subscriptions
         
-      case .clientEvent(let event):
+      case let .clientEvent(event):
         return clientEvent(state, event, apiModel, objectModel)
         
-      case .showLogAlert(let logEntry):
+      case let .showLogAlert(logEntry):
         return showLogAlert(&state,logEntry)
         
-      case .testResult(let result):
+      case let .testResult(result):
         // a test result has been received
         state.pickerState?.testResult = result.success
         return .none
@@ -392,7 +448,7 @@ public struct ApiModule: ReducerProtocol {
         state.loginRequired = false
         return .none
         
-      case .login(.loginButton(let user, let pwd)):
+      case let .login(.loginButton(user, pwd)):
         state.loginState = nil
         // try a Smartlink login
         return .run { send in
@@ -416,7 +472,7 @@ public struct ApiModule: ReducerProtocol {
         state.pickerState = nil
         return .none
         
-      case .picker(.connectButton(let selection)):
+      case let .picker(.connectButton(selection)):
         // close the Picker sheet
         state.pickerState = nil
         // save the station (if any)
@@ -426,10 +482,10 @@ public struct ApiModule: ReducerProtocol {
           await checkConnectionStatus(state.isGui, selection)
         }
         
-      case .picker(.defaultButton(let selection)):
+      case let .picker(.defaultButton(selection)):
         return updateDefault(&state, selection)
         
-      case .picker(.testButton(let selection)):
+      case let .picker(.testButton(selection)):
         state.pickerState?.testResult = false
         // send a Test request
         return .fireAndForget {
@@ -447,7 +503,7 @@ public struct ApiModule: ReducerProtocol {
         state.clientState = nil
         return .none
         
-      case .client(.connect(let selection, let disconnectHandle)):
+      case let .client(.connect(selection, disconnectHandle)):
         state.clientState = nil
         return .task { .connect(selection, disconnectHandle) }
         
@@ -477,19 +533,19 @@ public struct ApiModule: ReducerProtocol {
 // ----------------------------------------------------------------------------
 // MARK: - Private Effect methods
 
-private func closeWindow(_ id: String) {
-  for window in NSApp.windows where window.identifier?.rawValue == id {
-    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-    window.close()
-  }
-}
+//private func closeWindow(_ id: String) {
+//  for window in NSApp.windows where window.identifier?.rawValue == id {
+//    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+//    window.close()
+//  }
+//}
 
 private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -> ApiModule.Action {
   // Gui connection with othe stations?
   if isGui && selection.packet.guiClients.count > 0 {
     // YES, may need a disconnect
     var stations = [String]()
-    var handles = [Handle]()
+    var handles = [UInt32]()
     for client in selection.packet.guiClients {
       stations.append(client.station)
       handles.append(client.handle)
@@ -504,7 +560,8 @@ private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -
 }
 
 private func clearMessages(_ clear: Bool) ->  EffectTask<ApiModule.Action> {
-  if clear { return .run { send in await send(.clearNowButton) } }
+//  if clear { return .run { send in await send(.clearNowButton) } }
+  if clear { return .send(.messagesClear) }
   return .none
 }
 
@@ -536,9 +593,7 @@ private func clientEvent(_ state: ApiModule.State, _ event: ClientEvent, _ apiMo
   }
 }
 
-private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: Handle?, _ messagesModel: MessagesModel, _ objectModel: ObjectModel) ->  EffectTask<ApiModule.Action> {
-  
-  @Dependency(\.apiModel) var apiModel
+private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, _ disconnectHandle: UInt32?, _ messagesModel: MessagesModel, _ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
   
   return .run { [state] send in
     await messagesModel.start(state.messageFilter, state.messageFilterText)
@@ -559,11 +614,8 @@ private func connectionAttempt(_ state: ApiModule.State, _ selection: Pickable, 
   }
 }
 
-private func disconnect(_ objectModel: ObjectModel) ->  EffectTask<ApiModule.Action> {
-
-  @Dependency(\.apiModel) var apiModel
-  
-  return .run { send in await apiModel.disconnect() }
+private func disconnect(_ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
+  return .run { _ in apiModel.disconnect() }
 }
 
 private func initialization(_ state: inout ApiModule.State, _ listener: Listener) ->  EffectTask<ApiModule.Action> {
@@ -608,9 +660,7 @@ private func pickerSheet(_ isGui: Bool) ->  EffectTask<ApiModule.Action> {
 }
 
 private func resetClientInitialized(_ apiModel: ApiModel) ->  EffectTask<ApiModule.Action> {
-  return .fireAndForget {
-    await apiModel.resetClientInitialized()
-  }
+  return .fireAndForget { apiModel.resetClientInitialized() }
 }
 
 private func saveMessagesToFile(_ messagesModel: MessagesModel) ->  EffectTask<ApiModule.Action> {
@@ -648,7 +698,7 @@ private func sendCommand(_ state: inout ApiModule.State, _ apiModel: ApiModel) -
     state.commandsIndex = 0
   }
   return .fireAndForget { [state] in
-    _ = await apiModel.sendTcp(state.commandToSend)
+    apiModel.sendTcp(state.commandToSend)
   }
 }
 
@@ -694,7 +744,7 @@ private func stopRxAudio(_ state: inout ApiModule.State, _ objectModel: ObjectMo
     let id = state.opusPlayer!.id
     state.opusPlayer = nil
     return .run { _ in 
-      await streamModel.sendRemoveStream(having: id)
+      await streamModel.sendRemoveStream(id)
     }
   }
   return .none
@@ -709,7 +759,7 @@ private func startTester(_ state: inout ApiModule.State, _ objectModel: ObjectMo
       if let packet = await listener.findPacket(for: state.guiDefault, state.nonGuiDefault, state.isGui) {
         // valid default
         let pickable = Pickable(packet: packet, station: state.isGui ? "" : state.nonGuiDefault?.station ?? "")
-        await send(.clearNowButton)
+        await send(.messagesClear)
         await send( checkConnectionStatus(state.isGui, pickable) )
       } else {
         // invalid default
@@ -726,11 +776,11 @@ private func startTester(_ state: inout ApiModule.State, _ objectModel: ObjectMo
 
 private func stopTester(_ state: inout ApiModule.State, _ apiModel: ApiModel, _ objectModel: ObjectModel, _ streamModel: StreamModel) ->  EffectTask<ApiModule.Action> {
   // ----- STOP -----
-  return .merge(
+  return .concatenate(
     resetClientInitialized(apiModel),
     clearMessages(state.clearOnStop),
     stopRxAudio(&state, objectModel, streamModel),
-    disconnect(objectModel),
+    disconnect(apiModel),
     setConnectionStatus(&state, false)
   )
 }

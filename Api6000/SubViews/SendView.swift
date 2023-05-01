@@ -30,30 +30,30 @@ struct SendView: View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       HStack(spacing: 25) {
         Group {
-          Button("Send") { viewStore.send(.sendButton) }
+          Button("Send") { viewStore.send(.commandSend) }
           .keyboardShortcut(.defaultAction)
 
           HStack(spacing: 0) {
             Image(systemName: "x.circle")
               .onTapGesture {
-                viewStore.send(.sendClearButton)
+                viewStore.send(.commandClear)
               }
             
             Stepper("", onIncrement: {
-              viewStore.send(.sendPreviousStepper)
+              viewStore.send(.commandPrevious)
             }, onDecrement: {
-              viewStore.send(.sendNextStepper)
+              viewStore.send(.commandNext)
             })
             
             TextField("Command to send", text: viewStore.binding(
               get: \.commandToSend,
-              send: {.sendTextField($0)} ))
+              send: {.commandText($0)} ))
           }
         }
         .disabled(viewStore.isConnected == false)
 
         Spacer()
-        Toggle("Clear on Send", isOn: viewStore.binding(get: \.clearOnSend, send: .toggle(\ApiModule.State.clearOnSend)))
+        Toggle("Clear on Send", isOn: viewStore.binding(get: \.clearOnSend, send: .stateToggle(\ApiModule.State.clearOnSend)))
       }
     }
   }

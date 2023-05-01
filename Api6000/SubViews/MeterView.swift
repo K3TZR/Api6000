@@ -18,7 +18,7 @@ struct MeterView: View {
   @ObservedObject var streamModel: StreamModel
   let sliceId: UInt32?
   let sliceClientHandle: UInt32?
-  let handle: Handle
+  let handle: UInt32
   
   
   func showMeter(_ id: UInt32?, _ clientHandle: UInt32?, _ source: String, _ group: String) -> Bool {

@@ -92,7 +92,7 @@ struct GuiClientSubView: View {
   @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
 
-  let handle: Handle
+  let handle: UInt32
   
   var body: some View {
     

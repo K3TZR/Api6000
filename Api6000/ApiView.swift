@@ -141,9 +141,9 @@ public struct ApiView: View {
         // observe openings
         if let window = notification.object as? NSWindow {
           switch window.identifier?.rawValue {
-          case WindowType.log.rawValue: viewStore.send(.set(\.openLogWindow, true))
-          case WindowType.left.rawValue: viewStore.send(.set(\.openLeftWindow, true))
-          case WindowType.right.rawValue: viewStore.send(.set(\.openRightWindow, true))
+          case WindowType.log.rawValue: viewStore.send(.stateSet(\.openLogWindow, true))
+          case WindowType.left.rawValue: viewStore.send(.stateSet(\.openLeftWindow, true))
+          case WindowType.right.rawValue: viewStore.send(.stateSet(\.openRightWindow, true))
           default:  break
           }
         }
@@ -152,9 +152,9 @@ public struct ApiView: View {
         // observe closings unless the entire app is closing
         if !viewStore.isClosing, let window = notification.object as? NSWindow {
           switch window.identifier?.rawValue {
-          case WindowType.log.rawValue: viewStore.send(.set(\.openLogWindow, false))
-          case WindowType.left.rawValue: viewStore.send(.set(\.openLeftWindow, false))
-          case WindowType.right.rawValue: viewStore.send(.set(\.openRightWindow, false))
+          case WindowType.log.rawValue: viewStore.send(.stateSet(\.openLogWindow, false))
+          case WindowType.left.rawValue: viewStore.send(.stateSet(\.openLeftWindow, false))
+          case WindowType.right.rawValue: viewStore.send(.stateSet(\.openRightWindow, false))
           default:  break
           }
         }
@@ -199,44 +199,44 @@ private struct TopButtonsView: View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       HStack(spacing: 20) {
         Button(viewStore.isConnected ? "Stop" : "Start") {
-          viewStore.send(.startStopButton)
+          viewStore.send(.connectionStartStop)
         }
         .keyboardShortcut(viewStore.isConnected ? .cancelAction : .defaultAction)
         
         HStack(spacing: 10) {
-          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .toggle(\.isGui)))
+          Toggle("Gui", isOn: viewStore.binding(get: \.isGui, send: .stateToggle(\.isGui)))
             .frame(width: 60)
             .disabled( viewStore.isConnected )
           Group {
-            Toggle("Show Times", isOn: viewStore.binding(get: \.showTimes, send: .toggle(\.showTimes)))
-            Toggle("Show Pings", isOn: viewStore.binding(get: \.showPings, send: .toggle(\.showPings)))
+            Toggle("Show Times", isOn: viewStore.binding(get: \.showTimes, send: .stateToggle(\.showTimes)))
+            Toggle("Show Pings", isOn: viewStore.binding(get: \.showPings, send: .stateToggle(\.showPings)))
           }
           .frame(width: 100)
         }
         
         Spacer()
         ControlGroup {
-          Toggle(isOn: viewStore.binding(get: \.rxAudio, send: .toggle(\.rxAudio) )) {
+          Toggle(isOn: viewStore.binding(get: \.rxAudio, send: .stateToggle(\.rxAudio) )) {
             Text("Rx Audio") }
-          Toggle(isOn: viewStore.binding(get: \.txAudio, send: .toggle(\.txAudio) )) {
+          Toggle(isOn: viewStore.binding(get: \.txAudio, send: .stateToggle(\.txAudio) )) {
             Text("Tx Audio") }
         }
         .frame(width: 130)
         
         Spacer()
         ControlGroup {
-          Toggle(isOn: viewStore.binding(get: \.localEnabled, send: .toggle(\.localEnabled))) {
+          Toggle(isOn: viewStore.binding(get: \.localEnabled, send: .stateToggle(\.localEnabled))) {
             Text("Local") }
-          Toggle(isOn: viewStore.binding(get: \.smartlinkEnabled, send: .toggle(\.smartlinkEnabled) )) {
+          Toggle(isOn: viewStore.binding(get: \.smartlinkEnabled, send: .stateToggle(\.smartlinkEnabled) )) {
             Text("Smartlink") }
         }
         .disabled( viewStore.isConnected )
         .frame(width: 130)
         
         Spacer()
-        Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: .toggle(\.loginRequired)))
+        Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: .stateToggle(\.loginRequired)))
           .disabled( viewStore.isConnected || viewStore.smartlinkEnabled == false )
-        Toggle("Use Default", isOn: viewStore.binding(get: \.useDefault, send: .toggle(\.useDefault)))
+        Toggle("Use Default", isOn: viewStore.binding(get: \.useDefault, send: .stateToggle(\.useDefault)))
           .disabled( viewStore.isConnected )
       }
     }
@@ -269,7 +269,7 @@ private struct BottomButtonsView: View {
         Stepper("Font Size",
                 value: viewStore.binding(
                   get: \.fontSize,
-                  send: { value in .fontSizeStepper(value) }),
+                  send: { value in .fontSize(value) }),
                 in: 8...12)
         Text(String(format: "%2.0f", viewStore.fontSize)).frame(alignment: .leading)
         
@@ -277,22 +277,22 @@ private struct BottomButtonsView: View {
         HStack {
           Text("Go to \(viewStore.gotoLast ? "Last" : "First")")
           Image(systemName: viewStore.gotoLast ? "arrow.up.square" : "arrow.down.square").font(.title)
-            .onTapGesture { viewStore.send(.toggle(\.gotoLast)) }
+            .onTapGesture { viewStore.send(.stateToggle(\.gotoLast)) }
         }
         Spacer()
         
         HStack {
-          Button("Save") { viewStore.send(.saveButton) }
+          Button("Save") { viewStore.send(.messagesSave) }
         }
         Spacer()
         
         HStack(spacing: 30) {
-          Toggle("Alert on Error", isOn: viewStore.binding(get: \.alertOnError, send: .toggle(\.alertOnError)))
-          Toggle("Clear on Start", isOn: viewStore.binding(get: \.clearOnStart, send: .toggle(\.clearOnStart)))
-          Toggle("Clear on Stop", isOn: viewStore.binding(get: \.clearOnStop, send: .toggle(\.clearOnStop)))
-          Button("Clear Now") { viewStore.send(.clearNowButton)}
+          Toggle("Alert on Error", isOn: viewStore.binding(get: \.alertOnError, send: .stateToggle(\.alertOnError)))
+          Toggle("Clear on Start", isOn: viewStore.binding(get: \.clearOnStart, send: .stateToggle(\.clearOnStart)))
+          Toggle("Clear on Stop", isOn: viewStore.binding(get: \.clearOnStop, send: .stateToggle(\.clearOnStop)))
+          Button("Clear Now") { viewStore.send(.messagesClear)}
           Image(systemName: "rectangle.bottomthird.inset.filled")
-            .onTapGesture { viewStore.send(.toggle(\.showLeftButtons)) }
+            .onTapGesture { viewStore.send(.stateToggle(\.showLeftButtons)) }
         }
       }
     }
@@ -315,9 +315,9 @@ struct ApiView_Previews: PreviewProvider {
   }
 }
 
-private func closeWindow(_ id: String) {
-  for window in NSApp.windows where window.identifier?.rawValue == id {
-    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-    window.close()
-  }
-}
+//private func closeWindow(_ id: String) {
+//  for window in NSApp.windows where window.identifier?.rawValue == id {
+//    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
+//    window.close()
+//  }
+//}

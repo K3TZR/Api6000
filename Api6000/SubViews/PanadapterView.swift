@@ -17,7 +17,7 @@ import Shared
 struct PanadapterView: View {
   @ObservedObject var objectModel: ObjectModel
   @ObservedObject var streamModel: StreamModel
-  let handle: Handle
+  let handle: UInt32
   let showMeters: Bool
 
 
