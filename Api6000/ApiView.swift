@@ -9,7 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 
 import ClientFeature
-import LeftSideFeature
 import LoginFeature
 import LogFeature
 import PickerFeature
@@ -59,21 +58,13 @@ public struct ApiView: View {
         }
         Spacer()
         Divider().background(Color(.gray))
-        BottomButtonsView(store: store)
-        
-        if viewStore.showLeftButtons {
-          LeftSideView(store: Store(
-            initialState: LeftSideFeature.State(panadapterId: objectModel.activePanadapter?.id, waterfallId: objectModel.activePanadapter?.waterfallId, vertical: false),
-            reducer: LeftSideFeature()
-          ))
-        }
+        BottomButtonsView(store: store)        
       }
       
       // ---------- Initialization ----------
       // initialize on first appearance
       .onAppear() {
         if viewStore.openLogWindow { openWindow(id: WindowType.log.rawValue) }
-//        if viewStore.openLeftWindow { openWindow(id: WindowType.left.rawValue) }
         if viewStore.openRightWindow { openWindow(id: WindowType.right.rawValue) }
         viewStore.send(.onAppear)
       }
@@ -314,10 +305,3 @@ struct ApiView_Previews: PreviewProvider {
     .padding()
   }
 }
-
-//private func closeWindow(_ id: String) {
-//  for window in NSApp.windows where window.identifier?.rawValue == id {
-//    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-//    window.close()
-//  }
-//}

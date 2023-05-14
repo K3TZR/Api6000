@@ -9,10 +9,9 @@ import ComposableArchitecture
 import SwiftUI
 
 import FlexApi
-import LeftSideFeature
 import LogFeature
-import PanFeature
-import RightSideFeature
+import PanafallFeature
+import SideControlFeature
 import SettingsFeature
 import Shared
 
@@ -69,27 +68,18 @@ struct Api6000App: App {
     .windowStyle(.hiddenTitleBar)
     .defaultPosition(.bottomTrailing)
 
-    // Rightside window
+    // SideControl window
     Window(WindowType.right.rawValue, id: WindowType.right.rawValue) {
-      RightSideView(store: Store(initialState: RightSideFeature.State(), reducer: RightSideFeature()), apiModel: apiModel, objectModel: objectModel)
+      SideControlView(store: Store(initialState: SideControlFeature.State(), reducer: SideControlFeature()), apiModel: apiModel, objectModel: objectModel)
       .frame(minHeight: 210)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topTrailing)
-        
-    // Leftside window
-    Window(WindowType.left.rawValue, id: WindowType.left.rawValue) {
-      LeftSideView(store: Store(initialState: LeftSideFeature.State(panadapterId: objectModel.activePanadapter?.id, waterfallId: objectModel.activePanadapter?.waterfallId), reducer: LeftSideFeature()))
-        .frame(minWidth: 75, minHeight: 250)
-    }
-    .windowStyle(.hiddenTitleBar)
-    .windowResizability(WindowResizability.contentSize)
-    .defaultPosition(.topLeading)
-    
-    // Panadapter window
+            
+    // Panaafall window
     Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
-      PanView(store: Store(initialState: PanFeature.State(), reducer: PanFeature()), objectModel: objectModel)
+      PanafallView(store: Store(initialState: PanafallFeature.State(), reducer: PanafallFeature()), objectModel: objectModel)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)

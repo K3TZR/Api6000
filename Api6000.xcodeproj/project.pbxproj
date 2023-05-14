@@ -7,23 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F0A8427293A77A900EE9D5D /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8426293A77A900EE9D5D /* Shared */; };
-		9F0A842B293A77BD00EE9D5D /* OpusEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842A293A77BD00EE9D5D /* OpusEncoder */; };
-		9F0A842D293A77BD00EE9D5D /* OpusPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842C293A77BD00EE9D5D /* OpusPlayer */; };
-		9F0A842F293A77BD00EE9D5D /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A842E293A77BD00EE9D5D /* RingBuffer */; };
-		9F0A8431293A77BD00EE9D5D /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8430293A77BD00EE9D5D /* SecureStorage */; };
-		9F0A8433293A77BD00EE9D5D /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8432293A77BD00EE9D5D /* XCGWrapper */; };
-		9F0A843F293A7F8000EE9D5D /* ClientFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A843E293A7F8000EE9D5D /* ClientFeature */; };
-		9F0A8441293A7F8000EE9D5D /* CwFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8440293A7F8000EE9D5D /* CwFeature */; };
-		9F0A8443293A7F8000EE9D5D /* EqFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8442293A7F8000EE9D5D /* EqFeature */; };
-		9F0A8445293A7F8000EE9D5D /* LevelIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8444293A7F8000EE9D5D /* LevelIndicatorView */; };
-		9F0A8447293A7F8100EE9D5D /* LogFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8446293A7F8100EE9D5D /* LogFeature */; };
-		9F0A8449293A7F8100EE9D5D /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8448293A7F8100EE9D5D /* LoginFeature */; };
-		9F0A844B293A7F8100EE9D5D /* Ph1Feature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A844A293A7F8100EE9D5D /* Ph1Feature */; };
-		9F0A844D293A7F8100EE9D5D /* Ph2Feature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A844C293A7F8100EE9D5D /* Ph2Feature */; };
-		9F0A844F293A7F8200EE9D5D /* PickerFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A844E293A7F8200EE9D5D /* PickerFeature */; };
-		9F0A8451293A7F8200EE9D5D /* RightSideFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8450293A7F8200EE9D5D /* RightSideFeature */; };
-		9F0A8453293A7F8200EE9D5D /* TxFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0A8452293A7F8200EE9D5D /* TxFeature */; };
 		9F0A8455293AD56700EE9D5D /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8454293AD56700EE9D5D /* RadioView.swift */; };
 		9F0A8457293AD57C00EE9D5D /* AmplifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */; };
 		9F0A8459293AD58100EE9D5D /* AtuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8458293AD58100EE9D5D /* AtuView.swift */; };
@@ -48,26 +31,38 @@
 		9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanView.swift */; };
 		9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformView.swift */; };
 		9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */; };
-		9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F201C8729D33CA800A9A683 /* ApiIntView */; };
+		9F12203E2A08992500D6D39C /* SideControlFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12203D2A08992500D6D39C /* SideControlFeature */; };
+		9F1220402A08992500D6D39C /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12203F2A08992500D6D39C /* SettingsFeature */; };
+		9F1220432A08998E00D6D39C /* FlexApi in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220422A08998E00D6D39C /* FlexApi */; };
+		9F1220452A08998E00D6D39C /* FlexErrors in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220442A08998E00D6D39C /* FlexErrors */; };
+		9F1220472A08998F00D6D39C /* Listener in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220462A08998F00D6D39C /* Listener */; };
+		9F1220492A08998F00D6D39C /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220482A08998F00D6D39C /* Shared */; };
+		9F12204B2A08998F00D6D39C /* Tcp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204A2A08998F00D6D39C /* Tcp */; };
+		9F12204D2A08998F00D6D39C /* Udp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204C2A08998F00D6D39C /* Udp */; };
+		9F12204F2A08999000D6D39C /* Vita in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204E2A08999000D6D39C /* Vita */; };
+		9F1220522A0899C400D6D39C /* PanafallFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220512A0899C400D6D39C /* PanafallFeature */; };
+		9F1220552A0899E900D6D39C /* ClientFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220542A0899E900D6D39C /* ClientFeature */; };
+		9F1220572A0899E900D6D39C /* LogFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220562A0899E900D6D39C /* LogFeature */; };
+		9F1220592A0899EA00D6D39C /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220582A0899EA00D6D39C /* LoginFeature */; };
+		9F12205B2A0899EA00D6D39C /* MonitorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205A2A0899EA00D6D39C /* MonitorView */; };
+		9F12205D2A0899EB00D6D39C /* PickerFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205C2A0899EB00D6D39C /* PickerFeature */; };
+		9F1220602A089A3D00D6D39C /* OpusEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205F2A089A3D00D6D39C /* OpusEncoder */; };
+		9F1220622A089A3E00D6D39C /* OpusPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220612A089A3E00D6D39C /* OpusPlayer */; };
+		9F1220642A089A3E00D6D39C /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220632A089A3E00D6D39C /* RingBuffer */; };
+		9F1220662A089A3F00D6D39C /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220652A089A3F00D6D39C /* XCGWrapper */; };
+		9F1220692A089A8F00D6D39C /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220682A089A8F00D6D39C /* ApiIntView */; };
+		9F12206B2A089A9000D6D39C /* ApiStringView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12206A2A089A9000D6D39C /* ApiStringView */; };
+		9F12206D2A089A9100D6D39C /* LevelIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12206C2A089A9100D6D39C /* LevelIndicatorView */; };
 		9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B52935A01F00F9EEFC /* FiltersView.swift */; };
 		9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesView.swift */; };
 		9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsView.swift */; };
 		9F33A5BC2935A02B00F9EEFC /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5BB2935A02B00F9EEFC /* SendView.swift */; };
-		9FA0CACD29E72F98007FA905 /* FlexApi in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CACC29E72F98007FA905 /* FlexApi */; };
-		9FA0CACF29E72F98007FA905 /* FlexErrors in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CACE29E72F98007FA905 /* FlexErrors */; };
-		9FA0CAD129E72F98007FA905 /* Listener in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD029E72F98007FA905 /* Listener */; };
-		9FA0CAD329E72F98007FA905 /* Tcp in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD229E72F98007FA905 /* Tcp */; };
-		9FA0CAD529E72F98007FA905 /* Udp in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD429E72F98007FA905 /* Udp */; };
-		9FA0CAD729EC9381007FA905 /* PanFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD629EC9381007FA905 /* PanFeature */; };
-		9FA0CADA29F6C230007FA905 /* Vita in Frameworks */ = {isa = PBXBuildFile; productRef = 9FA0CAD929F6C230007FA905 /* Vita */; };
 		9FE8947329358DD700C12DE2 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8947229358DD700C12DE2 /* Api6000App.swift */; };
 		9FE8947729358DD800C12DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947629358DD800C12DE2 /* Assets.xcassets */; };
 		9FE8947A29358DD800C12DE2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947929358DD800C12DE2 /* Preview Assets.xcassets */; };
 		9FE8948B2935918A00C12DE2 /* ApiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894872935918A00C12DE2 /* ApiView.swift */; };
 		9FE8948C2935918A00C12DE2 /* ApiCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894882935918A00C12DE2 /* ApiCore.swift */; };
 		9FE894962935957B00C12DE2 /* MessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE894952935957B00C12DE2 /* MessagesModel.swift */; };
-		9FF3CE092953B46B00C145E1 /* LeftSideFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE082953B46B00C145E1 /* LeftSideFeature */; };
-		9FF3CE0B2953B49100C145E1 /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF3CE0A2953B49100C145E1 /* SettingsFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,14 +91,11 @@
 		9F0A847E293AD5D400EE9D5D /* WanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanView.swift; sourceTree = "<group>"; };
 		9F0A8480293AD5D700EE9D5D /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrView.swift; sourceTree = "<group>"; };
-		9F201C8929D5140C00A9A683 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
-		9F201C8A29D5141600A9A683 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
+		9F12208A2A0D18A400D6D39C /* PanFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PanFeature; path = ../Packages/PanFeature; sourceTree = "<group>"; };
 		9F33A5B52935A01F00F9EEFC /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		9F33A5B72935A02300F9EEFC /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
-		9FA0CAC929D8F96B007FA905 /* UtilityFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UtilityFeatures; path = ../Packages/UtilityFeatures; sourceTree = "<group>"; };
-		9FA0CAD829F6C15C007FA905 /* SharedFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedFeatures; path = ../Packages/SharedFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,33 +111,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FA0CAD329E72F98007FA905 /* Tcp in Frameworks */,
-				9F0A8443293A7F8000EE9D5D /* EqFeature in Frameworks */,
-				9F0A843F293A7F8000EE9D5D /* ClientFeature in Frameworks */,
-				9F0A8445293A7F8000EE9D5D /* LevelIndicatorView in Frameworks */,
-				9FF3CE092953B46B00C145E1 /* LeftSideFeature in Frameworks */,
-				9F0A8427293A77A900EE9D5D /* Shared in Frameworks */,
-				9F0A8447293A7F8100EE9D5D /* LogFeature in Frameworks */,
-				9F0A844D293A7F8100EE9D5D /* Ph2Feature in Frameworks */,
-				9F0A842F293A77BD00EE9D5D /* RingBuffer in Frameworks */,
-				9FA0CACD29E72F98007FA905 /* FlexApi in Frameworks */,
-				9F0A844B293A7F8100EE9D5D /* Ph1Feature in Frameworks */,
-				9F0A8431293A77BD00EE9D5D /* SecureStorage in Frameworks */,
-				9F0A842D293A77BD00EE9D5D /* OpusPlayer in Frameworks */,
-				9F0A842B293A77BD00EE9D5D /* OpusEncoder in Frameworks */,
-				9F0A8441293A7F8000EE9D5D /* CwFeature in Frameworks */,
-				9F0A8449293A7F8100EE9D5D /* LoginFeature in Frameworks */,
-				9F0A844F293A7F8200EE9D5D /* PickerFeature in Frameworks */,
-				9FA0CAD729EC9381007FA905 /* PanFeature in Frameworks */,
-				9FA0CAD529E72F98007FA905 /* Udp in Frameworks */,
-				9FA0CACF29E72F98007FA905 /* FlexErrors in Frameworks */,
-				9FF3CE0B2953B49100C145E1 /* SettingsFeature in Frameworks */,
-				9F0A8453293A7F8200EE9D5D /* TxFeature in Frameworks */,
-				9F0A8433293A77BD00EE9D5D /* XCGWrapper in Frameworks */,
-				9F201C8829D33CA800A9A683 /* ApiIntView in Frameworks */,
-				9FA0CADA29F6C230007FA905 /* Vita in Frameworks */,
-				9FA0CAD129E72F98007FA905 /* Listener in Frameworks */,
-				9F0A8451293A7F8200EE9D5D /* RightSideFeature in Frameworks */,
+				9F12206D2A089A9100D6D39C /* LevelIndicatorView in Frameworks */,
+				9F12205D2A0899EB00D6D39C /* PickerFeature in Frameworks */,
+				9F1220552A0899E900D6D39C /* ClientFeature in Frameworks */,
+				9F1220692A089A8F00D6D39C /* ApiIntView in Frameworks */,
+				9F1220602A089A3D00D6D39C /* OpusEncoder in Frameworks */,
+				9F1220662A089A3F00D6D39C /* XCGWrapper in Frameworks */,
+				9F1220432A08998E00D6D39C /* FlexApi in Frameworks */,
+				9F1220402A08992500D6D39C /* SettingsFeature in Frameworks */,
+				9F1220472A08998F00D6D39C /* Listener in Frameworks */,
+				9F1220642A089A3E00D6D39C /* RingBuffer in Frameworks */,
+				9F1220452A08998E00D6D39C /* FlexErrors in Frameworks */,
+				9F12204D2A08998F00D6D39C /* Udp in Frameworks */,
+				9F12204B2A08998F00D6D39C /* Tcp in Frameworks */,
+				9F12204F2A08999000D6D39C /* Vita in Frameworks */,
+				9F1220572A0899E900D6D39C /* LogFeature in Frameworks */,
+				9F12203E2A08992500D6D39C /* SideControlFeature in Frameworks */,
+				9F12205B2A0899EA00D6D39C /* MonitorView in Frameworks */,
+				9F1220522A0899C400D6D39C /* PanafallFeature in Frameworks */,
+				9F1220592A0899EA00D6D39C /* LoginFeature in Frameworks */,
+				9F12206B2A089A9000D6D39C /* ApiStringView in Frameworks */,
+				9F1220492A08998F00D6D39C /* Shared in Frameworks */,
+				9F1220622A089A3E00D6D39C /* OpusPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,10 +184,7 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
-				9FA0CAD829F6C15C007FA905 /* SharedFeatures */,
-				9FA0CAC929D8F96B007FA905 /* UtilityFeatures */,
-				9F201C8A29D5141600A9A683 /* ViewFeatures */,
-				9F201C8929D5140C00A9A683 /* ApiFeatures */,
+				9F12208A2A0D18A400D6D39C /* PanFeature */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -256,33 +240,28 @@
 			);
 			name = Api6000;
 			packageProductDependencies = (
-				9F0A8426293A77A900EE9D5D /* Shared */,
-				9F0A842A293A77BD00EE9D5D /* OpusEncoder */,
-				9F0A842C293A77BD00EE9D5D /* OpusPlayer */,
-				9F0A842E293A77BD00EE9D5D /* RingBuffer */,
-				9F0A8430293A77BD00EE9D5D /* SecureStorage */,
-				9F0A8432293A77BD00EE9D5D /* XCGWrapper */,
-				9F0A843E293A7F8000EE9D5D /* ClientFeature */,
-				9F0A8440293A7F8000EE9D5D /* CwFeature */,
-				9F0A8442293A7F8000EE9D5D /* EqFeature */,
-				9F0A8444293A7F8000EE9D5D /* LevelIndicatorView */,
-				9F0A8446293A7F8100EE9D5D /* LogFeature */,
-				9F0A8448293A7F8100EE9D5D /* LoginFeature */,
-				9F0A844A293A7F8100EE9D5D /* Ph1Feature */,
-				9F0A844C293A7F8100EE9D5D /* Ph2Feature */,
-				9F0A844E293A7F8200EE9D5D /* PickerFeature */,
-				9F0A8450293A7F8200EE9D5D /* RightSideFeature */,
-				9F0A8452293A7F8200EE9D5D /* TxFeature */,
-				9FF3CE082953B46B00C145E1 /* LeftSideFeature */,
-				9FF3CE0A2953B49100C145E1 /* SettingsFeature */,
-				9F201C8729D33CA800A9A683 /* ApiIntView */,
-				9FA0CACC29E72F98007FA905 /* FlexApi */,
-				9FA0CACE29E72F98007FA905 /* FlexErrors */,
-				9FA0CAD029E72F98007FA905 /* Listener */,
-				9FA0CAD229E72F98007FA905 /* Tcp */,
-				9FA0CAD429E72F98007FA905 /* Udp */,
-				9FA0CAD629EC9381007FA905 /* PanFeature */,
-				9FA0CAD929F6C230007FA905 /* Vita */,
+				9F12203D2A08992500D6D39C /* SideControlFeature */,
+				9F12203F2A08992500D6D39C /* SettingsFeature */,
+				9F1220422A08998E00D6D39C /* FlexApi */,
+				9F1220442A08998E00D6D39C /* FlexErrors */,
+				9F1220462A08998F00D6D39C /* Listener */,
+				9F1220482A08998F00D6D39C /* Shared */,
+				9F12204A2A08998F00D6D39C /* Tcp */,
+				9F12204C2A08998F00D6D39C /* Udp */,
+				9F12204E2A08999000D6D39C /* Vita */,
+				9F1220512A0899C400D6D39C /* PanafallFeature */,
+				9F1220542A0899E900D6D39C /* ClientFeature */,
+				9F1220562A0899E900D6D39C /* LogFeature */,
+				9F1220582A0899EA00D6D39C /* LoginFeature */,
+				9F12205A2A0899EA00D6D39C /* MonitorView */,
+				9F12205C2A0899EB00D6D39C /* PickerFeature */,
+				9F12205F2A089A3D00D6D39C /* OpusEncoder */,
+				9F1220612A089A3E00D6D39C /* OpusPlayer */,
+				9F1220632A089A3E00D6D39C /* RingBuffer */,
+				9F1220652A089A3F00D6D39C /* XCGWrapper */,
+				9F1220682A089A8F00D6D39C /* ApiIntView */,
+				9F12206A2A089A9000D6D39C /* ApiStringView */,
+				9F12206C2A089A9100D6D39C /* LevelIndicatorView */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -314,10 +293,13 @@
 			mainGroup = 9FE8946629358DD700C12DE2;
 			packageReferences = (
 				9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				9F0A83FD293A760900EE9D5D /* XCRemoteSwiftPackageReference "SharedFeatures" */,
-				9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */,
-				9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */,
-				9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */,
+				9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */,
+				9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */,
+				9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */,
+				9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */,
+				9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */,
+				9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */,
+				9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */,
 			);
 			productRefGroup = 9FE8947029358DD700C12DE2 /* Products */;
 			projectDirPath = "";
@@ -584,36 +566,60 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9F0A83FD293A760900EE9D5D /* XCRemoteSwiftPackageReference "SharedFeatures" */ = {
+		9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/SharedFeatures.git";
+			repositoryURL = "https://github.com/K3TZR/ApiFeature.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.1;
+				branch = main;
+				kind = branch;
 			};
 		};
-		9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */ = {
+		9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/UtilityFeatures.git";
+			repositoryURL = "https://github.com/K3TZR/PanFeature.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
+				branch = main;
+				kind = branch;
 			};
 		};
-		9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */ = {
+		9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
+			repositoryURL = "https://github.com/K3TZR/ViewFeature.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.1;
+				branch = main;
+				kind = branch;
 			};
 		};
-		9F0A841A293A769600EE9D5D /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
+		9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
+			repositoryURL = "https://github.com/K3TZR/UtilityFeature.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.1;
+				branch = main;
+				kind = branch;
+			};
+		};
+		9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/K3TZR/CustomControlFeature.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/K3TZR/SideControlFeature.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/K3TZR/SettingsFeature.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -627,133 +633,115 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F0A8426293A77A900EE9D5D /* Shared */ = {
+		9F12203D2A08992500D6D39C /* SideControlFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F0A83FD293A760900EE9D5D /* XCRemoteSwiftPackageReference "SharedFeatures" */;
-			productName = Shared;
+			package = 9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */;
+			productName = SideControlFeature;
 		};
-		9F0A842A293A77BD00EE9D5D /* OpusEncoder */ = {
+		9F12203F2A08992500D6D39C /* SettingsFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = OpusEncoder;
+			package = 9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */;
+			productName = SettingsFeature;
 		};
-		9F0A842C293A77BD00EE9D5D /* OpusPlayer */ = {
+		9F1220422A08998E00D6D39C /* FlexApi */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = OpusPlayer;
-		};
-		9F0A842E293A77BD00EE9D5D /* RingBuffer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = RingBuffer;
-		};
-		9F0A8430293A77BD00EE9D5D /* SecureStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = SecureStorage;
-		};
-		9F0A8432293A77BD00EE9D5D /* XCGWrapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A8400293A764900EE9D5D /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
-			productName = XCGWrapper;
-		};
-		9F0A843E293A7F8000EE9D5D /* ClientFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = ClientFeature;
-		};
-		9F0A8440293A7F8000EE9D5D /* CwFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = CwFeature;
-		};
-		9F0A8442293A7F8000EE9D5D /* EqFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = EqFeature;
-		};
-		9F0A8444293A7F8000EE9D5D /* LevelIndicatorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = LevelIndicatorView;
-		};
-		9F0A8446293A7F8100EE9D5D /* LogFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = LogFeature;
-		};
-		9F0A8448293A7F8100EE9D5D /* LoginFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = LoginFeature;
-		};
-		9F0A844A293A7F8100EE9D5D /* Ph1Feature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = Ph1Feature;
-		};
-		9F0A844C293A7F8100EE9D5D /* Ph2Feature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = Ph2Feature;
-		};
-		9F0A844E293A7F8200EE9D5D /* PickerFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = PickerFeature;
-		};
-		9F0A8450293A7F8200EE9D5D /* RightSideFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = RightSideFeature;
-		};
-		9F0A8452293A7F8200EE9D5D /* TxFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = TxFeature;
-		};
-		9F201C8729D33CA800A9A683 /* ApiIntView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = ApiIntView;
-		};
-		9FA0CACC29E72F98007FA905 /* FlexApi */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = FlexApi;
 		};
-		9FA0CACE29E72F98007FA905 /* FlexErrors */ = {
+		9F1220442A08998E00D6D39C /* FlexErrors */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = FlexErrors;
 		};
-		9FA0CAD029E72F98007FA905 /* Listener */ = {
+		9F1220462A08998F00D6D39C /* Listener */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = Listener;
 		};
-		9FA0CAD229E72F98007FA905 /* Tcp */ = {
+		9F1220482A08998F00D6D39C /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			productName = Shared;
+		};
+		9F12204A2A08998F00D6D39C /* Tcp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = Tcp;
 		};
-		9FA0CAD429E72F98007FA905 /* Udp */ = {
+		9F12204C2A08998F00D6D39C /* Udp */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = Udp;
 		};
-		9FA0CAD629EC9381007FA905 /* PanFeature */ = {
+		9F12204E2A08999000D6D39C /* Vita */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = PanFeature;
-		};
-		9FA0CAD929F6C230007FA905 /* Vita */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
 			productName = Vita;
 		};
-		9FF3CE082953B46B00C145E1 /* LeftSideFeature */ = {
+		9F1220512A0899C400D6D39C /* PanafallFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = LeftSideFeature;
+			package = 9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */;
+			productName = PanafallFeature;
 		};
-		9FF3CE0A2953B49100C145E1 /* SettingsFeature */ = {
+		9F1220542A0899E900D6D39C /* ClientFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F0A840D293A767300EE9D5D /* XCRemoteSwiftPackageReference "ViewFeatures" */;
-			productName = SettingsFeature;
+			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
+			productName = ClientFeature;
+		};
+		9F1220562A0899E900D6D39C /* LogFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
+			productName = LogFeature;
+		};
+		9F1220582A0899EA00D6D39C /* LoginFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
+			productName = LoginFeature;
+		};
+		9F12205A2A0899EA00D6D39C /* MonitorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
+			productName = MonitorView;
+		};
+		9F12205C2A0899EB00D6D39C /* PickerFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
+			productName = PickerFeature;
+		};
+		9F12205F2A089A3D00D6D39C /* OpusEncoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
+			productName = OpusEncoder;
+		};
+		9F1220612A089A3E00D6D39C /* OpusPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
+			productName = OpusPlayer;
+		};
+		9F1220632A089A3E00D6D39C /* RingBuffer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
+			productName = RingBuffer;
+		};
+		9F1220652A089A3F00D6D39C /* XCGWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
+			productName = XCGWrapper;
+		};
+		9F1220682A089A8F00D6D39C /* ApiIntView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			productName = ApiIntView;
+		};
+		9F12206A2A089A9000D6D39C /* ApiStringView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			productName = ApiStringView;
+		};
+		9F12206C2A089A9100D6D39C /* LevelIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			productName = LevelIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
