@@ -1,5 +1,5 @@
 //
-//  WaveformView.swift
+//  WaveformSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/4/22.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import FlexApi
 
-struct WaveformView: View {
+struct WaveformSubView: View {
   @ObservedObject var waveform: Waveform
   
   var body: some View {
@@ -38,9 +38,9 @@ struct WaveformView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct WaveformView_Previews: PreviewProvider {
+struct WaveformSubView_Previews: PreviewProvider {
   static var previews: some View {
-    WaveformView(waveform: Waveform())
+    WaveformSubView(waveform: Waveform())
     .frame(minWidth: 1000)
     .padding()
   }

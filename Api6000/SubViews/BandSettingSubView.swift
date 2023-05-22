@@ -1,5 +1,5 @@
 //
-//  BandSettingsView.swift
+//  BandSettingsSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct BandSettingView: View {
+struct BandSettingSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -88,8 +88,8 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct BandSettingView_Previews: PreviewProvider {
+struct BandSettingSubView_Previews: PreviewProvider {
   static var previews: some View {
-    BandSettingView(objectModel: ObjectModel())
+    BandSettingSubView(objectModel: ObjectModel())
   }
 }

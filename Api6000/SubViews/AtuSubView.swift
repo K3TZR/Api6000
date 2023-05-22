@@ -1,5 +1,5 @@
 //
-//  AtuView.swift
+//  AtuSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -13,7 +13,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct AtuView: View {
+struct AtuSubView: View {
   @ObservedObject var atu: Atu
   @ObservedObject var radio: Radio
   
@@ -58,9 +58,9 @@ struct AtuView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct AtuView_Previews: PreviewProvider {
+struct AtuSubView_Previews: PreviewProvider {
   
   static var previews: some View {
-    AtuView(atu: Atu(), radio: Radio(Packet()))
+    AtuSubView(atu: Atu(), radio: Radio(Packet()))
   }
 }

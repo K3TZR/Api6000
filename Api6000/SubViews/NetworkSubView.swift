@@ -1,5 +1,5 @@
 //
-//  NetworkView.swift
+//  NetworkSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 10/3/22.
@@ -10,7 +10,7 @@ import SwiftUI
 
 import FlexApi
 
-public struct NetworkView: View {
+public struct NetworkSubView: View {
   
   @Dependency(\.streamModel) var streamModel
   
@@ -68,8 +68,8 @@ private struct DetailView: View {
   }
 }
 
-struct NetworkView_Previews: PreviewProvider {
+struct NetworkSubView_Previews: PreviewProvider {
   static var previews: some View {
-    NetworkView()
+    NetworkSubView()
   }
 }

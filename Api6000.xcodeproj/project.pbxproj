@@ -7,56 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F0A8455293AD56700EE9D5D /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8454293AD56700EE9D5D /* RadioView.swift */; };
-		9F0A8457293AD57C00EE9D5D /* AmplifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */; };
-		9F0A8459293AD58100EE9D5D /* AtuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8458293AD58100EE9D5D /* AtuView.swift */; };
-		9F0A845B293AD58500EE9D5D /* BandSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845A293AD58500EE9D5D /* BandSettingView.swift */; };
-		9F0A845D293AD58900EE9D5D /* CwxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845C293AD58900EE9D5D /* CwxView.swift */; };
-		9F0A845F293AD58F00EE9D5D /* EqualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845E293AD58F00EE9D5D /* EqualizerView.swift */; };
-		9F0A8461293AD59200EE9D5D /* GpsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8460293AD59200EE9D5D /* GpsView.swift */; };
-		9F0A8463293AD59600EE9D5D /* GuiClientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8462293AD59600EE9D5D /* GuiClientView.swift */; };
-		9F0A8465293AD59B00EE9D5D /* InterlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8464293AD59B00EE9D5D /* InterlockView.swift */; };
-		9F0A8467293AD59F00EE9D5D /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8466293AD59F00EE9D5D /* MemoryView.swift */; };
-		9F0A8469293AD5A200EE9D5D /* MeterStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8468293AD5A200EE9D5D /* MeterStreamView.swift */; };
-		9F0A846B293AD5A600EE9D5D /* MiscView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846A293AD5A600EE9D5D /* MiscView.swift */; };
-		9F0A846D293AD5AD00EE9D5D /* MeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846C293AD5AD00EE9D5D /* MeterView.swift */; };
-		9F0A846F293AD5B300EE9D5D /* NetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846E293AD5B300EE9D5D /* NetworkView.swift */; };
-		9F0A8471293AD5B700EE9D5D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8470293AD5B700EE9D5D /* ProfileView.swift */; };
-		9F0A8473293AD5BC00EE9D5D /* PanadapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8472293AD5BC00EE9D5D /* PanadapterView.swift */; };
-		9F0A8475293AD5C000EE9D5D /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8474293AD5C000EE9D5D /* StreamView.swift */; };
-		9F0A8477293AD5C300EE9D5D /* TesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8476293AD5C300EE9D5D /* TesterView.swift */; };
-		9F0A8479293AD5C700EE9D5D /* TnfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8478293AD5C700EE9D5D /* TnfView.swift */; };
-		9F0A847B293AD5CB00EE9D5D /* TransmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847A293AD5CB00EE9D5D /* TransmitView.swift */; };
-		9F0A847D293AD5D100EE9D5D /* UsbCableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847C293AD5D100EE9D5D /* UsbCableView.swift */; };
-		9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanView.swift */; };
-		9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformView.swift */; };
-		9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */; };
-		9F12203E2A08992500D6D39C /* SideControlFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12203D2A08992500D6D39C /* SideControlFeature */; };
-		9F1220402A08992500D6D39C /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12203F2A08992500D6D39C /* SettingsFeature */; };
-		9F1220432A08998E00D6D39C /* FlexApi in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220422A08998E00D6D39C /* FlexApi */; };
-		9F1220452A08998E00D6D39C /* FlexErrors in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220442A08998E00D6D39C /* FlexErrors */; };
-		9F1220472A08998F00D6D39C /* Listener in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220462A08998F00D6D39C /* Listener */; };
-		9F1220492A08998F00D6D39C /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220482A08998F00D6D39C /* Shared */; };
-		9F12204B2A08998F00D6D39C /* Tcp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204A2A08998F00D6D39C /* Tcp */; };
-		9F12204D2A08998F00D6D39C /* Udp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204C2A08998F00D6D39C /* Udp */; };
-		9F12204F2A08999000D6D39C /* Vita in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12204E2A08999000D6D39C /* Vita */; };
-		9F1220522A0899C400D6D39C /* PanafallFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220512A0899C400D6D39C /* PanafallFeature */; };
-		9F1220552A0899E900D6D39C /* ClientFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220542A0899E900D6D39C /* ClientFeature */; };
-		9F1220572A0899E900D6D39C /* LogFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220562A0899E900D6D39C /* LogFeature */; };
-		9F1220592A0899EA00D6D39C /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220582A0899EA00D6D39C /* LoginFeature */; };
-		9F12205B2A0899EA00D6D39C /* MonitorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205A2A0899EA00D6D39C /* MonitorView */; };
-		9F12205D2A0899EB00D6D39C /* PickerFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205C2A0899EB00D6D39C /* PickerFeature */; };
-		9F1220602A089A3D00D6D39C /* OpusEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12205F2A089A3D00D6D39C /* OpusEncoder */; };
-		9F1220622A089A3E00D6D39C /* OpusPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220612A089A3E00D6D39C /* OpusPlayer */; };
-		9F1220642A089A3E00D6D39C /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220632A089A3E00D6D39C /* RingBuffer */; };
-		9F1220662A089A3F00D6D39C /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220652A089A3F00D6D39C /* XCGWrapper */; };
-		9F1220692A089A8F00D6D39C /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F1220682A089A8F00D6D39C /* ApiIntView */; };
-		9F12206B2A089A9000D6D39C /* ApiStringView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12206A2A089A9000D6D39C /* ApiStringView */; };
-		9F12206D2A089A9100D6D39C /* LevelIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F12206C2A089A9100D6D39C /* LevelIndicatorView */; };
-		9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B52935A01F00F9EEFC /* FiltersView.swift */; };
-		9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesView.swift */; };
-		9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsView.swift */; };
-		9F33A5BC2935A02B00F9EEFC /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5BB2935A02B00F9EEFC /* SendView.swift */; };
+		9F0307AD2A1B0C9B00E02BB6 /* LogView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307AC2A1B0C9B00E02BB6 /* LogView */; };
+		9F0307AF2A1B0C9B00E02BB6 /* LoginDialog in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307AE2A1B0C9B00E02BB6 /* LoginDialog */; };
+		9F0307B12A1B0C9B00E02BB6 /* MonitorControl in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307B02A1B0C9B00E02BB6 /* MonitorControl */; };
+		9F0307B32A1B0C9B00E02BB6 /* RadioPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307B22A1B0C9B00E02BB6 /* RadioPicker */; };
+		9F0307B52A1B0CCE00E02BB6 /* FlexApi in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307B42A1B0CCE00E02BB6 /* FlexApi */; };
+		9F0307B72A1B0CCE00E02BB6 /* FlexErrors in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307B62A1B0CCE00E02BB6 /* FlexErrors */; };
+		9F0307B92A1B0CCE00E02BB6 /* Listener in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307B82A1B0CCE00E02BB6 /* Listener */; };
+		9F0307BB2A1B0CCE00E02BB6 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307BA2A1B0CCE00E02BB6 /* Shared */; };
+		9F0307BD2A1B0CCE00E02BB6 /* Tcp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307BC2A1B0CCE00E02BB6 /* Tcp */; };
+		9F0307BF2A1B0CCE00E02BB6 /* Udp in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307BE2A1B0CCE00E02BB6 /* Udp */; };
+		9F0307C12A1B0CCE00E02BB6 /* Vita in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307C02A1B0CCE00E02BB6 /* Vita */; };
+		9F0307C42A1B0D1100E02BB6 /* ApiIntView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307C32A1B0D1100E02BB6 /* ApiIntView */; };
+		9F0307C62A1B0D1100E02BB6 /* ApiStringView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307C52A1B0D1100E02BB6 /* ApiStringView */; };
+		9F0307C82A1B0D1100E02BB6 /* LevelIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307C72A1B0D1100E02BB6 /* LevelIndicatorView */; };
+		9F0307CA2A1B0D1100E02BB6 /* ProgressFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307C92A1B0D1100E02BB6 /* ProgressFeature */; };
+		9F0307CD2A1B0D5700E02BB6 /* AntennaPopover in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307CC2A1B0D5700E02BB6 /* AntennaPopover */; };
+		9F0307CF2A1B0D5700E02BB6 /* BandPopover in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307CE2A1B0D5700E02BB6 /* BandPopover */; };
+		9F0307D12A1B0D5700E02BB6 /* DaxPopover in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307D02A1B0D5700E02BB6 /* DaxPopover */; };
+		9F0307D32A1B0D5700E02BB6 /* DisplayPopover in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307D22A1B0D5700E02BB6 /* DisplayPopover */; };
+		9F0307D52A1B0D5700E02BB6 /* Panadapter in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307D42A1B0D5700E02BB6 /* Panadapter */; };
+		9F0307D72A1B0D5700E02BB6 /* Panafall in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307D62A1B0D5700E02BB6 /* Panafall */; };
+		9F0307D92A1B0D5700E02BB6 /* Waterfall in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307D82A1B0D5700E02BB6 /* Waterfall */; };
+		9F0307DC2A1B0D9D00E02BB6 /* OpusEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307DB2A1B0D9D00E02BB6 /* OpusEncoder */; };
+		9F0307DE2A1B0D9D00E02BB6 /* OpusPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307DD2A1B0D9D00E02BB6 /* OpusPlayer */; };
+		9F0307E02A1B0D9D00E02BB6 /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307DF2A1B0D9D00E02BB6 /* RingBuffer */; };
+		9F0307E22A1B0D9D00E02BB6 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307E12A1B0D9D00E02BB6 /* SecureStorage */; };
+		9F0307E42A1B0D9D00E02BB6 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307E32A1B0D9D00E02BB6 /* XCGWrapper */; };
+		9F0A8455293AD56700EE9D5D /* RadioSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8454293AD56700EE9D5D /* RadioSubView.swift */; };
+		9F0A8457293AD57C00EE9D5D /* AmplifierSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8456293AD57C00EE9D5D /* AmplifierSubView.swift */; };
+		9F0A8459293AD58100EE9D5D /* AtuSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8458293AD58100EE9D5D /* AtuSubView.swift */; };
+		9F0A845B293AD58500EE9D5D /* BandSettingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845A293AD58500EE9D5D /* BandSettingSubView.swift */; };
+		9F0A845D293AD58900EE9D5D /* CwxSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845C293AD58900EE9D5D /* CwxSubView.swift */; };
+		9F0A845F293AD58F00EE9D5D /* EqualizerSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A845E293AD58F00EE9D5D /* EqualizerSubView.swift */; };
+		9F0A8461293AD59200EE9D5D /* GpsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8460293AD59200EE9D5D /* GpsSubView.swift */; };
+		9F0A8463293AD59600EE9D5D /* GuiClientSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8462293AD59600EE9D5D /* GuiClientSubView.swift */; };
+		9F0A8465293AD59B00EE9D5D /* InterlockSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8464293AD59B00EE9D5D /* InterlockSubView.swift */; };
+		9F0A8467293AD59F00EE9D5D /* MemorySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8466293AD59F00EE9D5D /* MemorySubView.swift */; };
+		9F0A8469293AD5A200EE9D5D /* MeterStreamSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8468293AD5A200EE9D5D /* MeterStreamSubView.swift */; };
+		9F0A846B293AD5A600EE9D5D /* MiscSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846A293AD5A600EE9D5D /* MiscSubView.swift */; };
+		9F0A846D293AD5AD00EE9D5D /* MeterSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846C293AD5AD00EE9D5D /* MeterSubView.swift */; };
+		9F0A846F293AD5B300EE9D5D /* NetworkSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A846E293AD5B300EE9D5D /* NetworkSubView.swift */; };
+		9F0A8471293AD5B700EE9D5D /* ProfileSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8470293AD5B700EE9D5D /* ProfileSubView.swift */; };
+		9F0A8473293AD5BC00EE9D5D /* PanadapterSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8472293AD5BC00EE9D5D /* PanadapterSubView.swift */; };
+		9F0A8475293AD5C000EE9D5D /* StreamSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8474293AD5C000EE9D5D /* StreamSubView.swift */; };
+		9F0A8477293AD5C300EE9D5D /* TesterSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8476293AD5C300EE9D5D /* TesterSubView.swift */; };
+		9F0A8479293AD5C700EE9D5D /* TnfSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8478293AD5C700EE9D5D /* TnfSubView.swift */; };
+		9F0A847B293AD5CB00EE9D5D /* TransmitSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847A293AD5CB00EE9D5D /* TransmitSubView.swift */; };
+		9F0A847D293AD5D100EE9D5D /* UsbCableSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847C293AD5D100EE9D5D /* UsbCableSubView.swift */; };
+		9F0A847F293AD5D500EE9D5D /* WanSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A847E293AD5D400EE9D5D /* WanSubView.swift */; };
+		9F0A8481293AD5D700EE9D5D /* WaveformSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8480293AD5D700EE9D5D /* WaveformSubView.swift */; };
+		9F0A8483293AD5DA00EE9D5D /* XvtrSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrSubView.swift */; };
+		9F33A5B82935A02300F9EEFC /* MessagesSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesSubView.swift */; };
+		9F33A5BA2935A02700F9EEFC /* ObjectsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsSubView.swift */; };
+		9FC82DC32A1B18980081BC53 /* CwControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC22A1B18980081BC53 /* CwControls */; };
+		9FC82DC52A1B18980081BC53 /* EqControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC42A1B18980081BC53 /* EqControls */; };
+		9FC82DC72A1B18980081BC53 /* FlagControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC62A1B18980081BC53 /* FlagControls */; };
+		9FC82DC92A1B18980081BC53 /* Ph1Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC82A1B18980081BC53 /* Ph1Controls */; };
+		9FC82DCB2A1B18980081BC53 /* Ph2Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DCA2A1B18980081BC53 /* Ph2Controls */; };
+		9FC82DCD2A1B18980081BC53 /* SidePanel in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DCC2A1B18980081BC53 /* SidePanel */; };
+		9FC82DCF2A1B18980081BC53 /* TxControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DCE2A1B18980081BC53 /* TxControls */; };
+		9FC82DD12A1B18EC0081BC53 /* ColorSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DD02A1B18EC0081BC53 /* ColorSettings */; };
+		9FC82DD32A1B18EC0081BC53 /* GpsSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DD22A1B18EC0081BC53 /* GpsSettings */; };
+		9FC82DD52A1B18EC0081BC53 /* NetworkSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DD42A1B18EC0081BC53 /* NetworkSettings */; };
+		9FC82DD72A1B18EC0081BC53 /* OtherSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DD62A1B18EC0081BC53 /* OtherSettings */; };
+		9FC82DD92A1B18EC0081BC53 /* PhoneCwSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DD82A1B18EC0081BC53 /* PhoneCwSettings */; };
+		9FC82DDB2A1B18EC0081BC53 /* ProfileSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DDA2A1B18EC0081BC53 /* ProfileSettings */; };
+		9FC82DDD2A1B18EC0081BC53 /* RadioSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DDC2A1B18EC0081BC53 /* RadioSettings */; };
+		9FC82DDF2A1B18EC0081BC53 /* SettingsPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DDE2A1B18EC0081BC53 /* SettingsPanel */; };
+		9FC82DE12A1B18EC0081BC53 /* TxSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DE02A1B18EC0081BC53 /* TxSettings */; };
+		9FC82DE32A1B18EC0081BC53 /* XvtrSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DE22A1B18EC0081BC53 /* XvtrSettings */; };
+		9FC82DE52A1B1B030081BC53 /* ClientDialog in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DE42A1B1B030081BC53 /* ClientDialog */; };
 		9FE8947329358DD700C12DE2 /* Api6000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8947229358DD700C12DE2 /* Api6000App.swift */; };
 		9FE8947729358DD800C12DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947629358DD800C12DE2 /* Assets.xcassets */; };
 		9FE8947A29358DD800C12DE2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8947929358DD800C12DE2 /* Preview Assets.xcassets */; };
@@ -67,35 +88,32 @@
 
 /* Begin PBXFileReference section */
 		9F0480E829464365004D3837 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9F0A8454293AD56700EE9D5D /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
-		9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifierView.swift; sourceTree = "<group>"; };
-		9F0A8458293AD58100EE9D5D /* AtuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtuView.swift; sourceTree = "<group>"; };
-		9F0A845A293AD58500EE9D5D /* BandSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSettingView.swift; sourceTree = "<group>"; };
-		9F0A845C293AD58900EE9D5D /* CwxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwxView.swift; sourceTree = "<group>"; };
-		9F0A845E293AD58F00EE9D5D /* EqualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerView.swift; sourceTree = "<group>"; };
-		9F0A8460293AD59200EE9D5D /* GpsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsView.swift; sourceTree = "<group>"; };
-		9F0A8462293AD59600EE9D5D /* GuiClientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiClientView.swift; sourceTree = "<group>"; };
-		9F0A8464293AD59B00EE9D5D /* InterlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlockView.swift; sourceTree = "<group>"; };
-		9F0A8466293AD59F00EE9D5D /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
-		9F0A8468293AD5A200EE9D5D /* MeterStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterStreamView.swift; sourceTree = "<group>"; };
-		9F0A846A293AD5A600EE9D5D /* MiscView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscView.swift; sourceTree = "<group>"; };
-		9F0A846C293AD5AD00EE9D5D /* MeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterView.swift; sourceTree = "<group>"; };
-		9F0A846E293AD5B300EE9D5D /* NetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkView.swift; sourceTree = "<group>"; };
-		9F0A8470293AD5B700EE9D5D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		9F0A8472293AD5BC00EE9D5D /* PanadapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanadapterView.swift; sourceTree = "<group>"; };
-		9F0A8474293AD5C000EE9D5D /* StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamView.swift; sourceTree = "<group>"; };
-		9F0A8476293AD5C300EE9D5D /* TesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterView.swift; sourceTree = "<group>"; };
-		9F0A8478293AD5C700EE9D5D /* TnfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TnfView.swift; sourceTree = "<group>"; };
-		9F0A847A293AD5CB00EE9D5D /* TransmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitView.swift; sourceTree = "<group>"; };
-		9F0A847C293AD5D100EE9D5D /* UsbCableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsbCableView.swift; sourceTree = "<group>"; };
-		9F0A847E293AD5D400EE9D5D /* WanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanView.swift; sourceTree = "<group>"; };
-		9F0A8480293AD5D700EE9D5D /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
-		9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrView.swift; sourceTree = "<group>"; };
-		9F12208A2A0D18A400D6D39C /* PanFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PanFeature; path = ../Packages/PanFeature; sourceTree = "<group>"; };
-		9F33A5B52935A01F00F9EEFC /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
-		9F33A5B72935A02300F9EEFC /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
-		9F33A5B92935A02700F9EEFC /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
-		9F33A5BB2935A02B00F9EEFC /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		9F0A8454293AD56700EE9D5D /* RadioSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioSubView.swift; sourceTree = "<group>"; };
+		9F0A8456293AD57C00EE9D5D /* AmplifierSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifierSubView.swift; sourceTree = "<group>"; };
+		9F0A8458293AD58100EE9D5D /* AtuSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtuSubView.swift; sourceTree = "<group>"; };
+		9F0A845A293AD58500EE9D5D /* BandSettingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSettingSubView.swift; sourceTree = "<group>"; };
+		9F0A845C293AD58900EE9D5D /* CwxSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwxSubView.swift; sourceTree = "<group>"; };
+		9F0A845E293AD58F00EE9D5D /* EqualizerSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerSubView.swift; sourceTree = "<group>"; };
+		9F0A8460293AD59200EE9D5D /* GpsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsSubView.swift; sourceTree = "<group>"; };
+		9F0A8462293AD59600EE9D5D /* GuiClientSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiClientSubView.swift; sourceTree = "<group>"; };
+		9F0A8464293AD59B00EE9D5D /* InterlockSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlockSubView.swift; sourceTree = "<group>"; };
+		9F0A8466293AD59F00EE9D5D /* MemorySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySubView.swift; sourceTree = "<group>"; };
+		9F0A8468293AD5A200EE9D5D /* MeterStreamSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterStreamSubView.swift; sourceTree = "<group>"; };
+		9F0A846A293AD5A600EE9D5D /* MiscSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscSubView.swift; sourceTree = "<group>"; };
+		9F0A846C293AD5AD00EE9D5D /* MeterSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterSubView.swift; sourceTree = "<group>"; };
+		9F0A846E293AD5B300EE9D5D /* NetworkSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubView.swift; sourceTree = "<group>"; };
+		9F0A8470293AD5B700EE9D5D /* ProfileSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSubView.swift; sourceTree = "<group>"; };
+		9F0A8472293AD5BC00EE9D5D /* PanadapterSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanadapterSubView.swift; sourceTree = "<group>"; };
+		9F0A8474293AD5C000EE9D5D /* StreamSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSubView.swift; sourceTree = "<group>"; };
+		9F0A8476293AD5C300EE9D5D /* TesterSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterSubView.swift; sourceTree = "<group>"; };
+		9F0A8478293AD5C700EE9D5D /* TnfSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TnfSubView.swift; sourceTree = "<group>"; };
+		9F0A847A293AD5CB00EE9D5D /* TransmitSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitSubView.swift; sourceTree = "<group>"; };
+		9F0A847C293AD5D100EE9D5D /* UsbCableSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsbCableSubView.swift; sourceTree = "<group>"; };
+		9F0A847E293AD5D400EE9D5D /* WanSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanSubView.swift; sourceTree = "<group>"; };
+		9F0A8480293AD5D700EE9D5D /* WaveformSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformSubView.swift; sourceTree = "<group>"; };
+		9F0A8482293AD5DA00EE9D5D /* XvtrSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrSubView.swift; sourceTree = "<group>"; };
+		9F33A5B72935A02300F9EEFC /* MessagesSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesSubView.swift; sourceTree = "<group>"; };
+		9F33A5B92935A02700F9EEFC /* ObjectsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsSubView.swift; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,28 +129,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F12206D2A089A9100D6D39C /* LevelIndicatorView in Frameworks */,
-				9F12205D2A0899EB00D6D39C /* PickerFeature in Frameworks */,
-				9F1220552A0899E900D6D39C /* ClientFeature in Frameworks */,
-				9F1220692A089A8F00D6D39C /* ApiIntView in Frameworks */,
-				9F1220602A089A3D00D6D39C /* OpusEncoder in Frameworks */,
-				9F1220662A089A3F00D6D39C /* XCGWrapper in Frameworks */,
-				9F1220432A08998E00D6D39C /* FlexApi in Frameworks */,
-				9F1220402A08992500D6D39C /* SettingsFeature in Frameworks */,
-				9F1220472A08998F00D6D39C /* Listener in Frameworks */,
-				9F1220642A089A3E00D6D39C /* RingBuffer in Frameworks */,
-				9F1220452A08998E00D6D39C /* FlexErrors in Frameworks */,
-				9F12204D2A08998F00D6D39C /* Udp in Frameworks */,
-				9F12204B2A08998F00D6D39C /* Tcp in Frameworks */,
-				9F12204F2A08999000D6D39C /* Vita in Frameworks */,
-				9F1220572A0899E900D6D39C /* LogFeature in Frameworks */,
-				9F12203E2A08992500D6D39C /* SideControlFeature in Frameworks */,
-				9F12205B2A0899EA00D6D39C /* MonitorView in Frameworks */,
-				9F1220522A0899C400D6D39C /* PanafallFeature in Frameworks */,
-				9F1220592A0899EA00D6D39C /* LoginFeature in Frameworks */,
-				9F12206B2A089A9000D6D39C /* ApiStringView in Frameworks */,
-				9F1220492A08998F00D6D39C /* Shared in Frameworks */,
-				9F1220622A089A3E00D6D39C /* OpusPlayer in Frameworks */,
+				9F0307CA2A1B0D1100E02BB6 /* ProgressFeature in Frameworks */,
+				9FC82DDB2A1B18EC0081BC53 /* ProfileSettings in Frameworks */,
+				9FC82DD12A1B18EC0081BC53 /* ColorSettings in Frameworks */,
+				9F0307C12A1B0CCE00E02BB6 /* Vita in Frameworks */,
+				9F0307DC2A1B0D9D00E02BB6 /* OpusEncoder in Frameworks */,
+				9FC82DE52A1B1B030081BC53 /* ClientDialog in Frameworks */,
+				9F0307CD2A1B0D5700E02BB6 /* AntennaPopover in Frameworks */,
+				9F0307BD2A1B0CCE00E02BB6 /* Tcp in Frameworks */,
+				9F0307B52A1B0CCE00E02BB6 /* FlexApi in Frameworks */,
+				9F0307D92A1B0D5700E02BB6 /* Waterfall in Frameworks */,
+				9FC82DDD2A1B18EC0081BC53 /* RadioSettings in Frameworks */,
+				9F0307AF2A1B0C9B00E02BB6 /* LoginDialog in Frameworks */,
+				9F0307DE2A1B0D9D00E02BB6 /* OpusPlayer in Frameworks */,
+				9FC82DCB2A1B18980081BC53 /* Ph2Controls in Frameworks */,
+				9FC82DC52A1B18980081BC53 /* EqControls in Frameworks */,
+				9FC82DCF2A1B18980081BC53 /* TxControls in Frameworks */,
+				9FC82DD32A1B18EC0081BC53 /* GpsSettings in Frameworks */,
+				9FC82DCD2A1B18980081BC53 /* SidePanel in Frameworks */,
+				9F0307AD2A1B0C9B00E02BB6 /* LogView in Frameworks */,
+				9F0307B32A1B0C9B00E02BB6 /* RadioPicker in Frameworks */,
+				9F0307E22A1B0D9D00E02BB6 /* SecureStorage in Frameworks */,
+				9F0307E42A1B0D9D00E02BB6 /* XCGWrapper in Frameworks */,
+				9FC82DD92A1B18EC0081BC53 /* PhoneCwSettings in Frameworks */,
+				9FC82DE12A1B18EC0081BC53 /* TxSettings in Frameworks */,
+				9FC82DD72A1B18EC0081BC53 /* OtherSettings in Frameworks */,
+				9F0307BB2A1B0CCE00E02BB6 /* Shared in Frameworks */,
+				9F0307B72A1B0CCE00E02BB6 /* FlexErrors in Frameworks */,
+				9F0307CF2A1B0D5700E02BB6 /* BandPopover in Frameworks */,
+				9FC82DC32A1B18980081BC53 /* CwControls in Frameworks */,
+				9F0307C82A1B0D1100E02BB6 /* LevelIndicatorView in Frameworks */,
+				9F0307BF2A1B0CCE00E02BB6 /* Udp in Frameworks */,
+				9FC82DD52A1B18EC0081BC53 /* NetworkSettings in Frameworks */,
+				9F0307B92A1B0CCE00E02BB6 /* Listener in Frameworks */,
+				9F0307D52A1B0D5700E02BB6 /* Panadapter in Frameworks */,
+				9FC82DC92A1B18980081BC53 /* Ph1Controls in Frameworks */,
+				9F0307D12A1B0D5700E02BB6 /* DaxPopover in Frameworks */,
+				9F0307D72A1B0D5700E02BB6 /* Panafall in Frameworks */,
+				9FC82DDF2A1B18EC0081BC53 /* SettingsPanel in Frameworks */,
+				9F0307C62A1B0D1100E02BB6 /* ApiStringView in Frameworks */,
+				9F0307E02A1B0D9D00E02BB6 /* RingBuffer in Frameworks */,
+				9F0307C42A1B0D1100E02BB6 /* ApiIntView in Frameworks */,
+				9FC82DC72A1B18980081BC53 /* FlagControls in Frameworks */,
+				9F0307B12A1B0C9B00E02BB6 /* MonitorControl in Frameworks */,
+				9FC82DE32A1B18EC0081BC53 /* XvtrSettings in Frameworks */,
+				9F0307D32A1B0D5700E02BB6 /* DisplayPopover in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,34 +190,32 @@
 		9F33A5BD2935A07300F9EEFC /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				9F0A8456293AD57C00EE9D5D /* AmplifierView.swift */,
-				9F0A8458293AD58100EE9D5D /* AtuView.swift */,
-				9F0A845A293AD58500EE9D5D /* BandSettingView.swift */,
-				9F0A845C293AD58900EE9D5D /* CwxView.swift */,
-				9F0A845E293AD58F00EE9D5D /* EqualizerView.swift */,
-				9F33A5B52935A01F00F9EEFC /* FiltersView.swift */,
-				9F0A8460293AD59200EE9D5D /* GpsView.swift */,
-				9F0A8462293AD59600EE9D5D /* GuiClientView.swift */,
-				9F0A8464293AD59B00EE9D5D /* InterlockView.swift */,
-				9F0A8466293AD59F00EE9D5D /* MemoryView.swift */,
-				9F33A5B72935A02300F9EEFC /* MessagesView.swift */,
-				9F0A8468293AD5A200EE9D5D /* MeterStreamView.swift */,
-				9F0A846C293AD5AD00EE9D5D /* MeterView.swift */,
-				9F0A846A293AD5A600EE9D5D /* MiscView.swift */,
-				9F0A846E293AD5B300EE9D5D /* NetworkView.swift */,
-				9F33A5B92935A02700F9EEFC /* ObjectsView.swift */,
-				9F0A8472293AD5BC00EE9D5D /* PanadapterView.swift */,
-				9F0A8470293AD5B700EE9D5D /* ProfileView.swift */,
-				9F0A8454293AD56700EE9D5D /* RadioView.swift */,
-				9F33A5BB2935A02B00F9EEFC /* SendView.swift */,
-				9F0A8474293AD5C000EE9D5D /* StreamView.swift */,
-				9F0A8476293AD5C300EE9D5D /* TesterView.swift */,
-				9F0A8478293AD5C700EE9D5D /* TnfView.swift */,
-				9F0A847A293AD5CB00EE9D5D /* TransmitView.swift */,
-				9F0A847C293AD5D100EE9D5D /* UsbCableView.swift */,
-				9F0A847E293AD5D400EE9D5D /* WanView.swift */,
-				9F0A8480293AD5D700EE9D5D /* WaveformView.swift */,
-				9F0A8482293AD5DA00EE9D5D /* XvtrView.swift */,
+				9F0A8456293AD57C00EE9D5D /* AmplifierSubView.swift */,
+				9F0A8458293AD58100EE9D5D /* AtuSubView.swift */,
+				9F0A845A293AD58500EE9D5D /* BandSettingSubView.swift */,
+				9F0A845C293AD58900EE9D5D /* CwxSubView.swift */,
+				9F0A845E293AD58F00EE9D5D /* EqualizerSubView.swift */,
+				9F0A8460293AD59200EE9D5D /* GpsSubView.swift */,
+				9F0A8462293AD59600EE9D5D /* GuiClientSubView.swift */,
+				9F0A8464293AD59B00EE9D5D /* InterlockSubView.swift */,
+				9F0A8466293AD59F00EE9D5D /* MemorySubView.swift */,
+				9F33A5B72935A02300F9EEFC /* MessagesSubView.swift */,
+				9F0A8468293AD5A200EE9D5D /* MeterStreamSubView.swift */,
+				9F0A846C293AD5AD00EE9D5D /* MeterSubView.swift */,
+				9F0A846A293AD5A600EE9D5D /* MiscSubView.swift */,
+				9F0A846E293AD5B300EE9D5D /* NetworkSubView.swift */,
+				9F33A5B92935A02700F9EEFC /* ObjectsSubView.swift */,
+				9F0A8472293AD5BC00EE9D5D /* PanadapterSubView.swift */,
+				9F0A8470293AD5B700EE9D5D /* ProfileSubView.swift */,
+				9F0A8454293AD56700EE9D5D /* RadioSubView.swift */,
+				9F0A8474293AD5C000EE9D5D /* StreamSubView.swift */,
+				9F0A8476293AD5C300EE9D5D /* TesterSubView.swift */,
+				9F0A8478293AD5C700EE9D5D /* TnfSubView.swift */,
+				9F0A847A293AD5CB00EE9D5D /* TransmitSubView.swift */,
+				9F0A847C293AD5D100EE9D5D /* UsbCableSubView.swift */,
+				9F0A847E293AD5D400EE9D5D /* WanSubView.swift */,
+				9F0A8480293AD5D700EE9D5D /* WaveformSubView.swift */,
+				9F0A8482293AD5DA00EE9D5D /* XvtrSubView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -184,7 +223,6 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
-				9F12208A2A0D18A400D6D39C /* PanFeature */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -240,28 +278,51 @@
 			);
 			name = Api6000;
 			packageProductDependencies = (
-				9F12203D2A08992500D6D39C /* SideControlFeature */,
-				9F12203F2A08992500D6D39C /* SettingsFeature */,
-				9F1220422A08998E00D6D39C /* FlexApi */,
-				9F1220442A08998E00D6D39C /* FlexErrors */,
-				9F1220462A08998F00D6D39C /* Listener */,
-				9F1220482A08998F00D6D39C /* Shared */,
-				9F12204A2A08998F00D6D39C /* Tcp */,
-				9F12204C2A08998F00D6D39C /* Udp */,
-				9F12204E2A08999000D6D39C /* Vita */,
-				9F1220512A0899C400D6D39C /* PanafallFeature */,
-				9F1220542A0899E900D6D39C /* ClientFeature */,
-				9F1220562A0899E900D6D39C /* LogFeature */,
-				9F1220582A0899EA00D6D39C /* LoginFeature */,
-				9F12205A2A0899EA00D6D39C /* MonitorView */,
-				9F12205C2A0899EB00D6D39C /* PickerFeature */,
-				9F12205F2A089A3D00D6D39C /* OpusEncoder */,
-				9F1220612A089A3E00D6D39C /* OpusPlayer */,
-				9F1220632A089A3E00D6D39C /* RingBuffer */,
-				9F1220652A089A3F00D6D39C /* XCGWrapper */,
-				9F1220682A089A8F00D6D39C /* ApiIntView */,
-				9F12206A2A089A9000D6D39C /* ApiStringView */,
-				9F12206C2A089A9100D6D39C /* LevelIndicatorView */,
+				9F0307AC2A1B0C9B00E02BB6 /* LogView */,
+				9F0307AE2A1B0C9B00E02BB6 /* LoginDialog */,
+				9F0307B02A1B0C9B00E02BB6 /* MonitorControl */,
+				9F0307B22A1B0C9B00E02BB6 /* RadioPicker */,
+				9F0307B42A1B0CCE00E02BB6 /* FlexApi */,
+				9F0307B62A1B0CCE00E02BB6 /* FlexErrors */,
+				9F0307B82A1B0CCE00E02BB6 /* Listener */,
+				9F0307BA2A1B0CCE00E02BB6 /* Shared */,
+				9F0307BC2A1B0CCE00E02BB6 /* Tcp */,
+				9F0307BE2A1B0CCE00E02BB6 /* Udp */,
+				9F0307C02A1B0CCE00E02BB6 /* Vita */,
+				9F0307C32A1B0D1100E02BB6 /* ApiIntView */,
+				9F0307C52A1B0D1100E02BB6 /* ApiStringView */,
+				9F0307C72A1B0D1100E02BB6 /* LevelIndicatorView */,
+				9F0307C92A1B0D1100E02BB6 /* ProgressFeature */,
+				9F0307CC2A1B0D5700E02BB6 /* AntennaPopover */,
+				9F0307CE2A1B0D5700E02BB6 /* BandPopover */,
+				9F0307D02A1B0D5700E02BB6 /* DaxPopover */,
+				9F0307D22A1B0D5700E02BB6 /* DisplayPopover */,
+				9F0307D42A1B0D5700E02BB6 /* Panadapter */,
+				9F0307D62A1B0D5700E02BB6 /* Panafall */,
+				9F0307D82A1B0D5700E02BB6 /* Waterfall */,
+				9F0307DB2A1B0D9D00E02BB6 /* OpusEncoder */,
+				9F0307DD2A1B0D9D00E02BB6 /* OpusPlayer */,
+				9F0307DF2A1B0D9D00E02BB6 /* RingBuffer */,
+				9F0307E12A1B0D9D00E02BB6 /* SecureStorage */,
+				9F0307E32A1B0D9D00E02BB6 /* XCGWrapper */,
+				9FC82DC22A1B18980081BC53 /* CwControls */,
+				9FC82DC42A1B18980081BC53 /* EqControls */,
+				9FC82DC62A1B18980081BC53 /* FlagControls */,
+				9FC82DC82A1B18980081BC53 /* Ph1Controls */,
+				9FC82DCA2A1B18980081BC53 /* Ph2Controls */,
+				9FC82DCC2A1B18980081BC53 /* SidePanel */,
+				9FC82DCE2A1B18980081BC53 /* TxControls */,
+				9FC82DD02A1B18EC0081BC53 /* ColorSettings */,
+				9FC82DD22A1B18EC0081BC53 /* GpsSettings */,
+				9FC82DD42A1B18EC0081BC53 /* NetworkSettings */,
+				9FC82DD62A1B18EC0081BC53 /* OtherSettings */,
+				9FC82DD82A1B18EC0081BC53 /* PhoneCwSettings */,
+				9FC82DDA2A1B18EC0081BC53 /* ProfileSettings */,
+				9FC82DDC2A1B18EC0081BC53 /* RadioSettings */,
+				9FC82DDE2A1B18EC0081BC53 /* SettingsPanel */,
+				9FC82DE02A1B18EC0081BC53 /* TxSettings */,
+				9FC82DE22A1B18EC0081BC53 /* XvtrSettings */,
+				9FC82DE42A1B1B030081BC53 /* ClientDialog */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -293,13 +354,13 @@
 			mainGroup = 9FE8946629358DD700C12DE2;
 			packageReferences = (
 				9FE8948129358F7900C12DE2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */,
-				9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */,
-				9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */,
-				9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */,
-				9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */,
-				9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */,
-				9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */,
+				9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */,
+				9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */,
+				9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */,
+				9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */,
+				9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */,
+				9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */,
+				9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */,
 			);
 			productRefGroup = 9FE8947029358DD700C12DE2 /* Products */;
 			projectDirPath = "";
@@ -327,36 +388,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F0A8467293AD59F00EE9D5D /* MemoryView.swift in Sources */,
-				9F0A8481293AD5D700EE9D5D /* WaveformView.swift in Sources */,
-				9F0A8465293AD59B00EE9D5D /* InterlockView.swift in Sources */,
-				9F0A846D293AD5AD00EE9D5D /* MeterView.swift in Sources */,
-				9F0A8457293AD57C00EE9D5D /* AmplifierView.swift in Sources */,
-				9F0A8455293AD56700EE9D5D /* RadioView.swift in Sources */,
-				9F33A5B62935A02000F9EEFC /* FiltersView.swift in Sources */,
-				9F0A8483293AD5DA00EE9D5D /* XvtrView.swift in Sources */,
-				9F33A5B82935A02300F9EEFC /* MessagesView.swift in Sources */,
-				9F0A846F293AD5B300EE9D5D /* NetworkView.swift in Sources */,
-				9F0A847D293AD5D100EE9D5D /* UsbCableView.swift in Sources */,
-				9F0A845D293AD58900EE9D5D /* CwxView.swift in Sources */,
-				9F0A8469293AD5A200EE9D5D /* MeterStreamView.swift in Sources */,
-				9F0A846B293AD5A600EE9D5D /* MiscView.swift in Sources */,
-				9F0A847F293AD5D500EE9D5D /* WanView.swift in Sources */,
-				9F0A8471293AD5B700EE9D5D /* ProfileView.swift in Sources */,
-				9F0A8459293AD58100EE9D5D /* AtuView.swift in Sources */,
-				9F33A5BA2935A02700F9EEFC /* ObjectsView.swift in Sources */,
-				9F0A8463293AD59600EE9D5D /* GuiClientView.swift in Sources */,
+				9F0A8467293AD59F00EE9D5D /* MemorySubView.swift in Sources */,
+				9F0A8481293AD5D700EE9D5D /* WaveformSubView.swift in Sources */,
+				9F0A8465293AD59B00EE9D5D /* InterlockSubView.swift in Sources */,
+				9F0A846D293AD5AD00EE9D5D /* MeterSubView.swift in Sources */,
+				9F0A8457293AD57C00EE9D5D /* AmplifierSubView.swift in Sources */,
+				9F0A8455293AD56700EE9D5D /* RadioSubView.swift in Sources */,
+				9F0A8483293AD5DA00EE9D5D /* XvtrSubView.swift in Sources */,
+				9F33A5B82935A02300F9EEFC /* MessagesSubView.swift in Sources */,
+				9F0A846F293AD5B300EE9D5D /* NetworkSubView.swift in Sources */,
+				9F0A847D293AD5D100EE9D5D /* UsbCableSubView.swift in Sources */,
+				9F0A845D293AD58900EE9D5D /* CwxSubView.swift in Sources */,
+				9F0A8469293AD5A200EE9D5D /* MeterStreamSubView.swift in Sources */,
+				9F0A846B293AD5A600EE9D5D /* MiscSubView.swift in Sources */,
+				9F0A847F293AD5D500EE9D5D /* WanSubView.swift in Sources */,
+				9F0A8471293AD5B700EE9D5D /* ProfileSubView.swift in Sources */,
+				9F0A8459293AD58100EE9D5D /* AtuSubView.swift in Sources */,
+				9F33A5BA2935A02700F9EEFC /* ObjectsSubView.swift in Sources */,
+				9F0A8463293AD59600EE9D5D /* GuiClientSubView.swift in Sources */,
 				9FE894962935957B00C12DE2 /* MessagesModel.swift in Sources */,
-				9F0A847B293AD5CB00EE9D5D /* TransmitView.swift in Sources */,
-				9F0A8477293AD5C300EE9D5D /* TesterView.swift in Sources */,
-				9F0A8461293AD59200EE9D5D /* GpsView.swift in Sources */,
+				9F0A847B293AD5CB00EE9D5D /* TransmitSubView.swift in Sources */,
+				9F0A8477293AD5C300EE9D5D /* TesterSubView.swift in Sources */,
+				9F0A8461293AD59200EE9D5D /* GpsSubView.swift in Sources */,
 				9FE8947329358DD700C12DE2 /* Api6000App.swift in Sources */,
-				9F0A8473293AD5BC00EE9D5D /* PanadapterView.swift in Sources */,
-				9F0A8475293AD5C000EE9D5D /* StreamView.swift in Sources */,
-				9F33A5BC2935A02B00F9EEFC /* SendView.swift in Sources */,
-				9F0A8479293AD5C700EE9D5D /* TnfView.swift in Sources */,
-				9F0A845B293AD58500EE9D5D /* BandSettingView.swift in Sources */,
-				9F0A845F293AD58F00EE9D5D /* EqualizerView.swift in Sources */,
+				9F0A8473293AD5BC00EE9D5D /* PanadapterSubView.swift in Sources */,
+				9F0A8475293AD5C000EE9D5D /* StreamSubView.swift in Sources */,
+				9F0A8479293AD5C700EE9D5D /* TnfSubView.swift in Sources */,
+				9F0A845B293AD58500EE9D5D /* BandSettingSubView.swift in Sources */,
+				9F0A845F293AD58F00EE9D5D /* EqualizerSubView.swift in Sources */,
 				9FE8948B2935918A00C12DE2 /* ApiView.swift in Sources */,
 				9FE8948C2935918A00C12DE2 /* ApiCore.swift in Sources */,
 			);
@@ -502,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -533,7 +592,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -566,57 +625,57 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */ = {
+		9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/ApiFeature.git";
+			repositoryURL = "https://github.com/K3TZR/ViewFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */ = {
+		9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/PanFeature.git";
+			repositoryURL = "https://github.com/K3TZR/CustomControlFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */ = {
+		9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/ViewFeature.git";
+			repositoryURL = "https://github.com/K3TZR/PanafallFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */ = {
+		9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/UtilityFeature.git";
+			repositoryURL = "https://github.com/K3TZR/UtilityFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */ = {
+		9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/CustomControlFeature.git";
+			repositoryURL = "https://github.com/K3TZR/ApiFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */ = {
+		9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/SideControlFeature.git";
+			repositoryURL = "https://github.com/K3TZR/SettingsFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */ = {
+		9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/K3TZR/SettingsFeature.git";
+			repositoryURL = "https://github.com/K3TZR/SideControlFeatures.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -633,115 +692,230 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F12203D2A08992500D6D39C /* SideControlFeature */ = {
+		9F0307AC2A1B0C9B00E02BB6 /* LogView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F815F172A07E998005AADD1 /* XCRemoteSwiftPackageReference "SideControlFeature" */;
-			productName = SideControlFeature;
+			package = 9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = LogView;
 		};
-		9F12203F2A08992500D6D39C /* SettingsFeature */ = {
+		9F0307AE2A1B0C9B00E02BB6 /* LoginDialog */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F815F712A08444E005AADD1 /* XCRemoteSwiftPackageReference "SettingsFeature" */;
-			productName = SettingsFeature;
+			package = 9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = LoginDialog;
 		};
-		9F1220422A08998E00D6D39C /* FlexApi */ = {
+		9F0307B02A1B0C9B00E02BB6 /* MonitorControl */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = MonitorControl;
+		};
+		9F0307B22A1B0C9B00E02BB6 /* RadioPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = RadioPicker;
+		};
+		9F0307B42A1B0CCE00E02BB6 /* FlexApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = FlexApi;
 		};
-		9F1220442A08998E00D6D39C /* FlexErrors */ = {
+		9F0307B62A1B0CCE00E02BB6 /* FlexErrors */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = FlexErrors;
 		};
-		9F1220462A08998F00D6D39C /* Listener */ = {
+		9F0307B82A1B0CCE00E02BB6 /* Listener */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = Listener;
 		};
-		9F1220482A08998F00D6D39C /* Shared */ = {
+		9F0307BA2A1B0CCE00E02BB6 /* Shared */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = Shared;
 		};
-		9F12204A2A08998F00D6D39C /* Tcp */ = {
+		9F0307BC2A1B0CCE00E02BB6 /* Tcp */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = Tcp;
 		};
-		9F12204C2A08998F00D6D39C /* Udp */ = {
+		9F0307BE2A1B0CCE00E02BB6 /* Udp */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = Udp;
 		};
-		9F12204E2A08999000D6D39C /* Vita */ = {
+		9F0307C02A1B0CCE00E02BB6 /* Vita */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220412A08998E00D6D39C /* XCRemoteSwiftPackageReference "ApiFeature" */;
+			package = 9F7775912A1A7FA30001F831 /* XCRemoteSwiftPackageReference "ApiFeatures" */;
 			productName = Vita;
 		};
-		9F1220512A0899C400D6D39C /* PanafallFeature */ = {
+		9F0307C32A1B0D1100E02BB6 /* ApiIntView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220502A0899C400D6D39C /* XCRemoteSwiftPackageReference "PanFeature" */;
-			productName = PanafallFeature;
-		};
-		9F1220542A0899E900D6D39C /* ClientFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
-			productName = ClientFeature;
-		};
-		9F1220562A0899E900D6D39C /* LogFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
-			productName = LogFeature;
-		};
-		9F1220582A0899EA00D6D39C /* LoginFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
-			productName = LoginFeature;
-		};
-		9F12205A2A0899EA00D6D39C /* MonitorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
-			productName = MonitorView;
-		};
-		9F12205C2A0899EB00D6D39C /* PickerFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220532A0899E900D6D39C /* XCRemoteSwiftPackageReference "ViewFeature" */;
-			productName = PickerFeature;
-		};
-		9F12205F2A089A3D00D6D39C /* OpusEncoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
-			productName = OpusEncoder;
-		};
-		9F1220612A089A3E00D6D39C /* OpusPlayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
-			productName = OpusPlayer;
-		};
-		9F1220632A089A3E00D6D39C /* RingBuffer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
-			productName = RingBuffer;
-		};
-		9F1220652A089A3F00D6D39C /* XCGWrapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F12205E2A089A3D00D6D39C /* XCRemoteSwiftPackageReference "UtilityFeature" */;
-			productName = XCGWrapper;
-		};
-		9F1220682A089A8F00D6D39C /* ApiIntView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			package = 9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */;
 			productName = ApiIntView;
 		};
-		9F12206A2A089A9000D6D39C /* ApiStringView */ = {
+		9F0307C52A1B0D1100E02BB6 /* ApiStringView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			package = 9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */;
 			productName = ApiStringView;
 		};
-		9F12206C2A089A9100D6D39C /* LevelIndicatorView */ = {
+		9F0307C72A1B0D1100E02BB6 /* LevelIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9F1220672A089A8F00D6D39C /* XCRemoteSwiftPackageReference "CustomControlFeature" */;
+			package = 9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */;
 			productName = LevelIndicatorView;
+		};
+		9F0307C92A1B0D1100E02BB6 /* ProgressFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307C22A1B0D1100E02BB6 /* XCRemoteSwiftPackageReference "CustomControlFeatures" */;
+			productName = ProgressFeature;
+		};
+		9F0307CC2A1B0D5700E02BB6 /* AntennaPopover */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = AntennaPopover;
+		};
+		9F0307CE2A1B0D5700E02BB6 /* BandPopover */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = BandPopover;
+		};
+		9F0307D02A1B0D5700E02BB6 /* DaxPopover */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = DaxPopover;
+		};
+		9F0307D22A1B0D5700E02BB6 /* DisplayPopover */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = DisplayPopover;
+		};
+		9F0307D42A1B0D5700E02BB6 /* Panadapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = Panadapter;
+		};
+		9F0307D62A1B0D5700E02BB6 /* Panafall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = Panafall;
+		};
+		9F0307D82A1B0D5700E02BB6 /* Waterfall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307CB2A1B0D5700E02BB6 /* XCRemoteSwiftPackageReference "PanafallFeatures" */;
+			productName = Waterfall;
+		};
+		9F0307DB2A1B0D9D00E02BB6 /* OpusEncoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
+			productName = OpusEncoder;
+		};
+		9F0307DD2A1B0D9D00E02BB6 /* OpusPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
+			productName = OpusPlayer;
+		};
+		9F0307DF2A1B0D9D00E02BB6 /* RingBuffer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
+			productName = RingBuffer;
+		};
+		9F0307E12A1B0D9D00E02BB6 /* SecureStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
+			productName = SecureStorage;
+		};
+		9F0307E32A1B0D9D00E02BB6 /* XCGWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
+			productName = XCGWrapper;
+		};
+		9FC82DC22A1B18980081BC53 /* CwControls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = CwControls;
+		};
+		9FC82DC42A1B18980081BC53 /* EqControls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = EqControls;
+		};
+		9FC82DC62A1B18980081BC53 /* FlagControls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = FlagControls;
+		};
+		9FC82DC82A1B18980081BC53 /* Ph1Controls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = Ph1Controls;
+		};
+		9FC82DCA2A1B18980081BC53 /* Ph2Controls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = Ph2Controls;
+		};
+		9FC82DCC2A1B18980081BC53 /* SidePanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = SidePanel;
+		};
+		9FC82DCE2A1B18980081BC53 /* TxControls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DC12A1B18980081BC53 /* XCRemoteSwiftPackageReference "SideControlFeatures" */;
+			productName = TxControls;
+		};
+		9FC82DD02A1B18EC0081BC53 /* ColorSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = ColorSettings;
+		};
+		9FC82DD22A1B18EC0081BC53 /* GpsSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = GpsSettings;
+		};
+		9FC82DD42A1B18EC0081BC53 /* NetworkSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = NetworkSettings;
+		};
+		9FC82DD62A1B18EC0081BC53 /* OtherSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = OtherSettings;
+		};
+		9FC82DD82A1B18EC0081BC53 /* PhoneCwSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = PhoneCwSettings;
+		};
+		9FC82DDA2A1B18EC0081BC53 /* ProfileSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = ProfileSettings;
+		};
+		9FC82DDC2A1B18EC0081BC53 /* RadioSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = RadioSettings;
+		};
+		9FC82DDE2A1B18EC0081BC53 /* SettingsPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = SettingsPanel;
+		};
+		9FC82DE02A1B18EC0081BC53 /* TxSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = TxSettings;
+		};
+		9FC82DE22A1B18EC0081BC53 /* XvtrSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC82DAC2A1B14D30081BC53 /* XCRemoteSwiftPackageReference "SettingsFeatures" */;
+			productName = XvtrSettings;
+		};
+		9FC82DE42A1B1B030081BC53 /* ClientDialog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F0307A92A1B0C9B00E02BB6 /* XCRemoteSwiftPackageReference "ViewFeatures" */;
+			productName = ClientDialog;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

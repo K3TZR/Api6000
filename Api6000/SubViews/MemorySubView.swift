@@ -1,5 +1,5 @@
 //
-//  MemoriesView.swift
+//  MemorySubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -16,7 +16,7 @@ import FlexApi
 // highlight
 // highlightColor
 
-struct MemoryView: View {
+struct MemorySubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -150,8 +150,8 @@ private struct Row2View: View {
 
 // ----------------------------------------------------------------------------
 // MARK: - Preview
-struct MemoryView_Previews: PreviewProvider {
+struct MemorySubView_Previews: PreviewProvider {
   static var previews: some View {
-    MemoryView(objectModel: ObjectModel())
+    MemorySubView(objectModel: ObjectModel())
   }
 }

@@ -1,5 +1,5 @@
 //
-//  XvtrView.swift
+//  XvtrSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/5/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct XvtrView: View {
+struct XvtrSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -38,8 +38,8 @@ struct XvtrView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct XvtrView_Previews: PreviewProvider {
+struct XvtrSubView_Previews: PreviewProvider {
   static var previews: some View {
-    XvtrView(objectModel: ObjectModel())
+    XvtrSubView(objectModel: ObjectModel())
   }
 }

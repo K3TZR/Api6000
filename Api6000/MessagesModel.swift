@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+import SwiftUI
 
 import Tcp
 //import Api6000
@@ -26,7 +27,7 @@ extension DependencyValues {
   }
 }
 
-@MainActor
+//@MainActor
 public final class MessagesModel: ObservableObject, TesterDelegate {
   // ----------------------------------------------------------------------------
   // MARK: - Initialization (Singleton)
@@ -38,98 +39,74 @@ public final class MessagesModel: ObservableObject, TesterDelegate {
   // MARK: - Public properties
   
   @Published var filteredMessages = IdentifiedArrayOf<TcpMessage>()
-  
+
+  @AppStorage("showPings") var showPings = false
+  @AppStorage("messageFilter") var messageFilter = MessageFilter.all.rawValue
+  @AppStorage("messageFilterText") var messageFilterText = ""
+
   // ----------------------------------------------------------------------------
   // MARK: - Private properties
   
-  private var _filter: MessageFilter = .all
-  private var _filterText: String = ""
   private var _messages = IdentifiedArrayOf<TcpMessage>()
-  private var _showPings = false
   
   // ----------------------------------------------------------------------------
   // MARK: - Public methods
   
-  /// Append a TcpMessage to the messages array and re-filter the filteredMessages pulished value
-  /// - Parameter message: a TcpMessage struct
-  public func addMessage(_ message: TcpMessage) {
-    self._messages.append(message)
-    self.filterMessage(message)
-  }
-  
   /// Clear all messages
-  public func clearAll() {
-    self._messages.removeAll()
-    self.filteredMessages.removeAll()
-  }
-  
-  /// FIlter a TcpMessage, optionally placing it in the filteredMessages array
-  /// - Parameter message: a TcpMessage struct
-  public func filterMessage(_ message: TcpMessage) {
-    
-    // append to the messages array
-    switch (_filter, _filterText) {
-      
-    case (.all, _):        filteredMessages.append(message)
-    case (.prefix, ""):    filteredMessages.append(message)
-    case (.prefix, _):     if message.text.localizedCaseInsensitiveContains("|" + _filterText) { filteredMessages.append(message) }
-    case (.includes, _):   if message.text.localizedCaseInsensitiveContains(_filterText) { filteredMessages.append(message) }
-    case (.excludes, ""):  filteredMessages.append(message)
-    case (.excludes, _):   if !message.text.localizedCaseInsensitiveContains(_filterText) { filteredMessages.append(message) }
-    case (.command, _):    if message.text.prefix(1) == "C" { filteredMessages.append(message) }
-    case (.S0, _):         if message.text.prefix(3) == "S0|" { filteredMessages.append(message) }
-    case (.status, _):     if message.text.prefix(1) == "S" && message.text.prefix(3) != "S0|" { filteredMessages.append(message) }
-    case (.reply, _):      if message.text.prefix(1) == "R" { filteredMessages.append(message) }
+  public func clearAll(_ enabled: Bool = true) {
+    if enabled {
+      self._messages.removeAll()
+      Task { await removeAllFilteredMessages() }
     }
   }
-  
-  /// Rebuild the entire filteredMessages array
-  public func filterMessages() {
-    // re-filter the entire messages array
-    switch (_filter, _filterText) {
-      
-    case (.all, _):        filteredMessages = _messages
-    case (.prefix, ""):    filteredMessages = _messages
-    case (.prefix, _):     filteredMessages = _messages.filter { $0.text.localizedCaseInsensitiveContains("|" + _filterText) }
-    case (.includes, _):   filteredMessages = _messages.filter { $0.text.localizedCaseInsensitiveContains(_filterText) }
-    case (.excludes, ""):  filteredMessages = _messages
-    case (.excludes, _):   filteredMessages = _messages.filter { !$0.text.localizedCaseInsensitiveContains(_filterText) }
-    case (.command, _):    filteredMessages = _messages.filter { $0.text.prefix(1) == "C" }
-    case (.S0, _):         filteredMessages = _messages.filter { $0.text.prefix(3) == "S0|" }
-    case (.status, _):     filteredMessages = _messages.filter { $0.text.prefix(1) == "S" && $0.text.prefix(3) != "S0|"}
-    case (.reply, _):      filteredMessages = _messages.filter { $0.text.prefix(1) == "R" }
-    }
-  }
-  
+
   /// Set the messages filter parameters and re-filter
-  /// - Parameters:
-  ///   - filter: a MessageFilter instance
-  ///   - filterText: a text String
-  public func setFilter(_ filter: MessageFilter, _ filterText: String) {
-    _filter = filter
-    _filterText = filterText
-    self.filterMessages()
+  public func reFilter(filter: String) {
+    messageFilter = filter
+    Task { await self.filterMessages() }
   }
-  
-  /// Set the Show Pings Bool
-  /// - Parameter value: a Bool value
-  public func setShowPings(_ value: Bool) {
-    _showPings = value
+
+  /// Set the messages filter parameters and re-filter
+  public func reFilter(filterText: String) {
+    messageFilterText = filterText
+    Task { await self.filterMessages() }
   }
-  
-  /// Initialize the filter parameters and begin to process TcpMessages
-  /// - Parameters:
-  ///   - filter: a MessageFilter instance
-  ///   - filterText: a text String
-  public func start(_ filter: MessageFilter = .all, _ filterText: String = "") {
-    _filter = filter
-    _filterText = filterText
-    Tcp.shared.testerDelegate = self
+
+  /// Begin to process TcpMessages
+  public func start() {
+//    Tcp.shared.testerDelegate = self
+    subscribeToTcpMessages()
   }
   
   /// Stop processing TcpMessages
   public func stop() {
-    Tcp.shared.testerDelegate = nil
+//    Tcp.shared.testerDelegate = nil
+  }
+
+  // ----------------------------------------------------------------------------
+  // MARK: - Private methods
+  
+  /// Rebuild the entire filteredMessages array
+  @MainActor private func filterMessages() {
+    // re-filter the entire messages array
+    switch (messageFilter, messageFilterText) {
+
+    case (MessageFilter.all.rawValue, _):        filteredMessages = _messages
+    case (MessageFilter.prefix.rawValue, ""):    filteredMessages = _messages
+    case (MessageFilter.prefix.rawValue, _):     filteredMessages = _messages.filter { $0.text.localizedCaseInsensitiveContains("|" + messageFilterText) }
+    case (MessageFilter.includes.rawValue, _):   filteredMessages = _messages.filter { $0.text.localizedCaseInsensitiveContains(messageFilterText) }
+    case (MessageFilter.excludes.rawValue, ""):  filteredMessages = _messages
+    case (MessageFilter.excludes.rawValue, _):   filteredMessages = _messages.filter { !$0.text.localizedCaseInsensitiveContains(messageFilterText) }
+    case (MessageFilter.command.rawValue, _):    filteredMessages = _messages.filter { $0.text.prefix(1) == "C" }
+    case (MessageFilter.S0.rawValue, _):         filteredMessages = _messages.filter { $0.text.prefix(3) == "S0|" }
+    case (MessageFilter.status.rawValue, _):     filteredMessages = _messages.filter { $0.text.prefix(1) == "S" && $0.text.prefix(3) != "S0|"}
+    case (MessageFilter.reply.rawValue, _):      filteredMessages = _messages.filter { $0.text.prefix(1) == "R" }
+    default:                                     filteredMessages = _messages
+    }
+  }
+  
+  @MainActor private func removeAllFilteredMessages() {
+    self.filteredMessages.removeAll()
   }
 }
 
@@ -154,7 +131,38 @@ extension MessagesModel {
     // ignore received replies unless they are non-zero or contain additional data
     if message.direction == .received && ignoreReply(message.text) { return }
     // ignore sent "ping" messages unless showPings is true
-    if message.text.contains("ping") && _showPings == false { return }
-    self.addMessage(message)
+    if message.text.contains("ping") && showPings == false { return }
+    // add it to the backing collection
+    _messages.append(message)
+    Task {
+      await MainActor.run {
+        // add it to the published collection if appropriate
+        switch (messageFilter, messageFilterText) {
+          
+        case (MessageFilter.all.rawValue, _):        filteredMessages.append(message)
+        case (MessageFilter.prefix.rawValue, ""):    filteredMessages.append(message)
+        case (MessageFilter.prefix.rawValue, _):     if message.text.localizedCaseInsensitiveContains("|" + messageFilterText) { filteredMessages.append(message) }
+        case (MessageFilter.includes.rawValue, _):   if message.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(message) }
+        case (MessageFilter.excludes.rawValue, ""):  filteredMessages.append(message)
+        case (MessageFilter.excludes.rawValue, _):   if !message.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(message) }
+        case (MessageFilter.command.rawValue, _):    if message.text.prefix(1) == "C" { filteredMessages.append(message) }
+        case (MessageFilter.S0.rawValue, _):         if message.text.prefix(3) == "S0|" { filteredMessages.append(message) }
+        case (MessageFilter.status.rawValue, _):     if message.text.prefix(1) == "S" && message.text.prefix(3) != "S0|" { filteredMessages.append(message) }
+        case (MessageFilter.reply.rawValue, _):      if message.text.prefix(1) == "R" { filteredMessages.append(message) }
+        default:                                     filteredMessages.append(message)
+        }
+      }
+    }
+  }
+  
+  
+  private func subscribeToTcpMessages()  {
+    Task(priority: .high) {
+      log("MessagesModel: TcpMessage subscription STARTED", .debug, #function, #file, #line)
+      for await tcpMessage in Tcp.shared.testerStream {
+        testerMessages(tcpMessage)
+      }
+      log("MessagesModel: : TcpMessage subscription STOPPED", .debug, #function, #file, #line)
+    }
   }
 }

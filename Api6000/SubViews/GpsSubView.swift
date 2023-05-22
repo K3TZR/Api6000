@@ -1,5 +1,5 @@
 //
-//  GpsView.swift
+//  GpsSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -13,7 +13,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct GpsView: View {
+struct GpsSubView: View {
   @ObservedObject var gps: Gps
   @ObservedObject var radio: Radio
 
@@ -41,8 +41,8 @@ struct GpsView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct GpsView_Previews: PreviewProvider {
+struct GpsSubView_Previews: PreviewProvider {
   static var previews: some View {
-    GpsView(gps: Gps(), radio: Radio(Packet()))
+    GpsSubView(gps: Gps(), radio: Radio(Packet()))
   }
 }

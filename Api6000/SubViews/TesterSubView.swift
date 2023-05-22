@@ -1,5 +1,5 @@
 //
-//  NonGuiClientView.swift
+//  TesterSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/25/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct TesterView: View {
+struct TesterSubView: View {
   
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.objectModel) var objectModel
@@ -66,9 +66,9 @@ struct TesterRadioViewView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct NonGuiClientView_Previews: PreviewProvider {
+struct TesterSubView_Previews: PreviewProvider {
   static var previews: some View {
-    TesterView()
+    TesterSubView()
     .frame(minWidth: 1000)
     .padding()
   }

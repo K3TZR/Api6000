@@ -1,5 +1,5 @@
 //
-//  UsbCableView.swift
+//  UsbCableSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/10/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct UsbCableView: View {
+struct UsbCableSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   let post = String(repeating: " ", count: 1)
@@ -155,8 +155,8 @@ private struct Row2View: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct UsbCableView_Previews: PreviewProvider {
+struct UsbCableSubView_Previews: PreviewProvider {
   static var previews: some View {
-    UsbCableView(objectModel: ObjectModel())
+    UsbCableSubView(objectModel: ObjectModel())
   }
 }

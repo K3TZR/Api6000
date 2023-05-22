@@ -1,5 +1,5 @@
 //
-//  ObjectsView.swift
+//  ObjectsSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/8/22.
@@ -15,14 +15,14 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct ObjectsView: View {
+struct ObjectsSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
   @ObservedObject var objectModel: ObjectModel
-  @ObservedObject var packet: Packet
-  @ObservedObject var radio: Radio
 
   @Dependency(\.listener) var listener
+  
+  @AppStorage("fontSize") var fontSize: Double = 12
 
 //  struct ViewState: Equatable {
 //    let isGui: Bool
@@ -38,19 +38,18 @@ struct ObjectsView: View {
   var body: some View {
     
     WithViewStore(self.store, observe: {$0} ) { viewStore in
-     
-//      if apiModel.activePacket != nil && objectModel.radio != nil {
         ScrollView([.horizontal, .vertical]) {
-          VStack(alignment: .leading) {
-            RadioView(objectModel: objectModel, packet: packet, radio: radio)
-            GuiClientView(store: store, apiModel: apiModel, packet: packet)
-            //          if viewStore.isGui == false { TesterView() }
+          if apiModel.activePacket == nil {
+            Text("Objects will be displayed here")
+          } else {
+            VStack(alignment: .leading) {
+              RadioSubView(objectModel: objectModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
+              GuiClientSubView(store: store, apiModel: apiModel, packet: apiModel.activePacket!)
+              //          if viewStore.isGui == false { TesterView() }
+            }
           }
         }
-        .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
-        .font(.system(size: viewStore.fontSize, weight: .regular, design: .monospaced))
-
-//      }
+        .font(.system(size: fontSize, weight: .regular, design: .monospaced))
     }
   }
 }
@@ -58,15 +57,15 @@ struct ObjectsView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct ObjectsView_Previews: PreviewProvider {
+struct ObjectsSubView_Previews: PreviewProvider {
 
   static var previews: some View {
-    ObjectsView(
+    ObjectsSubView(
       store:
         Store(
           initialState: ApiModule.State(),
           reducer: ApiModule()), apiModel: ApiModel(),
-      objectModel: ObjectModel(), packet: Packet(), radio: Radio(Packet()))
+      objectModel: ObjectModel())
     .frame(minWidth: 975)
     .padding()
   }

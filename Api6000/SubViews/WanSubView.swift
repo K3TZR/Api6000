@@ -1,5 +1,5 @@
 //
-//  WanView.swift
+//  WanSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/10/22.
@@ -12,7 +12,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct WanView: View {
+struct WanSubView: View {
   @ObservedObject var wan: Wan
   
   var body: some View {
@@ -39,8 +39,8 @@ struct WanView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct WanView_Previews: PreviewProvider {
+struct WanSubView_Previews: PreviewProvider {
   static var previews: some View {
-    WanView(wan: Wan())
+    WanSubView(wan: Wan())
   }
 }

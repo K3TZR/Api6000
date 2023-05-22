@@ -9,17 +9,16 @@ import ComposableArchitecture
 import SwiftUI
 
 import FlexApi
-import LogFeature
-import PanafallFeature
-import SideControlFeature
-import SettingsFeature
+import LogView
+import Panadapter
+import SidePanel
+import SettingsPanel
 import Shared
 
 enum WindowType: String {
-  case left = "Left View"
   case log = "Log View"
   case panadapter = "Panadapter View"
-  case right = "Right View"
+  case control = "Controls"
   case settings = "Settings"
 }
 
@@ -27,6 +26,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(_ notification: Notification) {
     // disable tab view
     NSWindow.allowsAutomaticWindowTabbing = false
+    // disable restoring windows
+    UserDefaults.standard.register(defaults: ["NSQuitAlwaysKeepsWindows" : false])
   }
     
   func applicationWillTerminate(_ notification: Notification) {
@@ -69,7 +70,7 @@ struct Api6000App: App {
     .defaultPosition(.bottomTrailing)
 
     // SideControl window
-    Window(WindowType.right.rawValue, id: WindowType.right.rawValue) {
+    Window(WindowType.control.rawValue, id: WindowType.control.rawValue) {
       SideControlView(store: Store(initialState: SideControlFeature.State(), reducer: SideControlFeature()), apiModel: apiModel, objectModel: objectModel)
       .frame(minHeight: 210)
     }
@@ -79,8 +80,9 @@ struct Api6000App: App {
             
     // Panaafall window
     Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
-      PanafallView(store: Store(initialState: PanafallFeature.State(), reducer: PanafallFeature()), objectModel: objectModel)
+      PanadapterView(store: Store(initialState: PanadapterFeature.State(), reducer: PanadapterFeature()), objectModel: objectModel)
     }
+
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.center)

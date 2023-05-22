@@ -1,5 +1,5 @@
 //
-//  MeterView.swift
+//  MeterSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/24/22.
@@ -14,7 +14,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct MeterView: View {
+struct MeterSubView: View {
   @ObservedObject var streamModel: StreamModel
   let sliceId: UInt32?
   let sliceClientHandle: UInt32?
@@ -110,9 +110,9 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct MeterView_Previews: PreviewProvider {
+struct MeterSubView_Previews: PreviewProvider {
   static var previews: some View {
-    MeterView(streamModel: StreamModel(), sliceId: 1, sliceClientHandle: nil, handle: 1)
+    MeterSubView(streamModel: StreamModel(), sliceId: 1, sliceClientHandle: nil, handle: 1)
       .frame(minWidth: 1000)
       .padding()
   }

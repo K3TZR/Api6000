@@ -1,5 +1,5 @@
 //
-//  PanadapterView.swift
+//  PanadapterSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/24/22.
@@ -14,7 +14,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct PanadapterView: View {
+struct PanadapterSubView: View {
   @ObservedObject var objectModel: ObjectModel
   @ObservedObject var streamModel: StreamModel
   let handle: UInt32
@@ -46,7 +46,7 @@ struct PanadapterView: View {
             SliceDetailView(slice: slice)
             
             // slice meter(s)
-            if showMeters { MeterView(streamModel: streamModel, sliceId: slice.id, sliceClientHandle: slice.clientHandle, handle: handle) }
+            if showMeters { MeterSubView(streamModel: streamModel, sliceId: slice.id, sliceClientHandle: slice.clientHandle, handle: handle) }
           }
         }
       }
@@ -226,9 +226,9 @@ private struct SliceDetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct PanadapterView_Previews: PreviewProvider {
+struct PanadapterSubView_Previews: PreviewProvider {
   static var previews: some View {
-    PanadapterView(
+    PanadapterSubView(
       objectModel: ObjectModel(), streamModel: StreamModel(),
       handle: 1,
       showMeters: true

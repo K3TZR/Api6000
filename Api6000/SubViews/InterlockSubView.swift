@@ -1,5 +1,5 @@
 //
-//  InterlockView.swift
+//  InterlockSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/1/22.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import FlexApi
 
-struct InterlockView: View {
+struct InterlockSubView: View {
   @ObservedObject var interlock: Interlock
   
   var body: some View {
@@ -88,9 +88,9 @@ private struct DetailView: View {
   }
 }
 
-struct InterlockView_Previews: PreviewProvider {
+struct InterlockSubView_Previews: PreviewProvider {
   static var previews: some View {
-    InterlockView(interlock: Interlock())
+    InterlockSubView(interlock: Interlock())
   }
 }
 

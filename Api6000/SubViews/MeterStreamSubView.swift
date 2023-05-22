@@ -1,5 +1,5 @@
 //
-//  MeterStreamView.swift
+//  MeterStreamSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 9/23/22.
@@ -14,7 +14,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct MeterStreamView: View {
+struct MeterStreamSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -35,8 +35,8 @@ struct MeterStreamView: View {
   }
 }
 
-struct MeterStreamView_Previews: PreviewProvider {
+struct MeterStreamSubView_Previews: PreviewProvider {
   static var previews: some View {
-    MeterStreamView(objectModel: ObjectModel())
+    MeterStreamSubView(objectModel: ObjectModel())
   }
 }

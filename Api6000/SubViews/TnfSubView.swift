@@ -1,5 +1,5 @@
 //
-//  TnfView.swift
+//  TnfSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct TnfView: View {
+struct TnfSubView: View {
   @ObservedObject var objectModel: ObjectModel
   //  @Dependency(\.objectModel) var objectModel
   
@@ -82,9 +82,9 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct TnfView_Previews: PreviewProvider {
+struct TnfSubView_Previews: PreviewProvider {
   static var previews: some View {
-    TnfView(objectModel: ObjectModel())
+    TnfSubView(objectModel: ObjectModel())
       .frame(minWidth: 1000)
       .padding()
   }

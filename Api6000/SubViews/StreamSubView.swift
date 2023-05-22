@@ -1,5 +1,5 @@
 //
-//  StreamView.swift
+//  StreamSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -14,7 +14,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct StreamView: View {
+struct StreamSubView: View {
   @ObservedObject var objectModel: ObjectModel
   @ObservedObject var streamModel: StreamModel
   let handle: UInt32
@@ -293,8 +293,8 @@ private struct DaxIqStreamView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct StreamView_Previews: PreviewProvider {
+struct StreamSubView_Previews: PreviewProvider {
   static var previews: some View {
-    StreamView(objectModel: ObjectModel(), streamModel: StreamModel(), handle: 1)
+    StreamSubView(objectModel: ObjectModel(), streamModel: StreamModel(), handle: 1)
   }
 }

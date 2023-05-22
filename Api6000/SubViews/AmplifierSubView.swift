@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  AmplifierSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/24/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct AmplifierView: View {
+struct AmplifierSubView: View {
  
   @Dependency(\.objectModel) var objectModel
   
@@ -62,8 +62,8 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct AmplifierView_Previews: PreviewProvider {
+struct AmplifierSubView_Previews: PreviewProvider {
   static var previews: some View {
-    AmplifierView()
+    AmplifierSubView()
   }
 }

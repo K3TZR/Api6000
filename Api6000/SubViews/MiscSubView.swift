@@ -1,5 +1,5 @@
 //
-//  ListsView.swift
+//  MiscSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 10/20/22.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import FlexApi
 
-struct MiscView: View {
+struct MiscSubView: View {
   @ObservedObject var radio: Radio
   
   func stringArrayToString( _ list: [String]) -> String {
@@ -48,9 +48,9 @@ struct MiscView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-//struct MiscView_Previews: PreviewProvider {
+//struct MiscSubView_Previews: PreviewProvider {
 //  static var previews: some View {
-//    ListsView(radio: Radio(Packet(), command: Tcp.shared, stream: Udp.shared) )
+//    MiscSubView(radio: Radio(Packet(), command: Tcp.shared, stream: Udp.shared) )
 //      .frame(minWidth: 1000)
 //      .padding()
 //  }

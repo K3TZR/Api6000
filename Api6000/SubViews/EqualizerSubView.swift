@@ -1,5 +1,5 @@
 //
-//  EqualizerView.swift
+//  EqualizerSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/8/22.
@@ -13,7 +13,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct EqualizerView: View {
+struct EqualizerSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -74,8 +74,8 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct EqualizerView_Previews: PreviewProvider {
+struct EqualizerSubView_Previews: PreviewProvider {
   static var previews: some View {
-    EqualizerView(objectModel: ObjectModel())
+    EqualizerSubView(objectModel: ObjectModel())
   }
 }

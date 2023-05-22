@@ -1,5 +1,5 @@
 //
-//  CwxView.swift
+//  CwxSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/10/22.
@@ -12,7 +12,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct CwxView: View {
+struct CwxSubView: View {
   @ObservedObject var cwx: Cwx
   
   var body: some View {
@@ -44,8 +44,8 @@ struct CwxView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct CwxView_Previews: PreviewProvider {
+struct CwxSubView_Previews: PreviewProvider {
   static var previews: some View {
-    CwxView(cwx: Cwx())
+    CwxSubView(cwx: Cwx())
   }
 }

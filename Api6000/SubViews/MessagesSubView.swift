@@ -1,5 +1,5 @@
 //
-//  MessageView.swift
+//  MessageSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/8/22.
@@ -11,21 +11,20 @@ import SwiftUI
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct MessagesView: View {
+struct MessagesSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var messagesModel: MessagesModel
+
+  @AppStorage("showTimes") var showTimes = false
+  @AppStorage("fontSize") var fontSize: Double = 12
 
   @Namespace var topID
   @Namespace var bottomID
 
   struct ViewState: Equatable {
     let gotoLast: Bool
-    let showTimes: Bool
-    let fontSize: CGFloat
     init(state: ApiModule.State) {
       self.gotoLast = state.gotoLast
-      self.showTimes = state.showTimes
-      self.fontSize = state.fontSize
     }
   }
   
@@ -50,20 +49,16 @@ struct MessagesView: View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       ScrollViewReader { proxy in
         ScrollView([.vertical, .horizontal]) {
-          VStack(alignment: .center) {
-            if messagesModel.filteredMessages.count == 0 {
-              VStack(alignment: .center) {
-                Text("Tcp Messages will be displayed here")
-              }
-              .frame(minWidth: 900, maxWidth: .infinity, alignment: .center)
-              
-            } else {
+//            if messagesModel.filteredMessages.count == 0 {
+//              Text("Tcp Messages will be displayed here")
+//              
+//            } else {
               VStack(alignment: .leading) {
                 Text("Top").hidden()
                   .id(topID)
                 ForEach(messagesModel.filteredMessages.reversed(), id: \.id) { message in
                   HStack {
-                    if viewStore.showTimes { Text(intervalFormat(message.interval)) }
+                    if showTimes { Text(intervalFormat(message.interval)) }
                     Text(message.text)
                   }
                   .foregroundColor( messageColor(message.text) )
@@ -71,7 +66,6 @@ struct MessagesView: View {
                 Text("Bottom").hidden()
                   .id(bottomID)
               }
-              .frame(minWidth: 900, maxWidth: .infinity, alignment: .leading)
               .textSelection(.enabled)
               
               .onChange(of: viewStore.gotoLast, perform: { _ in
@@ -82,9 +76,8 @@ struct MessagesView: View {
                 let id = viewStore.gotoLast ? bottomID : topID
                 proxy.scrollTo(id, anchor: viewStore.gotoLast ? .bottomLeading : .topLeading)
               })
-            }
-          }
-          .font(.system(size: viewStore.fontSize, weight: .regular, design: .monospaced))
+              .font(.system(size: fontSize, weight: .regular, design: .monospaced))
+//            }
         }
       }
     }
@@ -94,10 +87,10 @@ struct MessagesView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct MessagesView_Previews: PreviewProvider {
+struct MessagesSubView_Previews: PreviewProvider {
   
   static var previews: some View {
-    MessagesView(
+    MessagesSubView(
       store: Store(
         initialState: ApiModule.State(),
         reducer: ApiModule()

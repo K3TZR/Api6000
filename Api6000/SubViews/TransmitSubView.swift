@@ -1,5 +1,5 @@
 //
-//  TransmitView.swift
+//  TransmitSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -12,7 +12,7 @@ import FlexApi
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct TransmitView: View {
+struct TransmitSubView: View {
   @ObservedObject var transmit: Transmit
   
   var body: some View {
@@ -150,9 +150,9 @@ private struct Row3View: View {
   // ----------------------------------------------------------------------------
   // MARK: - Preview
   
-  //struct TransmitView_Previews: PreviewProvider {
+  //struct TransmitSubView_Previews: PreviewProvider {
   //  static var previews: some View {
-  //    TransmitView(transmit: Transmit.shared)
+  //    TransmitSubView(transmit: Transmit.shared)
   //      .frame(minWidth: 1000)
   //      .padding()
   //  }

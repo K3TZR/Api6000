@@ -1,5 +1,5 @@
 //
-//  GuiClientView.swift
+//  GuiClientSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -15,7 +15,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct GuiClientView: View {
+struct GuiClientSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
   @ObservedObject var packet: Packet
@@ -75,56 +75,60 @@ private struct DetailView: View {
         Text(guiClient.isLocalPtt ? "Y" : "N").foregroundColor(guiClient.isLocalPtt ? .green : .red)
       }
     }
-    if showSubView { GuiClientSubView(store: store, handle: guiClient.handle) }
+    if showSubView { GuiClientDetailView(store: store, handle: guiClient.handle) }
   }
 }
 
-struct GuiClientSubView: View {
+struct GuiClientDetailView: View {
   let store: StoreOf<ApiModule>
   
-  struct ViewState: Equatable {
-    let objectFilter: ObjectFilter
-    init(state: ApiModule.State) {
-      self.objectFilter = state.objectFilter
-    }
-  }
+//  struct ViewState: Equatable {
+//    let objectFilter: ObjectFilter
+//    init(state: ApiModule.State) {
+//      self.objectFilter = state.objectFilter
+//    }
+//  }
   
   @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
 
+  @AppStorage("objectFilter") var objectFilter = ObjectFilter.core.rawValue
+  
   let handle: UInt32
   
   var body: some View {
     
-    WithViewStore(self.store, observe: ViewState.init) { viewStore in
-      switch viewStore.objectFilter {
+    WithViewStore(self.store, observe: {$0}) { viewStore in
+      switch objectFilter {
         
-      case ObjectFilter.core:
-        PanadapterView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: true)
+      case ObjectFilter.core.rawValue:
+        PanadapterSubView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: true)
         
-      case ObjectFilter.coreNoMeters:
-        PanadapterView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: false)
+      case ObjectFilter.coreNoMeters.rawValue:
+        PanadapterSubView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: false)
         
-      case ObjectFilter.amplifiers:        AmplifierView()
-      case ObjectFilter.bandSettings:      BandSettingView(objectModel: objectModel)
-      case ObjectFilter.cwx:               CwxView(cwx: objectModel.cwx)
-      case ObjectFilter.equalizers:        EqualizerView(objectModel: objectModel)
-      case ObjectFilter.interlock:         InterlockView(interlock: objectModel.interlock)
-      case ObjectFilter.memories:          MemoryView(objectModel: objectModel)
-      case ObjectFilter.meters:            MeterView(streamModel: streamModel, sliceId: nil, sliceClientHandle: nil, handle: handle)
-      case ObjectFilter.misc:
+      case ObjectFilter.amplifiers.rawValue:        AmplifierSubView()
+      case ObjectFilter.bandSettings.rawValue:      BandSettingSubView(objectModel: objectModel)
+      case ObjectFilter.cwx.rawValue:               CwxSubView(cwx: objectModel.cwx)
+      case ObjectFilter.equalizers.rawValue:        EqualizerSubView(objectModel: objectModel)
+      case ObjectFilter.interlock.rawValue:         InterlockSubView(interlock: objectModel.interlock)
+      case ObjectFilter.memories.rawValue:          MemorySubView(objectModel: objectModel)
+      case ObjectFilter.meters.rawValue:            MeterSubView(streamModel: streamModel, sliceId: nil, sliceClientHandle: nil, handle: handle)
+      case ObjectFilter.misc.rawValue:
         if objectModel.radio != nil {
-          MiscView(radio: objectModel.radio!)
+          MiscSubView(radio: objectModel.radio!)
         } else {
           EmptyView()
         }
-      case ObjectFilter.network:           NetworkView()
-      case ObjectFilter.profiles:          ProfileView(objectModel: objectModel)
-      case ObjectFilter.streams:           StreamView(objectModel: objectModel, streamModel: streamModel, handle: handle)
-      case ObjectFilter.usbCable:          UsbCableView(objectModel: objectModel)
-      case ObjectFilter.wan:               WanView(wan: objectModel.wan)
-      case ObjectFilter.waveforms:         WaveformView(waveform: objectModel.waveform)
-      case ObjectFilter.xvtrs:             XvtrView(objectModel: objectModel)
+      case ObjectFilter.network.rawValue:           NetworkSubView()
+      case ObjectFilter.profiles.rawValue:          ProfileSubView(objectModel: objectModel)
+      case ObjectFilter.streams.rawValue:           StreamSubView(objectModel: objectModel, streamModel: streamModel, handle: handle)
+      case ObjectFilter.usbCable.rawValue:          UsbCableSubView(objectModel: objectModel)
+      case ObjectFilter.wan.rawValue:               WanSubView(wan: objectModel.wan)
+      case ObjectFilter.waveforms.rawValue:         WaveformSubView(waveform: objectModel.waveform)
+      case ObjectFilter.xvtrs.rawValue:             XvtrSubView(objectModel: objectModel)
+      default:
+        PanadapterSubView(objectModel: objectModel, streamModel: streamModel, handle: handle, showMeters: true)
       }
     }
   }
@@ -133,9 +137,9 @@ struct GuiClientSubView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct GuiClientView_Previews: PreviewProvider {
+struct GuiClientSubView_Previews: PreviewProvider {
   static var previews: some View {
-    GuiClientView( store:
+    GuiClientSubView( store:
                     Store(initialState: ApiModule.State(),
                           reducer: ApiModule()),
                    apiModel: ApiModel(), packet: Packet())

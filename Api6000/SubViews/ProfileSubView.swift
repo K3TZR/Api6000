@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ProfileSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 8/9/22.
@@ -10,7 +10,7 @@ import SwiftUI
 
 import FlexApi
 
-struct ProfileView: View {
+struct ProfileSubView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
@@ -65,8 +65,8 @@ private struct DetailView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct ProfileView_Previews: PreviewProvider {
+struct ProfileSubView_Previews: PreviewProvider {
   static var previews: some View {
-    ProfileView(objectModel: ObjectModel())
+    ProfileSubView(objectModel: ObjectModel())
   }
 }

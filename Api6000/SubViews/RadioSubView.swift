@@ -1,5 +1,5 @@
 //
-//  RadioView.swift
+//  RadioSubView.swift
 //  Api6000/SubViews
 //
 //  Created by Douglas Adams on 1/23/22.
@@ -14,7 +14,7 @@ import Shared
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-struct RadioView: View {
+struct RadioSubView: View {
   @ObservedObject var objectModel: ObjectModel
   @ObservedObject var packet: Packet
   @ObservedObject var radio: Radio
@@ -40,7 +40,7 @@ struct RadioView: View {
         Line2View(radio: radio)
         if showSubView {
           Divider().background(packet.source == .local ? .blue : .red)
-          DetailSubView(objectModel: objectModel)
+          DetailView(objectModel: objectModel)
         }
       }
     }
@@ -82,7 +82,6 @@ private struct Line2View: View {
   @ObservedObject var radio: Radio
 
   func stringArrayToString( _ list: [String]?) -> String {
-    
     guard list != nil else { return "Unknown"}
     let str = list!.reduce("") {$0 + $1 + ", "}
     return String(str.dropLast(2))
@@ -126,18 +125,18 @@ private struct Line2View: View {
   }
 }
 
-private struct DetailSubView: View {
+private struct DetailView: View {
   @ObservedObject var objectModel: ObjectModel
   
   var body: some View {
     
     if objectModel.radio != nil {
       VStack(alignment: .leading) {
-        AtuView(atu: objectModel.atu, radio: objectModel.radio!)
-        GpsView(gps: objectModel.gps, radio: objectModel.radio!)
-        MeterStreamView(objectModel: objectModel)
-        TransmitView(transmit: objectModel.transmit)
-        TnfView(objectModel: objectModel)
+        AtuSubView(atu: objectModel.atu, radio: objectModel.radio!)
+        GpsSubView(gps: objectModel.gps, radio: objectModel.radio!)
+        MeterStreamSubView(objectModel: objectModel)
+        TransmitSubView(transmit: objectModel.transmit)
+        TnfSubView(objectModel: objectModel)
       }
     }
   }
@@ -146,9 +145,9 @@ private struct DetailSubView: View {
 // ----------------------------------------------------------------------------
 // MARK: - Preview
 
-struct RadioView_Previews: PreviewProvider {
+struct RadioSubView_Previews: PreviewProvider {
   static var previews: some View {
-    RadioView(objectModel: ObjectModel(), packet: Packet(), radio: Radio(Packet()))
+    RadioSubView(objectModel: ObjectModel(), packet: Packet(), radio: Radio(Packet()))
     .frame(minWidth: 1000)
   }
 }
