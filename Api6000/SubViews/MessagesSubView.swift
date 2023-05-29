@@ -14,13 +14,13 @@ import SwiftUI
 struct MessagesSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var messagesModel: MessagesModel
-
+  
   @AppStorage("showTimes") var showTimes = false
   @AppStorage("fontSize") var fontSize: Double = 12
-
+  
   @Namespace var topID
   @Namespace var bottomID
-
+  
   struct ViewState: Equatable {
     let gotoLast: Bool
     init(state: ApiModule.State) {
@@ -49,35 +49,34 @@ struct MessagesSubView: View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       ScrollViewReader { proxy in
         ScrollView([.vertical, .horizontal]) {
-//            if messagesModel.filteredMessages.count == 0 {
-//              Text("Tcp Messages will be displayed here")
-//              
-//            } else {
-              VStack(alignment: .leading) {
-                Text("Top").hidden()
-                  .id(topID)
-                ForEach(messagesModel.filteredMessages.reversed(), id: \.id) { message in
-                  HStack {
-                    if showTimes { Text(intervalFormat(message.interval)) }
-                    Text(message.text)
-                  }
-                  .foregroundColor( messageColor(message.text) )
+          VStack(alignment: .leading) {
+            if messagesModel.filteredMessages.count == 0 {
+              Text("TCP Message will be displayed here")
+            } else {
+              Text("Top").hidden()
+                .id(topID)
+              ForEach(messagesModel.filteredMessages.reversed(), id: \.id) { message in
+                HStack {
+                  if showTimes { Text(intervalFormat(message.interval)) }
+                  Text(message.text)
                 }
-                Text("Bottom").hidden()
-                  .id(bottomID)
+                .foregroundColor( messageColor(message.text) )
               }
-              .textSelection(.enabled)
-              
-              .onChange(of: viewStore.gotoLast, perform: { _ in
-                let id = viewStore.gotoLast ? bottomID : topID
-                proxy.scrollTo(id, anchor: viewStore.gotoLast ? .bottomLeading : .topLeading)
-              })
-              .onChange(of: messagesModel.filteredMessages.count, perform: { _ in
-                let id = viewStore.gotoLast ? bottomID : topID
-                proxy.scrollTo(id, anchor: viewStore.gotoLast ? .bottomLeading : .topLeading)
-              })
-              .font(.system(size: fontSize, weight: .regular, design: .monospaced))
-//            }
+              Text("Bottom").hidden()
+                .id(bottomID)
+            }
+          }
+          .textSelection(.enabled)
+          
+          .onChange(of: viewStore.gotoLast, perform: { _ in
+            let id = viewStore.gotoLast ? bottomID : topID
+            proxy.scrollTo(id, anchor: viewStore.gotoLast ? .bottomLeading : .topLeading)
+          })
+          .onChange(of: messagesModel.filteredMessages.count, perform: { _ in
+            let id = viewStore.gotoLast ? bottomID : topID
+            proxy.scrollTo(id, anchor: viewStore.gotoLast ? .bottomLeading : .topLeading)
+          })
+          .font(.system(size: fontSize, weight: .regular, design: .monospaced))
         }
       }
     }
@@ -96,7 +95,7 @@ struct MessagesSubView_Previews: PreviewProvider {
         reducer: ApiModule()
       )
       ,
-      messagesModel: MessagesModel.shared
+      messagesModel: MessagesModel()
     )
     .frame(minWidth: 975)
     .padding()

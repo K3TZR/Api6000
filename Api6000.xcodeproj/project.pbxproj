@@ -60,6 +60,7 @@
 		9F0A8483293AD5DA00EE9D5D /* XvtrSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A8482293AD5DA00EE9D5D /* XvtrSubView.swift */; };
 		9F33A5B82935A02300F9EEFC /* MessagesSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B72935A02300F9EEFC /* MessagesSubView.swift */; };
 		9F33A5BA2935A02700F9EEFC /* ObjectsSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F33A5B92935A02700F9EEFC /* ObjectsSubView.swift */; };
+		9FC4B0D52A24489400874935 /* Panafalls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4B0D42A24489400874935 /* Panafalls */; };
 		9FC82DC32A1B18980081BC53 /* CwControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC22A1B18980081BC53 /* CwControls */; };
 		9FC82DC52A1B18980081BC53 /* EqControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC42A1B18980081BC53 /* EqControls */; };
 		9FC82DC72A1B18980081BC53 /* FlagControls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC82DC62A1B18980081BC53 /* FlagControls */; };
@@ -114,6 +115,11 @@
 		9F0A8482293AD5DA00EE9D5D /* XvtrSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XvtrSubView.swift; sourceTree = "<group>"; };
 		9F33A5B72935A02300F9EEFC /* MessagesSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesSubView.swift; sourceTree = "<group>"; };
 		9F33A5B92935A02700F9EEFC /* ObjectsSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsSubView.swift; sourceTree = "<group>"; };
+		9FC4B0CE2A1E970600874935 /* ApiFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApiFeatures; path = ../Packages/ApiFeatures; sourceTree = "<group>"; };
+		9FC4B0D02A1F00C100874935 /* SideControlFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SideControlFeatures; path = ../Packages/SideControlFeatures; sourceTree = "<group>"; };
+		9FC4B0D12A1F015E00874935 /* ViewFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ViewFeatures; path = ../Packages/ViewFeatures; sourceTree = "<group>"; };
+		9FC4B0D22A1F01BB00874935 /* SettingsFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SettingsFeatures; path = ../Packages/SettingsFeatures; sourceTree = "<group>"; };
+		9FC4B0D32A20D3D000874935 /* PanafallFeatures */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PanafallFeatures; path = ../Packages/PanafallFeatures; sourceTree = "<group>"; };
 		9FE8946F29358DD700C12DE2 /* Api6000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Api6000.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE8947229358DD700C12DE2 /* Api6000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api6000App.swift; sourceTree = "<group>"; };
 		9FE8947629358DD800C12DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				9FC82DC52A1B18980081BC53 /* EqControls in Frameworks */,
 				9FC82DCF2A1B18980081BC53 /* TxControls in Frameworks */,
 				9FC82DD32A1B18EC0081BC53 /* GpsSettings in Frameworks */,
+				9FC4B0D52A24489400874935 /* Panafalls in Frameworks */,
 				9FC82DCD2A1B18980081BC53 /* SidePanel in Frameworks */,
 				9F0307AD2A1B0C9B00E02BB6 /* LogView in Frameworks */,
 				9F0307B32A1B0C9B00E02BB6 /* RadioPicker in Frameworks */,
@@ -223,6 +230,11 @@
 		9FE8946629358DD700C12DE2 = {
 			isa = PBXGroup;
 			children = (
+				9FC4B0D32A20D3D000874935 /* PanafallFeatures */,
+				9FC4B0D22A1F01BB00874935 /* SettingsFeatures */,
+				9FC4B0D12A1F015E00874935 /* ViewFeatures */,
+				9FC4B0D02A1F00C100874935 /* SideControlFeatures */,
+				9FC4B0CE2A1E970600874935 /* ApiFeatures */,
 				9F0480E829464365004D3837 /* README.md */,
 				9FE8947129358DD700C12DE2 /* Api6000 */,
 				9FE8947029358DD700C12DE2 /* Products */,
@@ -323,6 +335,7 @@
 				9FC82DE02A1B18EC0081BC53 /* TxSettings */,
 				9FC82DE22A1B18EC0081BC53 /* XvtrSettings */,
 				9FC82DE42A1B1B030081BC53 /* ClientDialog */,
+				9FC4B0D42A24489400874935 /* Panafalls */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -561,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.1;
+				MARKETING_VERSION = 5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -592,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.1;
+				MARKETING_VERSION = 5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -826,6 +839,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
 			productName = XCGWrapper;
+		};
+		9FC4B0D42A24489400874935 /* Panafalls */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Panafalls;
 		};
 		9FC82DC22A1B18980081BC53 /* CwControls */ = {
 			isa = XCSwiftPackageProductDependency;

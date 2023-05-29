@@ -10,6 +10,8 @@ import SwiftUI
 
 import FlexApi
 import LogView
+import Panafalls
+import Panafall
 import Panadapter
 import SidePanel
 import SettingsPanel
@@ -78,9 +80,10 @@ struct Api6000App: App {
     .windowResizability(WindowResizability.contentSize)
     .defaultPosition(.topTrailing)
             
-    // Panaafall window
+    // Panafalls window
     Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
-      PanadapterView(store: Store(initialState: PanadapterFeature.State(), reducer: PanadapterFeature()), objectModel: objectModel)
+      PanafallsView(store: Store(initialState: PanafallsFeature.State(), reducer: PanafallsFeature()),
+                    objectModel: objectModel)
     }
 
     .windowStyle(.hiddenTitleBar)
@@ -89,7 +92,7 @@ struct Api6000App: App {
 
     // Settings window
     Settings {
-      SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), objectModel: objectModel)
+      SettingsView(store: Store(initialState: SettingsFeature.State(), reducer: SettingsFeature()), objectModel: objectModel, apiModel: apiModel)
     }
     .windowStyle(.hiddenTitleBar)
     .windowResizability(WindowResizability.contentSize)

@@ -36,7 +36,7 @@ struct MiscSubView: View {
       VStack(alignment: .leading) {
         Text(radio.softwareVersion)
         Text(radio.hardwareVersion ?? "Unknown")
-        Text(stringArrayToString(radio.antennaList))
+        Text(stringArrayToString(radio.antList))
         Text(stringArrayToString(radio.micList))
         Text("\(radio.uptime) (value at time of this connection)")
       }

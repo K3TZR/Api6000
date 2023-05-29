@@ -19,36 +19,30 @@ struct TesterSubView: View {
   @Dependency(\.objectModel) var objectModel
     
   var body: some View {
-    if objectModel.radio != nil {
+    if apiModel.radio != nil {
       VStack(alignment: .leading) {
         Divider().background(Color(.green))
         HStack(spacing: 10) {
           
-          HStack {
-            Text("NonGui").foregroundColor(.green)
-              .font(.title)
-            Text("Api6000Tester").foregroundColor(.green)
-          }
-
-          HStack(spacing: 5) {
-            Text("Bound to Station")
-            Text("\(objectModel.activeStation ?? "none")").foregroundColor(.secondary)
-          }
-          if objectModel.radio != nil { TesterRadioViewView(radio: objectModel.radio!) }
+          Text("Api6000Tester").foregroundColor(.green)
+            .font(.title)
+          
+//          HStack(spacing: 5) {
+//            Text("Bound to Station")
+//            Text("\(objectModel.activeStation ?? "none")").foregroundColor(.secondary)
+//          }
+          TesterRadioViewView(apiModel: apiModel) }
         }
-      }
+//      }
     }
   }
 }
 
 struct TesterRadioViewView: View {
-  @ObservedObject var radio: Radio
+  @ObservedObject var apiModel: ApiModel
   
-  @Dependency(\.apiModel) var apiModel
-  @Dependency(\.objectModel) var objectModel
-
   var body: some View {
-    HStack(spacing: 10) {
+//    HStack(spacing: 10) {
       
       HStack(spacing: 5) {
         Text("Handle")
@@ -59,7 +53,7 @@ struct TesterRadioViewView: View {
         Text("Client Id")
         Text("\(apiModel.boundClientId ?? "none")").foregroundColor(.secondary)
       }
-    }
+//    }
   }
 }
 

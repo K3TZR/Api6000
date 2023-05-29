@@ -15,13 +15,13 @@ import Shared
 
 struct AtuSubView: View {
   @ObservedObject var atu: Atu
-  @ObservedObject var radio: Radio
+  @ObservedObject var apiModel: ApiModel
   
   var body: some View {
     
     Grid(alignment: .leading, horizontalSpacing: 10) {
       GridRow {
-        if radio.atuPresent {
+        if apiModel.atuPresent {
           Group {
             Text("ATU")
             HStack(spacing: 5) {
@@ -61,6 +61,6 @@ struct AtuSubView: View {
 struct AtuSubView_Previews: PreviewProvider {
   
   static var previews: some View {
-    AtuSubView(atu: Atu(), radio: Radio(Packet()))
+    AtuSubView(atu: Atu(), apiModel: ApiModel())
   }
 }

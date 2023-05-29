@@ -19,37 +19,27 @@ struct ObjectsSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
   @ObservedObject var objectModel: ObjectModel
+  @ObservedObject var streamModel: StreamModel
 
   @Dependency(\.listener) var listener
   
   @AppStorage("fontSize") var fontSize: Double = 12
-
-//  struct ViewState: Equatable {
-//    let isGui: Bool
-//    let fontSize: CGFloat
-//    let isStopped: Bool
-//    init(state: ApiModule.State) {
-//      self.isGui = state.isGui
-//      self.fontSize = state.fontSize
-//      self.isStopped = state.isStopped
-//    }
-//  }
+  @AppStorage("isGui") var isGui = true
 
   var body: some View {
     
     WithViewStore(self.store, observe: {$0} ) { viewStore in
-        ScrollView([.horizontal, .vertical]) {
-          if apiModel.activePacket == nil {
+      ScrollView([.horizontal, .vertical]) {
+        VStack(alignment: .leading) {
+          if apiModel.radio == nil {
             Text("Objects will be displayed here")
           } else {
-            VStack(alignment: .leading) {
-              RadioSubView(objectModel: objectModel, packet: apiModel.activePacket!, radio: apiModel.radio!)
-              GuiClientSubView(store: store, apiModel: apiModel, packet: apiModel.activePacket!)
-              //          if viewStore.isGui == false { TesterView() }
-            }
+            RadioSubView(apiModel: apiModel, objectModel: objectModel, streamModel: streamModel, radio: apiModel.radio!)
+            GuiClientSubView(store: store, apiModel: apiModel)
+            if isGui == false { TesterSubView() }
           }
         }
-        .font(.system(size: fontSize, weight: .regular, design: .monospaced))
+      }.font(.system(size: fontSize, weight: .regular, design: .monospaced))
     }
   }
 }
@@ -65,7 +55,7 @@ struct ObjectsSubView_Previews: PreviewProvider {
         Store(
           initialState: ApiModule.State(),
           reducer: ApiModule()), apiModel: ApiModel(),
-      objectModel: ObjectModel())
+      objectModel: ObjectModel(), streamModel: StreamModel())
     .frame(minWidth: 975)
     .padding()
   }

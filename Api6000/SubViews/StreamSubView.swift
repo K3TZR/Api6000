@@ -22,6 +22,9 @@ struct StreamSubView: View {
   
   var body: some View {
     Grid(alignment: .leading, horizontalSpacing: 10) {
+      // Meter
+      MeterStreamView(streamModel: streamModel)
+      
       // Panadapter
       ForEach(objectModel.panadapters) { panadapter in
         if handle == panadapter.clientHandle { PanadapterStreamView(panadapter: panadapter) }
@@ -63,6 +66,24 @@ struct StreamSubView: View {
       }
     }
     .padding(.leading, 20)
+  }
+}
+
+private struct MeterStreamView: View {
+  @ObservedObject var streamModel: StreamModel
+  
+  var body: some View {
+    
+    GridRow {
+      Group {
+        Text("METER")
+        Text(streamModel.meterStream == nil ? "0x--------" : streamModel.meterStream!.id.hex ).foregroundColor(.green)
+        HStack(spacing: 5) {
+          Text("Streaming")
+          Text(streamModel.meterStream == nil ? "N" : "Y").foregroundColor(streamModel.meterStream == nil ? .red : .green)
+        }
+      }.frame(width: 100, alignment: .leading)
+    }
   }
 }
 

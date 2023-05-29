@@ -29,7 +29,8 @@ public struct ApiView: View {
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.messagesModel) var messagesModel
   @Dependency(\.objectModel) var objectModel
-  
+  @Dependency(\.streamModel) var streamModel
+
   public init(store: StoreOf<ApiModule>) {
     self.store = store
   }
@@ -44,9 +45,11 @@ public struct ApiView: View {
         Divider().background(Color(.gray))
         
         VSplitView {
-          ObjectsSubView(store: store, apiModel: apiModel, objectModel: objectModel)
+          ObjectsSubView(store: store, apiModel: apiModel, objectModel: objectModel, streamModel: streamModel)
+            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
           Divider().background(Color(.cyan))
           MessagesSubView(store: store, messagesModel: messagesModel)
+            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         }
         Spacer()
         Divider().background(Color(.gray))
@@ -151,25 +154,21 @@ public struct ApiView: View {
 private struct TopButtonsView: View {
   let store: StoreOf<ApiModule>
   
-  @AppStorage("showPings") var showPings = false
-  @AppStorage("showTimes") var showTimes = false
-  @AppStorage("useDefault") var useDefault = false
-  @AppStorage("smartlinkEnabled") var smartlinkEnabled = false
   @AppStorage("localEnabled") var localEnabled = false
+  @AppStorage("loginRequired") var loginRequired = false
   @AppStorage("isGui") var isGui = false
   @AppStorage("rxAudio") var rxAudio = false
+  @AppStorage("showPings") var showPings = false
+  @AppStorage("showTimes") var showTimes = false
+  @AppStorage("smartlinkEnabled") var smartlinkEnabled = false
+  @AppStorage("txAudio") var txAudio = false
+  @AppStorage("useDefault") var useDefault = false
 
   struct ViewState: Equatable {
-    let rxAudio: Bool
-    let txAudio: Bool
-    let loginRequired: Bool
     let isConnected: Bool
     let startStopDisabled: Bool
     
     init(state: ApiModule.State) {
-      self.rxAudio = state.rxAudio
-      self.txAudio = state.txAudio
-      self.loginRequired = state.loginRequired
       self.isConnected = state.isConnected
       self.startStopDisabled = state.startStopDisabled
     }
@@ -197,9 +196,9 @@ private struct TopButtonsView: View {
         
         Spacer()
         ControlGroup {
-          Toggle(isOn: viewStore.binding(get: \.rxAudio, send: .rxAudio) ) {
+          Toggle(isOn: viewStore.binding(get: {_ in rxAudio}, send: .rxAudio) ) {
             Text("Rx Audio") }
-          Toggle(isOn: viewStore.binding(get: \.txAudio, send: .txAudio) ) {
+          Toggle(isOn: viewStore.binding(get: {_ in txAudio}, send: .txAudio) ) {
             Text("Tx Audio") }
         }
         .frame(width: 130)
@@ -215,7 +214,7 @@ private struct TopButtonsView: View {
         .frame(width: 130)
         
         Spacer()
-        Toggle("Smartlink Login", isOn: viewStore.binding(get: \.loginRequired, send: .loginRequired))
+        Toggle("Smartlink Login", isOn: $loginRequired)
           .disabled( viewStore.isConnected || smartlinkEnabled == false )
         Toggle("Use Default", isOn: $useDefault)
           .disabled( viewStore.isConnected )

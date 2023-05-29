@@ -18,16 +18,17 @@ import Shared
 struct GuiClientSubView: View {
   let store: StoreOf<ApiModule>
   @ObservedObject var apiModel: ApiModel
-  @ObservedObject var packet: Packet
 
   var body: some View {
     VStack(alignment: .leading) {
 //      if apiModel.activePacket == nil {
 //        Text("No active packet")
 //      } else {
-        ForEach(packet.guiClients, id: \.id) { guiClient in
+      if let radio = apiModel.radio {
+        ForEach(radio.packet.guiClients, id: \.id) { guiClient in
           DetailView(store: store, guiClient: guiClient)
         }
+      }
 //      }
     }
   }
@@ -89,6 +90,7 @@ struct GuiClientDetailView: View {
 //    }
 //  }
   
+  @Dependency(\.apiModel) var apiModel
   @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
 
@@ -115,8 +117,8 @@ struct GuiClientDetailView: View {
       case ObjectFilter.memories.rawValue:          MemorySubView(objectModel: objectModel)
       case ObjectFilter.meters.rawValue:            MeterSubView(streamModel: streamModel, sliceId: nil, sliceClientHandle: nil, handle: handle)
       case ObjectFilter.misc.rawValue:
-        if objectModel.radio != nil {
-          MiscSubView(radio: objectModel.radio!)
+        if apiModel.radio != nil {
+          MiscSubView(radio: apiModel.radio!)
         } else {
           EmptyView()
         }
@@ -142,7 +144,7 @@ struct GuiClientSubView_Previews: PreviewProvider {
     GuiClientSubView( store:
                     Store(initialState: ApiModule.State(),
                           reducer: ApiModule()),
-                   apiModel: ApiModel(), packet: Packet())
+                   apiModel: ApiModel())
     .frame(minWidth: 975)
     .padding()
   }

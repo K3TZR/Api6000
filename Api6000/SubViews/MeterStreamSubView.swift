@@ -15,7 +15,7 @@ import FlexApi
 // MARK: - View
 
 struct MeterStreamSubView: View {
-  @ObservedObject var objectModel: ObjectModel
+  @ObservedObject var streamModel: StreamModel
   
   var body: some View {
     
@@ -23,20 +23,20 @@ struct MeterStreamSubView: View {
       GridRow {
         Group {
           Text("METERS")
-          Text("\(objectModel.meterStreamId == 0 ? "0x--------" : objectModel.meterStreamId.hex)").foregroundColor(.green)
+          Text("Stream Id")
+          Text(streamModel.meterStream == nil ? "0x--------" : streamModel.meterStream!.id.hex ).foregroundColor(.green)
           HStack(spacing: 5) {
             Text("Streaming")
-            Text(objectModel.meterStreamId == 0 ? "N" : "Y").foregroundColor(objectModel.meterStreamId == 0 ? .red : .green)
+            Text(streamModel.meterStream == nil ? "N" : "Y").foregroundColor(streamModel.meterStream == nil ? .red : .green)
           }
         }.frame(width: 100, alignment: .leading)
       }
-    }
-    .padding(.leading, 20)
+    }.padding(.leading, 20)
   }
 }
 
 struct MeterStreamSubView_Previews: PreviewProvider {
   static var previews: some View {
-    MeterStreamSubView(objectModel: ObjectModel())
+    MeterStreamSubView(streamModel: StreamModel())
   }
 }

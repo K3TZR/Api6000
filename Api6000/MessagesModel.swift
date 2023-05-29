@@ -10,30 +10,28 @@ import Foundation
 import SwiftUI
 
 import Tcp
-//import Api6000
 import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - Dependency decalarations
 
 extension MessagesModel: DependencyKey {
-  public static let liveValue = MessagesModel.shared
+  public static let liveValue = MessagesModel()
 }
 
 extension DependencyValues {
   var messagesModel: MessagesModel {
     get { self[MessagesModel.self] }
-    set { self[MessagesModel.self] = newValue }
+//    set { self[MessagesModel.self] = newValue }
   }
 }
 
-//@MainActor
-public final class MessagesModel: ObservableObject, TesterDelegate {
+public final class MessagesModel: ObservableObject {
   // ----------------------------------------------------------------------------
   // MARK: - Initialization (Singleton)
   
-  public static var shared = MessagesModel()
-  private init() {}
+//  public static var shared = MessagesModel()
+  public init() {}
   
   // ----------------------------------------------------------------------------
   // MARK: - Public properties
@@ -74,13 +72,11 @@ public final class MessagesModel: ObservableObject, TesterDelegate {
 
   /// Begin to process TcpMessages
   public func start() {
-//    Tcp.shared.testerDelegate = self
     subscribeToTcpMessages()
   }
   
   /// Stop processing TcpMessages
   public func stop() {
-//    Tcp.shared.testerDelegate = nil
   }
 
   // ----------------------------------------------------------------------------
@@ -112,12 +108,22 @@ public final class MessagesModel: ObservableObject, TesterDelegate {
 
 extension MessagesModel {
   // ----------------------------------------------------------------------------
-  // MARK: - TesterDelegate methods
-  
-  /// Receive a TcpMessage from Tcp
-  /// - Parameter message: a TcpMessage struct
-  public func testerMessages(_ message: TcpMessage) {
-    
+  // MARK: - Subscription methods
+
+  private func subscribeToTcpMessages()  {
+    Task(priority: .high) {
+      log("MessagesModel: TcpMessage subscription STARTED", .debug, #function, #file, #line)
+      for await msg in Tcp.shared.testerStream {
+        process(msg)
+      }
+      log("MessagesModel: : TcpMessage subscription STOPPED", .debug, #function, #file, #line)
+    }
+  }
+
+  /// Process a TcpMessage
+  /// - Parameter msg: a TcpMessage struct
+  private func process(_ msg: TcpMessage) {
+
     // ignore routine replies (i.e. replies with no error or no attached data)
     func ignoreReply(_ text: String) -> Bool {
       if text.first != "R" { return false }     // not a Reply
@@ -127,42 +133,31 @@ extension MessagesModel {
       if parts[2] != "" { return false }        // additional data present
       return true                               // otherwise, ignore it
     }
-    
+
     // ignore received replies unless they are non-zero or contain additional data
-    if message.direction == .received && ignoreReply(message.text) { return }
+    if msg.direction == .received && ignoreReply(msg.text) { return }
     // ignore sent "ping" messages unless showPings is true
-    if message.text.contains("ping") && showPings == false { return }
+    if msg.text.contains("ping") && showPings == false { return }
     // add it to the backing collection
-    _messages.append(message)
+    _messages.append(msg)
     Task {
       await MainActor.run {
-        // add it to the published collection if appropriate
+        // add it to the published collection (if appropriate)
         switch (messageFilter, messageFilterText) {
-          
-        case (MessageFilter.all.rawValue, _):        filteredMessages.append(message)
-        case (MessageFilter.prefix.rawValue, ""):    filteredMessages.append(message)
-        case (MessageFilter.prefix.rawValue, _):     if message.text.localizedCaseInsensitiveContains("|" + messageFilterText) { filteredMessages.append(message) }
-        case (MessageFilter.includes.rawValue, _):   if message.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(message) }
-        case (MessageFilter.excludes.rawValue, ""):  filteredMessages.append(message)
-        case (MessageFilter.excludes.rawValue, _):   if !message.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(message) }
-        case (MessageFilter.command.rawValue, _):    if message.text.prefix(1) == "C" { filteredMessages.append(message) }
-        case (MessageFilter.S0.rawValue, _):         if message.text.prefix(3) == "S0|" { filteredMessages.append(message) }
-        case (MessageFilter.status.rawValue, _):     if message.text.prefix(1) == "S" && message.text.prefix(3) != "S0|" { filteredMessages.append(message) }
-        case (MessageFilter.reply.rawValue, _):      if message.text.prefix(1) == "R" { filteredMessages.append(message) }
-        default:                                     filteredMessages.append(message)
+
+        case (MessageFilter.all.rawValue, _):        filteredMessages.append(msg)
+        case (MessageFilter.prefix.rawValue, ""):    filteredMessages.append(msg)
+        case (MessageFilter.prefix.rawValue, _):     if msg.text.localizedCaseInsensitiveContains("|" + messageFilterText) { filteredMessages.append(msg) }
+        case (MessageFilter.includes.rawValue, _):   if msg.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(msg) }
+        case (MessageFilter.excludes.rawValue, ""):  filteredMessages.append(msg)
+        case (MessageFilter.excludes.rawValue, _):   if !msg.text.localizedCaseInsensitiveContains(messageFilterText) { filteredMessages.append(msg) }
+        case (MessageFilter.command.rawValue, _):    if msg.text.prefix(1) == "C" { filteredMessages.append(msg) }
+        case (MessageFilter.S0.rawValue, _):         if msg.text.prefix(3) == "S0|" { filteredMessages.append(msg) }
+        case (MessageFilter.status.rawValue, _):     if msg.text.prefix(1) == "S" && msg.text.prefix(3) != "S0|" { filteredMessages.append(msg) }
+        case (MessageFilter.reply.rawValue, _):      if msg.text.prefix(1) == "R" { filteredMessages.append(msg) }
+        default:                                     filteredMessages.append(msg)
         }
       }
-    }
-  }
-  
-  
-  private func subscribeToTcpMessages()  {
-    Task(priority: .high) {
-      log("MessagesModel: TcpMessage subscription STARTED", .debug, #function, #file, #line)
-      for await tcpMessage in Tcp.shared.testerStream {
-        testerMessages(tcpMessage)
-      }
-      log("MessagesModel: : TcpMessage subscription STOPPED", .debug, #function, #file, #line)
     }
   }
 }
