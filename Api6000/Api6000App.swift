@@ -18,13 +18,15 @@ import SettingsPanel
 import Shared
 
 enum WindowType: String {
-  case log = "Log View"
-  case panadapter = "Panadapter View"
+  case log = "Log"
+  case panafalls = "Panafalls"
   case control = "Controls"
   case settings = "Settings"
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
+  public var isClosing = false
+  
   func applicationDidFinishLaunching(_ notification: Notification) {
     // disable tab view
     NSWindow.allowsAutomaticWindowTabbing = false
@@ -33,6 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
     
   func applicationWillTerminate(_ notification: Notification) {
+    isClosing = true
     log("Api6000: application terminated", .debug, #function, #file, #line)
   }
   
@@ -45,7 +48,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 struct Api6000App: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self)
   var appDelegate
+
+  @AppStorage("leftSideIsOpen") var leftSideIsOpen = false
+  @AppStorage("rightSideIsOpen") var rightSideIsOpen = false
   
+  @Environment(\.openWindow) var openWindow
+
+  @AppStorage("openControlWindow") var controlWindowIsOpen = false
+  @AppStorage("openLogWindow") var openLogWindow = false
+  @AppStorage("openPanafallsWindow") var openPanafallsWindow = false
+
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.objectModel) var objectModel
   @Dependency(\.streamModel) var streamModel
@@ -61,6 +73,71 @@ struct Api6000App: App {
       .frame(minWidth: 975)
       .padding(.horizontal, 20)
       .padding(.vertical, 10)
+      
+      .toolbar{
+        ToolbarItem(placement: .navigation) {
+          Button {
+            leftSideIsOpen.toggle()
+          } label: {
+            Image(systemName: "sidebar.squares.left")
+              .font(.system(size: 20))
+          }
+          .keyboardShortcut("l", modifiers: [.control, .command])
+        }
+        
+        ToolbarItem {
+          Spacer()
+        }
+        
+        ToolbarItemGroup {
+          Button("Log") { openWindow(id: WindowType.log.rawValue) }
+          Button("Pan") { openWindow(id: WindowType.panafalls.rawValue) }
+//          Button("Control") { openWindow(id: WindowType.control.rawValue) }
+        }
+        
+        ToolbarItem {
+          Spacer()
+        }
+        
+        ToolbarItem {
+          Button {
+//            rightWidth = rightWidth == 100 ? 0 : 100
+            if controlWindowIsOpen {
+              closeWindow(WindowType.control.rawValue)
+            } else {
+              openWindow(id: WindowType.control.rawValue)
+            }
+          } label: {
+            Image(systemName: "sidebar.squares.right")
+              .font(.system(size: 20))
+          }
+        }
+      }
+      
+      .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { notification in
+        // observe openings of secondary windows
+        if let window = notification.object as? NSWindow {
+          switch window.identifier?.rawValue {
+          case WindowType.log.rawValue: openLogWindow = true
+          case WindowType.panafalls.rawValue: openPanafallsWindow = true
+          case WindowType.control.rawValue: controlWindowIsOpen = true
+          default:  break
+          }
+        }
+      }
+      .onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
+        // observe closings of secondary windows (unless the entire app is closing)
+//        if !viewStore.isClosing, let window = notification.object as? NSWindow {
+        if !appDelegate.isClosing, let window = notification.object as? NSWindow {
+          switch window.identifier?.rawValue {
+          case WindowType.log.rawValue: openLogWindow = false
+          case WindowType.panafalls.rawValue: openPanafallsWindow = false
+          case WindowType.control.rawValue: controlWindowIsOpen = false
+          default:  break
+          }
+        }
+      }
+
     }
 
     // Log window
@@ -81,7 +158,7 @@ struct Api6000App: App {
     .defaultPosition(.topTrailing)
             
     // Panafalls window
-    Window(WindowType.panadapter.rawValue, id: WindowType.panadapter.rawValue) {
+    Window(WindowType.panafalls.rawValue, id: WindowType.panafalls.rawValue) {
       PanafallsView(store: Store(initialState: PanafallsFeature.State(), reducer: PanafallsFeature()),
                     objectModel: objectModel)
     }
@@ -101,6 +178,12 @@ struct Api6000App: App {
     .commands {
       //remove the "New" menu item
       CommandGroup(replacing: CommandGroupPlacement.newItem) {}
+    }
+  }
+
+  private func closeWindow(_ id: String) {
+    for window in NSApp.windows where window.identifier?.rawValue == id {
+      window.close()
     }
   }
 }

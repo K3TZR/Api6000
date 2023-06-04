@@ -11,6 +11,8 @@ import SwiftUI
 import ClientDialog
 import LoginDialog
 import LogView
+import MessagesView
+import ObjectsView
 import RadioPicker
 import Shared
 
@@ -24,7 +26,7 @@ public struct ApiView: View {
   
   @AppStorage("openControlWindow") var openControlWindow = false
   @AppStorage("openLogWindow") var openLogWindow = false
-  @AppStorage("openPanadapterWindow") var openPanadapterWindow = false
+  @AppStorage("openPanafallsWindow") var openPanafallsWindow = false
   
   @Dependency(\.apiModel) var apiModel
   @Dependency(\.messagesModel) var messagesModel
@@ -35,24 +37,48 @@ public struct ApiView: View {
     self.store = store
   }
   
+  struct ViewState: Equatable {
+    let pickerState: PickerFeature.State?
+    let loginState: LoginFeature.State?
+    let clientState: ClientFeature.State?
+    let isClosing: Bool
+    init(state: ApiModule.State) {
+      pickerState = state.pickerState
+      loginState = state.loginState
+      clientState = state.clientState
+      isClosing = state.isClosing
+    }
+  }
+
   public var body: some View {
-    WithViewStore(self.store, observe: {$0} ) { viewStore in
+    WithViewStore(self.store, observe: ViewState.init ) { viewStore in
       VStack(alignment: .leading) {
         TopButtonsView(store: store)
         SendView(store: store)
-        FiltersView(store: store)
         
-        Divider().background(Color(.gray))
+        Divider()
+          .frame(height: 4)
+          .background(Color(.gray))
         
         VSplitView {
-          ObjectsSubView(store: store, apiModel: apiModel, objectModel: objectModel, streamModel: streamModel)
-            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
-          Divider().background(Color(.cyan))
-          MessagesSubView(store: store, messagesModel: messagesModel)
-            .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
+          ObjectsView(store: Store(initialState: ObjectsFeature.State(), reducer: ObjectsFeature()),
+                      apiModel: apiModel,
+                      objectModel: objectModel,
+                      streamModel: streamModel)
+          .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
+          
+          Divider()
+            .frame(height: 4)
+            .background(Color(.gray))
+
+          MessagesView(store: Store(initialState: MessagesFeature.State(), reducer: MessagesFeature()),
+                       messagesModel: messagesModel)
+          .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         }
         Spacer()
-        Divider().background(Color(.gray))
+        Divider()
+          .frame(height: 4)
+          .background(Color(.gray))
         BottomButtonsView(store: store)
       }
       
@@ -60,7 +86,7 @@ public struct ApiView: View {
       // initialize on first appearance
       .onAppear() {
         if openLogWindow { openWindow(id: WindowType.log.rawValue) }
-        if openPanadapterWindow { openWindow(id: WindowType.panadapter.rawValue) }
+        if openPanafallsWindow { openWindow(id: WindowType.panafalls.rawValue) }
         if openControlWindow { openWindow(id: WindowType.control.rawValue) }
         viewStore.send(.onAppear)
       }
@@ -112,38 +138,38 @@ public struct ApiView: View {
       )
       
       // ---------- Window Management ----------
-      .toolbar {
-        Button("Log") { openWindow(id: WindowType.log.rawValue) }
-        Button("Pan") { openWindow(id: WindowType.panadapter.rawValue) }
-        Button("Control") { openWindow(id: WindowType.control.rawValue) }
-      }
+//      .toolbar {
+//        Button("Log") { openWindow(id: WindowType.log.rawValue) }
+//        Button("Pan") { openWindow(id: WindowType.panafalls.rawValue) }
+//        Button("Control") { openWindow(id: WindowType.control.rawValue) }
+//      }
       
       .onDisappear {
         viewStore.send(.closeAllWindows)
       }
       
-      .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { notification in
-        // observe openings
-        if let window = notification.object as? NSWindow {
-          switch window.identifier?.rawValue {
-          case WindowType.log.rawValue: openLogWindow = true
-          case WindowType.panadapter.rawValue: openPanadapterWindow = true
-          case WindowType.control.rawValue: openControlWindow = true
-          default:  break
-          }
-        }
-      }
-      .onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
-        // observe closings unless the entire app is closing
-        if !viewStore.isClosing, let window = notification.object as? NSWindow {
-          switch window.identifier?.rawValue {
-          case WindowType.log.rawValue: openLogWindow = false
-          case WindowType.panadapter.rawValue: openPanadapterWindow = false
-          case WindowType.control.rawValue: openControlWindow = false
-          default:  break
-          }
-        }
-      }
+//      .onReceive(NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification)) { notification in
+//        // observe openings of secondary windows
+//        if let window = notification.object as? NSWindow {
+//          switch window.identifier?.rawValue {
+//          case WindowType.log.rawValue: openLogWindow = true
+//          case WindowType.panafalls.rawValue: openPanafallsWindow = true
+//          case WindowType.control.rawValue: openControlWindow = true
+//          default:  break
+//          }
+//        }
+//      }
+//      .onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
+//        // observe closings of secondary windows (unless the entire app is closing)
+//        if !viewStore.isClosing, let window = notification.object as? NSWindow {
+//          switch window.identifier?.rawValue {
+//          case WindowType.log.rawValue: openLogWindow = false
+//          case WindowType.panafalls.rawValue: openPanafallsWindow = false
+//          case WindowType.control.rawValue: openControlWindow = false
+//          default:  break
+//          }
+//        }
+//      }
     }
   }
 }
@@ -271,69 +297,6 @@ private struct SendView: View {
   }
 }
 
-private struct FiltersView: View {
-  let store: StoreOf<ApiModule>
-  
-  var body: some View {
-    HStack(spacing: 100) {
-      FilterObjectsView(store: store)
-      FilterMessagesView(store: store)
-    }
-  }
-}
-
-private struct FilterObjectsView: View {
-  let store: StoreOf<ApiModule>
-  
-  @AppStorage("objectFilter") var objectFilter = ObjectFilter.core.rawValue
-  
-  var body: some View {
-    
-    WithViewStore(self.store, observe: {$0} ) { viewStore in
-      HStack {
-        Picker("Show Radio Objects of type", selection: $objectFilter ) {
-            ForEach(ObjectFilter.allCases, id: \.self) {
-              Text($0.rawValue).tag($0.rawValue)
-            }
-          }
-          .frame(width: 300)
-      }
-    }
-    .pickerStyle(MenuPickerStyle())
-  }
-}
-
-private struct FilterMessagesView: View {
-  let store: StoreOf<ApiModule>
-
-  @AppStorage("messageFilter") var messageFilter = MessageFilter.all.rawValue
-  @AppStorage("messageFilterText") var messageFilterText = ""
-
-  var body: some View {
-
-    WithViewStore(self.store, observe: {$0}) { viewStore in
-      HStack {
-        Picker("Show Tcp Messages of type", selection: viewStore.binding(
-          get: {_ in messageFilter },
-          send: { value in .messagesFilter(value) } )) {
-            ForEach(MessageFilter.allCases, id: \.self) {
-              Text($0.rawValue).tag($0.rawValue)
-            }
-          }
-          .frame(width: 300)
-        Image(systemName: "x.circle")
-          .onTapGesture {
-            viewStore.send(.messagesFilterText(""))
-          }
-        TextField("filter text", text: viewStore.binding(
-          get: {_ in messageFilterText },
-          send: { ApiModule.Action.messagesFilterText($0) }))
-      }
-    }
-    .pickerStyle(MenuPickerStyle())
-  }
-}
-
 private struct BottomButtonsView: View {
   let store: StoreOf<ApiModule>
   
@@ -341,14 +304,13 @@ private struct BottomButtonsView: View {
   @AppStorage("clearOnStart") var clearOnStart = false
   @AppStorage("clearOnStop") var clearOnStop = false
   @AppStorage("fontSize") var fontSize: Double = 12
+  @AppStorage("gotoLast") public var gotoLast = true
 
   struct ViewState: Equatable {
-    let gotoLast: Bool
     init(state: ApiModule.State) {
-      self.gotoLast = state.gotoLast
     }
   }
-  
+
   var body: some View {
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
       HStack {
@@ -359,9 +321,9 @@ private struct BottomButtonsView: View {
         
         Spacer()
         HStack {
-          Text("Go to \(viewStore.gotoLast ? "Last" : "First")")
-          Image(systemName: viewStore.gotoLast ? "arrow.up.square" : "arrow.down.square").font(.title)
-            .onTapGesture { viewStore.send(.gotoLast) }
+          Text("Go to \(gotoLast ? "Last" : "First")")
+          Image(systemName: gotoLast ? "arrow.up.square" : "arrow.down.square").font(.title)
+            .onTapGesture { gotoLast.toggle() }
         }
         Spacer()
         
@@ -371,13 +333,10 @@ private struct BottomButtonsView: View {
         Spacer()
         
         HStack(spacing: 30) {
-          //          Toggle("Alert on Error", isOn: viewStore.binding(get: \.alertOnError, send: .stateToggle(\.alertOnError)))
           Toggle("Alert on Error", isOn: $alertOnError)
           Toggle("Clear on Start", isOn: $clearOnStart)
           Toggle("Clear on Stop", isOn: $clearOnStop)
           Button("Clear Now") { viewStore.send(.messagesClear)}
-          //          Image(systemName: "rectangle.bottomthird.inset.filled")
-          //            .onTapGesture { viewStore.send(.stateToggle(\.showLeftButtons)) }
         }
       }
     }

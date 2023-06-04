@@ -589,13 +589,6 @@ public struct ApiModule: ReducerProtocol {
 // ----------------------------------------------------------------------------
 // MARK: - Private Effect methods
 
-//private func closeWindow(_ id: String) {
-//  for window in NSApp.windows where window.identifier?.rawValue == id {
-//    log("Api6000: \(window.identifier!.rawValue) window closed", .debug, #function, #file, #line)
-//    window.close()
-//  }
-//}
-
 private func checkConnectionStatus(_ isGui: Bool, _ selection: Pickable) async -> ApiModule.Action {
   // Gui connection with othe stations?
   if isGui && selection.packet.guiClients.count > 0 {
@@ -704,15 +697,6 @@ private func stopTxAudio(_ state: inout ApiModule.State, _ objectModel: ObjectMo
   return .none
 }
 
-//private func subscribeToPackets() ->  EffectTask<ApiModule.Action> {
-//  Effect.run { send in
-//    for await event in PacketModel.shared.packetStream {
-//      // a packet has been added / updated or deleted
-//      await send(.packetEvent(event))
-//    }
-//  }
-//}
-
 private func subscribeToClients(_ listener: Listener) ->  EffectTask<ApiModule.Action> {
   return .run { send in
     for await event in listener.clientStream {
@@ -729,43 +713,4 @@ private func subscribeToLogAlerts() ->  EffectTask<ApiModule.Action>  {
       await send(.showLogAlert(entry))
     }
   }
-}
-
-// ----------------------------------------------------------------------------
-// MARK: - Structs and Enums
-
-public enum ViewType: Equatable {
-  case api
-  case log
-}
-
-public enum ObjectFilter: String, CaseIterable {
-  case core
-  case coreNoMeters = "core w/o meters"
-  case amplifiers
-  case cwx
-  case bandSettings = "band settings"
-  case equalizers
-  case interlock
-  case memories
-  case misc
-  case profiles
-  case meters
-  case network
-  case streams
-  case usbCable
-  case wan
-  case waveforms
-  case xvtrs
-}
-
-public enum MessageFilter: String, CaseIterable {
-  case all
-  case prefix
-  case includes
-  case excludes
-  case command
-  case status
-  case reply
-  case S0
 }
