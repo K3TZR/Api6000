@@ -64,9 +64,9 @@ public struct ApiModule: ReducerProtocol {
   
   @AppStorage("alertOnError") var alertOnError = false
   @AppStorage("clearOnSend") var clearOnSend = false
-  @AppStorage("clearOnStart") var clearOnStart = false
-  @AppStorage("clearOnStop") var clearOnStop = false
-  @AppStorage("fontSize") var fontSize: Double = 12
+//  @AppStorage("clearOnStart") var clearOnStart = false
+//  @AppStorage("clearOnStop") var clearOnStop = false
+//  @AppStorage("fontSize") var fontSize: Double = 12
   @AppStorage("isGui") var isGui = true
   @AppStorage("localEnabled") var localEnabled = false
   @AppStorage("loginRequired") var loginRequired = false
@@ -142,13 +142,13 @@ public struct ApiModule: ReducerProtocol {
     case commandPrevious
     case commandSend
     case commandText(String)
-    case fontSize(CGFloat)
-    case gotoLast
+//    case fontSize(CGFloat)
+//    case gotoLast
     case loginRequired
-    case messagesClear
-    case messagesFilter(String)
-    case messagesFilterText(String)
-    case messagesSave
+//    case messagesClear
+//    case messagesFilter(String)
+//    case messagesFilterText(String)
+//    case messagesSave
     case rxAudio
     case startStop
     case txAudio
@@ -260,48 +260,48 @@ public struct ApiModule: ReducerProtocol {
         state.commandToSend = text
         return .none
         
-      case let .fontSize(size):
-        fontSize = size
-        return .none
-        
-      case .gotoLast:
-        state.gotoLast.toggle()
-        return .none
-        
-      case .messagesClear:
-        messagesModel.clearAll()
-        return .none
-        
-      case let .messagesFilter(filter):
-        messagesModel.reFilter(filter: filter)
-      return .none
-        
-      case let .messagesFilterText(filterText):
-        messagesModel.reFilter(filterText: filterText)
-      return .none
-        
-      case .messagesSave:
-        let savePanel = NSSavePanel()
-        savePanel.nameFieldStringValue = "Api6000.messages"
-        savePanel.canCreateDirectories = true
-        savePanel.isExtensionHidden = false
-        savePanel.allowsOtherFileTypes = false
-        savePanel.title = "Save the Log"
-        
-        let response = savePanel.runModal()
-        if response == .OK {
-          return .fireAndForget {
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 6
-            formatter.positiveFormat = " * ##0.000000"
-            
-            let textArray = messagesModel.filteredMessages.map { formatter.string(from: NSNumber(value: $0.interval))! + " " + $0.text }
-            let fileTextArray = textArray.joined(separator: "\n")
-            try? await fileTextArray.write(to: savePanel.url!, atomically: true, encoding: .utf8)
-          }
-        } else {
-          return .none
-        }
+//      case let .fontSize(size):
+//        fontSize = size
+//        return .none
+//
+//      case .gotoLast:
+//        state.gotoLast.toggle()
+//        return .none
+//
+//      case .messagesClear:
+//        messagesModel.clearAll()
+//        return .none
+//
+//      case let .messagesFilter(filter):
+//        messagesModel.reFilter(filter: filter)
+//      return .none
+//
+//      case let .messagesFilterText(filterText):
+//        messagesModel.reFilter(filterText: filterText)
+//      return .none
+//
+//      case .messagesSave:
+//        let savePanel = NSSavePanel()
+//        savePanel.nameFieldStringValue = "Api6000.messages"
+//        savePanel.canCreateDirectories = true
+//        savePanel.isExtensionHidden = false
+//        savePanel.allowsOtherFileTypes = false
+//        savePanel.title = "Save the Log"
+//
+//        let response = savePanel.runModal()
+//        if response == .OK {
+//          return .fireAndForget {
+//            let formatter = NumberFormatter()
+//            formatter.minimumFractionDigits = 6
+//            formatter.positiveFormat = " * ##0.000000"
+//
+//            let textArray = messagesModel.filteredMessages.map { formatter.string(from: NSNumber(value: $0.interval))! + " " + $0.text }
+//            let fileTextArray = textArray.joined(separator: "\n")
+//            try? await fileTextArray.write(to: savePanel.url!, atomically: true, encoding: .utf8)
+//          }
+//        } else {
+//          return .none
+//        }
 
       case .rxAudio:
         rxAudio.toggle()
@@ -322,7 +322,7 @@ public struct ApiModule: ReducerProtocol {
         state.startStopDisabled = true
         if state.isConnected {
           // ----- STOP -----
-          if clearOnStop { messagesModel.clearAll() }
+          messagesModel.stop()
           return .run { send in
             await apiModel.disconnect()
             await send(.connectionStatus(false))
@@ -330,7 +330,7 @@ public struct ApiModule: ReducerProtocol {
           
         } else {
           // ----- START -----
-          if clearOnStart { messagesModel.clearAll() }
+          messagesModel.start()
           // use the default?
           if UserDefaults.standard.bool(forKey: "useDefault") {
             // YES, use the Default

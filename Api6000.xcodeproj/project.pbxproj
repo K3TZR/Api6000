@@ -170,11 +170,11 @@
 		9FE8947129358DD700C12DE2 /* Api6000 */ = {
 			isa = PBXGroup;
 			children = (
+				9FE8947B29358DD800C12DE2 /* Api6000.entitlements */,
+				9FE8947229358DD700C12DE2 /* Api6000App.swift */,
 				9FE894882935918A00C12DE2 /* ApiCore.swift */,
 				9FE894872935918A00C12DE2 /* ApiView.swift */,
-				9FE8947229358DD700C12DE2 /* Api6000App.swift */,
 				9FE8947629358DD800C12DE2 /* Assets.xcassets */,
-				9FE8947B29358DD800C12DE2 /* Api6000.entitlements */,
 				9FE8947829358DD800C12DE2 /* Preview Content */,
 			);
 			path = Api6000;
@@ -464,7 +464,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -495,7 +495,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

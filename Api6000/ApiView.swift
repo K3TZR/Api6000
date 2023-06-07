@@ -70,16 +70,12 @@ public struct ApiView: View {
           Divider()
             .frame(height: 4)
             .background(Color(.gray))
+            .padding(.bottom, 5)
 
           MessagesView(store: Store(initialState: MessagesFeature.State(), reducer: MessagesFeature()),
                        messagesModel: messagesModel)
           .frame(maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         }
-        Spacer()
-        Divider()
-          .frame(height: 4)
-          .background(Color(.gray))
-        BottomButtonsView(store: store)
       }
       
       // ---------- Initialization ----------
@@ -136,13 +132,6 @@ public struct ApiView: View {
           )
         }
       )
-      
-      // ---------- Window Management ----------
-//      .toolbar {
-//        Button("Log") { openWindow(id: WindowType.log.rawValue) }
-//        Button("Pan") { openWindow(id: WindowType.panafalls.rawValue) }
-//        Button("Control") { openWindow(id: WindowType.control.rawValue) }
-//      }
       
       .onDisappear {
         viewStore.send(.closeAllWindows)
@@ -240,10 +229,12 @@ private struct TopButtonsView: View {
         .frame(width: 130)
         
         Spacer()
-        Toggle("Smartlink Login", isOn: $loginRequired)
-          .disabled( viewStore.isConnected || smartlinkEnabled == false )
-        Toggle("Use Default", isOn: $useDefault)
-          .disabled( viewStore.isConnected )
+        Group {
+          Toggle("Smartlink Login", isOn: $loginRequired)
+            .disabled( viewStore.isConnected || smartlinkEnabled == false )
+          Toggle("Use Default", isOn: $useDefault)
+            .disabled( viewStore.isConnected )
+        }.frame(width: 130, alignment: .leading)
       }
     }
   }
@@ -252,8 +243,10 @@ private struct TopButtonsView: View {
 private struct SendView: View {
   let store: StoreOf<ApiModule>
   
+  @AppStorage("alertOnError") var alertOnError = false
   @AppStorage("clearOnSend") var clearOnSend = false
-  
+  @AppStorage("fontSize") var fontSize: Double = 12
+
   struct ViewState: Equatable {
     let commandToSend: String
     let isConnected: Bool
@@ -266,13 +259,13 @@ private struct SendView: View {
   var body: some View {
 
     WithViewStore(self.store, observe: ViewState.init) { viewStore in
-      HStack(spacing: 25) {
+      HStack(spacing: 20) {
         Group {
           Button("Send") { viewStore.send(.commandSend) }
           .keyboardShortcut(.defaultAction)
 
           HStack(spacing: 0) {
-            Image(systemName: "x.circle")
+            Image(systemName: "x.circle").font(.title2)
               .onTapGesture {
                 viewStore.send(.commandClear)
               }
@@ -291,53 +284,16 @@ private struct SendView: View {
         .disabled(viewStore.isConnected == false)
 
         Spacer()
-        Toggle("Clear on Send", isOn: $clearOnSend)
-      }
-    }
-  }
-}
-
-private struct BottomButtonsView: View {
-  let store: StoreOf<ApiModule>
-  
-  @AppStorage("alertOnError") var alertOnError = false
-  @AppStorage("clearOnStart") var clearOnStart = false
-  @AppStorage("clearOnStop") var clearOnStop = false
-  @AppStorage("fontSize") var fontSize: Double = 12
-  @AppStorage("gotoLast") public var gotoLast = true
-
-  struct ViewState: Equatable {
-    init(state: ApiModule.State) {
-    }
-  }
-
-  var body: some View {
-    WithViewStore(self.store, observe: ViewState.init) { viewStore in
-      HStack {
-        Stepper("Font Size",
-                value: $fontSize,
-                in: 8...12)
-        Text(String(format: "%2.0f", fontSize)).frame(alignment: .leading)
-        
-        Spacer()
-        HStack {
-          Text("Go to \(gotoLast ? "Last" : "First")")
-          Image(systemName: gotoLast ? "arrow.up.square" : "arrow.down.square").font(.title)
-            .onTapGesture { gotoLast.toggle() }
-        }
-        Spacer()
-        
-        HStack {
-          Button("Save") { viewStore.send(.messagesSave) }
-        }
-        Spacer()
-        
-        HStack(spacing: 30) {
+        Group {
+          Toggle("Clear on Send", isOn: $clearOnSend)
           Toggle("Alert on Error", isOn: $alertOnError)
-          Toggle("Clear on Start", isOn: $clearOnStart)
-          Toggle("Clear on Stop", isOn: $clearOnStop)
-          Button("Clear Now") { viewStore.send(.messagesClear)}
-        }
+          HStack(spacing: 5) {
+            Stepper("Font Size",
+                    value: $fontSize,
+                    in: 8...12)
+            Text(String(format: "%2.0f", fontSize)).frame(alignment: .leading)
+          }
+        }.frame(width: 130, alignment: .leading)
       }
     }
   }
