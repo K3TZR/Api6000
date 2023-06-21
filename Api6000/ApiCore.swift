@@ -427,7 +427,13 @@ public struct ApiModule: ReducerProtocol {
         return .none
         
       case .showPickerSheet:
-        state.pickerState = PickerFeature.State(defaultValue: isGui ? state.guiDefault : state.nonGuiDefault, isGui: isGui)
+        var pickables: IdentifiedArrayOf<Pickable>
+        if isGui {
+          pickables = listener.getPickableRadios()
+        } else {
+          pickables = listener.getPickableStations()
+        }
+        state.pickerState = PickerFeature.State(pickables: pickables, defaultValue: isGui ? state.guiDefault : state.nonGuiDefault, isGui: isGui)
         return .none
         
         // ----------------------------------------------------------------------------

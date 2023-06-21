@@ -34,6 +34,7 @@
 		9F0307E02A1B0D9D00E02BB6 /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307DF2A1B0D9D00E02BB6 /* RingBuffer */; };
 		9F0307E22A1B0D9D00E02BB6 /* SecureStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307E12A1B0D9D00E02BB6 /* SecureStorage */; };
 		9F0307E42A1B0D9D00E02BB6 /* XCGWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 9F0307E32A1B0D9D00E02BB6 /* XCGWrapper */; };
+		9F4FF7AE2A3A53E20095F2EF /* TxRxAntennaPopover in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4FF7AD2A3A53E20095F2EF /* TxRxAntennaPopover */; };
 		9FC4B0D52A24489400874935 /* Panafalls in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4B0D42A24489400874935 /* Panafalls */; };
 		9FC4B0D72A2522B700874935 /* MessagesView in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4B0D62A2522B700874935 /* MessagesView */; };
 		9FC4B0D92A253CBC00874935 /* ObjectsView in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC4B0D82A253CBC00874935 /* ObjectsView */; };
@@ -104,6 +105,7 @@
 				9FC82DD32A1B18EC0081BC53 /* GpsSettings in Frameworks */,
 				9FC4B0D52A24489400874935 /* Panafalls in Frameworks */,
 				9FC82DCD2A1B18980081BC53 /* SidePanel in Frameworks */,
+				9F4FF7AE2A3A53E20095F2EF /* TxRxAntennaPopover in Frameworks */,
 				9F0307AD2A1B0C9B00E02BB6 /* LogView in Frameworks */,
 				9F0307B32A1B0C9B00E02BB6 /* RadioPicker in Frameworks */,
 				9F0307E22A1B0D9D00E02BB6 /* SecureStorage in Frameworks */,
@@ -253,6 +255,7 @@
 				9FC4B0D42A24489400874935 /* Panafalls */,
 				9FC4B0D62A2522B700874935 /* MessagesView */,
 				9FC4B0D82A253CBC00874935 /* ObjectsView */,
+				9F4FF7AD2A3A53E20095F2EF /* TxRxAntennaPopover */,
 			);
 			productName = Api6000;
 			productReference = 9FE8946F29358DD700C12DE2 /* Api6000.app */;
@@ -464,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.4;
+				MARKETING_VERSION = 5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -495,7 +498,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 5.4;
+				MARKETING_VERSION = 5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = net.k3tzr.Api6000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -729,6 +732,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F0307DA2A1B0D9D00E02BB6 /* XCRemoteSwiftPackageReference "UtilityFeatures" */;
 			productName = XCGWrapper;
+		};
+		9F4FF7AD2A3A53E20095F2EF /* TxRxAntennaPopover */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TxRxAntennaPopover;
 		};
 		9FC4B0D42A24489400874935 /* Panafalls */ = {
 			isa = XCSwiftPackageProductDependency;
